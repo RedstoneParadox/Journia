@@ -11,9 +11,11 @@ object JourniaSurfaceBuilders {
     private val COARSE_DIRT = Blocks.COARSE_DIRT.defaultState
     private val CRACKED_GROUND = JourniaBlocks.CRACKED_GROUND.defaultState
     private val STONE = Blocks.STONE.defaultState
+    private val ANDESITE = Blocks.ANDESITE.defaultState
     private val GRAVEL = Blocks.GRAVEL.defaultState
 
     val WASTELAND_CONFIG = PentaSurfaceConfig(RED_SAND, CRACKED_GROUND, COARSE_DIRT, CRACKED_GROUND, GRAVEL, -0.7, 1.95)
+    val ROCKY_TAIGA_CONFIG = PentaSurfaceConfig(GRASS, GRAVEL, ANDESITE, ANDESITE, secondaryCutoff = 0.5, tertiaryCutoff = 1.7)
 
     val PENTA: SurfaceBuilder<PentaSurfaceConfig> = PentaSurfaceBuilder(PentaSurfaceConfig.Companion::deserialize)
 
