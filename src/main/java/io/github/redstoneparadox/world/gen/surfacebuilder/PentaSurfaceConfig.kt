@@ -13,8 +13,8 @@ class PentaSurfaceConfig(
     private val tertiaryMaterial: BlockState,
     private val underMaterial: BlockState = Blocks.STONE.defaultState,
     private val underwaterMaterial: BlockState = Blocks.GRAVEL.defaultState,
-    private val secondaryCutoff: Double = 1.75,
-    private val tertiaryCutoff: Double = -0.95
+    private val secondaryCutoff: Double = -0.95,
+    private val tertiaryCutoff: Double = 1.75
 ): SurfaceConfig {
 
     override fun getTopMaterial(): BlockState = topMaterial
@@ -44,8 +44,8 @@ class PentaSurfaceConfig(
             }.orElse(-0.95)
             val tertiaryCutoff = dynamic["tertiary_cutoff"].map {
                 val value = it.value
-                if (value is Double) value else 0.75
-            }.orElse(0.75)
+                if (value is Double) value else 1.75
+            }.orElse(1.75)
 
             return PentaSurfaceConfig(topMaterial, secondaryMaterial, tertiaryMaterial, underMaterial, underwaterMaterial, secondaryCutoff, tertiaryCutoff)
         }

@@ -1,6 +1,5 @@
 package io.github.redstoneparadox.world.biome
 
-import com.google.common.collect.ImmutableList
 import io.github.redstoneparadox.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
@@ -8,7 +7,6 @@ import net.minecraft.entity.EntityCategory
 import net.minecraft.entity.EntityType
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.DefaultBiomeFeatures
-import net.minecraft.world.biome.DefaultBiomeFeatures.FANCY_TREE_WITH_MORE_BEEHIVES_CONFIG
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
