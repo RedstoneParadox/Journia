@@ -7,12 +7,14 @@ import net.minecraft.util.registry.Registry
 import net.minecraft.world.biome.Biome
 
 object JourniaBiomes {
+    val WASTELAND = WastelandBiome()
 
     fun registerAll() {
-
+        register("wasteland", WASTELAND)
+        continentalBiome(WASTELAND, OverworldClimate.DRY, 0.5)
     }
 
-    fun register(id: String, biome: Biome) {
+    private fun register(id: String, biome: Biome) {
         Registry.register(Registry.BIOME, "journia:$id", biome)
     }
 
