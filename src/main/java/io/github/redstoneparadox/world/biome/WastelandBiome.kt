@@ -1,5 +1,6 @@
 package io.github.redstoneparadox.world.biome
 
+import com.google.common.collect.ImmutableList
 import io.github.redstoneparadox.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
@@ -7,8 +8,13 @@ import net.minecraft.entity.EntityCategory
 import net.minecraft.entity.EntityType
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.DefaultBiomeFeatures
+import net.minecraft.world.biome.DefaultBiomeFeatures.FANCY_TREE_WITH_MORE_BEEHIVES_CONFIG
+import net.minecraft.world.gen.GenerationStep
+import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig
+import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.FeatureConfig
+import net.minecraft.world.gen.feature.RandomFeatureConfig
 
 class WastelandBiome: Biome(
     Settings()
@@ -32,10 +38,19 @@ class WastelandBiome: Biome(
         DefaultBiomeFeatures.addDefaultOres(this)
         DefaultBiomeFeatures.addDefaultDisks(this)
         DefaultBiomeFeatures.addDefaultMushrooms(this)
-        DefaultBiomeFeatures.addDesertDeadBushes(this)
         DefaultBiomeFeatures.addBadlandsGrass(this)
         DefaultBiomeFeatures.addFossils(this)
         DefaultBiomeFeatures.addFrozenTopLayer(this)
+
+        addFeature(GenerationStep.Feature.VEGETAL_DECORATION,
+            Feature.RANDOM_SELECTOR
+                .configure(RandomFeatureConfig(mutableListOf(), Feature.NORMAL_TREE.configure(DefaultBiomeFeatures.OAK_TREE_CONFIG)))
+                .createDecoratedFeature(
+                    Decorator.COUNT_EXTRA_HEIGHTMAP
+                        .configure(CountExtraChanceDecoratorConfig(0, 0.05F, 1))
+                )
+        )
+
         addSpawn(EntityCategory.AMBIENT, SpawnEntry(EntityType.BAT, 10, 8, 8))
         addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.SPIDER, 100, 4, 4))
         addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.ZOMBIE, 95, 4, 4))
@@ -56,4 +71,6 @@ class WastelandBiome: Biome(
     override fun getGrassColorAt(x: Double, z: Double): Int {
         return 9470285
     }
+
+
 }
