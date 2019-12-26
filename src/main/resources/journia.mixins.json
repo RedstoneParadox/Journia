@@ -3,6 +3,7 @@
   "package": "io.github.redstoneparadox.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "MixinDeadBushBlock"
   ],
   "client": [
   ],
