@@ -37,7 +37,6 @@ class RockyTaigaBiome: Biome(
         DefaultBiomeFeatures.addDefaultOres(this)
         DefaultBiomeFeatures.addDefaultDisks(this)
         DefaultBiomeFeatures.addTaigaTrees(this)
-        DefaultBiomeFeatures.addGiantSpruceTaigaTrees()
         DefaultBiomeFeatures.addDefaultFlowers(this)
         DefaultBiomeFeatures.addTaigaGrass(this)
         DefaultBiomeFeatures.addDefaultMushrooms(this)
