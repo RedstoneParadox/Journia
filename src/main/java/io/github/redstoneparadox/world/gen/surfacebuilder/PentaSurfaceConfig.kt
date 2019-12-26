@@ -11,8 +11,10 @@ class PentaSurfaceConfig(
     private val topMaterial: BlockState,
     private val secondaryMaterial: BlockState,
     private val tertiaryMaterial: BlockState,
-    private val underMaterial: BlockState,
-    private val underwaterMaterial: BlockState
+    private val underMaterial: BlockState = Blocks.STONE.defaultState,
+    private val underwaterMaterial: BlockState = Blocks.GRAVEL.defaultState,
+    private val secondaryCutoff: Double = 1.75,
+    private val tertiaryCutoff: Double = -0.95
 ): SurfaceConfig {
 
     override fun getTopMaterial(): BlockState = topMaterial
@@ -25,6 +27,10 @@ class PentaSurfaceConfig(
 
     fun getUnderwaterMaterial(): BlockState = underwaterMaterial
 
+    fun getSecondaryCutoff(): Double = secondaryCutoff
+
+    fun getTertiaryCutoff(): Double = tertiaryCutoff
+
     companion object {
         fun deserialize(dynamic: Dynamic<*>): PentaSurfaceConfig {
             val topMaterial = dynamic["top_material"].map { return@map BlockState.deserialize(it) }.orElse(Blocks.GRASS_BLOCK.defaultState)
@@ -32,8 +38,16 @@ class PentaSurfaceConfig(
             val tertiaryMaterial = dynamic["tertiary_material"].map { BlockState.deserialize(it) }.orElse(Blocks.GRASS_BLOCK.defaultState)
             val underMaterial = dynamic["under_material"].map { BlockState.deserialize(it) }.orElse(Blocks.STONE.defaultState)
             val underwaterMaterial = dynamic["underwater_material"].map { BlockState.deserialize(it) }.orElse(Blocks.GRAVEL.defaultState)
+            val secondaryCutoff = dynamic["secondary_cutoff"].map {
+                val value = it.value
+                if (value is Double) value else -0.95
+            }.orElse(-0.95)
+            val tertiaryCutoff = dynamic["tertiary_cutoff"].map {
+                val value = it.value
+                if (value is Double) value else 0.75
+            }.orElse(0.75)
 
-            return PentaSurfaceConfig(topMaterial, secondaryMaterial, tertiaryMaterial, underMaterial, underwaterMaterial)
+            return PentaSurfaceConfig(topMaterial, secondaryMaterial, tertiaryMaterial, underMaterial, underwaterMaterial, secondaryCutoff, tertiaryCutoff)
         }
     }
 }

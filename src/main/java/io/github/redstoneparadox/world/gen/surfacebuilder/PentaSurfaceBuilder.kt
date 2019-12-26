@@ -18,8 +18,8 @@ class PentaSurfaceBuilder(function: KFunction1<@ParameterName(name = "dynamic") 
         val tertiaryConfig = TernarySurfaceConfig(pentaSurfaceConfig.getTertiaryMaterial(), pentaSurfaceConfig.getUnderMaterial(), pentaSurfaceConfig.getUnderwaterMaterial())
 
         when {
-            d > 1.75 -> DEFAULT.generate(random, chunk, biome, i, j, k, d, blockState, blockState2, l, m, tertiaryConfig)
-            d > -0.95 -> DEFAULT.generate(random, chunk, biome, i, j, k, d, blockState, blockState2, l, m, secondaryConfig)
+            d > pentaSurfaceConfig.getTertiaryCutoff() -> DEFAULT.generate(random, chunk, biome, i, j, k, d, blockState, blockState2, l, m, tertiaryConfig)
+            d > pentaSurfaceConfig.getSecondaryCutoff() -> DEFAULT.generate(random, chunk, biome, i, j, k, d, blockState, blockState2, l, m, secondaryConfig)
             else -> DEFAULT.generate(random, chunk, biome, i, j, k, d, blockState, blockState2, l, m, primaryConfig)
         }
     }
