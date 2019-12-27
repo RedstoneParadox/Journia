@@ -10,6 +10,7 @@ import net.minecraft.world.biome.Biomes
 object JourniaBiomes {
     val WASTELAND = WastelandBiome()
     val ROCKY_TAIGA = RockyTaigaBiome()
+    val SHATTERED_BADLANDS_PLATEAU = ShatteredBadlandsPlateauBiome()
 
     fun registerAll() {
         register("wasteland", WASTELAND)
@@ -17,6 +18,7 @@ object JourniaBiomes {
         register("rocky_taiga", ROCKY_TAIGA)
         continentalBiome(ROCKY_TAIGA, OverworldClimate.COOL, 1.0)
         shoreBiome(ROCKY_TAIGA, Biomes.STONE_SHORE, 1.0)
+        register("shattered_badlands_plateau", SHATTERED_BADLANDS_PLATEAU)
     }
 
     private fun register(id: String, biome: Biome) {
