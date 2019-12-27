@@ -132,7 +132,7 @@ class RockyTaigaBiome: Biome(
         )
     }
 
-    override fun getFoliageColor(): Int {
-        return super.getFoliageColor()
+    override fun getGrassColorAt(x: Double, z: Double): Int {
+        return 0x4e5837
     }
 }
