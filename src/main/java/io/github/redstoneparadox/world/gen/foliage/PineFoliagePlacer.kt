@@ -18,8 +18,6 @@ class PineFoliagePlacer(radius: Int, randomRadius: Int): FoliagePlacer(radius, r
     override fun generate(world: ModifiableTestableWorld, random: Random, config: BranchedTreeFeatureConfig, i: Int, j: Int, k: Int, pos: BlockPos, positions: MutableSet<BlockPos>) {
         world.setBlockState(pos, Blocks.GOLD_BLOCK.defaultState, 0)
 
-        val top = config.trunkTopOffset
-
         val top = findTop(world, pos)
         world.setBlockState(top, Blocks.SPRUCE_LEAVES.defaultState, 0)
     }
