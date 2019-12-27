@@ -131,4 +131,8 @@ class RockyTaigaBiome: Biome(
             )
         )
     }
+
+    override fun getFoliageColor(): Int {
+        return super.getFoliageColor()
+    }
 }

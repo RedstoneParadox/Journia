@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "io.github.redstoneparadox.journia.JourniaKt::init"
+    ],
+    "client": [
+      "io.github.redstoneparadox.journia.client.JourniaClientKt::init"
     ]
   },
   "mixins": [
