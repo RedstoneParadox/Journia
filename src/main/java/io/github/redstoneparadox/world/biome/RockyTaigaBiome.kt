@@ -1,6 +1,7 @@
 package io.github.redstoneparadox.world.biome
 
 import com.google.common.collect.ImmutableList
+import io.github.redstoneparadox.block.JourniaBlocks
 import io.github.redstoneparadox.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.world.gen.feature.JourniaTreeFeatureConfig
 import io.github.redstoneparadox.world.gen.surfacebuilder.JourniaSurfaceBuilders
@@ -30,7 +31,7 @@ class RockyTaigaBiome: Biome(
         .parent("null")
 ) {
 
-    private val PINE_TRUNK: BlockState = Blocks.SPRUCE_LOG.defaultState
+    private val PINE_TRUNK: BlockState = JourniaBlocks.PINE_LOG.defaultState
     private val PINE_LEAVES: BlockState = Blocks.SPRUCE_LEAVES.defaultState.with(Properties.PERSISTENT, true)
 
     init {

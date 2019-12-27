@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y":    { "model": "journia:block/pine_log" },
+    "axis=z":     { "model": "journia:block/pine_log", "x": 90 },
+    "axis=x":     { "model": "journia:block/pine_log", "x": 90, "y": 90 }
+  }
+}
