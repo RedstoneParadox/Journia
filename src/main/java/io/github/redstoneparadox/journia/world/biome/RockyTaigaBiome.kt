@@ -162,8 +162,4 @@ class RockyTaigaBiome: Biome(
             )
         )
     }
-
-    override fun getGrassColorAt(x: Double, z: Double): Int {
-        return 0x4e5837
-    }
 }
