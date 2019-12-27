@@ -1,5 +1,7 @@
 package io.github.redstoneparadox.world.biome
 
+import com.google.common.collect.ImmutableList
+import io.github.redstoneparadox.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.minecraft.block.Blocks
 import net.minecraft.entity.EntityCategory
@@ -7,6 +9,7 @@ import net.minecraft.entity.EntityType
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
+import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig
 import net.minecraft.world.gen.feature.*
@@ -45,6 +48,7 @@ class RockyTaigaBiome: Biome(
         DefaultBiomeFeatures.addSweetBerryBushes(this)
         DefaultBiomeFeatures.addFrozenTopLayer(this)
 
+        addPineTrees()
         addMineables()
 
         addSpawn(EntityCategory.CREATURE, SpawnEntry(EntityType.SHEEP, 12, 4, 4))
@@ -63,6 +67,23 @@ class RockyTaigaBiome: Biome(
         addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.SLIME, 100, 4, 4))
         addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.ENDERMAN, 10, 1, 4))
         addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.WITCH, 5, 1, 1))
+    }
+
+    fun addPineTrees() {
+        this.addFeature(
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            Feature.RANDOM_SELECTOR.configure(
+                RandomFeatureConfig(
+                    ImmutableList.of<RandomFeatureEntry<*>>(
+                    ),
+                    Feature.NORMAL_TREE.configure(JourniaFeatures.PINE_TREE_CONFIG)
+                )
+            ).createDecoratedFeature(
+                Decorator.COUNT_EXTRA_HEIGHTMAP.configure(
+                    CountExtraChanceDecoratorConfig(10, 0.1f, 1)
+                )
+            )
+        )
     }
 
     fun addMineables() {
