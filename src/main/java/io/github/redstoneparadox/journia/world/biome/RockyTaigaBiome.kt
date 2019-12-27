@@ -101,7 +101,7 @@ class RockyTaigaBiome: Biome(
             Feature.ORE.configure(
                 OreFeatureConfig(
                     OreFeatureConfig.Target.NATURAL_STONE,
-                    Blocks.COARSE_DIRT.defaultState,
+                    Blocks.DIRT.defaultState,
                     33
                 )
             ).createDecoratedFeature(
@@ -130,6 +130,30 @@ class RockyTaigaBiome: Biome(
                 )
             ).createDecoratedFeature(
                 Decorator.COUNT_RANGE.configure(RangeDecoratorConfig(10, 0, 0, 80))
+            )
+        )
+        addFeature(
+            GenerationStep.Feature.UNDERGROUND_ORES,
+            Feature.ORE.configure(
+                OreFeatureConfig(
+                    OreFeatureConfig.Target.NATURAL_STONE,
+                    Blocks.GRANITE.defaultState,
+                    33
+                )
+            ).createDecoratedFeature(
+                Decorator.COUNT_RANGE.configure(RangeDecoratorConfig(8, 0, 0, 56))
+            )
+        )
+        addFeature(
+            GenerationStep.Feature.UNDERGROUND_ORES,
+            Feature.ORE.configure(
+                OreFeatureConfig(
+                    OreFeatureConfig.Target.NATURAL_STONE,
+                    Blocks.DIORITE.defaultState,
+                    33
+                )
+            ).createDecoratedFeature(
+                Decorator.COUNT_RANGE.configure(RangeDecoratorConfig(8, 0, 0, 56))
             )
         )
     }
