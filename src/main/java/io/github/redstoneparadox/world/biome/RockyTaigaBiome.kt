@@ -2,10 +2,13 @@ package io.github.redstoneparadox.world.biome
 
 import com.google.common.collect.ImmutableList
 import io.github.redstoneparadox.world.gen.feature.JourniaFeatures
+import io.github.redstoneparadox.world.gen.feature.JourniaTreeFeatureConfig
 import io.github.redstoneparadox.world.gen.surfacebuilder.JourniaSurfaceBuilders
+import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.entity.EntityCategory
 import net.minecraft.entity.EntityType
+import net.minecraft.state.property.Properties
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
@@ -26,6 +29,9 @@ class RockyTaigaBiome: Biome(
         .waterFogColor(329011)
         .parent("null")
 ) {
+
+    private val PINE_TRUNK: BlockState = Blocks.SPRUCE_LOG.defaultState
+    private val PINE_LEAVES: BlockState = Blocks.SPRUCE_LEAVES.defaultState.with(Properties.PERSISTENT, true)
 
     init {
         addStructureFeature(Feature.VILLAGE.configure(VillageFeatureConfig("village/taiga/town_centers", 6)))
@@ -76,7 +82,7 @@ class RockyTaigaBiome: Biome(
                 RandomFeatureConfig(
                     ImmutableList.of<RandomFeatureEntry<*>>(
                     ),
-                    Feature.NORMAL_TREE.configure(JourniaFeatures.PINE_TREE_CONFIG)
+                    JourniaFeatures.PINE_TREE.configure(JourniaTreeFeatureConfig(PINE_TRUNK, PINE_LEAVES, 7, 9))
                 )
             ).createDecoratedFeature(
                 Decorator.COUNT_EXTRA_HEIGHTMAP.configure(

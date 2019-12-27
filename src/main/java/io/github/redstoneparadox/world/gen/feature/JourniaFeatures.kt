@@ -1,24 +1,23 @@
 package io.github.redstoneparadox.world.gen.feature
 
-import io.github.redstoneparadox.world.gen.foliage.PineFoliagePlacer
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
-import net.minecraft.world.gen.feature.BranchedTreeFeatureConfig
-
-import net.minecraft.world.gen.stateprovider.SimpleStateProvider
+import net.minecraft.util.registry.Registry
+import net.minecraft.world.gen.feature.Feature
+import net.minecraft.world.gen.feature.TreeFeatureConfig
+import java.util.function.Function
 
 object JourniaFeatures {
-    private val SPRUCE_LOG: BlockState = Blocks.SPRUCE_LOG.defaultState;
-    private val SPRUCE_LEAVES: BlockState = Blocks.SPRUCE_LEAVES.defaultState
-
     private val PINE_LOG: BlockState = Blocks.SPRUCE_LOG.defaultState
+    private val PINE_LEAVES: BlockState = Blocks.SPRUCE_LEAVES.defaultState
 
-    val PINE_TREE_CONFIG: BranchedTreeFeatureConfig = BranchedTreeFeatureConfig.Builder(SimpleStateProvider(PINE_LOG), SimpleStateProvider(SPRUCE_LEAVES), PineFoliagePlacer(1, 0))
-        .baseHeight(8)
-        .heightRandA(3)
-        .trunkHeight(1)
-        .trunkHeightRandom(1)
-        .trunkTopOffsetRandom(2)
-        .noVines()
-        .build()
+    val PINE_TREE = PineTreeFeature(Function { JourniaTreeFeatureConfig.deserialize(it) })
+
+    fun registerAll() {
+        register("pine_tree", PINE_TREE)
+    }
+
+    private fun register(id: String, feature: Feature<*>) {
+        Registry.register(Registry.FEATURE, "journia:$id", feature)
+    }
 }
