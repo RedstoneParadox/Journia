@@ -1,6 +1,6 @@
-package io.github.redstoneparadox.world.gen.surfacebuilder
+package io.github.redstoneparadox.journia.world.gen.surfacebuilder
 
-import io.github.redstoneparadox.block.JourniaBlocks
+import io.github.redstoneparadox.journia.block.JourniaBlocks
 import net.minecraft.block.Blocks
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder

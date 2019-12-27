@@ -1,11 +1,9 @@
-package io.github.redstoneparadox.world.gen.surfacebuilder
+package io.github.redstoneparadox.journia.world.gen.surfacebuilder
 
 import com.mojang.datafixers.Dynamic
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.world.gen.surfacebuilder.SurfaceConfig
-import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig
-import java.util.function.Function
 
 class PentaSurfaceConfig(
     private val topMaterial: BlockState,

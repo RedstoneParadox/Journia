@@ -1,10 +1,9 @@
-package io.github.redstoneparadox.world.gen.feature
+package io.github.redstoneparadox.journia.world.gen.feature
 
 import com.mojang.datafixers.Dynamic
 import com.mojang.datafixers.types.DynamicOps
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
-import net.minecraft.world.gen.feature.FeatureConfig
 import net.minecraft.world.gen.feature.TreeFeatureConfig
 import net.minecraft.world.gen.stateprovider.SimpleStateProvider
 

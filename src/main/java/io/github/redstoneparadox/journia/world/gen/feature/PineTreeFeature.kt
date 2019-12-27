@@ -1,10 +1,9 @@
-package io.github.redstoneparadox.world.gen.feature
+package io.github.redstoneparadox.journia.world.gen.feature
 
 import com.mojang.datafixers.Dynamic
 import net.minecraft.block.BlockState
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
-import net.minecraft.world.IWorld
 import net.minecraft.world.ModifiableTestableWorld
 import java.util.function.Function
 

@@ -1,4 +1,4 @@
-package io.github.redstoneparadox.world.gen.surfacebuilder
+package io.github.redstoneparadox.journia.world.gen.surfacebuilder
 
 import com.mojang.datafixers.Dynamic
 import net.minecraft.block.BlockState

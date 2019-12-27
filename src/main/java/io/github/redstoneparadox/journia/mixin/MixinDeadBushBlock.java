@@ -1,6 +1,6 @@
-package io.github.redstoneparadox.mixin;
+package io.github.redstoneparadox.journia.mixin;
 
-import io.github.redstoneparadox.block.JourniaBlocks;
+import io.github.redstoneparadox.journia.block.JourniaBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DeadBushBlock;

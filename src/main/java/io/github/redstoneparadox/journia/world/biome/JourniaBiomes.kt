@@ -1,4 +1,4 @@
-package io.github.redstoneparadox.world.biome
+package io.github.redstoneparadox.journia.world.biome
 
 import net.fabricmc.fabric.api.biomes.v1.FabricBiomes
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes

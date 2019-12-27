@@ -1,10 +1,9 @@
-package io.github.redstoneparadox.world.gen.feature
+package io.github.redstoneparadox.journia.world.gen.feature
 
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.gen.feature.Feature
-import net.minecraft.world.gen.feature.TreeFeatureConfig
 import java.util.function.Function
 
 object JourniaFeatures {

@@ -1,6 +1,6 @@
-package io.github.redstoneparadox.world.biome
+package io.github.redstoneparadox.journia.world.biome
 
-import io.github.redstoneparadox.world.gen.surfacebuilder.JourniaSurfaceBuilders
+import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.entity.EntityCategory

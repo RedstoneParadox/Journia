@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.redstoneparadox.JourniaKt::init"
+      "io.github.redstoneparadox.journia.JourniaKt::init"
     ]
   },
   "mixins": [

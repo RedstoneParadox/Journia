@@ -1,10 +1,10 @@
-package io.github.redstoneparadox.world.biome
+package io.github.redstoneparadox.journia.world.biome
 
 import com.google.common.collect.ImmutableList
-import io.github.redstoneparadox.block.JourniaBlocks
-import io.github.redstoneparadox.world.gen.feature.JourniaFeatures
-import io.github.redstoneparadox.world.gen.feature.JourniaTreeFeatureConfig
-import io.github.redstoneparadox.world.gen.surfacebuilder.JourniaSurfaceBuilders
+import io.github.redstoneparadox.journia.block.JourniaBlocks
+import io.github.redstoneparadox.journia.world.gen.feature.JourniaTreeFeatureConfig
+import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
+import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.entity.EntityCategory
@@ -32,7 +32,7 @@ class RockyTaigaBiome: Biome(
 ) {
 
     private val PINE_TRUNK: BlockState = JourniaBlocks.PINE_LOG.defaultState
-    private val PINE_LEAVES: BlockState = Blocks.SPRUCE_LEAVES.defaultState.with(Properties.PERSISTENT, true)
+    private val PINE_LEAVES: BlockState = JourniaBlocks.PINE_LEAVES.defaultState.with(Properties.PERSISTENT, true)
 
     init {
         addStructureFeature(Feature.VILLAGE.configure(VillageFeatureConfig("village/taiga/town_centers", 6)))
