@@ -11,10 +11,10 @@ object JourniaFeatures {
     private val SPRUCE_LOG: BlockState = Blocks.SPRUCE_LOG.defaultState;
     private val SPRUCE_LEAVES: BlockState = Blocks.SPRUCE_LEAVES.defaultState
 
-    private val PINE_LOG: BlockState = Blocks.DIAMOND_BLOCK.defaultState
+    private val PINE_LOG: BlockState = Blocks.SPRUCE_LOG.defaultState
 
     val PINE_TREE_CONFIG: BranchedTreeFeatureConfig = BranchedTreeFeatureConfig.Builder(SimpleStateProvider(PINE_LOG), SimpleStateProvider(SPRUCE_LEAVES), PineFoliagePlacer(1, 0))
-        .baseHeight(6)
+        .baseHeight(8)
         .heightRandA(3)
         .trunkHeight(1)
         .trunkHeightRandom(1)

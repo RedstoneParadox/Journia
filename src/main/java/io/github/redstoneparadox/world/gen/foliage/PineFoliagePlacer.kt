@@ -1,8 +1,10 @@
 package io.github.redstoneparadox.world.gen.foliage
 
 import com.mojang.datafixers.Dynamic
+import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Direction
 import net.minecraft.world.ModifiableTestableWorld
 import net.minecraft.world.gen.feature.BranchedTreeFeatureConfig
 import net.minecraft.world.gen.foliage.FoliagePlacer
@@ -14,7 +16,22 @@ import kotlin.math.abs
 class PineFoliagePlacer(radius: Int, randomRadius: Int): FoliagePlacer(radius, randomRadius, TYPE) {
 
     override fun generate(world: ModifiableTestableWorld, random: Random, config: BranchedTreeFeatureConfig, i: Int, j: Int, k: Int, pos: BlockPos, positions: MutableSet<BlockPos>) {
+        world.setBlockState(pos, Blocks.GOLD_BLOCK.defaultState, 0)
 
+        val top = config.trunkTopOffset
+
+        val top = findTop(world, pos)
+        world.setBlockState(top, Blocks.SPRUCE_LEAVES.defaultState, 0)
+    }
+
+    fun findTop(world: ModifiableTestableWorld, base: BlockPos): BlockPos {
+        val top = BlockPos.Mutable(base)
+        val predicate = {state: BlockState -> state.block != Blocks.AIR}
+
+        while (world.testBlockState(top, predicate)) {
+            top.setOffset(Direction.UP)
+        }
+        return top
     }
 
     override fun getRadius(random: Random, i: Int, j: Int, config: BranchedTreeFeatureConfig?): Int {
