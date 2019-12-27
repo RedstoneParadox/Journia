@@ -17,7 +17,7 @@ object JourniaItems {
     }
 
     private fun register(id: String, item: Item) {
-        Registry.register(Registry.ITEM, "journia$id", item)
+        Registry.register(Registry.ITEM, "journia:$id", item)
     }
 
     private fun blockItem(block: Block): BlockItem {
