@@ -16,7 +16,7 @@ abstract class JourniaTreeFeature(configDeserializer: Function<Dynamic<*>, out J
         if (!isNaturalDirtOrGrass(world, pos.down())) return false
         val height = random.nextInt(config.maxHeight) + config.minHeight
         createTrunk(world, config.trunk, height, pos)
-        createLeaves(world, config.leaves, pos.up(height))
+        createLeaves(world, config.leaves, pos.up(height), height)
         return true
     }
 
@@ -28,5 +28,5 @@ abstract class JourniaTreeFeature(configDeserializer: Function<Dynamic<*>, out J
         }
     }
 
-    abstract fun createLeaves(world: ModifiableTestableWorld, leaves: BlockState, top: BlockPos);
+    abstract fun createLeaves(world: ModifiableTestableWorld, leaves: BlockState, top: BlockPos, height: Int)
 }
