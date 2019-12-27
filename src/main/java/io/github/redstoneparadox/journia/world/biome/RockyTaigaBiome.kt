@@ -2,8 +2,8 @@ package io.github.redstoneparadox.journia.world.biome
 
 import com.google.common.collect.ImmutableList
 import io.github.redstoneparadox.journia.block.JourniaBlocks
-import io.github.redstoneparadox.journia.world.gen.feature.JourniaTreeFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
+import io.github.redstoneparadox.journia.world.gen.feature.JourniaTreeFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
@@ -13,6 +13,7 @@ import net.minecraft.state.property.Properties
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
+import net.minecraft.world.gen.decorator.CountDecoratorConfig
 import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig
@@ -57,6 +58,7 @@ class RockyTaigaBiome: Biome(
 
         addPineTrees()
         addMineables()
+        addBoulders()
 
         addSpawn(EntityCategory.CREATURE, SpawnEntry(EntityType.SHEEP, 12, 4, 4))
         addSpawn(EntityCategory.CREATURE, SpawnEntry(EntityType.PIG, 10, 4, 4))
@@ -76,7 +78,7 @@ class RockyTaigaBiome: Biome(
         addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.WITCH, 5, 1, 1))
     }
 
-    fun addPineTrees() {
+    private fun addPineTrees() {
         this.addFeature(
             GenerationStep.Feature.VEGETAL_DECORATION,
             Feature.RANDOM_SELECTOR.configure(
@@ -93,7 +95,7 @@ class RockyTaigaBiome: Biome(
         )
     }
 
-    fun addMineables() {
+    private fun addMineables() {
         addFeature(
             GenerationStep.Feature.UNDERGROUND_ORES,
             Feature.ORE.configure(
@@ -128,6 +130,35 @@ class RockyTaigaBiome: Biome(
                 )
             ).createDecoratedFeature(
                 Decorator.COUNT_RANGE.configure(RangeDecoratorConfig(10, 0, 0, 80))
+            )
+        )
+    }
+
+    private fun addBoulders() {
+        addFeature(
+            GenerationStep.Feature.LOCAL_MODIFICATIONS,
+            Feature.FOREST_ROCK.configure(
+                BoulderFeatureConfig(
+                    Blocks.ANDESITE.defaultState,
+                    0
+                )
+            ).createDecoratedFeature(
+                Decorator.FOREST_ROCK.configure(
+                    CountDecoratorConfig(3)
+                )
+            )
+        )
+        addFeature(
+            GenerationStep.Feature.LOCAL_MODIFICATIONS,
+            Feature.FOREST_ROCK.configure(
+                BoulderFeatureConfig(
+                    Blocks.COBBLESTONE.defaultState,
+                    0
+                )
+            ).createDecoratedFeature(
+                Decorator.FOREST_ROCK.configure(
+                    CountDecoratorConfig(3)
+                )
             )
         )
     }
