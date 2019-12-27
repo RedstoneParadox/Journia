@@ -82,7 +82,7 @@ class RockyTaigaBiome: Biome(
                 RandomFeatureConfig(
                     ImmutableList.of<RandomFeatureEntry<*>>(
                     ),
-                    JourniaFeatures.PINE_TREE.configure(JourniaTreeFeatureConfig(PINE_TRUNK, PINE_LEAVES, 7, 9))
+                    JourniaFeatures.PINE_TREE.configure(JourniaTreeFeatureConfig(PINE_TRUNK, PINE_LEAVES, 8, 10))
                 )
             ).createDecoratedFeature(
                 Decorator.COUNT_EXTRA_HEIGHTMAP.configure(

@@ -13,7 +13,7 @@ class JourniaTreeFeatureConfig(
     val leaves: BlockState,
     val minHeight: Int,
     val maxHeight: Int
-): TreeFeatureConfig(SimpleStateProvider(trunk), SimpleStateProvider(leaves), null, minHeight) {
+): TreeFeatureConfig(SimpleStateProvider(trunk), SimpleStateProvider(leaves), null, 0) {
     override fun <T : Any?> serialize(ops: DynamicOps<T>): Dynamic<T> {
         return Dynamic(
             ops,
