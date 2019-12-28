@@ -23,8 +23,7 @@ class WastelandBiome: Biome(
         .depth(0.125F).scale(0.05F)
         .temperature(1.2f)
         .downfall(0.0f)
-        .waterColor(4159204)
-        .waterFogColor(329011)
+        .waterColor(6388580).waterFogColor(2302743)
         .parent("null")
 ) {
 
@@ -82,6 +81,4 @@ class WastelandBiome: Biome(
     override fun getGrassColorAt(x: Double, z: Double): Int {
         return 9470285
     }
-
-
 }
