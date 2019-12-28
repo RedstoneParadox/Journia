@@ -2,6 +2,7 @@ package io.github.redstoneparadox.journia.world.gen.feature
 
 import com.mojang.datafixers.Dynamic
 import com.mojang.datafixers.types.DynamicOps
+import io.github.redstoneparadox.journia.asElse
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.world.gen.feature.TreeFeatureConfig
@@ -41,7 +42,5 @@ class JourniaTreeFeatureConfig(
             }.orElse(3).asElse(3)
             return JourniaTreeFeatureConfig(trunk, leaves, minHeight, maxHeight)
         }
-
-        private inline fun <reified T> Any?.asElse(t: T): T = if (this is T) this else t
     }
 }

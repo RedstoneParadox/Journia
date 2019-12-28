@@ -1,5 +1,6 @@
 package io.github.redstoneparadox.journia.world.biome
 
+import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
@@ -40,14 +41,7 @@ class WastelandBiome: Biome(
         DefaultBiomeFeatures.addFossils(this)
         DefaultBiomeFeatures.addFrozenTopLayer(this)
 
-        addFeature(GenerationStep.Feature.VEGETAL_DECORATION,
-            Feature.RANDOM_SELECTOR
-                .configure(RandomFeatureConfig(mutableListOf(), Feature.NORMAL_TREE.configure(DefaultBiomeFeatures.OAK_TREE_CONFIG)))
-                .createDecoratedFeature(
-                    Decorator.COUNT_EXTRA_HEIGHTMAP
-                        .configure(CountExtraChanceDecoratorConfig(0, 0.05F, 1))
-                )
-        )
+        addWastelandTrees()
 
         addSpawn(EntityCategory.AMBIENT, SpawnEntry(EntityType.BAT, 10, 8, 8))
         addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.SPIDER, 100, 4, 4))
@@ -58,6 +52,25 @@ class WastelandBiome: Biome(
         addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.SLIME, 100, 4, 4))
         addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.ENDERMAN, 10, 1, 4))
         addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.WITCH, 5, 1, 1))
+    }
+
+    private fun addWastelandTrees() {
+        addFeature(GenerationStep.Feature.VEGETAL_DECORATION,
+            Feature.RANDOM_SELECTOR
+                .configure(RandomFeatureConfig(mutableListOf(), Feature.NORMAL_TREE.configure(DefaultBiomeFeatures.OAK_TREE_CONFIG)))
+                .createDecoratedFeature(
+                    Decorator.COUNT_EXTRA_HEIGHTMAP
+                        .configure(CountExtraChanceDecoratorConfig(0, 0.05F, 1))
+                )
+        )
+        addFeature(GenerationStep.Feature.VEGETAL_DECORATION,
+            Feature.RANDOM_SELECTOR
+                .configure(RandomFeatureConfig(mutableListOf(), JourniaFeatures.DEAD_TREE.configure(JourniaFeatures.DEAD_TREE_CONFIG)))
+                .createDecoratedFeature(
+                    Decorator.COUNT_EXTRA_HEIGHTMAP
+                        .configure(CountExtraChanceDecoratorConfig(0, 0.3F, 1))
+                )
+        )
     }
 
     @Environment(EnvType.CLIENT)
