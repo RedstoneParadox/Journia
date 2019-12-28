@@ -2,8 +2,10 @@ package io.github.redstoneparadox.journia.world.biome
 
 import com.google.common.collect.ImmutableList
 import io.github.redstoneparadox.journia.block.JourniaBlocks
+import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaTreeFeatureConfig
+import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
@@ -59,6 +61,7 @@ class RockyTaigaBiome: Biome(
         addPineTrees()
         addMineables()
         addBoulders()
+        addSurfacePatches()
 
         addSpawn(EntityCategory.CREATURE, SpawnEntry(EntityType.SHEEP, 12, 4, 4))
         addSpawn(EntityCategory.CREATURE, SpawnEntry(EntityType.PIG, 10, 4, 4))
@@ -154,6 +157,37 @@ class RockyTaigaBiome: Biome(
                 )
             ).createDecoratedFeature(
                 Decorator.COUNT_RANGE.configure(RangeDecoratorConfig(8, 0, 0, 56))
+            )
+        )
+    }
+
+    private fun addSurfacePatches() {
+        addFeature(
+            GenerationStep.Feature.RAW_GENERATION,
+            JourniaFeatures.SURFACE_PATCH.configure(
+                SurfacePatchFeatureConfig(
+                    Blocks.STONE.defaultState,
+                    2,
+                    SurfacePatchFeatureConfig.Target.GRASS
+                )
+            ).createDecoratedFeature(
+                JourniaDecorators.SURFACE_PATCH.configure(
+                    CountDecoratorConfig(2)
+                )
+            )
+        )
+        addFeature(
+            GenerationStep.Feature.RAW_GENERATION,
+            JourniaFeatures.SURFACE_PATCH.configure(
+                SurfacePatchFeatureConfig(
+                    Blocks.COARSE_DIRT.defaultState,
+                    1,
+                    SurfacePatchFeatureConfig.Target.STONE
+                )
+            ).createDecoratedFeature(
+                JourniaDecorators.SURFACE_PATCH.configure(
+                    CountDecoratorConfig(2)
+                )
             )
         )
     }

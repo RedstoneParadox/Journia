@@ -35,9 +35,8 @@ class SurfacePatchFeatureConfig(val state: BlockState, val startRadius: Int, val
     }
 
     enum class Target(private val predicate: (BlockState) -> Boolean) {
-        GRASS({
-            it.block == Blocks.GRASS_BLOCK
-        });
+        GRASS({ it.block == Blocks.GRASS_BLOCK }),
+        STONE({it.block == Blocks.STONE || it.block == Blocks.ANDESITE});
 
         fun test(state: BlockState) = this.predicate(state)
     }
