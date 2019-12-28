@@ -185,5 +185,18 @@ class RockyTaigaBiome: Biome(
                 )
             )
         )
+        addFeature(
+            GenerationStep.Feature.LOCAL_MODIFICATIONS,
+            Feature.FOREST_ROCK.configure(
+                BoulderFeatureConfig(
+                    Blocks.MOSSY_COBBLESTONE.defaultState,
+                    0
+                )
+            ).createDecoratedFeature(
+                Decorator.FOREST_ROCK.configure(
+                    CountDecoratorConfig(3)
+                )
+            )
+        )
     }
 }
