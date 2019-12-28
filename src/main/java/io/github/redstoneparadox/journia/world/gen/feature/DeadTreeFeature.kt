@@ -30,7 +30,7 @@ class DeadTreeFeature(configDeserializer: Function<Dynamic<*>, out DeadTreeFeatu
     }
 
     private fun generateFallen(random: Random, world: IWorld, pos: BlockPos, trunk: BlockState, height: Int): Boolean {
-        if (random.nextFloat() <= 0.3) {
+        if (random.nextFloat() <= 0.5) {
             val directions = listOf(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST).filter { direction ->
                 var fallenPos = pos
                 for (i in 1..(height + 1)) {
