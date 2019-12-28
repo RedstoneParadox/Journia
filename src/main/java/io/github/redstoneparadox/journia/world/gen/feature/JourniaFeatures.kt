@@ -14,6 +14,7 @@ object JourniaFeatures {
 
     val PINE_TREE = PineTreeFeature(Function { JourniaTreeFeatureConfig.deserialize(it) })
     val DEAD_TREE = DeadTreeFeature(Function { DeadTreeFeatureConfig.deserialize(it) })
+    val SURFACE_PATCH = SurfacePatchFeature(Function { SurfacePatchFeatureConfig.deserialize(it) })
 
     fun registerAll() {
         register("pine_tree", PINE_TREE)
