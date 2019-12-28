@@ -4,6 +4,7 @@ import com.mojang.datafixers.types.DynamicOps
 import io.github.redstoneparadox.journia.block.JourniaBlocks
 import io.github.redstoneparadox.journia.item.JourniaItems
 import io.github.redstoneparadox.journia.world.biome.JourniaBiomes
+import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 
@@ -12,6 +13,7 @@ fun init() {
     println("Hello, world!")
     JourniaBlocks.registerAll()
     JourniaItems.registerAll()
+    JourniaDecorators.registerAll()
     JourniaSurfaceBuilders.registerAll()
     JourniaFeatures.registerAll()
     JourniaBiomes.registerAll()
