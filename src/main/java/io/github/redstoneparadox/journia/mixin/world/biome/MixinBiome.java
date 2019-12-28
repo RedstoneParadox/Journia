@@ -15,7 +15,7 @@ public abstract class MixinBiome {
     private void calculateSkyColor(CallbackInfoReturnable<Integer> cir) {
         Biome self = (Biome)(Object)this;
         if (self instanceof WastelandBiome) {
-            cir.setReturnValue(JourniaKt.colorToInt(1.0, 1.0, 0.8));
+            cir.setReturnValue(JourniaKt.colorToInt(1.0, 1.0, 0.85));
             cir.cancel();
         }
     }

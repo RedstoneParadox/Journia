@@ -53,7 +53,7 @@ public abstract class MixinBackgroundRenderer {
             Biome biome = entity.world.getBiome(pos);
             if (biome == JourniaBiomes.INSTANCE.getWASTELAND()) {
                 RenderSystem.fogDensity(2.0F);
-                RenderSystem.fogStart(4.0F);
+                RenderSystem.fogStart(8.0F);
                 RenderSystem.fogEnd(viewDistance);
                 RenderSystem.fogMode(GlStateManager.FogMode.LINEAR);
                 RenderSystem.setupNvFogDistance();
