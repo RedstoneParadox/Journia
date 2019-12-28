@@ -3,6 +3,7 @@ package io.github.redstoneparadox.journia.mixin.client.render;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import io.github.redstoneparadox.journia.world.biome.JourniaBiomes;
+import io.github.redstoneparadox.journia.world.biome.WastelandBiome;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.world.ClientWorld;
@@ -11,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.biome.Biome;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
@@ -21,6 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(BackgroundRenderer.class)
 public abstract class MixinBackgroundRenderer {
 
+    @Shadow private static float red;
     private static Camera renderCam;
     private static ClientWorld renderWorld;
 
@@ -36,9 +39,22 @@ public abstract class MixinBackgroundRenderer {
         if (renderWorld != null && renderCam != null && renderCam.getFocusedEntity() instanceof LivingEntity) {
             LivingEntity entity = (LivingEntity) renderCam.getFocusedEntity();
             Biome biome = renderWorld.getBiome(entity.getBlockPos());
-            if (biome == JourniaBiomes.INSTANCE.getWASTELAND()) {
-                color = new Vec3d(1.0, 1.0, 0.75);
+
+            int count = 0;
+
+            for (int x = 0; x < 9; x++) {
+                for (int z = 0; z < 9; z++) {
+                    BlockPos pos = entity.getBlockPos().add(x - 4, 0, z - 4);
+                    if (renderWorld.getBiome(pos) instanceof WastelandBiome) count += 1;
+                }
             }
+            float intensity = (count/81f);
+
+            double deltaRed = 1.0 - vec3d2.x;
+            double deltaGreen = 1.0 - vec3d2.y;
+            double deltaBlue = 0.75 - vec3d2.z;
+
+            color = new Vec3d(vec3d2.x + (deltaRed * intensity), vec3d2.y + (deltaGreen * intensity), vec3d2.z + (deltaBlue * intensity));
         }
         renderCam = null;
         renderWorld = null;

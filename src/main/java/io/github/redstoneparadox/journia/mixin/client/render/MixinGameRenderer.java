@@ -31,7 +31,7 @@ public abstract class MixinGameRenderer {
 
         float distance = cir.getReturnValue();
         float intensity = (count/81f);
-        float newDistance = distance - intensity * (distance - 4);
+        float newDistance = distance - intensity * (distance - 8);
 
         if (newDistance < distance) {
             cir.setReturnValue(newDistance);
