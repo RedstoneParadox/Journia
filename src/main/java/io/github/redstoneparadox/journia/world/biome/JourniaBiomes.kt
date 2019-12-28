@@ -19,6 +19,7 @@ object JourniaBiomes {
         continentalBiome(ROCKY_TAIGA, OverworldClimate.COOL, 1.0)
         shoreBiome(ROCKY_TAIGA, Biomes.STONE_SHORE, 1.0)
         register("shattered_badlands_plateau", SHATTERED_BADLANDS_PLATEAU)
+        variantBiome(Biomes.BADLANDS_PLATEAU, SHATTERED_BADLANDS_PLATEAU, 0.1, OverworldClimate.DRY)
     }
 
     private fun register(id: String, biome: Biome) {
