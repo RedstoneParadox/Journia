@@ -44,8 +44,11 @@ class SurfacePatchFeature(configDeserializer: Function<@ParameterName(name = "dy
                         if (blockPos2.getSquaredDistance(blockPos) <= (f * f).toDouble()) {
                             val x = blockPos2.x
                             val z = blockPos2.z
-                            val y = iWorld.getTopY(Heightmap.Type.WORLD_SURFACE_WG, blockPos2.x, blockPos2.z)
-                            iWorld.setBlockState(BlockPos(x, y, z), config.state, 4)
+                            val y = iWorld.getTopY(Heightmap.Type.WORLD_SURFACE_WG, blockPos2.x, blockPos2.z) - 1
+                            val pos = BlockPos(x, y, z)
+                            if (config.target.test(iWorld.getBlockState(pos))) {
+                                iWorld.setBlockState(pos, config.state, 4)
+                            }
                         }
                     }
                     blockPos = blockPos.add(

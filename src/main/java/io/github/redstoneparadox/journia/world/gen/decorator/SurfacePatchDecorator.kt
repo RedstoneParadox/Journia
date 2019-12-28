@@ -19,7 +19,7 @@ class SurfacePatchDecorator(configDeserializer: KFunction1<@ParameterName(name =
         return IntStream.range(0, i).mapToObj {
             val j: Int = random.nextInt(16) + pos.getX()
             val k: Int = random.nextInt(16) + pos.getZ()
-            val l: Int = world.getTopY(Heightmap.Type.WORLD_SURFACE_WG, j, k)
+            val l: Int = world.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, j, k)
             BlockPos(j, l, k)
         }
     }
