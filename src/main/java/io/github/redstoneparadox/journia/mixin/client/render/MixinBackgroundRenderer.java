@@ -44,21 +44,4 @@ public abstract class MixinBackgroundRenderer {
         renderWorld = null;
         return color;
     }
-
-    @Inject(method = "applyFog", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;fogStart(F)V"), cancellable = true)
-    private static void applyFog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, CallbackInfo ci) {
-        if (camera.getFocusedEntity() instanceof LivingEntity) {
-            LivingEntity entity = (LivingEntity) camera.getFocusedEntity();
-            BlockPos pos = entity.getBlockPos();
-            Biome biome = entity.world.getBiome(pos);
-            if (biome == JourniaBiomes.INSTANCE.getWASTELAND()) {
-                RenderSystem.fogDensity(2.0F);
-                RenderSystem.fogStart(8.0F);
-                RenderSystem.fogEnd(viewDistance);
-                RenderSystem.fogMode(GlStateManager.FogMode.LINEAR);
-                RenderSystem.setupNvFogDistance();
-                ci.cancel();
-            }
-        }
-    }
 }
