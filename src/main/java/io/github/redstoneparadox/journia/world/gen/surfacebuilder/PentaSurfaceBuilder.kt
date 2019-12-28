@@ -13,14 +13,16 @@ class PentaSurfaceBuilder(function: KFunction1<@ParameterName(name = "dynamic") 
 
     @Override
     override fun generate(random: Random, chunk: Chunk, biome: Biome, i: Int, j: Int, k: Int, d: Double, blockState: BlockState, blockState2: BlockState, l: Int, m: Long, pentaSurfaceConfig: PentaSurfaceConfig) {
+        val d2 = d * pentaSurfaceConfig.getScale()
+
         val primaryConfig = TernarySurfaceConfig(pentaSurfaceConfig.getTopMaterial(), pentaSurfaceConfig.getUnderMaterial(), pentaSurfaceConfig.getUnderwaterMaterial())
         val secondaryConfig = TernarySurfaceConfig(pentaSurfaceConfig.getSecondaryMaterial(), pentaSurfaceConfig.getUnderMaterial(), pentaSurfaceConfig.getUnderwaterMaterial())
         val tertiaryConfig = TernarySurfaceConfig(pentaSurfaceConfig.getTertiaryMaterial(), pentaSurfaceConfig.getUnderMaterial(), pentaSurfaceConfig.getUnderwaterMaterial())
 
         when {
-            d > pentaSurfaceConfig.getTertiaryCutoff() -> DEFAULT.generate(random, chunk, biome, i, j, k, d, blockState, blockState2, l, m, tertiaryConfig)
-            d > pentaSurfaceConfig.getSecondaryCutoff() -> DEFAULT.generate(random, chunk, biome, i, j, k, d, blockState, blockState2, l, m, secondaryConfig)
-            else -> DEFAULT.generate(random, chunk, biome, i, j, k, d, blockState, blockState2, l, m, primaryConfig)
+            d2 > pentaSurfaceConfig.getTertiaryCutoff() -> DEFAULT.generate(random, chunk, biome, i, j, k, d2, blockState, blockState2, l, m, tertiaryConfig)
+            d2 > pentaSurfaceConfig.getSecondaryCutoff() -> DEFAULT.generate(random, chunk, biome, i, j, k, d2, blockState, blockState2, l, m, secondaryConfig)
+            else -> DEFAULT.generate(random, chunk, biome, i, j, k, d2, blockState, blockState2, l, m, primaryConfig)
         }
     }
 }
