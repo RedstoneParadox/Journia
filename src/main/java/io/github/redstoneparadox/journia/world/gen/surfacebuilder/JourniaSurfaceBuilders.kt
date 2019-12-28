@@ -15,7 +15,7 @@ object JourniaSurfaceBuilders {
     private val GRAVEL = Blocks.GRAVEL.defaultState
 
     val WASTELAND_CONFIG = PentaSurfaceConfig(RED_SAND, CRACKED_GROUND, COARSE_DIRT, CRACKED_GROUND, GRAVEL, -0.7, 1.95)
-    val ROCKY_TAIGA_CONFIG = PentaSurfaceConfig(GRASS, STONE, STONE, secondaryCutoff = 0.8, tertiaryCutoff = 1.6)
+    val ROCKY_TAIGA_CONFIG = PentaSurfaceConfig(GRASS, STONE, STONE, secondaryCutoff = 0.8, tertiaryCutoff = 1.6, scale = 0.4)
 
     val PENTA: SurfaceBuilder<PentaSurfaceConfig> = PentaSurfaceBuilder(PentaSurfaceConfig.Companion::deserialize)
 
