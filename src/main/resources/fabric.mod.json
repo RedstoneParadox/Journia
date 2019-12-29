@@ -33,5 +33,9 @@
     "fabric": "*",
     "fabric-language-kotlin": "*",
     "minecraft": "1.15.x"
+  },
+
+  "custom": {
+    "pconfig": ["io.github.redstoneparadox.journia.config.BiomesConfig"]
   }
 }

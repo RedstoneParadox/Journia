@@ -1,5 +1,6 @@
 package io.github.redstoneparadox.journia.world.biome
 
+import io.github.redstoneparadox.journia.config.BiomesConfig
 import net.fabricmc.fabric.api.biomes.v1.FabricBiomes
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes
 import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
@@ -13,13 +14,19 @@ object JourniaBiomes {
     val SHATTERED_BADLANDS_PLATEAU = ShatteredBadlandsPlateauBiome()
 
     fun registerAll() {
-        register("wasteland", WASTELAND)
-        continentalBiome(WASTELAND, OverworldClimate.DRY, 0.5)
-        register("rocky_taiga", ROCKY_TAIGA)
-        continentalBiome(ROCKY_TAIGA, OverworldClimate.COOL, 1.0)
-        shoreBiome(ROCKY_TAIGA, Biomes.STONE_SHORE, 1.0)
-        register("shattered_badlands_plateau", SHATTERED_BADLANDS_PLATEAU)
-        variantBiome(Biomes.BADLANDS_PLATEAU, SHATTERED_BADLANDS_PLATEAU, 0.1, OverworldClimate.DRY)
+        if (BiomesConfig.Wasteland.enabled) {
+            register("wasteland", WASTELAND)
+            continentalBiome(WASTELAND, OverworldClimate.DRY, BiomesConfig.Wasteland.weight)
+        }
+        if (BiomesConfig.RockyTaiga.enabled) {
+            register("rocky_taiga", ROCKY_TAIGA)
+            continentalBiome(ROCKY_TAIGA, OverworldClimate.COOL, BiomesConfig.RockyTaiga.weight)
+            shoreBiome(ROCKY_TAIGA, Biomes.STONE_SHORE, 1.0)
+        }
+        if (BiomesConfig.ShatteredBadlandsPlateau.enabled) {
+            register("shattered_badlands_plateau", SHATTERED_BADLANDS_PLATEAU)
+            variantBiome(Biomes.BADLANDS_PLATEAU, SHATTERED_BADLANDS_PLATEAU, 0.1, OverworldClimate.DRY)
+        }
     }
 
     private fun register(id: String, biome: Biome) {
