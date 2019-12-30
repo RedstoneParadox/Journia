@@ -12,6 +12,7 @@ object JourniaBiomes {
     val WASTELAND = WastelandBiome()
     val WASTELAND_RIVER = WastelandRiverBiome()
     val WASTELAND_SHORE = WastelandShoreBiome()
+    val WASTELAND_EDGE = WastelandEdgeBiome()
 
     val ROCKY_TAIGA = RockyTaigaBiome()
     val SHATTERED_BADLANDS_PLATEAU = ShatteredBadlandsPlateauBiome()
@@ -21,9 +22,11 @@ object JourniaBiomes {
             register("wasteland", WASTELAND)
             register("wasteland_river", WASTELAND_RIVER)
             register("wasteland_shore", WASTELAND_SHORE)
+            register("wasteland_edge", WASTELAND_EDGE)
             continentalBiome(WASTELAND, OverworldClimate.DRY, BiomesConfig.Wasteland.weight)
             riverBiome(WASTELAND, WASTELAND_RIVER)
             shoreBiome(WASTELAND, WASTELAND_SHORE, 1.0)
+            edgeBiome(WASTELAND, WASTELAND_EDGE, 1.0)
         }
         if (BiomesConfig.RockyTaiga.enabled) {
             register("rocky_taiga", ROCKY_TAIGA)

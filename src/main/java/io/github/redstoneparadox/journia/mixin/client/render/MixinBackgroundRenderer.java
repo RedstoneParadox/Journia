@@ -2,10 +2,7 @@ package io.github.redstoneparadox.journia.mixin.client.render;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import io.github.redstoneparadox.journia.world.biome.JourniaBiomes;
-import io.github.redstoneparadox.journia.world.biome.WastelandBiome;
-import io.github.redstoneparadox.journia.world.biome.WastelandRiverBiome;
-import io.github.redstoneparadox.journia.world.biome.WastelandShoreBiome;
+import io.github.redstoneparadox.journia.world.biome.*;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.world.ClientWorld;
@@ -48,7 +45,7 @@ public abstract class MixinBackgroundRenderer {
                     BlockPos pos = entity.getBlockPos().add(x - 4, 0, z - 4);
                     Biome biome = renderWorld.getBiome(entity.getBlockPos());
                     if (biome instanceof WastelandBiome || biome instanceof WastelandRiverBiome) count += 1D;
-                    else if (biome instanceof WastelandShoreBiome) count += 0.5D;
+                    else if (biome instanceof WastelandShoreBiome || biome instanceof WastelandEdgeBiome) count += 0.5D;
                 }
             }
             double intensity = (count/81f);

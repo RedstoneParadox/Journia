@@ -41,6 +41,7 @@ class SurfacePatchFeatureConfig(val state: BlockState, val startRadius: Int, val
 
     enum class Target(private val predicate: (BlockState) -> Boolean) {
         GRASS({ it.block == Blocks.GRASS_BLOCK }),
+        DIRT({it.block == Blocks.DIRT || it.block == Blocks.COARSE_DIRT}),
         STONE({it.block == Blocks.STONE || it.block == Blocks.ANDESITE}),
         WASTELAND({it.block == JourniaBlocks.CRACKED_GROUND});
 
