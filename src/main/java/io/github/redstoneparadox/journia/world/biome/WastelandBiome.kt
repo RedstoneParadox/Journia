@@ -18,6 +18,7 @@ import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.FeatureConfig
 import net.minecraft.world.gen.feature.RandomFeatureConfig
+import net.minecraft.world.gen.feature.RandomFeatureEntry
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 class WastelandBiome: Biome(
@@ -132,7 +133,10 @@ class WastelandBiome: Biome(
         )
         addFeature(GenerationStep.Feature.VEGETAL_DECORATION,
             Feature.RANDOM_SELECTOR
-                .configure(RandomFeatureConfig(mutableListOf(), JourniaFeatures.DEAD_TREE.configure(JourniaFeatures.DEAD_TREE_CONFIG)))
+                .configure(RandomFeatureConfig(
+                    mutableListOf(
+                        JourniaFeatures.DEAD_TREE.configure(JourniaFeatures.DEAD_BIRCH_TREE_CONFIG).withChance(0.2f)
+                    ) as List<RandomFeatureEntry<*>>, JourniaFeatures.DEAD_TREE.configure(JourniaFeatures.DEAD_TREE_CONFIG)))
                 .createDecoratedFeature(
                     Decorator.COUNT_EXTRA_HEIGHTMAP
                         .configure(CountExtraChanceDecoratorConfig(0, 0.3F, 1))

@@ -17,6 +17,7 @@ object JourniaFeatures {
 
     val PINE_TREE_CONFIG = treeConfig(PINE_LOG, PINE_LEAVES, 8, 10)
     val DEAD_TREE_CONFIG = DeadTreeFeatureConfig(Blocks.OAK_LOG.defaultState, 4, 2)
+    val DEAD_BIRCH_TREE_CONFIG = DeadTreeFeatureConfig(Blocks.BIRCH_LOG.defaultState, 4, 2)
 
     val PINE_TREE: PineTreeFeature = PineTreeFeature(Function { BranchedTreeFeatureConfig.deserialize2(it) })
     val DEAD_TREE = DeadTreeFeature(Function { DeadTreeFeatureConfig.deserialize(it) })
