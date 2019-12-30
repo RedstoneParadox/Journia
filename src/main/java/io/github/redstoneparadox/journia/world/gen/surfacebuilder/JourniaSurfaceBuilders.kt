@@ -4,6 +4,7 @@ import io.github.redstoneparadox.journia.block.JourniaBlocks
 import net.minecraft.block.Blocks
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
+import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig
 
 object JourniaSurfaceBuilders {
     private val GRASS = Blocks.GRASS_BLOCK.defaultState
@@ -14,7 +15,7 @@ object JourniaSurfaceBuilders {
     private val ANDESITE = Blocks.ANDESITE.defaultState
     private val GRAVEL = Blocks.GRAVEL.defaultState
 
-    val WASTELAND_CONFIG = PentaSurfaceConfig(RED_SAND, CRACKED_GROUND, COARSE_DIRT, CRACKED_GROUND, GRAVEL, -0.4, 1.95)
+    val WASTELAND_CONFIG = TernarySurfaceConfig(CRACKED_GROUND, CRACKED_GROUND, GRAVEL)
     val ROCKY_TAIGA_CONFIG = PentaSurfaceConfig(GRASS, STONE, STONE, secondaryCutoff = 1.75, tertiaryCutoff = 1.95, scale = 0.4)
 
     val PENTA: SurfaceBuilder<PentaSurfaceConfig> = PentaSurfaceBuilder(PentaSurfaceConfig.Companion::deserialize)

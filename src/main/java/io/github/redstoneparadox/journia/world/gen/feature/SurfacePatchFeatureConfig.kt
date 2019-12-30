@@ -1,14 +1,14 @@
 package io.github.redstoneparadox.journia.world.gen.feature
 
 import com.mojang.datafixers.Dynamic
+import io.github.redstoneparadox.journia.block.JourniaBlocks
 import com.mojang.datafixers.types.DynamicOps
 import io.github.redstoneparadox.journia.into
-import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.world.gen.feature.FeatureConfig
 
-class SurfacePatchFeatureConfig(val state: BlockState, val startRadius: Int, val target: Target, val integrity: Double): FeatureConfig {
+class SurfacePatchFeatureConfig(val state: BlockState, val startRadius: Int, val target: Target, val integrity: Double = 1.0): FeatureConfig {
     override fun <T : Any> serialize(ops: DynamicOps<T>): Dynamic<T> {
         return Dynamic(ops, ops.createMap(
             mutableMapOf(
@@ -41,7 +41,8 @@ class SurfacePatchFeatureConfig(val state: BlockState, val startRadius: Int, val
 
     enum class Target(private val predicate: (BlockState) -> Boolean) {
         GRASS({ it.block == Blocks.GRASS_BLOCK }),
-        STONE({it.block == Blocks.STONE || it.block == Blocks.ANDESITE});
+        STONE({it.block == Blocks.STONE || it.block == Blocks.ANDESITE}),
+        WASTELAND({it.block == JourniaBlocks.CRACKED_GROUND});
 
         fun test(state: BlockState) = this.predicate(state)
     }
