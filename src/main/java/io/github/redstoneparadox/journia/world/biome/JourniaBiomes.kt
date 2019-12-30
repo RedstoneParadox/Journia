@@ -10,13 +10,16 @@ import net.minecraft.world.biome.Biomes
 
 object JourniaBiomes {
     val WASTELAND = WastelandBiome()
+    val WASTELAND_RIVER = WastelandRiverBiome()
     val ROCKY_TAIGA = RockyTaigaBiome()
     val SHATTERED_BADLANDS_PLATEAU = ShatteredBadlandsPlateauBiome()
 
     fun registerAll() {
         if (BiomesConfig.Wasteland.enabled) {
             register("wasteland", WASTELAND)
+            register("wasteland_river", WASTELAND_RIVER)
             continentalBiome(WASTELAND, OverworldClimate.DRY, BiomesConfig.Wasteland.weight)
+            riverBiome(WASTELAND, WASTELAND_RIVER)
         }
         if (BiomesConfig.RockyTaiga.enabled) {
             register("rocky_taiga", ROCKY_TAIGA)

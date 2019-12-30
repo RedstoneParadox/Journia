@@ -1,12 +1,21 @@
 package io.github.redstoneparadox.journia.world.gen.feature
 
 import io.github.redstoneparadox.journia.block.JourniaBlocks
+import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.state.property.Properties
 import net.minecraft.util.registry.Registry
+import net.minecraft.world.biome.Biome
+import net.minecraft.world.biome.DefaultBiomeFeatures
+import net.minecraft.world.gen.GenerationStep
+import net.minecraft.world.gen.decorator.CountDecoratorConfig
+import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig
+import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.feature.BranchedTreeFeatureConfig
 import net.minecraft.world.gen.feature.Feature
+import net.minecraft.world.gen.feature.RandomFeatureConfig
+import net.minecraft.world.gen.feature.RandomFeatureEntry
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer
 import net.minecraft.world.gen.stateprovider.SimpleStateProvider
 import java.util.function.Function
@@ -30,6 +39,94 @@ object JourniaFeatures {
     private fun register(id: String, feature: Feature<*>) {
         Registry.register(Registry.FEATURE, "journia:$id", feature)
     }
+
+    fun addWastelandSurfacePatches(biome: Biome) {
+        biome.addFeature(
+            GenerationStep.Feature.RAW_GENERATION,
+            JourniaFeatures.SURFACE_PATCH.configure(
+                SurfacePatchFeatureConfig(
+                    Blocks.COARSE_DIRT.defaultState,
+                    1,
+                    SurfacePatchFeatureConfig.Target.WASTELAND
+                )
+            ).createDecoratedFeature(
+                JourniaDecorators.SURFACE_PATCH.configure(
+                    CountDecoratorConfig(2)
+                )
+            )
+        )
+        biome.addFeature(
+            GenerationStep.Feature.RAW_GENERATION,
+            JourniaFeatures.SURFACE_PATCH.configure(
+                SurfacePatchFeatureConfig(
+                    Blocks.RED_SAND.defaultState,
+                    1,
+                    SurfacePatchFeatureConfig.Target.WASTELAND
+                )
+            ).createDecoratedFeature(
+                JourniaDecorators.SURFACE_PATCH.configure(
+                    CountDecoratorConfig(2)
+                )
+            )
+        )
+        biome.addFeature(
+            GenerationStep.Feature.RAW_GENERATION,
+            JourniaFeatures.SURFACE_PATCH.configure(
+                SurfacePatchFeatureConfig(
+                    Blocks.COARSE_DIRT.defaultState,
+                    2,
+                    SurfacePatchFeatureConfig.Target.WASTELAND,
+                    0.2
+                )
+            ).createDecoratedFeature(
+                JourniaDecorators.SURFACE_PATCH.configure(
+                    CountDecoratorConfig(4)
+                )
+            )
+        )
+        biome.addFeature(
+            GenerationStep.Feature.RAW_GENERATION,
+            JourniaFeatures.SURFACE_PATCH.configure(
+                SurfacePatchFeatureConfig(
+                    Blocks.RED_SAND.defaultState,
+                    2,
+                    SurfacePatchFeatureConfig.Target.WASTELAND,
+                    0.2
+                )
+            ).createDecoratedFeature(
+                JourniaDecorators.SURFACE_PATCH.configure(
+                    CountDecoratorConfig(4)
+                )
+            )
+        )
+    }
+
+    fun addWastelandTrees(biome: Biome) {
+        biome.addFeature(
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            Feature.RANDOM_SELECTOR
+                .configure(RandomFeatureConfig(mutableListOf(), Feature.NORMAL_TREE.configure(DefaultBiomeFeatures.OAK_TREE_CONFIG)))
+                .createDecoratedFeature(
+                    Decorator.COUNT_EXTRA_HEIGHTMAP
+                        .configure(CountExtraChanceDecoratorConfig(0, 0.05F, 1))
+                )
+        )
+        biome.addFeature(
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            Feature.RANDOM_SELECTOR
+                .configure(
+                    RandomFeatureConfig(
+                        mutableListOf(
+                            DEAD_TREE.configure(DEAD_BIRCH_TREE_CONFIG).withChance(0.2f)
+                        ) as List<RandomFeatureEntry<*>>, DEAD_TREE.configure(DEAD_TREE_CONFIG))
+                )
+                .createDecoratedFeature(
+                    Decorator.COUNT_EXTRA_HEIGHTMAP
+                        .configure(CountExtraChanceDecoratorConfig(0, 0.3F, 1))
+                )
+        )
+    }
+
 
     private fun treeConfig(trunk: BlockState, leaves: BlockState, minHeight: Int, maxHeight: Int): BranchedTreeFeatureConfig {
         return BranchedTreeFeatureConfig.Builder(

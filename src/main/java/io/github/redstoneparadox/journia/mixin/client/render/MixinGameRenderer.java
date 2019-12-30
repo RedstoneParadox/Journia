@@ -1,11 +1,13 @@
 package io.github.redstoneparadox.journia.mixin.client.render;
 
 import io.github.redstoneparadox.journia.world.biome.WastelandBiome;
+import io.github.redstoneparadox.journia.world.biome.WastelandRiverBiome;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -25,7 +27,8 @@ public abstract class MixinGameRenderer {
         for (int x = 0; x < 9; x++) {
             for (int z = 0; z < 9; z++) {
                 BlockPos pos = player.getBlockPos().add(x - 4, 0, z - 4);
-                if (world.getBiome(pos) instanceof WastelandBiome) count += 1;
+                Biome biome = world.getBiome(pos);
+                if (biome instanceof WastelandBiome || biome instanceof WastelandRiverBiome) count += 1;
             }
         }
 
