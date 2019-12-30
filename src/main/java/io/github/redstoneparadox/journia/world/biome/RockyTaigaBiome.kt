@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList
 import io.github.redstoneparadox.journia.block.JourniaBlocks
 import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
-import io.github.redstoneparadox.journia.world.gen.feature.JourniaTreeFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.minecraft.block.BlockState
@@ -88,7 +87,7 @@ class RockyTaigaBiome: Biome(
                 RandomFeatureConfig(
                     ImmutableList.of<RandomFeatureEntry<*>>(
                     ),
-                    JourniaFeatures.PINE_TREE.configure(JourniaTreeFeatureConfig(PINE_TRUNK, PINE_LEAVES, 8, 10))
+                    JourniaFeatures.PINE_TREE.configure(JourniaFeatures.PINE_TREE_CONFIG)
                 )
             ).createDecoratedFeature(
                 Decorator.COUNT_EXTRA_HEIGHTMAP.configure(

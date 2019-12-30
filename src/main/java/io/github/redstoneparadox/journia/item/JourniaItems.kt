@@ -11,11 +11,13 @@ object JourniaItems {
     val PINE_LOG = blockItem(JourniaBlocks.PINE_LOG)
     val PINE_PLANKS = blockItem(JourniaBlocks.PINE_PLANKS)
     val PINE_LEAVES = blockItem(JourniaBlocks.PINE_LEAVES)
+    val PINE_SAPLING = blockItem(JourniaBlocks.PINE_SAPLING, ItemGroup.DECORATIONS)
 
     fun registerAll() {
         register("pine_log", PINE_LOG)
         register("pine_planks", PINE_PLANKS)
         register("pine_leaves", PINE_LEAVES)
+        register("pine_sapling", PINE_SAPLING)
     }
 
     private fun register(id: String, item: Item) {
