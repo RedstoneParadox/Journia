@@ -5,6 +5,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import io.github.redstoneparadox.journia.world.biome.JourniaBiomes;
 import io.github.redstoneparadox.journia.world.biome.WastelandBiome;
 import io.github.redstoneparadox.journia.world.biome.WastelandRiverBiome;
+import io.github.redstoneparadox.journia.world.biome.WastelandShoreBiome;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.world.ClientWorld;
@@ -40,16 +41,17 @@ public abstract class MixinBackgroundRenderer {
         if (renderWorld != null && renderCam != null && renderCam.getFocusedEntity() instanceof LivingEntity) {
             LivingEntity entity = (LivingEntity) renderCam.getFocusedEntity();
 
-            int count = 0;
+            double count = 0;
 
             for (int x = 0; x < 9; x++) {
                 for (int z = 0; z < 9; z++) {
                     BlockPos pos = entity.getBlockPos().add(x - 4, 0, z - 4);
                     Biome biome = renderWorld.getBiome(entity.getBlockPos());
-                    if (biome instanceof WastelandBiome || biome instanceof WastelandRiverBiome) count += 1;
+                    if (biome instanceof WastelandBiome || biome instanceof WastelandRiverBiome) count += 1D;
+                    else if (biome instanceof WastelandShoreBiome) count += 0.5D;
                 }
             }
-            float intensity = (count/81f);
+            double intensity = (count/81f);
 
             double deltaRed = 1.0 - vec3d2.x;
             double deltaGreen = 1.0 - vec3d2.y;

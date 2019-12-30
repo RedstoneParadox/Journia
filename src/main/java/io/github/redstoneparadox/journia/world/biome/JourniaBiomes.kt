@@ -11,6 +11,8 @@ import net.minecraft.world.biome.Biomes
 object JourniaBiomes {
     val WASTELAND = WastelandBiome()
     val WASTELAND_RIVER = WastelandRiverBiome()
+    val WASTELAND_SHORE = WastelandShoreBiome()
+
     val ROCKY_TAIGA = RockyTaigaBiome()
     val SHATTERED_BADLANDS_PLATEAU = ShatteredBadlandsPlateauBiome()
 
@@ -18,8 +20,10 @@ object JourniaBiomes {
         if (BiomesConfig.Wasteland.enabled) {
             register("wasteland", WASTELAND)
             register("wasteland_river", WASTELAND_RIVER)
+            register("wasteland_shore", WASTELAND_SHORE)
             continentalBiome(WASTELAND, OverworldClimate.DRY, BiomesConfig.Wasteland.weight)
             riverBiome(WASTELAND, WASTELAND_RIVER)
+            shoreBiome(WASTELAND, WASTELAND_SHORE, 1.0)
         }
         if (BiomesConfig.RockyTaiga.enabled) {
             register("rocky_taiga", ROCKY_TAIGA)
@@ -36,31 +40,31 @@ object JourniaBiomes {
         Registry.register(Registry.BIOME, "journia:$id", biome)
     }
 
-    fun spawnBiome(biome: Biome) {
+    private fun spawnBiome(biome: Biome) {
         FabricBiomes.addSpawnBiome(biome)
     }
 
-    fun continentalBiome(biome: Biome, climate: OverworldClimate, weight: Double) {
+    private fun continentalBiome(biome: Biome, climate: OverworldClimate, weight: Double) {
         OverworldBiomes.addContinentalBiome(biome, climate, weight)
     }
 
-    fun hillsBiome(parent: Biome, hills: Biome, weight: Double) {
+    private fun hillsBiome(parent: Biome, hills: Biome, weight: Double) {
         OverworldBiomes.addHillsBiome(parent, hills, weight)
     }
 
-    fun shoreBiome(parent: Biome, shore: Biome, weight: Double) {
+    private fun shoreBiome(parent: Biome, shore: Biome, weight: Double) {
         OverworldBiomes.addShoreBiome(parent, shore, weight)
     }
 
-    fun edgeBiome(parent: Biome, edge: Biome, weight: Double) {
+    private fun edgeBiome(parent: Biome, edge: Biome, weight: Double) {
         OverworldBiomes.addEdgeBiome(parent, edge, weight)
     }
 
-    fun variantBiome(replaced: Biome, variant: Biome, chance: Double, vararg climates: OverworldClimate) {
+    private fun variantBiome(replaced: Biome, variant: Biome, chance: Double, vararg climates: OverworldClimate) {
         OverworldBiomes.addBiomeVariant(replaced, variant, chance, *climates)
     }
 
-    fun riverBiome(parent: Biome, river: Biome) {
+    private fun riverBiome(parent: Biome, river: Biome) {
         OverworldBiomes.setRiverBiome(parent, river)
     }
 }

@@ -2,6 +2,7 @@ package io.github.redstoneparadox.journia.mixin.client.render;
 
 import io.github.redstoneparadox.journia.world.biome.WastelandBiome;
 import io.github.redstoneparadox.journia.world.biome.WastelandRiverBiome;
+import io.github.redstoneparadox.journia.world.biome.WastelandShoreBiome;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,6 +30,7 @@ public abstract class MixinGameRenderer {
                 BlockPos pos = player.getBlockPos().add(x - 4, 0, z - 4);
                 Biome biome = world.getBiome(pos);
                 if (biome instanceof WastelandBiome || biome instanceof WastelandRiverBiome) count += 1;
+                else if (biome instanceof WastelandShoreBiome) count += 0.5;
             }
         }
 
