@@ -8,13 +8,14 @@ import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.world.gen.feature.FeatureConfig
 
-class SurfacePatchFeatureConfig(val state: BlockState, val startRadius: Int, val target: Target): FeatureConfig {
+class SurfacePatchFeatureConfig(val state: BlockState, val startRadius: Int, val target: Target, val integrity: Double): FeatureConfig {
     override fun <T : Any> serialize(ops: DynamicOps<T>): Dynamic<T> {
         return Dynamic(ops, ops.createMap(
             mutableMapOf(
                 "state".into(ops) to BlockState.serialize(ops, state).value,
                 "start_radius".into(ops) to ops.createInt(startRadius),
-                "target".into(ops) to target.name.into(ops)
+                "target".into(ops) to target.name.into(ops),
+                "integrity".into(ops) to ops.createDouble(integrity)
             )
         ))
     }
@@ -29,8 +30,12 @@ class SurfacePatchFeatureConfig(val state: BlockState, val startRadius: Int, val
             val target = dynamic["target"].map {
                 if (it.value is String) Target.valueOf(it.value as String) else Target.GRASS
             }.orElse(Target.GRASS)
+            val integrity = dynamic["integrity"].map {
+                val value = it.value
+                if (value is Double) value as Double else 1.0
+            }.orElse(1.0)
 
-            return SurfacePatchFeatureConfig(state, startRadius, target)
+            return SurfacePatchFeatureConfig(state, startRadius, target, integrity)
         }
     }
 

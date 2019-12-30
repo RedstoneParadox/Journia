@@ -1,6 +1,7 @@
 package io.github.redstoneparadox.journia.world.gen.feature
 
 import com.mojang.datafixers.Dynamic
+import io.github.redstoneparadox.journia.world.gen.OpenSimplexSampler
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.Heightmap
 import net.minecraft.world.IWorld
@@ -10,9 +11,15 @@ import net.minecraft.world.gen.feature.BoulderFeatureConfig
 import net.minecraft.world.gen.feature.Feature
 import java.util.*
 import java.util.function.Function
+import kotlin.math.abs
 
-class SurfacePatchFeature(configDeserializer: Function<@ParameterName(name = "dynamic") Dynamic<*>, out SurfacePatchFeatureConfig>?): Feature<SurfacePatchFeatureConfig>(configDeserializer) {
+class SurfacePatchFeature(configDeserializer: Function<@ParameterName(name = "dynamic") Dynamic<*>, out SurfacePatchFeatureConfig>): Feature<SurfacePatchFeatureConfig>(configDeserializer) {
+
+    private val sampler = OpenSimplexSampler()
+
     override fun generate(iWorld: IWorld, chunkGenerator: ChunkGenerator<out ChunkGeneratorConfig?>, random: Random, blockPos: BlockPos, config: SurfacePatchFeatureConfig): Boolean {
+        sampler.setSeed(iWorld.seed)
+
         var blockPos = blockPos
         while (true) {
             outer@do {
@@ -41,9 +48,10 @@ class SurfacePatchFeature(configDeserializer: Function<@ParameterName(name = "dy
                     val var12: Iterator<*> = BlockPos.iterate(blockPos.add(-k, -l, -m), blockPos.add(k, l, m)).iterator()
                     while (var12.hasNext()) {
                         val blockPos2 = var12.next() as BlockPos
+                        val x = blockPos2.x
+                        val z = blockPos2.z
+                        if (config.integrity < abs(sampler.eval(x, z))) continue
                         if (blockPos2.getSquaredDistance(blockPos) <= (f * f).toDouble()) {
-                            val x = blockPos2.x
-                            val z = blockPos2.z
                             val y = iWorld.getTopY(Heightmap.Type.WORLD_SURFACE_WG, blockPos2.x, blockPos2.z) - 1
                             val pos = BlockPos(x, y, z)
                             if (config.target.test(iWorld.getBlockState(pos))) {
