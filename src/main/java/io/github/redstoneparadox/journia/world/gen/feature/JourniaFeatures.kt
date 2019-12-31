@@ -24,7 +24,7 @@ object JourniaFeatures {
     private val PINE_LOG: BlockState = JourniaBlocks.PINE_LOG.defaultState
     private val PINE_LEAVES: BlockState = JourniaBlocks.PINE_LEAVES.defaultState.with(Properties.PERSISTENT, true)
 
-    val PINE_TREE_CONFIG = treeConfig(PINE_LOG, PINE_LEAVES, 8, 10)
+    val PINE_TREE_CONFIG = treeConfig(PINE_LOG, PINE_LEAVES, 8, 10, 1)
     val DEAD_TREE_CONFIG = DeadTreeFeatureConfig(Blocks.OAK_LOG.defaultState, 4, 2)
     val DEAD_BIRCH_TREE_CONFIG = DeadTreeFeatureConfig(Blocks.BIRCH_LOG.defaultState, 4, 2)
 
@@ -128,7 +128,7 @@ object JourniaFeatures {
     }
 
 
-    private fun treeConfig(trunk: BlockState, leaves: BlockState, minHeight: Int, maxHeight: Int): BranchedTreeFeatureConfig {
+    private fun treeConfig(trunk: BlockState, leaves: BlockState, minHeight: Int, maxHeight: Int, foliageHeight: Int): BranchedTreeFeatureConfig {
         return BranchedTreeFeatureConfig.Builder(
             SimpleStateProvider(trunk),
             SimpleStateProvider(leaves),
@@ -136,7 +136,7 @@ object JourniaFeatures {
         )
             .baseHeight(minHeight)
             .heightRandA(maxHeight)
-            .foliageHeight(maxHeight + 1)
+            .foliageHeight(foliageHeight)
             .build()
     }
 }

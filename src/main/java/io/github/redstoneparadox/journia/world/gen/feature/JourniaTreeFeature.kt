@@ -8,23 +8,29 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.world.ModifiableTestableWorld
 import net.minecraft.world.gen.feature.AbstractTreeFeature
+import net.minecraft.world.gen.feature.BranchedTreeFeature
 import net.minecraft.world.gen.feature.BranchedTreeFeatureConfig
 import java.util.*
 import java.util.function.Function
 
-abstract class JourniaTreeFeature(configDeserializer: Function<Dynamic<*>, out BranchedTreeFeatureConfig>): AbstractTreeFeature<BranchedTreeFeatureConfig>(configDeserializer) {
+abstract class JourniaTreeFeature(configDeserializer: Function<Dynamic<*>, out BranchedTreeFeatureConfig>): BranchedTreeFeature<BranchedTreeFeatureConfig>(configDeserializer) {
 
     override fun generate(world: ModifiableTestableWorld, random: Random, pos: BlockPos, logPositions: MutableSet<BlockPos>, leavesPositions: MutableSet<BlockPos>, blockBox: BlockBox, config: BranchedTreeFeatureConfig): Boolean {
         if (!isNaturalDirtOrGrass(world, pos.down())) return false
         val height = random.nextInt(config.heightRandA - config.baseHeight + 1) + config.baseHeight
 
-        val trunk = config.trunkProvider.getBlockState(random, pos)
-        val leaves = config.leavesProvider.getBlockState(random, pos)
+        val base = findPositionToGenerate(world, height + config.foliageHeight, 0, 0, pos, config)
 
-        createTrunk(world, trunk, height, pos)
-        createBranches(world, trunk, height, pos)
-        createLeaves(world, leaves, pos.up(height), height)
-        return true
+        if (base.isPresent) {
+            val trunk = config.trunkProvider.getBlockState(random, pos)
+            val leaves = config.leavesProvider.getBlockState(random, pos)
+
+            createTrunk(world, trunk, height, pos)
+            createBranches(world, trunk, height, pos)
+            createLeaves(world, leaves, pos.up(height), height)
+            return true
+        }
+        return false
     }
 
     // -7, 5, 22
