@@ -12,7 +12,7 @@ object JourniaBlocks {
     val PINE_LOG = LogBlock(MaterialColor.SPRUCE, FabricBlockSettings.copy(Blocks.OAK_LOG).build())
     val PINE_PLANKS = Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS).build())
     val PINE_LEAVES = LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES).build())
-    val PINE_SAPLING = JourniaSaplingBlock(PINE_LOG.defaultState, JourniaSaplingGenerator.PINE)
+    val PINE_SAPLING = JourniaSaplingBlock(JourniaSaplingGenerator.PINE)
 
     fun registerAll() {
         register("cracked_ground", CRACKED_GROUND)

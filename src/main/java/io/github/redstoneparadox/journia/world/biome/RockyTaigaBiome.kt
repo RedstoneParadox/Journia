@@ -2,8 +2,11 @@ package io.github.redstoneparadox.journia.world.biome
 
 import com.google.common.collect.ImmutableList
 import io.github.redstoneparadox.journia.block.JourniaBlocks
+import io.github.redstoneparadox.journia.mixin.world.biome.MixinDefaultBiomeFeatures
 import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
+import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures.PINE_TREE
+import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures.PINE_TREE_CONFIG
 import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.minecraft.block.BlockState
@@ -48,7 +51,6 @@ class RockyTaigaBiome: Biome(
         DefaultBiomeFeatures.addLargeFerns(this)
         DefaultBiomeFeatures.addDefaultOres(this)
         DefaultBiomeFeatures.addDefaultDisks(this)
-        DefaultBiomeFeatures.addTaigaTrees(this)
         DefaultBiomeFeatures.addDefaultFlowers(this)
         DefaultBiomeFeatures.addTaigaGrass(this)
         DefaultBiomeFeatures.addDefaultMushrooms(this)
@@ -81,17 +83,38 @@ class RockyTaigaBiome: Biome(
     }
 
     private fun addPineTrees() {
-        this.addFeature(
+        addFeature(
             GenerationStep.Feature.VEGETAL_DECORATION,
             Feature.RANDOM_SELECTOR.configure(
                 RandomFeatureConfig(
                     ImmutableList.of<RandomFeatureEntry<*>>(
-                    ),
-                    JourniaFeatures.PINE_TREE.configure(JourniaFeatures.PINE_TREE_CONFIG)
+                        Feature.NORMAL_TREE.configure(
+                            DefaultBiomeFeatures.PINE_TREE_CONFIG
+                        ).withChance(0.33333334f)
+                    ), Feature.NORMAL_TREE.configure(
+                        DefaultBiomeFeatures.SPRUCE_TREE_CONFIG
+                    )
                 )
             ).createDecoratedFeature(
                 Decorator.COUNT_EXTRA_HEIGHTMAP.configure(
-                    CountExtraChanceDecoratorConfig(10, 0.1f, 1)
+                    CountExtraChanceDecoratorConfig(
+                        8,
+                        0.1f,
+                        1
+                    )
+                )
+            )
+        )
+        addFeature(
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            Feature.RANDOM_SELECTOR.configure(
+                RandomFeatureConfig(
+                    ImmutableList.of(),
+                    PINE_TREE.configure(PINE_TREE_CONFIG)
+                )
+            ).createDecoratedFeature(
+                Decorator.COUNT_EXTRA_HEIGHTMAP.configure(
+                    CountExtraChanceDecoratorConfig(8, 0.1f, 1)
                 )
             )
         )

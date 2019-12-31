@@ -3,7 +3,8 @@
   "package": "io.github.redstoneparadox.journia.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "MixinDeadBushBlock"
+    "MixinDeadBushBlock",
+    "world.biome.MixinDefaultBiomeFeatures"
   ],
   "client": [
     "client.render.MixinGameRenderer",

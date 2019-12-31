@@ -23,6 +23,10 @@ object BiomesConfig: RootConfigCategory("biomes.json5") {
 
     object ShatteredBadlandsPlateau: ConfigCategory("shattered_badlands_plateau") {
         val enabled: Boolean by option(true, "enabled", "Sets whether this biome is enabled.")
-        val chance: Double by option(0.1, 0.0..1.0, "chance", "Sets the chance for this to replace a Badlands Plateau biome")
+        val chance: Double by option(0.1, 0.0..1.0, "chance", "Sets the chance for this to replace a Badlands Plateau biome.")
+    }
+
+    object Vanilla: ConfigCategory("vanilla", "Options that affect vanilla biome generation.") {
+        val taigaPineTrees: Boolean by option(false, "taiga_pine_trees", "Sets whether or not pine trees should generate in Taiga biomes.")
     }
 }
