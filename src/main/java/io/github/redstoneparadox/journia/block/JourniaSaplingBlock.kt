@@ -10,15 +10,10 @@ import net.minecraft.util.math.BlockPos
 import java.util.*
 
 class JourniaSaplingBlock(private val trunk: BlockState, generator: SaplingGenerator): SaplingBlock(generator, FabricBlockSettings.copy(Blocks.OAK_SAPLING).build()) {
-    private val generator2 = generator
 
     override fun generate(serverWorld: ServerWorld, blockPos: BlockPos, blockState: BlockState, random: Random) {
-        if (blockState.get(STAGE) as Int == 0) {
-            serverWorld.setBlockState(blockPos, blockState.cycle(STAGE), 4)
-        } else {
-            generator2.generate(serverWorld, serverWorld.chunkManager.chunkGenerator, blockPos, blockState, random)
-            // TODO: Figure out what's causing the issue that requires me to do this manually.
-            serverWorld.setBlockState(blockPos, trunk)
-        }
+        super.generate(serverWorld, blockPos, blockState, random)
+        // TODO: Figure out why the sapling generator isn't replacing the sapling so that I can remove this.
+        if (blockState.get(STAGE) as Int == 1) serverWorld.setBlockState(blockPos, trunk)
     }
 }
