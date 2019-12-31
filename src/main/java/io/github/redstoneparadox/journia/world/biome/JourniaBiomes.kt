@@ -32,6 +32,7 @@ object JourniaBiomes {
             register("rocky_taiga", ROCKY_TAIGA)
             continentalBiome(ROCKY_TAIGA, OverworldClimate.COOL, BiomesConfig.RockyTaiga.weight)
             shoreBiome(ROCKY_TAIGA, Biomes.STONE_SHORE, 1.0)
+            spawnBiome(ROCKY_TAIGA)
         }
         if (BiomesConfig.ShatteredBadlandsPlateau.enabled) {
             register("shattered_badlands_plateau", SHATTERED_BADLANDS_PLATEAU)
