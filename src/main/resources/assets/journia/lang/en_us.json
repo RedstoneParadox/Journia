@@ -1,4 +1,11 @@
 {
+  "biome.journia.rocky_taiga": "Rocky Taiga",
+  "biome.journia.shattered_badlands_plateau": "Shattered Badlands Plateau",
+  "biome.journia.wasteland": "Wasteland",
+  "biome.journia.wasteland_edge": "Wasteland Edge",
+  "biome.journia.wasteland_river": "Wasteland River",
+  "biome.journia.wasteland_shore": "Wasteland Shore",
+
   "block.journia.pine_log": "Pine Log",
   "block.journia.pine_leaves": "Pine Leaves",
   "block.journia.pine_planks": "Pine Planks",
