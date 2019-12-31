@@ -135,7 +135,9 @@ object JourniaFeatures {
             BlobFoliagePlacer(0, 0)
         )
             .baseHeight(minHeight)
+            .trunkHeight(minHeight)
             .heightRandA(maxHeight)
+            .trunkHeightRandom(maxHeight)
             .foliageHeight(foliageHeight)
             .build()
     }
