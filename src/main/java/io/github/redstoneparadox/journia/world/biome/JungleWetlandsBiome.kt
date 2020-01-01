@@ -1,11 +1,15 @@
 package io.github.redstoneparadox.journia.world.biome
 
 import com.google.common.collect.ImmutableList
+import com.google.common.collect.Lists
+import io.github.redstoneparadox.journia.block.JourniaBlocks
+import net.minecraft.block.Blocks
 import net.minecraft.entity.EntityCategory
 import net.minecraft.entity.EntityType
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
+import net.minecraft.world.gen.decorator.CountDecoratorConfig
 import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.decorator.DecoratorConfig
@@ -44,7 +48,6 @@ class JungleWetlandsBiome: Biome(
         DefaultBiomeFeatures.addDungeons(this)
         DefaultBiomeFeatures.addMineables(this)
         DefaultBiomeFeatures.addDefaultOres(this)
-        DefaultBiomeFeatures.addDefaultDisks(this)
         DefaultBiomeFeatures.addBamboo(this)
         DefaultBiomeFeatures.addExtraDefaultFlowers(this)
         DefaultBiomeFeatures.addJungleGrass(this)
@@ -68,6 +71,7 @@ class JungleWetlandsBiome: Biome(
             )
         )
         addJungleWetlandsTrees()
+        addJungleWetlandsDisks()
 
         addSpawn(EntityCategory.CREATURE, SpawnEntry(EntityType.SHEEP, 12, 4, 4))
         addSpawn(EntityCategory.CREATURE, SpawnEntry(EntityType.PIG, 10, 4, 4))
@@ -88,7 +92,44 @@ class JungleWetlandsBiome: Biome(
         addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.OCELOT, 2, 1, 3))
     }
 
-    fun addJungleWetlandsTrees() {
+    fun addJungleWetlandsDisks() {
+        addFeature(
+            GenerationStep.Feature.UNDERGROUND_ORES,
+            Feature.DISK.configure(
+                DiskFeatureConfig(
+                    Blocks.CLAY.defaultState,
+                    4,
+                    1,
+                    arrayListOf(
+                        Blocks.DIRT.defaultState, Blocks.CLAY.defaultState
+                    )
+                )
+            ).createDecoratedFeature(
+                Decorator.COUNT_TOP_SOLID.configure(
+                    CountDecoratorConfig(2)
+                )
+            )
+        )
+        addFeature(
+            GenerationStep.Feature.UNDERGROUND_ORES,
+            Feature.DISK.configure(
+                DiskFeatureConfig(
+                    JourniaBlocks.MUD.defaultState,
+                    6,
+                    2,
+                    Lists.newArrayList(
+                        Blocks.GRASS_BLOCK.defaultState, Blocks.DIRT.defaultState
+                    )
+                )
+            ).createDecoratedFeature(
+                Decorator.COUNT_TOP_SOLID.configure(
+                    CountDecoratorConfig(1)
+                )
+            )
+        )
+    }
+
+    private fun addJungleWetlandsTrees() {
         addFeature(
             GenerationStep.Feature.VEGETAL_DECORATION,
             Feature.RANDOM_SELECTOR.configure(
