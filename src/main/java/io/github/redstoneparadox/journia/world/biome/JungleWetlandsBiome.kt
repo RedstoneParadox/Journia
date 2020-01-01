@@ -15,7 +15,7 @@ class JungleWetlandsBiome: Biome(
     Settings()
         .configureSurfaceBuilder(SurfaceBuilder.SWAMP, SurfaceBuilder.GRASS_CONFIG)
         .precipitation(Precipitation.RAIN).category(Category.JUNGLE)
-        .depth(-0.2f).scale(0.1f)
+        .depth(-0.2f).scale(0.0f)
         .temperature(0.8f).downfall(0.95f)
         .waterColor(4159204).waterFogColor(329011)
         .parent("null")
@@ -91,7 +91,7 @@ class JungleWetlandsBiome: Biome(
             ).createDecoratedFeature(
                 Decorator.COUNT_EXTRA_HEIGHTMAP.configure(
                     CountExtraChanceDecoratorConfig(
-                        50,
+                        20,
                         0.1f,
                         1
                     )
