@@ -41,6 +41,7 @@ object JourniaBiomes {
             variantBiome(Biomes.BADLANDS_PLATEAU, SHATTERED_BADLANDS_PLATEAU, 0.1, OverworldClimate.DRY)
         }
         register("jungle_wetlands", JUNGLE_WETLANDS)
+        variantBiome(Biomes.JUNGLE, JUNGLE_WETLANDS, 0.1)
     }
 
     private fun register(id: String, biome: Biome) {
