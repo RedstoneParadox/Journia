@@ -17,6 +17,8 @@ object JourniaBiomes {
     val ROCKY_TAIGA = RockyTaigaBiome()
     val SHATTERED_BADLANDS_PLATEAU = ShatteredBadlandsPlateauBiome()
 
+    val JUNGLE_WETLANDS = JungleWetlandsBiome()
+
     fun registerAll() {
         if (BiomesConfig.Wasteland.enabled) {
             register("wasteland", WASTELAND)
@@ -38,6 +40,7 @@ object JourniaBiomes {
             register("shattered_badlands_plateau", SHATTERED_BADLANDS_PLATEAU)
             variantBiome(Biomes.BADLANDS_PLATEAU, SHATTERED_BADLANDS_PLATEAU, 0.1, OverworldClimate.DRY)
         }
+        register("jungle_wetlands", JUNGLE_WETLANDS)
     }
 
     private fun register(id: String, biome: Biome) {
