@@ -14,6 +14,8 @@ object JourniaBlocks {
     val PINE_LEAVES = LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES).build())
     val PINE_SAPLING = JourniaSaplingBlock(JourniaSaplingGenerator.PINE)
 
+    val MUD = Block(FabricBlockSettings.copy(Blocks.DIRT).build())
+
     fun registerAll() {
         register("cracked_ground", CRACKED_GROUND)
 
@@ -21,6 +23,8 @@ object JourniaBlocks {
         register("pine_planks", PINE_PLANKS)
         register("pine_leaves", PINE_LEAVES)
         register("pine_sapling", PINE_SAPLING)
+
+        register("mud", MUD)
     }
 
     private fun register(id: String, block: Block) {

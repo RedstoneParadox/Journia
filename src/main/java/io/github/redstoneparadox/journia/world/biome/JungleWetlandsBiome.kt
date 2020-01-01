@@ -8,6 +8,7 @@ import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
+import net.minecraft.world.gen.decorator.DecoratorConfig
 import net.minecraft.world.gen.feature.*
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
@@ -53,6 +54,19 @@ class JungleWetlandsBiome: Biome(
         DefaultBiomeFeatures.addJungleVegetation(this)
         DefaultBiomeFeatures.addFrozenTopLayer(this)
 
+        addFeature(
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            Feature.SEAGRASS.configure(
+                SeagrassFeatureConfig(
+                    64,
+                    0.6
+                )
+            ).createDecoratedFeature(
+                Decorator.TOP_SOLID_HEIGHTMAP.configure(
+                    DecoratorConfig.DEFAULT
+                )
+            )
+        )
         addJungleWetlandsTrees()
 
         addSpawn(EntityCategory.CREATURE, SpawnEntry(EntityType.SHEEP, 12, 4, 4))
