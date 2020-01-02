@@ -4,6 +4,7 @@ import com.terraformersmc.terraform.block.TerraformSaplingBlock
 import io.github.redstoneparadox.journia.util.JourniaSaplingGenerator
 import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.minecraft.block.*
+import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.registry.Registry
 
 object JourniaBlocks {
@@ -14,7 +15,7 @@ object JourniaBlocks {
     val PINE_LEAVES = LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES).build())
     val PINE_SAPLING = JourniaSaplingBlock(JourniaSaplingGenerator.PINE)
 
-    val MUD = Block(FabricBlockSettings.copy(Blocks.DIRT).build())
+    val MUD = Block(FabricBlockSettings.of(Material.CLAY).materialColor(MaterialColor.DIRT).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME).build())
 
     fun registerAll() {
         register("cracked_ground", CRACKED_GROUND)
