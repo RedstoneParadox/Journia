@@ -62,7 +62,7 @@ class JungleWetlandsBiome: Biome(
             GenerationStep.Feature.VEGETAL_DECORATION,
             Feature.SEAGRASS.configure(
                 SeagrassFeatureConfig(
-                    64,
+                    256,
                     0.6
                 )
             ).createDecoratedFeature(
