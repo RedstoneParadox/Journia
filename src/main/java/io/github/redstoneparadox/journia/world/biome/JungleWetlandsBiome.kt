@@ -10,12 +10,12 @@ import net.minecraft.entity.EntityType
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
+import net.minecraft.world.gen.ProbabilityConfig
 import net.minecraft.world.gen.decorator.CountDecoratorConfig
 import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.decorator.DecoratorConfig
 import net.minecraft.world.gen.feature.*
-import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 class JungleWetlandsBiome: Biome(
     Settings()
@@ -91,6 +91,14 @@ class JungleWetlandsBiome: Biome(
         addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.ENDERMAN, 10, 1, 4))
         addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.WITCH, 5, 1, 1))
         addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.OCELOT, 2, 1, 3))
+    }
+
+    fun addBamboo() {
+        addFeature(
+            GenerationStep.Feature.VEGETAL_DECORATION, Feature.BAMBOO.configure(
+                ProbabilityConfig(0.0f)
+            ).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP_DOUBLE.configure(CountDecoratorConfig(64)))
+        )
     }
 
     fun addJungleWetlandsDisks() {
