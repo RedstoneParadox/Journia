@@ -23,7 +23,7 @@ object BiomesConfig: RootConfigCategory("biomes.json5") {
 
     object ShatteredBadlandsPlateau: ConfigCategory("shattered_badlands_plateau") {
         val enabled: Boolean by option(true, "enabled", "Sets whether this biome is enabled.")
-        val chance: Double by option(0.1, 0.0..1.0, "chance", "Sets the chance for this to replace a Badlands Plateau biome.")
+        val chance: Double by option(0.2, 0.0..1.0, "chance", "Sets the chance for this to replace a Badlands Plateau biome.")
     }
 
     object JungleWetlands: ConfigCategory("jungle_wetlands") {

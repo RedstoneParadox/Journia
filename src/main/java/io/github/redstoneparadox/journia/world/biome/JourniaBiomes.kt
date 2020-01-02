@@ -38,7 +38,7 @@ object JourniaBiomes {
         }
         if (BiomesConfig.ShatteredBadlandsPlateau.enabled) {
             register("shattered_badlands_plateau", SHATTERED_BADLANDS_PLATEAU)
-            variantBiome(Biomes.BADLANDS_PLATEAU, SHATTERED_BADLANDS_PLATEAU, 0.1, OverworldClimate.DRY)
+            variantBiome(Biomes.BADLANDS_PLATEAU, SHATTERED_BADLANDS_PLATEAU, BiomesConfig.ShatteredBadlandsPlateau.chance, OverworldClimate.DRY)
         }
         if (BiomesConfig.JungleWetlands.enabled) {
             register("jungle_wetlands", JUNGLE_WETLANDS)
