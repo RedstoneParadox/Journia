@@ -40,8 +40,10 @@ object JourniaBiomes {
             register("shattered_badlands_plateau", SHATTERED_BADLANDS_PLATEAU)
             variantBiome(Biomes.BADLANDS_PLATEAU, SHATTERED_BADLANDS_PLATEAU, 0.1, OverworldClimate.DRY)
         }
-        register("jungle_wetlands", JUNGLE_WETLANDS)
-        variantBiome(Biomes.JUNGLE, JUNGLE_WETLANDS, 0.1)
+        if (BiomesConfig.JungleWetlands.enabled) {
+            register("jungle_wetlands", JUNGLE_WETLANDS)
+            variantBiome(Biomes.JUNGLE, JUNGLE_WETLANDS, BiomesConfig.JungleWetlands.chance)
+        }
     }
 
     private fun register(id: String, biome: Biome) {
