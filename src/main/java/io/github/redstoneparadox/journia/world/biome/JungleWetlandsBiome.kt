@@ -3,6 +3,7 @@ package io.github.redstoneparadox.journia.world.biome
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.Lists
 import io.github.redstoneparadox.journia.block.JourniaBlocks
+import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.minecraft.block.Blocks
 import net.minecraft.entity.EntityCategory
 import net.minecraft.entity.EntityType
@@ -18,7 +19,7 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 class JungleWetlandsBiome: Biome(
     Settings()
-        .configureSurfaceBuilder(SurfaceBuilder.SWAMP, SurfaceBuilder.GRASS_CONFIG)
+        .configureSurfaceBuilder(SurfaceBuilder.SWAMP, JourniaSurfaceBuilders.WETLANDS_CONFIG)
         .precipitation(Precipitation.RAIN).category(Category.JUNGLE)
         .depth(-0.2f).scale(0.0f)
         .temperature(0.8f).downfall(0.95f)
@@ -101,7 +102,7 @@ class JungleWetlandsBiome: Biome(
                     4,
                     1,
                     arrayListOf(
-                        Blocks.DIRT.defaultState, Blocks.CLAY.defaultState
+                        Blocks.DIRT.defaultState, Blocks.CLAY.defaultState, JourniaBlocks.MUD.defaultState
                     )
                 )
             ).createDecoratedFeature(
@@ -123,7 +124,7 @@ class JungleWetlandsBiome: Biome(
                 )
             ).createDecoratedFeature(
                 Decorator.COUNT_TOP_SOLID.configure(
-                    CountDecoratorConfig(1)
+                    CountDecoratorConfig(4)
                 )
             )
         )
