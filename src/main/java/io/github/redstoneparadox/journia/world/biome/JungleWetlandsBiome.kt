@@ -19,7 +19,7 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 class JungleWetlandsBiome: Biome(
     Settings()
-        .configureSurfaceBuilder(SurfaceBuilder.SWAMP, JourniaSurfaceBuilders.WETLANDS_CONFIG)
+        .configureSurfaceBuilder(JourniaSurfaceBuilders.WETLANDS, JourniaSurfaceBuilders.WETLANDS_CONFIG)
         .precipitation(Precipitation.RAIN).category(Category.JUNGLE)
         .depth(-0.2f).scale(0.0f)
         .temperature(0.8f).downfall(0.95f)

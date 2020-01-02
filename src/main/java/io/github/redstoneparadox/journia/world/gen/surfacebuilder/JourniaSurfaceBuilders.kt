@@ -19,12 +19,15 @@ object JourniaSurfaceBuilders {
     val WASTELAND_EDGE_CONFIG = TernarySurfaceConfig(COARSE_DIRT, COARSE_DIRT, GRAVEL)
     val ROCKY_TAIGA_CONFIG = PentaSurfaceConfig(GRASS, STONE, STONE, secondaryCutoff = 1.75, tertiaryCutoff = 1.95, scale = 0.4)
     val WETLANDS_CONFIG = TernarySurfaceConfig(GRASS, Blocks.DIRT.defaultState, JourniaBlocks.MUD.defaultState)
+    val MUD_CONFIG = TernarySurfaceConfig(JourniaBlocks.MUD.defaultState, JourniaBlocks.MUD.defaultState, JourniaBlocks.MUD.defaultState)
 
     val PENTA: SurfaceBuilder<PentaSurfaceConfig> = PentaSurfaceBuilder(PentaSurfaceConfig.Companion::deserialize)
+    val WETLANDS: SurfaceBuilder<TernarySurfaceConfig> = WetlandsSurfaceBuilder(TernarySurfaceConfig::deserialize)
 
 
     fun registerAll() {
         register("penta", PENTA)
+        register("wetlands", WETLANDS)
     }
 
     fun register(id: String, builder: SurfaceBuilder<*>) {
