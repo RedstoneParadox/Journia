@@ -8,6 +8,8 @@ import net.minecraft.item.ItemGroup
 import net.minecraft.util.registry.Registry
 
 object JourniaItems {
+    val CRACKED_GROUND = blockItem(JourniaBlocks.CRACKED_GROUND)
+
     val PINE_LOG = blockItem(JourniaBlocks.PINE_LOG)
     val PINE_PLANKS = blockItem(JourniaBlocks.PINE_PLANKS)
     val PINE_LEAVES = blockItem(JourniaBlocks.PINE_LEAVES)
@@ -16,6 +18,8 @@ object JourniaItems {
     val MUD = blockItem(JourniaBlocks.MUD)
 
     fun registerAll() {
+        register("cracked_ground", CRACKED_GROUND)
+
         register("pine_log", PINE_LOG)
         register("pine_planks", PINE_PLANKS)
         register("pine_leaves", PINE_LEAVES)

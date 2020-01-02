@@ -3,12 +3,14 @@ package io.github.redstoneparadox.journia.block
 import com.terraformersmc.terraform.block.TerraformSaplingBlock
 import io.github.redstoneparadox.journia.util.JourniaSaplingGenerator
 import net.fabricmc.fabric.api.block.FabricBlockSettings
+import net.fabricmc.fabric.api.tag.FabricItemTags
+import net.fabricmc.fabric.api.tools.FabricToolTags
 import net.minecraft.block.*
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.registry.Registry
 
 object JourniaBlocks {
-    val CRACKED_GROUND = Block(FabricBlockSettings.copy(Blocks.SANDSTONE).build())
+    val CRACKED_GROUND = Block(FabricBlockSettings.copy(Blocks.SANDSTONE).breakByTool(FabricToolTags.PICKAXES).build())
 
     val PINE_LOG = LogBlock(MaterialColor.SPRUCE, FabricBlockSettings.copy(Blocks.OAK_LOG).build())
     val PINE_PLANKS = Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS).build())
