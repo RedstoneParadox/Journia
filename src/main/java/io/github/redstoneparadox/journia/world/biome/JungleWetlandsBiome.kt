@@ -116,7 +116,7 @@ class JungleWetlandsBiome: Biome(
             Feature.DISK.configure(
                 DiskFeatureConfig(
                     JourniaBlocks.MUD.defaultState,
-                    6,
+                    8,
                     2,
                     Lists.newArrayList(
                         Blocks.GRASS_BLOCK.defaultState, Blocks.DIRT.defaultState
@@ -124,7 +124,7 @@ class JungleWetlandsBiome: Biome(
                 )
             ).createDecoratedFeature(
                 Decorator.COUNT_TOP_SOLID.configure(
-                    CountDecoratorConfig(4)
+                    CountDecoratorConfig(8)
                 )
             )
         )
