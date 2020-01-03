@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "journia:block/pine_planks",
+    "top": "journia:block/pine_planks",
+    "side": "journia:block/pine_planks"
+  }
+}

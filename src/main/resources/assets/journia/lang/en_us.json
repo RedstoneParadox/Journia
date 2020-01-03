@@ -10,7 +10,13 @@
   "block.journia.cracked_ground": "Cracked Ground",
   "block.journia.pine_log": "Pine Log",
   "block.journia.pine_leaves": "Pine Leaves",
-  "block.journia.pine_planks": "Pine Planks",
   "block.journia.pine_sapling": "Pine Sapling",
+  "block.journia.pine_planks": "Pine Planks",
+  "block.journia.pine_slab": "Pine Slab",
+  "block.journia.pine_stairs": "Pine Stairs",
+  "block.journia.pine_fence": "Pine Fence",
+  "block.journia.pine_fence_gate": "Pine Fence Gate",
+  "block.journia.pine_button": "Pine Button",
+  "block.journia.pine_pressure_plate": "Pine Pressure Plate",
   "block.journia.mud": "Mud"
 }

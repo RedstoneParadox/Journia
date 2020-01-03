@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "type=bottom": { "model": "journia:block/pine_slab" },
+    "type=top": { "model": "journia:block/pine_slab_top" },
+    "type=double": { "model": "journia:block/pine_planks" }
+  }
+}

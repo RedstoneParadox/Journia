@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "powered=false": { "model": "journia:block/pine_pressure_plate" },
+    "powered=true": { "model": "journia:block/pine_pressure_plate_down" }
+  }
+}

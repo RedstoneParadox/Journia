@@ -11,9 +11,15 @@ object JourniaItems {
     val CRACKED_GROUND = blockItem(JourniaBlocks.CRACKED_GROUND)
 
     val PINE_LOG = blockItem(JourniaBlocks.PINE_LOG)
-    val PINE_PLANKS = blockItem(JourniaBlocks.PINE_PLANKS)
     val PINE_LEAVES = blockItem(JourniaBlocks.PINE_LEAVES)
     val PINE_SAPLING = blockItem(JourniaBlocks.PINE_SAPLING, ItemGroup.DECORATIONS)
+    val PINE_PLANKS = blockItem(JourniaBlocks.PINE_PLANKS)
+    val PINE_SLAB = blockItem(JourniaBlocks.PINE_SLAB)
+    val PINE_STAIRS = blockItem(JourniaBlocks.PINE_STAIRS)
+    val PINE_FENCE = blockItem(JourniaBlocks.PINE_FENCE, ItemGroup.DECORATIONS)
+    val PINE_FENCE_GATE = blockItem(JourniaBlocks.PINE_FENCE_GATE, ItemGroup.DECORATIONS)
+    val PINE_BUTTON = blockItem(JourniaBlocks.PINE_BUTTON, ItemGroup.REDSTONE)
+    val PINE_PRESSURE_PLATE = blockItem(JourniaBlocks.PINE_PRESSURE_PLATE, ItemGroup.REDSTONE)
 
     val MUD = blockItem(JourniaBlocks.MUD)
 
@@ -21,9 +27,15 @@ object JourniaItems {
         register("cracked_ground", CRACKED_GROUND)
 
         register("pine_log", PINE_LOG)
-        register("pine_planks", PINE_PLANKS)
-        register("pine_leaves", PINE_LEAVES)
         register("pine_sapling", PINE_SAPLING)
+        register("pine_leaves", PINE_LEAVES)
+        register("pine_planks", PINE_PLANKS)
+        register("pine_slab", PINE_SLAB)
+        register("pine_stairs", PINE_STAIRS)
+        register("pine_fence", PINE_FENCE)
+        register("pine_fence_gate", PINE_FENCE_GATE)
+        register("pine_button", PINE_BUTTON)
+        register("pine_pressure_plate", PINE_PRESSURE_PLATE)
 
         register("mud", MUD)
     }
