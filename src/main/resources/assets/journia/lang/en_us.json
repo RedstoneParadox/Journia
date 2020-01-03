@@ -5,9 +5,12 @@
   "biome.journia.wasteland_edge": "Wasteland Edge",
   "biome.journia.wasteland_river": "Wasteland River",
   "biome.journia.wasteland_shore": "Wasteland Shore",
+  "biome.journia.jungle_wetlands": "Jungle Wetlands",
 
+  "block.journia.cracked_ground": "Cracked Ground",
   "block.journia.pine_log": "Pine Log",
   "block.journia.pine_leaves": "Pine Leaves",
   "block.journia.pine_planks": "Pine Planks",
-  "block.journia.pine_sapling": "Pine Sapling"
+  "block.journia.pine_sapling": "Pine Sapling",
+  "block.journia.mud": "Mud"
 }
