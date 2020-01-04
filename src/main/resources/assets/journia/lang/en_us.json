@@ -18,5 +18,7 @@
   "block.journia.pine_fence_gate": "Pine Fence Gate",
   "block.journia.pine_button": "Pine Button",
   "block.journia.pine_pressure_plate": "Pine Pressure Plate",
-  "block.journia.mud": "Mud"
+  "block.journia.mud": "Mud",
+
+  "item.journia.pine_boat": "Pine Boat"
 }
