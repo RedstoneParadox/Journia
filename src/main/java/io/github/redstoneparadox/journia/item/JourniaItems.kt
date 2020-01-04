@@ -59,7 +59,7 @@ object JourniaItems {
         return TerraformBoatItem(
             { world, x, y, z ->
                 val entity = supplier().create(world)
-                entity?.setPos(x,y,z)
+                entity?.setPosition(x,y,z)
                 return@TerraformBoatItem entity
             },
             Item.Settings().group(ItemGroup.TRANSPORTATION).maxCount(1)
