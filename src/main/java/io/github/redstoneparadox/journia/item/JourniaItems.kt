@@ -1,8 +1,13 @@
 package io.github.redstoneparadox.journia.item
 
+import com.terraformersmc.terraform.entity.TerraformBoatEntity
+import com.terraformersmc.terraform.item.TerraformBoatItem
 import io.github.redstoneparadox.journia.block.JourniaBlocks
+import io.github.redstoneparadox.journia.entity.JourniaEntityTypes
 import net.minecraft.block.Block
+import net.minecraft.entity.EntityType
 import net.minecraft.item.BlockItem
+import net.minecraft.item.BoatItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
 import net.minecraft.util.registry.Registry
@@ -20,6 +25,7 @@ object JourniaItems {
     val PINE_FENCE_GATE = blockItem(JourniaBlocks.PINE_FENCE_GATE, ItemGroup.DECORATIONS)
     val PINE_BUTTON = blockItem(JourniaBlocks.PINE_BUTTON, ItemGroup.REDSTONE)
     val PINE_PRESSURE_PLATE = blockItem(JourniaBlocks.PINE_PRESSURE_PLATE, ItemGroup.REDSTONE)
+    val PINE_BOAT = boatItem("pine") { JourniaEntityTypes.PINE_BOAT }
 
     val MUD = blockItem(JourniaBlocks.MUD)
 
@@ -36,6 +42,7 @@ object JourniaItems {
         register("pine_fence_gate", PINE_FENCE_GATE)
         register("pine_button", PINE_BUTTON)
         register("pine_pressure_plate", PINE_PRESSURE_PLATE)
+        register("pine_boat", PINE_BOAT)
 
         register("mud", MUD)
     }
@@ -46,5 +53,16 @@ object JourniaItems {
 
     private fun blockItem(block: Block, group: ItemGroup = ItemGroup.BUILDING_BLOCKS): BlockItem {
         return BlockItem(block, Item.Settings().group(group))
+    }
+
+    private fun boatItem(name: String, supplier: () -> EntityType<TerraformBoatEntity>): TerraformBoatItem {
+        return TerraformBoatItem(
+            { world, x, y, z ->
+                val entity = supplier().create(world)
+                entity?.setPos(x,y,z)
+                return@TerraformBoatItem entity
+            },
+            Item.Settings().group(ItemGroup.TRANSPORTATION).maxCount(1)
+        )
     }
 }

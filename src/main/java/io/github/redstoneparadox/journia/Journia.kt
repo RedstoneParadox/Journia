@@ -2,6 +2,7 @@ package io.github.redstoneparadox.journia
 
 import com.mojang.datafixers.types.DynamicOps
 import io.github.redstoneparadox.journia.block.JourniaBlocks
+import io.github.redstoneparadox.journia.entity.JourniaEntityTypes
 import io.github.redstoneparadox.journia.item.JourniaItems
 import io.github.redstoneparadox.journia.world.biome.JourniaBiomes
 import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
@@ -17,6 +18,7 @@ fun init() {
     JourniaSurfaceBuilders.registerAll()
     JourniaFeatures.registerAll()
     JourniaBiomes.registerAll()
+    JourniaEntityTypes.registerAll()
 }
 
 inline fun <reified T> Any?.asElse(t: T): T = if (this is T) this else t
