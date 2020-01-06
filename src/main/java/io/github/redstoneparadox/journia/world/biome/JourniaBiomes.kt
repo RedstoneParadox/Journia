@@ -9,15 +9,15 @@ import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.Biomes
 
 object JourniaBiomes {
-    val WASTELAND = WastelandBiome()
-    val WASTELAND_RIVER = WastelandRiverBiome()
-    val WASTELAND_SHORE = WastelandShoreBiome()
-    val WASTELAND_EDGE = WastelandEdgeBiome()
+    val WASTELAND: Biome = WastelandBiome()
+    val WASTELAND_RIVER: Biome = WastelandRiverBiome()
+    val WASTELAND_SHORE: Biome = WastelandShoreBiome()
+    val WASTELAND_EDGE: Biome = WastelandEdgeBiome()
 
-    val ROCKY_TAIGA = RockyTaigaBiome()
-    val SHATTERED_BADLANDS_PLATEAU = ShatteredBadlandsPlateauBiome()
+    val ROCKY_TAIGA: Biome = RockyTaigaBiome()
+    val SHATTERED_BADLANDS_PLATEAU: Biome = ShatteredBadlandsPlateauBiome()
 
-    val JUNGLE_WETLANDS = JungleWetlandsBiome()
+    val JUNGLE_WETLANDS: Biome = JungleWetlandsBiome()
 
     fun registerAll() {
         if (BiomesConfig.Wasteland.enabled) {
