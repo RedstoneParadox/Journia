@@ -1,5 +1,7 @@
 package io.github.redstoneparadox.journia.world.gen
 
+import com.terraformersmc.terraform.noise.OpenSimplexNoise
+
 class OpenSimplexSampler(private val xStrech: Double = 1.0, private val yStrech: Double = 1.0, private val zStrech: Double = 1.0, private val noiseMultiplier: Double = 1.0) {
 
     private var noise = OpenSimplexNoise(0)
