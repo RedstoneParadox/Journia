@@ -14,7 +14,7 @@ class OpenSimplexSampler(private val xStrech: Double = 1.0, private val yStrech:
         }
     }
 
-    fun eval(x: Int, z: Int): Double = noise.eval(x.toDouble()/xStrech, z.toDouble()/zStrech) * noiseMultiplier
+    fun eval(x: Int, z: Int): Double = noise.sample(x.toDouble()/xStrech, z.toDouble()/zStrech) * noiseMultiplier
 
-    fun eval(x: Int, y: Int, z: Int): Double = noise.eval(x.toDouble()/xStrech,y.toDouble()/yStrech, z.toDouble()/zStrech) * noiseMultiplier
+    fun eval(x: Int, y: Int, z: Int): Double = noise.sample(x.toDouble()/xStrech,y.toDouble()/yStrech, z.toDouble()/zStrech) * noiseMultiplier
 }
