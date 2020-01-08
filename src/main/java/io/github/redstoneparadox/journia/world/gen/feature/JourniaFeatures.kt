@@ -108,7 +108,7 @@ object JourniaFeatures {
                 .configure(RandomFeatureConfig(mutableListOf(), Feature.NORMAL_TREE.configure(DefaultBiomeFeatures.OAK_TREE_CONFIG)))
                 .createDecoratedFeature(
                     Decorator.COUNT_EXTRA_HEIGHTMAP
-                        .configure(CountExtraChanceDecoratorConfig(0, 0.05F, 1))
+                        .configure(CountExtraChanceDecoratorConfig(0, 0.03F, 1))
                 )
         )
         biome.addFeature(
@@ -122,7 +122,7 @@ object JourniaFeatures {
                 )
                 .createDecoratedFeature(
                     Decorator.COUNT_EXTRA_HEIGHTMAP
-                        .configure(CountExtraChanceDecoratorConfig(0, 0.3F, 1))
+                        .configure(CountExtraChanceDecoratorConfig(0, 0.2F, 1))
                 )
         )
     }
