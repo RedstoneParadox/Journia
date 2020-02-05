@@ -1,5 +1,6 @@
 package io.github.redstoneparadox.journia.world.biome
 
+import io.github.redstoneparadox.journia.colorToInt
 import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
@@ -7,6 +8,7 @@ import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurface
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.block.Blocks
+import net.minecraft.class_4763
 import net.minecraft.entity.EntityCategory
 import net.minecraft.entity.EntityType
 import net.minecraft.world.biome.Biome
@@ -21,6 +23,8 @@ import net.minecraft.world.gen.feature.RandomFeatureConfig
 import net.minecraft.world.gen.feature.RandomFeatureEntry
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
+// Water Color: 6388580
+// Water Fog Color: 2302743
 class WastelandBiome: Biome(
     Settings()
         .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, JourniaSurfaceBuilders.WASTELAND_CONFIG)
@@ -29,7 +33,12 @@ class WastelandBiome: Biome(
         .depth(0.125F).scale(0.05F)
         .temperature(1.2f)
         .downfall(0.0f)
-        .waterColor(6388580).waterFogColor(2302743)
+        .method_24379(
+            class_4763.class_4764()
+                .method_24392(colorToInt(1.0, 1.0, 0.75))
+                .method_24395(6388580)
+                .method_24397(2302743)
+                .method_24391())
         .parent("null")
 ) {
 

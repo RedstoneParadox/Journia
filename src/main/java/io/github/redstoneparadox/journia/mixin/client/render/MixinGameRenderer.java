@@ -18,29 +18,4 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(GameRenderer.class)
 public abstract class MixinGameRenderer {
 
-    @Inject(at = @At("RETURN"), method = "getViewDistance()F", cancellable = true)
-    private void getWastelandsViewDistance(CallbackInfoReturnable<Float> cir) {
-        final MinecraftClient client = MinecraftClient.getInstance();
-        final World world = client.world;
-        final PlayerEntity player = client.player;
-
-        int count = 0;
-
-        for (int x = 0; x < 9; x++) {
-            for (int z = 0; z < 9; z++) {
-                BlockPos pos = player.getBlockPos().add(x - 4, 0, z - 4);
-                Biome biome = world.getBiome(pos);
-                if (biome instanceof WastelandBiome || biome instanceof WastelandRiverBiome) count += 1;
-                else if (biome instanceof WastelandShoreBiome || biome instanceof WastelandEdgeBiome) count += 0.5;
-            }
-        }
-
-        float distance = cir.getReturnValue();
-        float intensity = (count/81f);
-        float newDistance = distance - intensity * (distance - 8);
-
-        if (newDistance < distance) {
-            cir.setReturnValue(newDistance);
-        }
-    }
 }

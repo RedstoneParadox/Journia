@@ -7,8 +7,7 @@
     "world.biome.MixinDefaultBiomeFeatures"
   ],
   "client": [
-    "client.render.MixinGameRenderer",
-    "client.render.MixinBackgroundRenderer"
+
   ],
   "injectors": {
     "defaultRequire": 1

@@ -5,6 +5,7 @@ import com.google.common.collect.Lists
 import io.github.redstoneparadox.journia.block.JourniaBlocks
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.minecraft.block.Blocks
+import net.minecraft.class_4763
 import net.minecraft.entity.EntityCategory
 import net.minecraft.entity.EntityType
 import net.minecraft.world.biome.Biome
@@ -17,13 +18,19 @@ import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.decorator.DecoratorConfig
 import net.minecraft.world.gen.feature.*
 
+// Water: 4159204
+// Water Fog: 329011
 class JungleWetlandsBiome: Biome(
     Settings()
         .configureSurfaceBuilder(JourniaSurfaceBuilders.WETLANDS, JourniaSurfaceBuilders.WETLANDS_CONFIG)
         .precipitation(Precipitation.RAIN).category(Category.JUNGLE)
         .depth(-0.2f).scale(0.0f)
         .temperature(0.8f).downfall(0.95f)
-        .waterColor(4159204).waterFogColor(329011)
+        .method_24379(class_4763.class_4764()
+            .method_24392(12638463)
+            .method_24395(4159204)
+            .method_24397(329011)
+            .method_24391())
         .parent("null")
 ) {
 

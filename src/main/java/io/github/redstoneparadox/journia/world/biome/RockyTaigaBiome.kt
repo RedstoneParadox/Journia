@@ -11,6 +11,7 @@ import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureCo
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
+import net.minecraft.class_4763
 import net.minecraft.entity.EntityCategory
 import net.minecraft.entity.EntityType
 import net.minecraft.state.property.Properties
@@ -23,6 +24,7 @@ import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig
 import net.minecraft.world.gen.feature.*
 
+// Water Color:
 class RockyTaigaBiome: Biome(
     Settings()
         .configureSurfaceBuilder(JourniaSurfaceBuilders.PENTA, JourniaSurfaceBuilders.ROCKY_TAIGA_CONFIG)
@@ -31,8 +33,12 @@ class RockyTaigaBiome: Biome(
         .depth(0.2F).scale(0.2F)
         .temperature(0.25F)
         .downfall(0.8F)
-        .waterColor(4159204)
-        .waterFogColor(329011)
+        .method_24379(
+            class_4763.class_4764()
+                .method_24392(12638463)
+                .method_24395(4159204)
+                .method_24397(329011)
+                .method_24391())
         .parent("null")
 ) {
 

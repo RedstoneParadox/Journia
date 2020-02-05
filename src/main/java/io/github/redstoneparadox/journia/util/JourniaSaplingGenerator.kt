@@ -11,11 +11,11 @@ import java.util.*
 
 class JourniaSaplingGenerator(private val featureSuplier: () -> AbstractTreeFeature<BranchedTreeFeatureConfig>, private val configSupplier: () -> BranchedTreeFeatureConfig): SaplingGenerator() {
 
-    override fun createTreeFeature(random: Random): ConfiguredFeature<BranchedTreeFeatureConfig, *> {
-        return featureSuplier().configure(configSupplier())
-    }
-
     companion object {
         val PINE = JourniaSaplingGenerator({JourniaFeatures.PINE_TREE}, {JourniaFeatures.PINE_TREE_CONFIG})
+    }
+
+    override fun createTreeFeature(random: Random?, bl: Boolean): ConfiguredFeature<BranchedTreeFeatureConfig, *>? {
+        return featureSuplier().configure(configSupplier())
     }
 }
