@@ -28,9 +28,9 @@ fun <T> String.into(ops: DynamicOps<T>): T {
 }
 
 fun colorToInt(r: Double, g: Double, b: Double): Int {
-    val redInt = r.toInt() * 255
-    val greenInt = g.toInt() * 255
-    val blueInt = b.toInt() * 255
+    val redInt = (r * 255).toInt()
+    val greenInt = (g * 255).toInt()
+    val blueInt = (b * 255).toInt()
 
-    return redInt shl 16 or (greenInt shl 8) or blueInt
+    return (redInt shl 16) or (greenInt shl 8) or blueInt
 }

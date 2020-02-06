@@ -4,7 +4,8 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "MixinDeadBushBlock",
-    "world.biome.MixinDefaultBiomeFeatures"
+    "world.biome.MixinDefaultBiomeFeatures",
+    "world.dimension.MixinOverworldDimension"
   ],
   "client": [
 

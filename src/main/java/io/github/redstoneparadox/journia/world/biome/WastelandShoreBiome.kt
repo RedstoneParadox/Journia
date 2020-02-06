@@ -25,9 +25,10 @@ class WastelandShoreBiome: Biome(
         .temperature(1.0F).downfall(0.0f)
         .method_24379(
             class_4763.class_4764()
-                .method_24392(colorToInt(1.0, 1.0, 0.6))
+                .method_24392(colorToInt(0.8, 0.8, 0.6))
                 .method_24395(6388580)
                 .method_24397(2302743)
+
                 .method_24391())
         .parent("null")
 ) {

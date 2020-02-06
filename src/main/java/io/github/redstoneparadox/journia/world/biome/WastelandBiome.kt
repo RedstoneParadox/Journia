@@ -1,27 +1,21 @@
 package io.github.redstoneparadox.journia.world.biome
 
 import io.github.redstoneparadox.journia.colorToInt
-import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
-import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
-import net.minecraft.block.Blocks
+import net.minecraft.class_4761
 import net.minecraft.class_4763
 import net.minecraft.entity.EntityCategory
 import net.minecraft.entity.EntityType
+import net.minecraft.particle.ParticleTypes
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.DefaultBiomeFeatures
-import net.minecraft.world.gen.GenerationStep
-import net.minecraft.world.gen.decorator.CountDecoratorConfig
-import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig
-import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.FeatureConfig
-import net.minecraft.world.gen.feature.RandomFeatureConfig
-import net.minecraft.world.gen.feature.RandomFeatureEntry
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
+import java.util.*
 
 // Water Color: 6388580
 // Water Fog Color: 2302743
@@ -35,9 +29,10 @@ class WastelandBiome: Biome(
         .downfall(0.0f)
         .method_24379(
             class_4763.class_4764()
-                .method_24392(colorToInt(1.0, 1.0, 0.75))
+                .method_24392(colorToInt(0.8, 0.8, 0.6))
                 .method_24395(6388580)
                 .method_24397(2302743)
+                .method_24393(class_4761(ParticleTypes.ASH, 0.00625f, { 0.0 }, { 0.0 }, { 0.0 }))
                 .method_24391())
         .parent("null")
 ) {
