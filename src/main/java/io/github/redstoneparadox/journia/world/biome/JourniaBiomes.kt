@@ -15,9 +15,12 @@ object JourniaBiomes {
     val WASTELAND_EDGE: Biome = WastelandEdgeBiome()
 
     val ROCKY_TAIGA: Biome = RockyTaigaBiome()
+
     val SHATTERED_BADLANDS_PLATEAU: Biome = ShatteredBadlandsPlateauBiome()
 
     val JUNGLE_WETLANDS: Biome = JungleWetlandsBiome()
+
+    val ROCKY_TAIGA_MOUNTAINS: Biome = RockyTaigaMountainsBiome()
 
     fun registerAll() {
         if (BiomesConfig.Wasteland.enabled) {
@@ -43,6 +46,10 @@ object JourniaBiomes {
         if (BiomesConfig.JungleWetlands.enabled) {
             register("jungle_wetlands", JUNGLE_WETLANDS)
             variantBiome(Biomes.JUNGLE, JUNGLE_WETLANDS, BiomesConfig.JungleWetlands.chance)
+        }
+        if (BiomesConfig.RockyTaigaMountains.enabled) {
+            register("rocky_taiga_mountains", ROCKY_TAIGA_MOUNTAINS)
+            continentalBiome(ROCKY_TAIGA_MOUNTAINS, OverworldClimate.COOL, BiomesConfig.RockyTaigaMountains.weight)
         }
     }
 

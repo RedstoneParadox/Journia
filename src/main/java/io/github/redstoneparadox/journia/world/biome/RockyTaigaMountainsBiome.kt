@@ -1,20 +1,14 @@
 package io.github.redstoneparadox.journia.world.biome
 
 import com.google.common.collect.ImmutableList
-import io.github.redstoneparadox.journia.block.JourniaBlocks
-import io.github.redstoneparadox.journia.mixin.world.biome.MixinDefaultBiomeFeatures
 import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
-import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures.PINE_TREE
-import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures.PINE_TREE_CONFIG
 import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
-import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.class_4763
 import net.minecraft.entity.EntityCategory
 import net.minecraft.entity.EntityType
-import net.minecraft.state.property.Properties
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
@@ -24,13 +18,12 @@ import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig
 import net.minecraft.world.gen.feature.*
 
-// Water Color:
-class RockyTaigaBiome: Biome(
+class RockyTaigaMountainsBiome: Biome(
     Settings()
         .configureSurfaceBuilder(JourniaSurfaceBuilders.PENTA, JourniaSurfaceBuilders.ROCKY_TAIGA_CONFIG)
         .precipitation(Precipitation.RAIN)
-        .category(Category.EXTREME_HILLS)
-        .depth(0.2F).scale(0.2F)
+        .category(Category.TAIGA)
+        .depth(1.0F).scale(1.3F)
         .temperature(0.25F)
         .downfall(0.8F)
         .method_24379(
@@ -41,12 +34,7 @@ class RockyTaigaBiome: Biome(
                 .method_24391())
         .parent("null")
 ) {
-
-    private val PINE_TRUNK: BlockState = JourniaBlocks.PINE_LOG.defaultState
-    private val PINE_LEAVES: BlockState = JourniaBlocks.PINE_LEAVES.defaultState.with(Properties.PERSISTENT, true)
-
     init {
-        addStructureFeature(Feature.VILLAGE.configure(VillageFeatureConfig("village/taiga/town_centers", 6)))
         addStructureFeature(Feature.PILLAGER_OUTPOST.configure(FeatureConfig.DEFAULT))
         addStructureFeature(Feature.MINESHAFT.configure(MineshaftFeatureConfig(0.004, MineshaftFeature.Type.NORMAL)))
         addStructureFeature(Feature.STRONGHOLD.configure(FeatureConfig.DEFAULT))
@@ -116,7 +104,7 @@ class RockyTaigaBiome: Biome(
             Feature.RANDOM_SELECTOR.configure(
                 RandomFeatureConfig(
                     ImmutableList.of(),
-                    PINE_TREE.configure(PINE_TREE_CONFIG)
+                    JourniaFeatures.PINE_TREE.configure(JourniaFeatures.PINE_TREE_CONFIG)
                 )
             ).createDecoratedFeature(
                 Decorator.COUNT_EXTRA_HEIGHTMAP.configure(

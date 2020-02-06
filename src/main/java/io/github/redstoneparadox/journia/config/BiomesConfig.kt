@@ -13,10 +13,15 @@ object BiomesConfig: RootConfigCategory("biomes.json5") {
 
     object Wasteland: ConfigCategory("wasteland") {
         val enabled: Boolean by option(true, "enabled", "Sets whether this biome is enabled.")
-        val weight: Double by option(0.5, "weight", "Sets the weight for this biome.")
+        val weight: Double by option(0.8, "weight", "Sets the weight for this biome.")
     }
 
     object RockyTaiga: ConfigCategory("rocky_taiga") {
+        val enabled: Boolean by option(true, "enabled", "Sets whether this biome is enabled.")
+        val weight: Double by option(1.0, "weight", "Sets the weight for this biome.")
+    }
+
+    object RockyTaigaMountains: ConfigCategory("rocky_taiga_mountains") {
         val enabled: Boolean by option(true, "enabled", "Sets whether this biome is enabled.")
         val weight: Double by option(1.0, "weight", "Sets the weight for this biome.")
     }
