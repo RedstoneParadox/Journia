@@ -81,13 +81,12 @@ class JungleWetlandsBiome: Biome(
         addJungleWetlandsTrees()
         addJungleWetlandsDisks()
 
-        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.SHEEP, 12, 4, 4))
-        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.PIG, 10, 4, 4))
-        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.CHICKEN, 10, 4, 4))
-        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.COW, 8, 4, 4))
-        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.PARROT, 40, 1, 2))
+        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.SHEEP, 6, 4, 4))
+        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.PIG, 5, 4, 4))
+        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.CHICKEN, 5, 4, 4))
+        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.COW, 4, 4, 4))
+        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.PARROT, 40, 4, 8))
         addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.PANDA, 1, 1, 2))
-        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.CHICKEN, 10, 4, 4))
         addSpawn(SpawnGroup.AMBIENT, SpawnEntry(EntityType.BAT, 10, 8, 8))
         addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.SPIDER, 100, 4, 4))
         addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.ZOMBIE, 95, 4, 4))
@@ -98,6 +97,9 @@ class JungleWetlandsBiome: Biome(
         addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.ENDERMAN, 10, 1, 4))
         addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.WITCH, 5, 1, 1))
         addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.OCELOT, 2, 1, 3))
+        addSpawn(SpawnGroup.WATER_CREATURE, SpawnEntry(EntityType.TROPICAL_FISH, 5, 6, 12))
+        addSpawn(SpawnGroup.WATER_CREATURE, SpawnEntry(EntityType.TROPICAL_FISH, 10, 2, 5))
+
     }
 
     fun addBamboo() {
