@@ -8,28 +8,29 @@ import net.minecraft.util.math.BlockBox
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.world.ModifiableTestableWorld
+import net.minecraft.world.ServerWorldAccess
 import net.minecraft.world.TestableWorld
-import net.minecraft.world.gen.feature.AbstractTreeFeature
-import net.minecraft.world.gen.feature.BranchedTreeFeature
-import net.minecraft.world.gen.feature.BranchedTreeFeatureConfig
+import net.minecraft.world.gen.StructureAccessor
+import net.minecraft.world.gen.chunk.ChunkGenerator
+import net.minecraft.world.gen.feature.TreeFeature
+import net.minecraft.world.gen.feature.TreeFeatureConfig
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import java.util.*
 import java.util.function.Function
 
-abstract class JourniaTreeFeature(configDeserializer: Function<Dynamic<*>, out BranchedTreeFeatureConfig>): BranchedTreeFeature<BranchedTreeFeatureConfig>(configDeserializer) {
-    override fun generate(world: ModifiableTestableWorld, random: Random, pos: BlockPos, logPositions: MutableSet<BlockPos>, leavesPositions: MutableSet<BlockPos>, blockBox: BlockBox, config: BranchedTreeFeatureConfig): Boolean {
-        if (!isNaturalDirtOrGrass(world, pos.down())) return false
-        val height = random.nextInt(config.heightRandA - config.baseHeight + 1) + config.baseHeight
+abstract class JourniaTreeFeature(configDeserializer: Function<Dynamic<*>, out TreeFeatureConfig>): TreeFeature(configDeserializer) {
 
-        if (hasSpace(world, height + config.foliageHeight, 2, pos)) {
+    open fun gen(world: ServerWorldAccess, structureAccessor: StructureAccessor, chunkGenerator: ChunkGenerator, random: Random, pos: BlockPos, config: TreeFeatureConfig): Boolean {
+        if (!world.testBlockState(pos.down(), Companion::isDirtOrGrass)) return false
+        val height = config.trunkPlacer.getHeight(random)
+
+        if (hasSpace(world, config.foliagePlacer.getHeight(random, height, config), 2, pos)) {
             val trunk = config.trunkProvider.getBlockState(random, pos)
             val leaves = config.leavesProvider.getBlockState(random, pos)
 
             createTrunk(world, trunk, height, pos)
             createBranches(world, trunk, height, pos)
             createLeaves(world, leaves, pos.up(height), height)
-            blockBox.minX = pos.x - 2
-            blockBox.maxX = pos.x + 2
-            logPositions.add(pos)
             return true
         }
         return false
@@ -49,11 +50,11 @@ abstract class JourniaTreeFeature(configDeserializer: Function<Dynamic<*>, out B
 
     // -7, 5, 22
     open fun createTrunk(world: ModifiableTestableWorld, trunk: BlockState, height: Int, base: BlockPos) {
-        val current = BlockPos.Mutable(base)
+        val current = BlockPos.Mutable(base.x, base.y, base.z)
         world.setBlockState(base, Blocks.AIR.defaultState, 3)
         for (i in 0 until height) {
             world.setBlockState(current, trunk, 3)
-            current.setOffset(Direction.UP)
+            current.offset(Direction.UP)
         }
     }
 
@@ -64,9 +65,14 @@ abstract class JourniaTreeFeature(configDeserializer: Function<Dynamic<*>, out B
     abstract fun createLeaves(world: ModifiableTestableWorld, leaves: BlockState, top: BlockPos, height: Int)
 
     companion object {
+        fun isDirtOrGrass(state: BlockState): Boolean {
+            val block = state.block
+            return block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.GRASS_BLOCK
+        }
+
         fun isReplaceable(state: BlockState): Boolean {
             val block = state.block
-            return block == Blocks.AIR || block.matches(BlockTags.LEAVES) || block.matches(BlockTags.LOGS) || block.matches(BlockTags.SAPLINGS) || block == Blocks.VINE
+            return block == Blocks.AIR || block.isIn(BlockTags.LEAVES) || block.isIn(BlockTags.LOGS) || block.isIn(BlockTags.SAPLINGS) || block == Blocks.VINE
         }
     }
 }

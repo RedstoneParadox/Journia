@@ -5,7 +5,7 @@ import com.terraformersmc.terraform.entity.TerraformBoatEntity
 import com.terraformersmc.terraform.item.TerraformBoatItem
 import io.github.redstoneparadox.journia.item.JourniaItems
 import net.fabricmc.fabric.api.entity.FabricEntityTypeBuilder
-import net.minecraft.entity.EntityCategory
+import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.EntityDimensions
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.vehicle.BoatEntity
@@ -61,7 +61,7 @@ object JourniaEntityTypes {
             val boat = TerraformBoat(item, planks, skin, type)
 
             return FabricEntityTypeBuilder
-                .create<TerraformBoatEntity>(EntityCategory.MISC) { type, world -> TerraformBoatEntity(type, world, boat) }
+                .create<TerraformBoatEntity>(SpawnGroup.MISC) { type, world -> TerraformBoatEntity(type, world, boat) }
                 .size(EntityDimensions.fixed(1.375f, 0.5625f))
                 .build()
         }

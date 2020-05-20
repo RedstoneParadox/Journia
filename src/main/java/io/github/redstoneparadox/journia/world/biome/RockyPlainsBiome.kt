@@ -1,82 +1,86 @@
 package io.github.redstoneparadox.journia.world.biome
 
 import com.google.common.collect.ImmutableList
-import io.github.redstoneparadox.journia.block.JourniaBlocks
-import io.github.redstoneparadox.journia.mixin.world.biome.MixinDefaultBiomeFeatures
 import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
-import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures.PINE_TREE
-import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures.PINE_TREE_CONFIG
 import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
-import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.EntityType
-import net.minecraft.state.property.Properties
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.BiomeEffects
 import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.CountDecoratorConfig
-import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig
 import net.minecraft.world.gen.feature.*
+import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
-// Water Color:
-class RockyTaigaBiome: Biome(
+class RockyPlainsBiome: Biome(
     Settings()
         .configureSurfaceBuilder(JourniaSurfaceBuilders.PENTA, JourniaSurfaceBuilders.ROCKY_TAIGA_CONFIG)
         .precipitation(Precipitation.RAIN)
-        .category(Category.EXTREME_HILLS)
-        .depth(0.2F).scale(0.2F)
-        .temperature(0.25F)
-        .downfall(0.8F)
+        .category(Category.PLAINS)
+        .depth(0.125F)
+        .scale(0.05F)
+        .temperature(0.8F)
+        .downfall(0.4F)
         .effects(
-            BiomeEffects.Builder()
-                .fogColor(12638463)
-                .waterColor(4159204)
-                .waterFogColor(329011)
-                .build())
-        .parent("null")
+            (BiomeEffects.Builder())
+            .fogColor(4159204)
+            .waterColor(329011)
+            .waterFogColor(12638463)
+            .build()
+        ).parent("null").noises(
+            ImmutableList.of(MixedNoisePoint(0.0F, 0.0F, 0.0F, 0.0F, 1.0F))
+        )
 ) {
-
-    private val PINE_TRUNK: BlockState = JourniaBlocks.PINE_LOG.defaultState
-    private val PINE_LEAVES: BlockState = JourniaBlocks.PINE_LEAVES.defaultState.with(Properties.PERSISTENT, true)
-
     init {
-        addStructureFeature(Feature.VILLAGE.configure(StructurePoolFeatureConfig("village/taiga/town_centers", 6)))
-        addStructureFeature(Feature.PILLAGER_OUTPOST.configure(FeatureConfig.DEFAULT))
-        addStructureFeature(Feature.MINESHAFT.configure(MineshaftFeatureConfig(0.004, MineshaftFeature.Type.NORMAL)))
-        addStructureFeature(Feature.STRONGHOLD.configure(FeatureConfig.DEFAULT))
+        addStructureFeature(
+            Feature.VILLAGE.configure(
+                StructurePoolFeatureConfig("village/plains/town_centers", 6)
+            )
+        )
+        addStructureFeature(
+            Feature.PILLAGER_OUTPOST.configure(
+                FeatureConfig.DEFAULT
+            )
+        )
+        addStructureFeature(
+            Feature.MINESHAFT.configure(
+                MineshaftFeatureConfig(0.004, MineshaftFeature.Type.NORMAL)
+            )
+        )
+        addStructureFeature(
+            Feature.STRONGHOLD.configure(
+                FeatureConfig.DEFAULT
+            )
+        )
         DefaultBiomeFeatures.addLandCarvers(this)
         DefaultBiomeFeatures.addDefaultStructures(this)
         DefaultBiomeFeatures.addDefaultLakes(this)
         DefaultBiomeFeatures.addDungeons(this)
-        DefaultBiomeFeatures.addLargeFerns(this)
+        DefaultBiomeFeatures.addPlainsTallGrass(this)
         DefaultBiomeFeatures.addDefaultOres(this)
         DefaultBiomeFeatures.addDefaultDisks(this)
-        DefaultBiomeFeatures.addDefaultFlowers(this)
-        DefaultBiomeFeatures.addTaigaGrass(this)
+        DefaultBiomeFeatures.addPlainsFeatures(this)
         DefaultBiomeFeatures.addDefaultMushrooms(this)
         DefaultBiomeFeatures.addDefaultVegetation(this)
         DefaultBiomeFeatures.addSprings(this)
-        DefaultBiomeFeatures.addSweetBerryBushes(this)
         DefaultBiomeFeatures.addFrozenTopLayer(this)
 
-        addPineTrees()
         addMineables()
-        addBoulders()
         addSurfacePatches()
+        addBoulders()
 
         addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.SHEEP, 12, 4, 4))
         addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.PIG, 10, 4, 4))
         addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.CHICKEN, 10, 4, 4))
         addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.COW, 8, 4, 4))
-        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.WOLF, 8, 4, 4))
-        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.RABBIT, 4, 2, 3))
-        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.FOX, 8, 2, 4))
+        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.HORSE, 5, 2, 6))
+        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.DONKEY, 1, 1, 3))
         addSpawn(SpawnGroup.AMBIENT, SpawnEntry(EntityType.BAT, 10, 8, 8))
         addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.SPIDER, 100, 4, 4))
         addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.ZOMBIE, 95, 4, 4))
@@ -86,44 +90,6 @@ class RockyTaigaBiome: Biome(
         addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.SLIME, 100, 4, 4))
         addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.ENDERMAN, 10, 1, 4))
         addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.WITCH, 5, 1, 1))
-    }
-
-    private fun addPineTrees() {
-        addFeature(
-            GenerationStep.Feature.VEGETAL_DECORATION,
-            Feature.RANDOM_SELECTOR.configure(
-                RandomFeatureConfig(
-                    ImmutableList.of<RandomFeatureEntry<*>>(
-                        Feature.TREE.configure(
-                            DefaultBiomeFeatures.PINE_TREE_CONFIG
-                        ).withChance(0.33333334f)
-                    ), Feature.TREE.configure(
-                        DefaultBiomeFeatures.SPRUCE_TREE_CONFIG
-                    )
-                )
-            ).createDecoratedFeature(
-                Decorator.COUNT_EXTRA_HEIGHTMAP.configure(
-                    CountExtraChanceDecoratorConfig(
-                        8,
-                        0.1f,
-                        1
-                    )
-                )
-            )
-        )
-        addFeature(
-            GenerationStep.Feature.VEGETAL_DECORATION,
-            Feature.RANDOM_SELECTOR.configure(
-                RandomFeatureConfig(
-                    ImmutableList.of(),
-                    PINE_TREE.configure(PINE_TREE_CONFIG)
-                )
-            ).createDecoratedFeature(
-                Decorator.COUNT_EXTRA_HEIGHTMAP.configure(
-                    CountExtraChanceDecoratorConfig(8, 0.1f, 1)
-                )
-            )
-        )
     }
 
     private fun addMineables() {
@@ -225,25 +191,12 @@ class RockyTaigaBiome: Biome(
             GenerationStep.Feature.LOCAL_MODIFICATIONS,
             Feature.FOREST_ROCK.configure(
                 BoulderFeatureConfig(
-                    Blocks.ANDESITE.defaultState,
-                    0
-                )
-            ).createDecoratedFeature(
-                Decorator.FOREST_ROCK.configure(
-                    CountDecoratorConfig(3)
-                )
-            )
-        )
-        addFeature(
-            GenerationStep.Feature.LOCAL_MODIFICATIONS,
-            Feature.FOREST_ROCK.configure(
-                BoulderFeatureConfig(
                     Blocks.COBBLESTONE.defaultState,
-                    0
+                    2
                 )
             ).createDecoratedFeature(
                 Decorator.FOREST_ROCK.configure(
-                    CountDecoratorConfig(3)
+                    CountDecoratorConfig(1)
                 )
             )
         )
@@ -252,11 +205,11 @@ class RockyTaigaBiome: Biome(
             Feature.FOREST_ROCK.configure(
                 BoulderFeatureConfig(
                     Blocks.MOSSY_COBBLESTONE.defaultState,
-                    0
+                    2
                 )
             ).createDecoratedFeature(
                 Decorator.FOREST_ROCK.configure(
-                    CountDecoratorConfig(3)
+                    CountDecoratorConfig(1)
                 )
             )
         )

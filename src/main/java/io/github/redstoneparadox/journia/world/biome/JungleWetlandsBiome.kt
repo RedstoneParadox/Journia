@@ -5,10 +5,10 @@ import com.google.common.collect.Lists
 import io.github.redstoneparadox.journia.block.JourniaBlocks
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.minecraft.block.Blocks
-import net.minecraft.class_4763
-import net.minecraft.entity.EntityCategory
+import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.EntityType
 import net.minecraft.world.biome.Biome
+import net.minecraft.world.biome.BiomeEffects
 import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.ProbabilityConfig
@@ -26,11 +26,11 @@ class JungleWetlandsBiome: Biome(
         .precipitation(Precipitation.RAIN).category(Category.JUNGLE)
         .depth(-0.2f).scale(0.0f)
         .temperature(0.8f).downfall(0.95f)
-        .method_24379(class_4763.class_4764()
-            .method_24392(12638463)
-            .method_24395(4159204)
-            .method_24397(329011)
-            .method_24391())
+        .effects(BiomeEffects.Builder()
+            .fogColor(12638463)
+            .waterColor(4159204)
+            .waterFogColor(329011)
+            .build())
         .parent("null")
 ) {
 
@@ -81,23 +81,23 @@ class JungleWetlandsBiome: Biome(
         addJungleWetlandsTrees()
         addJungleWetlandsDisks()
 
-        addSpawn(EntityCategory.CREATURE, SpawnEntry(EntityType.SHEEP, 12, 4, 4))
-        addSpawn(EntityCategory.CREATURE, SpawnEntry(EntityType.PIG, 10, 4, 4))
-        addSpawn(EntityCategory.CREATURE, SpawnEntry(EntityType.CHICKEN, 10, 4, 4))
-        addSpawn(EntityCategory.CREATURE, SpawnEntry(EntityType.COW, 8, 4, 4))
-        addSpawn(EntityCategory.CREATURE, SpawnEntry(EntityType.PARROT, 40, 1, 2))
-        addSpawn(EntityCategory.CREATURE, SpawnEntry(EntityType.PANDA, 1, 1, 2))
-        addSpawn(EntityCategory.CREATURE, SpawnEntry(EntityType.CHICKEN, 10, 4, 4))
-        addSpawn(EntityCategory.AMBIENT, SpawnEntry(EntityType.BAT, 10, 8, 8))
-        addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.SPIDER, 100, 4, 4))
-        addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.ZOMBIE, 95, 4, 4))
-        addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.ZOMBIE_VILLAGER, 5, 1, 1))
-        addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.SKELETON, 100, 4, 4))
-        addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.CREEPER, 100, 4, 4))
-        addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.SLIME, 100, 4, 4))
-        addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.ENDERMAN, 10, 1, 4))
-        addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.WITCH, 5, 1, 1))
-        addSpawn(EntityCategory.MONSTER, SpawnEntry(EntityType.OCELOT, 2, 1, 3))
+        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.SHEEP, 12, 4, 4))
+        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.PIG, 10, 4, 4))
+        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.CHICKEN, 10, 4, 4))
+        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.COW, 8, 4, 4))
+        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.PARROT, 40, 1, 2))
+        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.PANDA, 1, 1, 2))
+        addSpawn(SpawnGroup.CREATURE, SpawnEntry(EntityType.CHICKEN, 10, 4, 4))
+        addSpawn(SpawnGroup.AMBIENT, SpawnEntry(EntityType.BAT, 10, 8, 8))
+        addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.SPIDER, 100, 4, 4))
+        addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.ZOMBIE, 95, 4, 4))
+        addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.ZOMBIE_VILLAGER, 5, 1, 1))
+        addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.SKELETON, 100, 4, 4))
+        addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.CREEPER, 100, 4, 4))
+        addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.SLIME, 100, 4, 4))
+        addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.ENDERMAN, 10, 1, 4))
+        addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.WITCH, 5, 1, 1))
+        addSpawn(SpawnGroup.MONSTER, SpawnEntry(EntityType.OCELOT, 2, 1, 3))
     }
 
     fun addBamboo() {
@@ -151,11 +151,11 @@ class JungleWetlandsBiome: Biome(
             Feature.RANDOM_SELECTOR.configure(
                 RandomFeatureConfig(
                     ImmutableList.of<RandomFeatureEntry<*>>(
-                        Feature.FANCY_TREE.configure(DefaultBiomeFeatures.FANCY_TREE_CONFIG).withChance(0.1f),
-                        Feature.JUNGLE_GROUND_BUSH.configure(
+                        Feature.TREE.configure(DefaultBiomeFeatures.FANCY_TREE_CONFIG).withChance(0.1f),
+                        Feature.TREE.configure(
                             DefaultBiomeFeatures.JUNGLE_GROUND_BUSH_CONFIG
                         ).withChance(0.5f)
-                    ), Feature.NORMAL_TREE.configure(
+                    ), Feature.TREE.configure(
                         DefaultBiomeFeatures.JUNGLE_TREE_CONFIG
                     )
                 )

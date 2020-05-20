@@ -8,15 +8,16 @@ import net.minecraft.block.PillarBlock
 import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
-import net.minecraft.world.IWorld
+import net.minecraft.world.ServerWorldAccess
+import net.minecraft.world.WorldAccess
+import net.minecraft.world.gen.StructureAccessor
 import net.minecraft.world.gen.chunk.ChunkGenerator
-import net.minecraft.world.gen.chunk.ChunkGeneratorConfig
 import net.minecraft.world.gen.feature.Feature
 import java.util.*
 import java.util.function.Function
 
 class DeadTreeFeature(configDeserializer: Function<Dynamic<*>, out DeadTreeFeatureConfig>): Feature<DeadTreeFeatureConfig>(configDeserializer) {
-    override fun generate(world: IWorld, generator: ChunkGenerator<out ChunkGeneratorConfig>, random: Random, pos: BlockPos, config: DeadTreeFeatureConfig): Boolean {
+    override fun generate(world: ServerWorldAccess, accessor: StructureAccessor, generator: ChunkGenerator, random: Random, pos: BlockPos, config: DeadTreeFeatureConfig): Boolean {
         val trunk = config.getTrunk()
         val height = random.nextInt(config.getAdditionalHeight() + 1) + config.getMinHeight()
         val ground = world.getBlockState(pos.down())
@@ -29,7 +30,7 @@ class DeadTreeFeature(configDeserializer: Function<Dynamic<*>, out DeadTreeFeatu
         return true
     }
 
-    private fun generateFallen(random: Random, world: IWorld, pos: BlockPos, trunk: BlockState, height: Int): Boolean {
+    private fun generateFallen(random: Random, world: WorldAccess, pos: BlockPos, trunk: BlockState, height: Int): Boolean {
         if (random.nextFloat() <= 0.5) {
             val directions = listOf(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST).filter { direction ->
                 var fallenPos = pos

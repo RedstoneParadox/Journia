@@ -4,10 +4,9 @@ import com.mojang.datafixers.Dynamic
 import io.github.redstoneparadox.journia.world.gen.OpenSimplexSampler
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.Heightmap
-import net.minecraft.world.IWorld
+import net.minecraft.world.ServerWorldAccess
+import net.minecraft.world.gen.StructureAccessor
 import net.minecraft.world.gen.chunk.ChunkGenerator
-import net.minecraft.world.gen.chunk.ChunkGeneratorConfig
-import net.minecraft.world.gen.feature.BoulderFeatureConfig
 import net.minecraft.world.gen.feature.Feature
 import java.util.*
 import java.util.function.Function
@@ -17,17 +16,17 @@ class SurfacePatchFeature(configDeserializer: Function<@ParameterName(name = "dy
 
     private val sampler = OpenSimplexSampler()
 
-    override fun generate(iWorld: IWorld, chunkGenerator: ChunkGenerator<out ChunkGeneratorConfig?>, random: Random, blockPos: BlockPos, config: SurfacePatchFeatureConfig): Boolean {
-        sampler.setSeed(iWorld.seed)
+    override fun generate(world: ServerWorldAccess, accessor: StructureAccessor, generator: ChunkGenerator, random: Random, pos: BlockPos, config: SurfacePatchFeatureConfig): Boolean {
+        sampler.setSeed(world.seed)
 
-        var blockPos = blockPos
+        var blockPos = pos
         while (true) {
             outer@do {
                 if (blockPos.y > 3) {
-                    if (iWorld.isAir(blockPos.down())) {
+                    if (world.isAir(blockPos.down())) {
                         break@outer
                     }
-                    val block = iWorld.getBlockState(blockPos.down()).block
+                    val block = world.getBlockState(blockPos.down()).block
                     if (!isDirt(block) && !isStone(
                             block
                         )
@@ -52,10 +51,10 @@ class SurfacePatchFeature(configDeserializer: Function<@ParameterName(name = "dy
                         val z = blockPos2.z
                         if (config.integrity < abs(sampler.eval(x, z))) continue
                         if (blockPos2.getSquaredDistance(blockPos) <= (f * f).toDouble()) {
-                            val y = iWorld.getTopY(Heightmap.Type.WORLD_SURFACE_WG, blockPos2.x, blockPos2.z) - 1
+                            val y = world.getTopY(Heightmap.Type.WORLD_SURFACE_WG, blockPos2.x, blockPos2.z) - 1
                             val pos = BlockPos(x, y, z)
-                            if (config.target.test(iWorld.getBlockState(pos))) {
-                                iWorld.setBlockState(pos, config.state, 4)
+                            if (config.target.test(world.getBlockState(pos))) {
+                                world.setBlockState(pos, config.state, 4)
                             }
                         }
                     }

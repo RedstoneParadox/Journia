@@ -1,29 +1,26 @@
 package io.github.redstoneparadox.journia.block
 
-import com.terraformersmc.terraform.block.TerraformSaplingBlock
 import io.github.redstoneparadox.journia.util.JourniaSaplingGenerator
-import net.fabricmc.fabric.api.block.FabricBlockSettings
-import net.fabricmc.fabric.api.tag.FabricItemTags
-import net.fabricmc.fabric.api.tools.FabricToolTags
+import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.*
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.registry.Registry
 
 object JourniaBlocks {
-    val CRACKED_GROUND = Block(FabricBlockSettings.copy(Blocks.SANDSTONE).breakByTool(FabricToolTags.PICKAXES).build())
+    val CRACKED_GROUND = Block(FabricBlockSettings.copy(Blocks.SANDSTONE))
 
-    val PINE_LOG = LogBlock(MaterialColor.SPRUCE, FabricBlockSettings.copy(Blocks.OAK_LOG).build())
-    val PINE_LEAVES = LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES).build())
+    val PINE_LOG = PillarBlock(FabricBlockSettings.copy(Blocks.OAK_LOG))
+    val PINE_LEAVES = LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES))
     val PINE_SAPLING = JourniaSaplingBlock(JourniaSaplingGenerator.PINE)
-    val PINE_PLANKS = Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS).build())
-    val PINE_SLAB = SlabBlock(FabricBlockSettings.copy(Blocks.OAK_SLAB).build())
-    val PINE_STAIRS = JourniaStairsBlock(PINE_PLANKS.defaultState, FabricBlockSettings.copy(Blocks.OAK_STAIRS).build())
-    val PINE_FENCE = FenceBlock(FabricBlockSettings.copy(Blocks.OAK_FENCE).build())
-    val PINE_FENCE_GATE = FenceGateBlock(FabricBlockSettings.copy(Blocks.OAK_FENCE_GATE).build())
-    val PINE_BUTTON = JourniaWoodButtonBlock(FabricBlockSettings.copy(Blocks.OAK_BUTTON).build())
-    val PINE_PRESSURE_PLATE = JourniaPressurePlateBlock.wood(FabricBlockSettings.copy(Blocks.OAK_PRESSURE_PLATE).build())
+    val PINE_PLANKS = Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS))
+    val PINE_SLAB = SlabBlock(FabricBlockSettings.copy(Blocks.OAK_SLAB))
+    val PINE_STAIRS = JourniaStairsBlock(PINE_PLANKS.defaultState, FabricBlockSettings.copy(Blocks.OAK_STAIRS))
+    val PINE_FENCE = FenceBlock(FabricBlockSettings.copy(Blocks.OAK_FENCE))
+    val PINE_FENCE_GATE = FenceGateBlock(FabricBlockSettings.copy(Blocks.OAK_FENCE_GATE))
+    val PINE_BUTTON = JourniaWoodButtonBlock(FabricBlockSettings.copy(Blocks.OAK_BUTTON))
+    val PINE_PRESSURE_PLATE = JourniaPressurePlateBlock.wood(FabricBlockSettings.copy(Blocks.OAK_PRESSURE_PLATE))
 
-    val MUD = Block(FabricBlockSettings.of(Material.CLAY).materialColor(MaterialColor.DIRT).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME).build())
+    val MUD = Block(FabricBlockSettings.of(Material.ORGANIC_PRODUCT).materialColor(MaterialColor.DIRT).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME))
 
     fun registerAll() {
         register("cracked_ground", CRACKED_GROUND)

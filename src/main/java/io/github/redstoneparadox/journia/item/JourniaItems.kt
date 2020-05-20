@@ -11,6 +11,7 @@ import net.minecraft.item.BoatItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
 import net.minecraft.util.registry.Registry
+import java.util.function.Supplier
 
 object JourniaItems {
     val CRACKED_GROUND = blockItem(JourniaBlocks.CRACKED_GROUND)
@@ -56,13 +57,6 @@ object JourniaItems {
     }
 
     private fun boatItem(name: String, supplier: () -> EntityType<TerraformBoatEntity>): TerraformBoatItem {
-        return TerraformBoatItem(
-            { world, x, y, z ->
-                val entity = supplier().create(world)
-                entity?.resetPosition(x,y,z)
-                return@TerraformBoatItem entity
-            },
-            Item.Settings().group(ItemGroup.TRANSPORTATION).maxCount(1)
-        )
+        return TerraformBoatItem(supplier, Item.Settings().group(ItemGroup.TRANSPORTATION).maxCount(1))
     }
 }

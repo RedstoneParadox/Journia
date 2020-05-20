@@ -5,10 +5,10 @@ import net.minecraft.block.BlockState
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.world.ModifiableTestableWorld
-import net.minecraft.world.gen.feature.BranchedTreeFeatureConfig
+import net.minecraft.world.gen.feature.TreeFeatureConfig
 import java.util.function.Function
 
-class PineTreeFeature(configDeserializer: Function<@ParameterName(name = "dynamic") Dynamic<*>, BranchedTreeFeatureConfig>): JourniaTreeFeature(configDeserializer) {
+class PineTreeFeature(configDeserializer: Function<@ParameterName(name = "dynamic") Dynamic<*>, TreeFeatureConfig>): JourniaTreeFeature(configDeserializer) {
     override fun createLeaves(world: ModifiableTestableWorld, leaves: BlockState, top: BlockPos, height: Int) {
         world.setBlockState(top, leaves, 19)
 

@@ -5,7 +5,8 @@
   "mixins": [
     "MixinDeadBushBlock",
     "world.biome.MixinDefaultBiomeFeatures",
-    "world.dimension.MixinOverworldDimension"
+
+    "world.gen.feature.MixinTreeFeature"
   ],
   "client": [
 

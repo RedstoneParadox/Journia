@@ -22,6 +22,8 @@ object JourniaBiomes {
 
     val ROCKY_TAIGA_MOUNTAINS: Biome = RockyTaigaMountainsBiome()
 
+    val ROCKY_PLAINS: Biome = RockyPlainsBiome()
+
     fun registerAll() {
         if (BiomesConfig.Wasteland.enabled) {
             register("wasteland", WASTELAND)
@@ -51,6 +53,8 @@ object JourniaBiomes {
             register("rocky_taiga_mountains", ROCKY_TAIGA_MOUNTAINS)
             continentalBiome(ROCKY_TAIGA_MOUNTAINS, OverworldClimate.COOL, BiomesConfig.RockyTaigaMountains.weight)
         }
+
+        register("rocky_plains", ROCKY_PLAINS)
     }
 
     private fun register(id: String, biome: Biome) {
