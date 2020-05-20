@@ -2,6 +2,7 @@ package io.github.redstoneparadox.journia.world.gen.feature
 
 import io.github.redstoneparadox.journia.block.JourniaBlocks
 import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
+import io.github.redstoneparadox.journia.world.gen.foliage.PineFoliagePlacer
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.state.property.Properties
@@ -26,7 +27,7 @@ object JourniaFeatures {
     private val PINE_LOG: BlockState = JourniaBlocks.PINE_LOG.defaultState
     private val PINE_LEAVES: BlockState = JourniaBlocks.PINE_LEAVES.defaultState.with(Properties.PERSISTENT, true)
 
-    val PINE_TREE_CONFIG = treeConfig(PINE_LOG, PINE_LEAVES, 8, 10, 1)
+    val PINE_TREE_CONFIG = treeConfig(PINE_LOG, PINE_LEAVES, 8, 2, 1)
     val DEAD_TREE_CONFIG = DeadTreeFeatureConfig(Blocks.OAK_LOG.defaultState, 4, 2)
     val DEAD_BIRCH_TREE_CONFIG = DeadTreeFeatureConfig(Blocks.BIRCH_LOG.defaultState, 4, 2)
 
@@ -134,7 +135,7 @@ object JourniaFeatures {
         return TreeFeatureConfig.Builder(
             SimpleBlockStateProvider(trunk),
             SimpleBlockStateProvider(leaves),
-            BlobFoliagePlacer(0, 0, 0, 0, foliageHeight),
+            PineFoliagePlacer(3, 0, 0, 0),
             StraightTrunkPlacer(baseHeight, randomHeight, 0),
             TwoLayersFeatureSize(2, 0, 2)
         )

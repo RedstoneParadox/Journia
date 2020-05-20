@@ -20,22 +20,6 @@ import java.util.function.Function
 
 abstract class JourniaTreeFeature(configDeserializer: Function<Dynamic<*>, out TreeFeatureConfig>): TreeFeature(configDeserializer) {
 
-    open fun gen(world: ServerWorldAccess, structureAccessor: StructureAccessor, chunkGenerator: ChunkGenerator, random: Random, pos: BlockPos, config: TreeFeatureConfig): Boolean {
-        if (!world.testBlockState(pos.down(), Companion::isDirtOrGrass)) return false
-        val height = config.trunkPlacer.getHeight(random)
-
-        if (hasSpace(world, config.foliagePlacer.getHeight(random, height, config), 2, pos)) {
-            val trunk = config.trunkProvider.getBlockState(random, pos)
-            val leaves = config.leavesProvider.getBlockState(random, pos)
-
-            createTrunk(world, trunk, height, pos)
-            createBranches(world, trunk, height, pos)
-            createLeaves(world, leaves, pos.up(height), height)
-            return true
-        }
-        return false
-    }
-
     private fun hasSpace(world: TestableWorld, height: Int, radius: Int, base: BlockPos): Boolean {
         for (x in -radius..radius) {
             for (y in 0 until height) {
