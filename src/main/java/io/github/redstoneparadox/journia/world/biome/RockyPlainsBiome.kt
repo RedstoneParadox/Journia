@@ -37,7 +37,7 @@ class RockyPlainsBiome: Biome(
     init {
         addStructureFeature(
             Feature.VILLAGE.configure(
-                StructurePoolFeatureConfig("village/plains/town_centers", 6)
+                StructurePoolFeatureConfig("village/taiga/town_centers", 6)
             )
         )
         addStructureFeature(
