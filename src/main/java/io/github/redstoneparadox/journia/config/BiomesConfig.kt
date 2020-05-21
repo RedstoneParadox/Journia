@@ -26,6 +26,11 @@ object BiomesConfig: RootConfigCategory("biomes.json5") {
         val weight: Double by option(1.0, "weight", "Sets the weight for this biome.")
     }
 
+    object RockyPlains: ConfigCategory("rocky_plains") {
+        val enabled: Boolean by option(true, "enabled", "Sets whether this biome is enabled.")
+        val weight: Double by option(1.0, "weight", "Sets the weight for this biome.")
+    }
+
     object ShatteredBadlandsPlateau: ConfigCategory("shattered_badlands_plateau") {
         val enabled: Boolean by option(true, "enabled", "Sets whether this biome is enabled.")
         val chance: Double by option(0.2, 0.0..1.0, "chance", "Sets the chance for this to replace a Badlands Plateau biome.")

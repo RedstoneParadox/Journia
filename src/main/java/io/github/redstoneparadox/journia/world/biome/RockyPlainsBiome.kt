@@ -6,17 +6,14 @@ import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.minecraft.block.Blocks
-import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.EntityType
+import net.minecraft.entity.SpawnGroup
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.BiomeEffects
 import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
-import net.minecraft.world.gen.decorator.CountDecoratorConfig
-import net.minecraft.world.gen.decorator.Decorator
-import net.minecraft.world.gen.decorator.RangeDecoratorConfig
+import net.minecraft.world.gen.decorator.*
 import net.minecraft.world.gen.feature.*
-import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 class RockyPlainsBiome: Biome(
     Settings()
@@ -25,13 +22,13 @@ class RockyPlainsBiome: Biome(
         .category(Category.PLAINS)
         .depth(0.125F)
         .scale(0.05F)
-        .temperature(0.8F)
+        .temperature(0.25F)
         .downfall(0.4F)
         .effects(
             (BiomeEffects.Builder())
-            .fogColor(4159204)
-            .waterColor(329011)
-            .waterFogColor(12638463)
+                .fogColor(12638463)
+                .waterColor(4159204)
+                .waterFogColor(329011)
             .build()
         ).parent("null").noises(
             ImmutableList.of(MixedNoisePoint(0.0F, 0.0F, 0.0F, 0.0F, 1.0F))
@@ -65,7 +62,7 @@ class RockyPlainsBiome: Biome(
         DefaultBiomeFeatures.addPlainsTallGrass(this)
         DefaultBiomeFeatures.addDefaultOres(this)
         DefaultBiomeFeatures.addDefaultDisks(this)
-        DefaultBiomeFeatures.addPlainsFeatures(this)
+        addOtherFeatures()
         DefaultBiomeFeatures.addDefaultMushrooms(this)
         DefaultBiomeFeatures.addDefaultVegetation(this)
         DefaultBiomeFeatures.addSprings(this)
@@ -210,6 +207,42 @@ class RockyPlainsBiome: Biome(
             ).createDecoratedFeature(
                 Decorator.FOREST_ROCK.configure(
                     CountDecoratorConfig(1)
+                )
+            )
+        )
+    }
+
+    private fun addOtherFeatures() {
+       addFeature(
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            Feature.RANDOM_SELECTOR.configure(
+                RandomFeatureConfig(
+                    ImmutableList.of<RandomFeatureEntry<*>>(
+                        Feature.TREE.configure(
+                            JourniaFeatures.PINE_TREE_CONFIG
+                        ).withChance(0.33333334f)
+                    ),
+                    Feature.TREE.configure(DefaultBiomeFeatures.SPRUCE_TREE_CONFIG)
+                )
+            ).createDecoratedFeature(
+                Decorator.COUNT_EXTRA_HEIGHTMAP.configure(
+                    CountExtraChanceDecoratorConfig(0, 0.05f, 1)
+                )
+            )
+        )
+        addFeature(
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            Feature.FLOWER.configure(DefaultBiomeFeatures.PLAINS_FLOWER_CONFIG).createDecoratedFeature(
+                Decorator.NOISE_HEIGHTMAP_32.configure(
+                    NoiseHeightmapDecoratorConfig(-0.8, 15, 4)
+                )
+            )
+        )
+        addFeature(
+            GenerationStep.Feature.VEGETAL_DECORATION,
+            Feature.RANDOM_PATCH.configure(DefaultBiomeFeatures.GRASS_CONFIG).createDecoratedFeature(
+                Decorator.NOISE_HEIGHTMAP_DOUBLE.configure(
+                    NoiseHeightmapDecoratorConfig(-0.8, 5, 10)
                 )
             )
         )
