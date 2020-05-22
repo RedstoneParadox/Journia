@@ -59,6 +59,8 @@ object JourniaBiomes {
             continentalBiome(ROCKY_PLAINS, OverworldClimate.COOL, BiomesConfig.RockyPlains.weight)
             shoreBiome(ROCKY_PLAINS, Biomes.STONE_SHORE, 1.0)
         }
+
+        register("salt_flats", SaltFlatsBiomes.SALT_FLATS)
     }
 
     private fun register(id: String, biome: Biome) {

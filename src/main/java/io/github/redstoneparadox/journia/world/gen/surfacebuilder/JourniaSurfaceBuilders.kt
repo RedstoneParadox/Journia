@@ -20,6 +20,7 @@ object JourniaSurfaceBuilders {
     val ROCKY_TAIGA_CONFIG = PentaSurfaceConfig(GRASS, STONE, STONE, secondaryCutoff = 1.75, tertiaryCutoff = 1.95, scale = 0.4)
     val WETLANDS_CONFIG = TernarySurfaceConfig(GRASS, Blocks.DIRT.defaultState, JourniaBlocks.MUD.defaultState)
     val MUD_CONFIG = TernarySurfaceConfig(JourniaBlocks.MUD.defaultState, JourniaBlocks.MUD.defaultState, JourniaBlocks.MUD.defaultState)
+    val SALT_FLATS_CONFIG = TernarySurfaceConfig(Blocks.WHITE_CONCRETE_POWDER.defaultState, Blocks.WHITE_CONCRETE_POWDER.defaultState, Blocks.WHITE_CONCRETE_POWDER.defaultState)
 
     val PENTA: SurfaceBuilder<PentaSurfaceConfig> = PentaSurfaceBuilder(PentaSurfaceConfig.Companion::deserialize)
     val WETLANDS: SurfaceBuilder<TernarySurfaceConfig> = WetlandsSurfaceBuilder(TernarySurfaceConfig::deserialize)
