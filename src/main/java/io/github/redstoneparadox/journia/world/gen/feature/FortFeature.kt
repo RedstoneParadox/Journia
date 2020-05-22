@@ -68,7 +68,7 @@ class FortFeature(function: Function<Dynamic<*>, out DefaultFeatureConfig>): Str
                         BASE_EDGE_POOL,
                         Identifier("empty"),
                         mutableListOf(
-                            Pair(SinglePoolElement("journia:fort/base/fort_base_edge_short"), 1)
+                            Pair(SinglePoolElement("journia:fort/edge/fort_base_edge_short"), 1)
                         ) as List<Pair<StructurePoolElement, Int>>,
                         StructurePool.Projection.RIGID
                     )
@@ -79,7 +79,7 @@ class FortFeature(function: Function<Dynamic<*>, out DefaultFeatureConfig>): Str
                         WALL_POOL,
                         Identifier("empty"),
                         mutableListOf(
-                            Pair(SinglePoolElement("journia:fort/base/fort_wall"), 1)
+                            Pair(SinglePoolElement("journia:fort/wall/fort_wall"), 1)
                         ) as List<Pair<StructurePoolElement, Int>>,
                         StructurePool.Projection.RIGID
                     )
