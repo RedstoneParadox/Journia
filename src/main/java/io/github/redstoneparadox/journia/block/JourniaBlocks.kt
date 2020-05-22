@@ -9,6 +9,8 @@ import net.minecraft.util.registry.Registry
 object JourniaBlocks {
     val CRACKED_GROUND = Block(FabricBlockSettings.copy(Blocks.SANDSTONE))
 
+    val GREEN_MUSHROOM_BLOCK = GreenMushroomBlock()
+
     val PINE_LOG = PillarBlock(FabricBlockSettings.copy(Blocks.OAK_LOG))
     val PINE_LEAVES = LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES))
     val PINE_SAPLING = JourniaSaplingBlock(JourniaSaplingGenerator.PINE)
@@ -24,6 +26,8 @@ object JourniaBlocks {
 
     fun registerAll() {
         register("cracked_ground", CRACKED_GROUND)
+
+        register("green_mushroom_block", GREEN_MUSHROOM_BLOCK)
 
         register("pine_log", PINE_LOG)
         register("pine_leaves", PINE_LEAVES)

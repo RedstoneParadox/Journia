@@ -1,13 +1,16 @@
 {
+  "biome.journia.jungle_wetlands": "Jungle Wetlands",
+  "biome.journia.rocky_plains": "Rocky Plains",
   "biome.journia.rocky_taiga": "Rocky Taiga",
+  "biome.journia.rocky_taiga_mountains": "Rocky Taiga Mountains",
   "biome.journia.shattered_badlands_plateau": "Shattered Badlands Plateau",
   "biome.journia.wasteland": "Wasteland",
   "biome.journia.wasteland_edge": "Wasteland Edge",
   "biome.journia.wasteland_river": "Wasteland River",
   "biome.journia.wasteland_shore": "Wasteland Shore",
-  "biome.journia.jungle_wetlands": "Jungle Wetlands",
 
   "block.journia.cracked_ground": "Cracked Ground",
+  "block.journia.mud": "Mud",
   "block.journia.pine_log": "Pine Log",
   "block.journia.pine_leaves": "Pine Leaves",
   "block.journia.pine_sapling": "Pine Sapling",
@@ -18,7 +21,6 @@
   "block.journia.pine_fence_gate": "Pine Fence Gate",
   "block.journia.pine_button": "Pine Button",
   "block.journia.pine_pressure_plate": "Pine Pressure Plate",
-  "block.journia.mud": "Mud",
 
   "item.journia.pine_boat": "Pine Boat"
 }

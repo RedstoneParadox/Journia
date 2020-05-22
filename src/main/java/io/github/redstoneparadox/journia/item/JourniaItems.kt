@@ -16,6 +16,8 @@ import java.util.function.Supplier
 object JourniaItems {
     val CRACKED_GROUND = blockItem(JourniaBlocks.CRACKED_GROUND)
 
+    val GREEN_MUSHROOM_BLOCK = blockItem(JourniaBlocks.GREEN_MUSHROOM_BLOCK)
+
     val PINE_LOG = blockItem(JourniaBlocks.PINE_LOG)
     val PINE_LEAVES = blockItem(JourniaBlocks.PINE_LEAVES)
     val PINE_SAPLING = blockItem(JourniaBlocks.PINE_SAPLING, ItemGroup.DECORATIONS)
@@ -33,6 +35,10 @@ object JourniaItems {
     fun registerAll() {
         register("cracked_ground", CRACKED_GROUND)
 
+        register("green_mushroom_block", GREEN_MUSHROOM_BLOCK)
+
+        register("mud", MUD)
+
         register("pine_log", PINE_LOG)
         register("pine_sapling", PINE_SAPLING)
         register("pine_leaves", PINE_LEAVES)
@@ -44,8 +50,6 @@ object JourniaItems {
         register("pine_button", PINE_BUTTON)
         register("pine_pressure_plate", PINE_PRESSURE_PLATE)
         register("pine_boat", PINE_BOAT)
-
-        register("mud", MUD)
     }
 
     private fun register(id: String, item: Item) {
