@@ -45,10 +45,12 @@ object JourniaFeatures {
         FortFeature.FORT_STRUCTURE_FEATURE
         FortFeature.FORT_PIECE
 
+        /*
         Registry.BIOME.forEach {
             it.addFeature(GenerationStep.Feature.RAW_GENERATION, FortFeature.FORT_FEATURE.configure(DefaultFeatureConfig()).createDecoratedFeature(Decorator.NOPE.configure(DecoratorConfig.DEFAULT)))
             it.addStructureFeature(FortFeature.FORT_FEATURE.configure(DefaultFeatureConfig()))
         }
+        */
     }
 
     private fun register(id: String, feature: Feature<*>) {
