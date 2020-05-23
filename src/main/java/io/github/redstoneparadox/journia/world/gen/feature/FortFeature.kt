@@ -14,18 +14,21 @@ import net.minecraft.util.math.BlockBox
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.ChunkPos
 import net.minecraft.util.registry.Registry
+import net.minecraft.world.ServerWorldAccess
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.source.BiomeAccess
 import net.minecraft.world.gen.ChunkRandom
+import net.minecraft.world.gen.StructureAccessor
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.feature.DefaultFeatureConfig
 import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.StructureFeature
+import java.util.*
 import java.util.function.Function
 
 class FortFeature(function: Function<Dynamic<*>, out DefaultFeatureConfig>): StructureFeature<DefaultFeatureConfig>(function) {
     override fun shouldStartAt(biomeAccess: BiomeAccess, chunkGenerator: ChunkGenerator, l: Long, chunkRandom: ChunkRandom, i: Int, j: Int, biome: Biome, chunkPos: ChunkPos): Boolean {
-        return true
+        return chunkRandom.nextInt(32) == 31
     }
 
     override fun getName(): String {
@@ -49,14 +52,14 @@ class FortFeature(function: Function<Dynamic<*>, out DefaultFeatureConfig>): Str
         companion object {
             val BASE_POOL: Identifier = Identifier("journia:fort_base")
             val BASE_EDGE_POOL: Identifier = Identifier("journia:fort_base_edge")
-            val WALL_POOL: Identifier = Identifier("jounria:fort_wall")
+            val WALL_POOL: Identifier = Identifier("journia:fort_wall")
 
             init {
                 StructurePoolBasedGenerator.REGISTRY.add(
                     StructurePool(
                         BASE_POOL,
                         Identifier("empty"),
-                        mutableListOf(
+                        listOf(
                             Pair(SinglePoolElement("journia:fort/base/fort_base_2x2"), 1)
                         ) as List<Pair<StructurePoolElement, Int>>,
                         StructurePool.Projection.RIGID
@@ -67,7 +70,7 @@ class FortFeature(function: Function<Dynamic<*>, out DefaultFeatureConfig>): Str
                     StructurePool(
                         BASE_EDGE_POOL,
                         Identifier("empty"),
-                        mutableListOf(
+                        listOf(
                             Pair(SinglePoolElement("journia:fort/edge/fort_base_edge_short"), 1)
                         ) as List<Pair<StructurePoolElement, Int>>,
                         StructurePool.Projection.RIGID
@@ -78,7 +81,7 @@ class FortFeature(function: Function<Dynamic<*>, out DefaultFeatureConfig>): Str
                     StructurePool(
                         WALL_POOL,
                         Identifier("empty"),
-                        mutableListOf(
+                        listOf(
                             Pair(SinglePoolElement("journia:fort/wall/fort_wall"), 1)
                         ) as List<Pair<StructurePoolElement, Int>>,
                         StructurePool.Projection.RIGID
