@@ -38,7 +38,6 @@ object JourniaBiomes {
         if (BiomesConfig.RockyTaiga.enabled) {
             register("rocky_taiga", ROCKY_TAIGA)
             continentalBiome(ROCKY_TAIGA, OverworldClimate.COOL, BiomesConfig.RockyTaiga.weight)
-            shoreBiome(ROCKY_TAIGA, Biomes.STONE_SHORE, 1.0)
             spawnBiome(ROCKY_TAIGA)
         }
         if (BiomesConfig.ShatteredBadlandsPlateau.enabled) {
@@ -57,7 +56,6 @@ object JourniaBiomes {
         if (BiomesConfig.RockyPlains.enabled) {
             register("rocky_plains", ROCKY_PLAINS)
             continentalBiome(ROCKY_PLAINS, OverworldClimate.COOL, BiomesConfig.RockyPlains.weight)
-            shoreBiome(ROCKY_PLAINS, Biomes.STONE_SHORE, 1.0)
         }
 
         register("salt_flats", SaltFlatsBiomes.SALT_FLATS)
