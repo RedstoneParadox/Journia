@@ -6,7 +6,6 @@ import io.github.redstoneparadox.journia.world.gen.foliage.PineFoliagePlacer
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.state.property.Properties
-import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.DefaultBiomeFeatures
@@ -17,7 +16,6 @@ import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.decorator.DecoratorConfig
 import net.minecraft.world.gen.feature.*
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize
-import net.minecraft.world.gen.foliage.BlobFoliagePlacer
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer
 import java.util.function.Function
@@ -37,20 +35,32 @@ object JourniaFeatures {
     fun registerAll() {
         register("pine_tree", PINE_TREE)
 
-        Feature.STRUCTURES.put("Fort", FortFeature.FORT_FEATURE)
+        // Feature.STRUCTURES.put("Fort", FortFeature.FORT_FEATURE)
 
+        /*
         FortFeature
         FortFeature.FortStructureStart
-        FortFeature.FORT_FEATURE
         FortFeature.FORT_STRUCTURE_FEATURE
         FortFeature.FORT_PIECE
-
+        */
         /*
         Registry.BIOME.forEach {
             it.addFeature(GenerationStep.Feature.RAW_GENERATION, FortFeature.FORT_FEATURE.configure(DefaultFeatureConfig()).createDecoratedFeature(Decorator.NOPE.configure(DecoratorConfig.DEFAULT)))
             it.addStructureFeature(FortFeature.FORT_FEATURE.configure(DefaultFeatureConfig()))
         }
         */
+
+        DungeonFeature
+        DungeonFeature.DungeonStructureStart
+        DungeonFeature.NEW_DUNGEON_STRUCTURE_FEATURE
+        DungeonFeature.NEW_DUNGEON_PIECE
+
+        Feature.STRUCTURES.put("New Dungeon", DungeonFeature.NEW_DUNGEON_FEATURE)
+
+        Registry.BIOME.forEach {
+            it.addFeature(GenerationStep.Feature.RAW_GENERATION, DungeonFeature.NEW_DUNGEON_FEATURE.configure(DefaultFeatureConfig()).createDecoratedFeature(Decorator.NOPE.configure(DecoratorConfig.DEFAULT)))
+            it.addStructureFeature(DungeonFeature.NEW_DUNGEON_FEATURE.configure(DefaultFeatureConfig()))
+        }
     }
 
     private fun register(id: String, feature: Feature<*>) {
