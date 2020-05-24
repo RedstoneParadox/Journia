@@ -57,10 +57,12 @@ object JourniaFeatures {
 
         Feature.STRUCTURES.put("New Dungeon", DungeonFeature.NEW_DUNGEON_FEATURE)
 
+        /*
         Registry.BIOME.forEach {
             it.addFeature(GenerationStep.Feature.RAW_GENERATION, DungeonFeature.NEW_DUNGEON_FEATURE.configure(DefaultFeatureConfig()).createDecoratedFeature(Decorator.NOPE.configure(DecoratorConfig.DEFAULT)))
             it.addStructureFeature(DungeonFeature.NEW_DUNGEON_FEATURE.configure(DefaultFeatureConfig()))
         }
+        */
     }
 
     private fun register(id: String, feature: Feature<*>) {
