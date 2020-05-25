@@ -1,8 +1,10 @@
 package io.github.redstoneparadox.journia.world.gen.trunk
 
 import com.mojang.datafixers.Dynamic
-import io.github.redstoneparadox.journia.concat
+import io.github.redstoneparadox.journia.util.concat
+import io.github.redstoneparadox.journia.util.then
 import io.github.redstoneparadox.journia.world.gen.foliage.GroenwoodFoliagePlacer
+import io.github.redstoneparadox.journia.util.wrap
 import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockBox
 import net.minecraft.util.math.BlockPos
@@ -12,6 +14,7 @@ import net.minecraft.world.gen.feature.TreeFeatureConfig
 import net.minecraft.world.gen.foliage.FoliagePlacer
 import net.minecraft.world.gen.trunk.TrunkPlacer
 import java.util.*
+import kotlin.collections.HashSet
 import kotlin.math.ceil
 import kotlin.math.pow
 import kotlin.math.roundToInt
@@ -32,21 +35,35 @@ class GroenwoodTrunkPlacer(baseHeight: Int, firstRandomHeight: Int, secondRandom
         return nodes.concat(mutableListOf(GroenwoodFoliagePlacer.GroenwoodTreeNode(pos.up(trunkHeight - 1), 5, false, false)))
     }
 
-    private fun createBranches(world: ModifiableTestableWorld, pos: BlockPos, random: Random, config: TreeFeatureConfig, trunkHeight: Int, logs: MutableSet<BlockPos>): MutableList<FoliagePlacer.TreeNode> {
+    private fun createBranches(world: ModifiableTestableWorld, pos: BlockPos, rand: Random, config: TreeFeatureConfig, trunkHeight: Int, logs: MutableSet<BlockPos>): MutableList<FoliagePlacer.TreeNode> {
         val nodes = mutableListOf<FoliagePlacer.TreeNode>()
         if (trunkHeight < 9) return nodes
 
         var bound = ceil(-(trunkHeight-9).toDouble().pow(2)/9 + 4).roundToInt()
-        for (direction in listOf(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST)) {
-            if (bound <= 0 || random.nextInt(bound) == 0) {
-                val height = if (trunkHeight == 9) { 3 } else { random.nextInt(trunkHeight - 9) + 3 }
+        val heightSet = HashSet<Int>().then {
+            if (trunkHeight == 9) {
+                it.add(3)
+                return@then
+            }
+            for (i in 3..(trunkHeight - 6)) {
+                it.add(i)
+            }
+            return@then
+        }
+
+        for (direction in listOf(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST).shuffled(rand)) {
+            if (bound <= 0 || rand.nextInt(bound) == 0) {
+                val height: Int = heightSet.random(rand.wrap())
+                heightSet.remove(height)
+                heightSet.remove(height + 1)
+                heightSet.remove(height - 1)
+
                 bound += 1
 
                 val pos = pos.up(height)
-
                 for (distance in 1..3) {
                     val pos = pos.offset(direction, distance)
-                    world.setBlockState(pos, config.trunkProvider.getBlockState(random, pos).with(Properties.AXIS, direction.axis), 19)
+                    world.setBlockState(pos, config.trunkProvider.getBlockState(rand, pos).with(Properties.AXIS, direction.axis), 19)
                 }
                 nodes.add(
                     GroenwoodFoliagePlacer.GroenwoodTreeNode(
@@ -57,6 +74,7 @@ class GroenwoodTrunkPlacer(baseHeight: Int, firstRandomHeight: Int, secondRandom
                     )
                 )
             }
+            if (heightSet.isEmpty()) break
         }
 
         return nodes

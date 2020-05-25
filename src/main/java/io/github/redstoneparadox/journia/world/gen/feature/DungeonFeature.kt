@@ -2,7 +2,7 @@ package io.github.redstoneparadox.journia.world.gen.feature
 
 import com.mojang.datafixers.Dynamic
 import com.mojang.datafixers.util.Pair
-import io.github.redstoneparadox.journia.concat
+import io.github.redstoneparadox.journia.util.concat
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.structure.PoolStructurePiece
 import net.minecraft.structure.StructureManager
