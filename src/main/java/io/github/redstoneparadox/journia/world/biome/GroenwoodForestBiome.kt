@@ -43,7 +43,7 @@ class GroenwoodForestBiome: Biome(
             ).createDecoratedFeature(
                 Decorator.COUNT_EXTRA_HEIGHTMAP.configure(
                     CountExtraChanceDecoratorConfig(
-                        1,
+                        2,
                         0.5f,
                         1
                     )
