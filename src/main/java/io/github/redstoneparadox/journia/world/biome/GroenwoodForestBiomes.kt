@@ -14,6 +14,7 @@ import net.minecraft.world.gen.feature.MineshaftFeatureConfig
 
 object GroenwoodForestBiomes {
     val GROENWOOD_FOREST: Biome
+    val GROENWOOD_FOREST_HILLS: Biome
 
     init {
         val template = TerraformBiome.Template(
@@ -37,12 +38,19 @@ object GroenwoodForestBiomes {
             .depth(0.1f)
             .scale(0.2f)
             .build()
+
+        GROENWOOD_FOREST_HILLS = template.builder()
+            .depth(0.45f)
+            .scale(0.3f)
+            .build()
     }
 
     fun register() {
         if (true) {
             JourniaBiomes.register("groenwood_forest", GROENWOOD_FOREST)
+            JourniaBiomes.register("groenwood_forest_hills", GROENWOOD_FOREST_HILLS)
             JourniaBiomes.continentalBiome(GROENWOOD_FOREST, OverworldClimate.TEMPERATE, 1.0)
+            JourniaBiomes.variantBiome(GROENWOOD_FOREST, GROENWOOD_FOREST_HILLS, 0.2, OverworldClimate.TEMPERATE)
         }
     }
 }
