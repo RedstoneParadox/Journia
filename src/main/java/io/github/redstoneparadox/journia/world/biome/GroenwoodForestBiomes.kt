@@ -1,0 +1,48 @@
+package io.github.redstoneparadox.journia.world.biome
+
+import com.terraformersmc.terraform.biome.builder.TerraformBiome
+import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
+import net.minecraft.world.gen.feature.Feature
+import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
+
+import com.terraformersmc.terraform.biome.builder.DefaultFeature.*
+import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
+import net.minecraft.world.biome.Biome
+import net.minecraft.world.gen.feature.MineshaftFeature
+import net.minecraft.world.gen.feature.MineshaftFeatureConfig
+
+
+object GroenwoodForestBiomes {
+    val GROENWOOD_FOREST: Biome
+
+    init {
+        val template = TerraformBiome.Template(
+            TerraformBiome.builder()
+                .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_SAND_UNDERWATER_CONFIG)
+                .temperature(0.7F).downfall(0.8F)
+                .precipitation(Biome.Precipitation.RAIN)
+                .category(Biome.Category.FOREST)
+                .addTreeFeature(Feature.TREE.configure(JourniaFeatures.groenwoodTreeConfig()), 3)
+                .foliageColor(0x47CD33)
+                .addDefaultSpawnEntries()
+                .addStructureFeature(Feature.MINESHAFT, MineshaftFeatureConfig(0.004, MineshaftFeature.Type.NORMAL))
+                .addDefaultFeatures(LAND_CARVERS, STRUCTURES, LAKES, DUNGEONS, PLAINS_TALL_GRASS, MINEABLES, ORES, DISKS,
+                    PLAINS_FEATURES, DEFAULT_MUSHROOMS, DEFAULT_VEGETATION, SPRINGS, FROZEN_TOP_LAYER)
+                .addStructureFeature(Feature.STRONGHOLD)
+                .waterColor(4159204)
+                .waterFogColor(329011)
+        )
+
+        GROENWOOD_FOREST = template.builder()
+            .depth(0.1f)
+            .scale(0.2f)
+            .build()
+    }
+
+    fun register() {
+        if (true) {
+            JourniaBiomes.register("groenwood_forest", GROENWOOD_FOREST)
+            JourniaBiomes.continentalBiome(GROENWOOD_FOREST, OverworldClimate.TEMPERATE, 1.0)
+        }
+    }
+}

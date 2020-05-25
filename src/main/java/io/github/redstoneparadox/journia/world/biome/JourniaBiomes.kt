@@ -24,8 +24,6 @@ object JourniaBiomes {
 
     val ROCKY_PLAINS: Biome = RockyPlainsBiome()
 
-    val GROENWOOD_FOREST: Biome = GroenwoodForestBiome()
-
     fun registerAll() {
         if (BiomesConfig.Wasteland.enabled) {
             register("wasteland", WASTELAND)
@@ -62,38 +60,38 @@ object JourniaBiomes {
 
         register("salt_flats", SaltFlatsBiomes.SALT_FLATS)
 
-        register("groenwood_forest", GROENWOOD_FOREST)
+        GroenwoodForestBiomes.register()
     }
 
-    private fun register(id: String, biome: Biome) {
+    fun register(id: String, biome: Biome) {
         Registry.register(Registry.BIOME, "journia:$id", biome)
     }
 
-    private fun spawnBiome(biome: Biome) {
+    fun spawnBiome(biome: Biome) {
         FabricBiomes.addSpawnBiome(biome)
     }
 
-    private fun continentalBiome(biome: Biome, climate: OverworldClimate, weight: Double) {
+    fun continentalBiome(biome: Biome, climate: OverworldClimate, weight: Double) {
         OverworldBiomes.addContinentalBiome(biome, climate, weight)
     }
 
-    private fun hillsBiome(parent: Biome, hills: Biome, weight: Double) {
+    fun hillsBiome(parent: Biome, hills: Biome, weight: Double) {
         OverworldBiomes.addHillsBiome(parent, hills, weight)
     }
 
-    private fun shoreBiome(parent: Biome, shore: Biome, weight: Double) {
+    fun shoreBiome(parent: Biome, shore: Biome, weight: Double) {
         OverworldBiomes.addShoreBiome(parent, shore, weight)
     }
 
-    private fun edgeBiome(parent: Biome, edge: Biome, weight: Double) {
+    fun edgeBiome(parent: Biome, edge: Biome, weight: Double) {
         OverworldBiomes.addEdgeBiome(parent, edge, weight)
     }
 
-    private fun variantBiome(replaced: Biome, variant: Biome, chance: Double, vararg climates: OverworldClimate) {
+    fun variantBiome(replaced: Biome, variant: Biome, chance: Double, vararg climates: OverworldClimate) {
         OverworldBiomes.addBiomeVariant(replaced, variant, chance, *climates)
     }
 
-    private fun riverBiome(parent: Biome, river: Biome) {
+    fun riverBiome(parent: Biome, river: Biome) {
         OverworldBiomes.setRiverBiome(parent, river)
     }
 }
