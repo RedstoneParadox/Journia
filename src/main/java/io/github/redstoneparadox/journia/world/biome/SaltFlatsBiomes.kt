@@ -22,8 +22,8 @@ object SaltFlatsBiomes {
         )
 
         SALT_FLATS = template.builder()
-            .depth(0.1f)
-            .scale(0.0f)
+            .depth(0.01f)
+            .scale(-0.075f)
             .build()
     }
 
