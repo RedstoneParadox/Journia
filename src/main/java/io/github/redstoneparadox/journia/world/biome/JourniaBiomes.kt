@@ -24,6 +24,8 @@ object JourniaBiomes {
 
     val ROCKY_PLAINS: Biome = RockyPlainsBiome()
 
+    val GROENWOOD_FOREST: Biome = GroenwoodForestBiome()
+
     fun registerAll() {
         if (BiomesConfig.Wasteland.enabled) {
             register("wasteland", WASTELAND)
@@ -59,6 +61,8 @@ object JourniaBiomes {
         }
 
         register("salt_flats", SaltFlatsBiomes.SALT_FLATS)
+
+        register("groenwood_forest", GROENWOOD_FOREST)
     }
 
     private fun register(id: String, biome: Biome) {
