@@ -28,6 +28,7 @@ object JourniaItems {
     val GROENWOOD_FENCE_GATE = blockItem(JourniaBlocks.GROENWOOD_FENCE_GATE, ItemGroup.DECORATIONS)
     val GROENWOOD_BUTTON = blockItem(JourniaBlocks.GROENWOOD_BUTTON, ItemGroup.REDSTONE)
     val GROENWOOD_PRESSURE_PLATE = blockItem(JourniaBlocks.GROENWOOD_PRESSURE_PLATE, ItemGroup.REDSTONE)
+    val GROENWOOD_BOAT = boatItem("groenwood") { JourniaEntityTypes.GROENWOOD_BOAT }
 
     val PINE_LOG = blockItem(JourniaBlocks.PINE_LOG)
     val PINE_LEAVES = blockItem(JourniaBlocks.PINE_LEAVES)
@@ -58,6 +59,7 @@ object JourniaItems {
         register("groenwood_fence_gate", GROENWOOD_FENCE_GATE)
         register("groenwood_button", GROENWOOD_BUTTON)
         register("groenwood_pressure_plate", GROENWOOD_PRESSURE_PLATE)
+        register("groenwood_boat", GROENWOOD_BOAT)
 
         register("mud", MUD)
 
