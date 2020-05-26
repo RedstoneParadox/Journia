@@ -25,12 +25,13 @@ object JourniaEntityTypes {
     val GROENWOOD_BOAT: EntityType<TerraformBoatEntity> = BoatBuilder()
         .name("groenwood")
         .planks(JourniaItems.GROENWOOD_PLANKS)
-        .item(JourniaItems.PINE_BOAT)
+        .item(JourniaItems.GROENWOOD_BOAT)
         .type(BoatEntity.Type.OAK)
         .build()
 
     fun registerAll() {
         register("pine_boat", PINE_BOAT)
+        register("groenwood_boat", GROENWOOD_BOAT)
     }
 
     private fun register(id: String, type: EntityType<*>) {

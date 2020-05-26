@@ -31,4 +31,7 @@ fun init() {
     EntityRendererRegistry.INSTANCE.register(
         JourniaEntityTypes.PINE_BOAT
     ) { dispatcher, context -> BoatEntityRenderer(dispatcher) }
+    EntityRendererRegistry.INSTANCE.register(
+        JourniaEntityTypes.GROENWOOD_BOAT
+    ) { dispatcher, context -> BoatEntityRenderer(dispatcher) }
 }
