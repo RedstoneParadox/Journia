@@ -172,8 +172,8 @@ object JourniaFeatures {
 
     fun groenwoodTreeConfig(): TreeFeatureConfig {
         return TreeFeatureConfig.Builder(
-            SimpleBlockStateProvider(Blocks.OAK_LOG.defaultState),
-            SimpleBlockStateProvider(Blocks.OAK_LEAVES.defaultState.with(Properties.PERSISTENT, true)),
+            SimpleBlockStateProvider(JourniaBlocks.GROENWOOD_LOG.defaultState),
+            SimpleBlockStateProvider(JourniaBlocks.GROENWOOD_LEAVES.defaultState.with(Properties.PERSISTENT, true)),
             GroenwoodFoliagePlacer(3, 0, 0, 0),
             GroenwoodTrunkPlacer(5, 10, 0),
             TwoLayersFeatureSize(3, 0, 3)

@@ -7,9 +7,11 @@ import net.minecraft.world.gen.feature.*
 import java.util.*
 
 class JourniaSaplingGenerator(private val featureSuplier: () -> TreeFeature, private val configSupplier: () -> TreeFeatureConfig): SaplingGenerator() {
+    constructor(configSupplier: () -> TreeFeatureConfig): this({ Feature.TREE as TreeFeature }, configSupplier)
 
     companion object {
         val PINE = JourniaSaplingGenerator({JourniaFeatures.PINE_TREE}, {JourniaFeatures.PINE_TREE_CONFIG})
+        val GROENWOOD = JourniaSaplingGenerator { JourniaFeatures.groenwoodTreeConfig() }
     }
 
     override fun createTreeFeature(random: Random?, bl: Boolean): ConfiguredFeature<TreeFeatureConfig, *>? {

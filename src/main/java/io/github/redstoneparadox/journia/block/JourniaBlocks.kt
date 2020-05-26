@@ -11,6 +11,17 @@ object JourniaBlocks {
 
     val GREEN_MUSHROOM_BLOCK = GreenMushroomBlock()
 
+    val GROENWOOD_LOG = PillarBlock(FabricBlockSettings.copy(Blocks.OAK_LOG))
+    val GROENWOOD_LEAVES = LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES))
+    val GROENWOOD_SAPLING = JourniaSaplingBlock(JourniaSaplingGenerator.PINE)
+    val GROENWOOD_PLANKS = Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS))
+    val GROENWOOD_SLAB = SlabBlock(FabricBlockSettings.copy(Blocks.OAK_SLAB))
+    val GROENWOOD_STAIRS = JourniaStairsBlock(GROENWOOD_PLANKS.defaultState, FabricBlockSettings.copy(Blocks.OAK_STAIRS))
+    val GROENWOOD_FENCE = FenceBlock(FabricBlockSettings.copy(Blocks.OAK_FENCE))
+    val GROENWOOD_FENCE_GATE = FenceGateBlock(FabricBlockSettings.copy(Blocks.OAK_FENCE_GATE))
+    val GROENWOOD_BUTTON = JourniaWoodButtonBlock(FabricBlockSettings.copy(Blocks.OAK_BUTTON))
+    val GROENWOOD_PRESSURE_PLATE = JourniaPressurePlateBlock.wood(FabricBlockSettings.copy(Blocks.OAK_PRESSURE_PLATE))
+
     val PINE_LOG = PillarBlock(FabricBlockSettings.copy(Blocks.OAK_LOG))
     val PINE_LEAVES = LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES))
     val PINE_SAPLING = JourniaSaplingBlock(JourniaSaplingGenerator.PINE)
@@ -28,6 +39,17 @@ object JourniaBlocks {
         register("cracked_ground", CRACKED_GROUND)
 
         register("green_mushroom_block", GREEN_MUSHROOM_BLOCK)
+
+        register("groenwood_log", GROENWOOD_LOG)
+        register("groenwood_leaves", GROENWOOD_LEAVES)
+        register("groenwood_sapling", GROENWOOD_SAPLING)
+        register("groenwood_planks", GROENWOOD_PLANKS)
+        register("groenwood_slab", GROENWOOD_SLAB)
+        register("groenwood_stairs", GROENWOOD_STAIRS)
+        register("groenwood_fence", GROENWOOD_FENCE)
+        register("groenwood_fence_gate", GROENWOOD_FENCE_GATE)
+        register("groenwood_button", GROENWOOD_BUTTON)
+        register("groenwood_pressure_plate", GROENWOOD_PRESSURE_PLATE)
 
         register("pine_log", PINE_LOG)
         register("pine_leaves", PINE_LEAVES)

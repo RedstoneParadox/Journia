@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "type=bottom": { "model": "journia:block/groenwood_slab" },
+    "type=top": { "model": "journia:block/groenwood_slab_top" },
+    "type=double": { "model": "journia:block/groenwood_planks" }
+  }
+}

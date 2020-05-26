@@ -18,6 +18,17 @@ object JourniaItems {
 
     val GREEN_MUSHROOM_BLOCK = blockItem(JourniaBlocks.GREEN_MUSHROOM_BLOCK)
 
+    val GROENWOOD_LOG = blockItem(JourniaBlocks.GROENWOOD_LOG)
+    val GROENWOOD_LEAVES = blockItem(JourniaBlocks.GROENWOOD_LEAVES)
+    val GROENWOOD_SAPLING = blockItem(JourniaBlocks.GROENWOOD_SAPLING, ItemGroup.DECORATIONS)
+    val GROENWOOD_PLANKS = blockItem(JourniaBlocks.GROENWOOD_PLANKS)
+    val GROENWOOD_SLAB = blockItem(JourniaBlocks.GROENWOOD_SLAB)
+    val GROENWOOD_STAIRS = blockItem(JourniaBlocks.GROENWOOD_STAIRS)
+    val GROENWOOD_FENCE = blockItem(JourniaBlocks.GROENWOOD_FENCE, ItemGroup.DECORATIONS)
+    val GROENWOOD_FENCE_GATE = blockItem(JourniaBlocks.GROENWOOD_FENCE_GATE, ItemGroup.DECORATIONS)
+    val GROENWOOD_BUTTON = blockItem(JourniaBlocks.GROENWOOD_BUTTON, ItemGroup.REDSTONE)
+    val GROENWOOD_PRESSURE_PLATE = blockItem(JourniaBlocks.GROENWOOD_PRESSURE_PLATE, ItemGroup.REDSTONE)
+
     val PINE_LOG = blockItem(JourniaBlocks.PINE_LOG)
     val PINE_LEAVES = blockItem(JourniaBlocks.PINE_LEAVES)
     val PINE_SAPLING = blockItem(JourniaBlocks.PINE_SAPLING, ItemGroup.DECORATIONS)
@@ -36,6 +47,17 @@ object JourniaItems {
         register("cracked_ground", CRACKED_GROUND)
 
         register("green_mushroom_block", GREEN_MUSHROOM_BLOCK)
+
+        register("groenwood_log", GROENWOOD_LOG)
+        register("groenwood_sapling", GROENWOOD_SAPLING)
+        register("groenwood_leaves", GROENWOOD_LEAVES)
+        register("groenwood_planks", GROENWOOD_PLANKS)
+        register("groenwood_slab", GROENWOOD_SLAB)
+        register("groenwood_stairs", GROENWOOD_STAIRS)
+        register("groenwood_fence", GROENWOOD_FENCE)
+        register("groenwood_fence_gate", GROENWOOD_FENCE_GATE)
+        register("groenwood_button", GROENWOOD_BUTTON)
+        register("groenwood_pressure_plate", GROENWOOD_PRESSURE_PLATE)
 
         register("mud", MUD)
 
