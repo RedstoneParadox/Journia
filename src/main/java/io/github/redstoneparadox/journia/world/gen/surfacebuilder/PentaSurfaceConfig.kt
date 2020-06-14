@@ -1,6 +1,7 @@
 package io.github.redstoneparadox.journia.world.gen.surfacebuilder
 
-import com.mojang.datafixers.Dynamic
+import com.mojang.serialization.Codec
+import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.world.gen.surfacebuilder.SurfaceConfig
@@ -33,26 +34,17 @@ class PentaSurfaceConfig(
     fun getScale(): Double = scale
 
     companion object {
-        fun deserialize(dynamic: Dynamic<*>): PentaSurfaceConfig {
-            val topMaterial = dynamic["top_material"].map { return@map BlockState.deserialize(it) }.orElse(Blocks.GRASS_BLOCK.defaultState)
-            val secondaryMaterial = dynamic["secondary_material"].map { BlockState.deserialize(it) }.orElse(Blocks.GRASS_BLOCK.defaultState)
-            val tertiaryMaterial = dynamic["tertiary_material"].map { BlockState.deserialize(it) }.orElse(Blocks.GRASS_BLOCK.defaultState)
-            val underMaterial = dynamic["under_material"].map { BlockState.deserialize(it) }.orElse(Blocks.STONE.defaultState)
-            val underwaterMaterial = dynamic["underwater_material"].map { BlockState.deserialize(it) }.orElse(Blocks.GRAVEL.defaultState)
-            val secondaryCutoff = dynamic["secondary_cutoff"].map {
-                val value = it.value
-                if (value is Double) value else -0.95
-            }.orElse(-0.95)
-            val tertiaryCutoff = dynamic["tertiary_cutoff"].map {
-                val value = it.value
-                if (value is Double) value else 1.75
-            }.orElse(1.75)
-            val scale = dynamic["scale"].map {
-                val value = it.value
-                if (value is Double) value else 1.0
-            }.orElse(1.0)
-
-            return PentaSurfaceConfig(topMaterial, secondaryMaterial, tertiaryMaterial, underMaterial, underwaterMaterial, secondaryCutoff, tertiaryCutoff)
+        val CODEC: Codec<PentaSurfaceConfig> = RecordCodecBuilder.create { instance ->
+            instance.group(
+                BlockState.CODEC.fieldOf("topMaterial").forGetter { it.topMaterial },
+                BlockState.CODEC.fieldOf("secondaryMaterial").forGetter { it.topMaterial },
+                BlockState.CODEC.fieldOf("tertiaryMaterial").forGetter { it.topMaterial },
+                BlockState.CODEC.fieldOf("underMaterial").forGetter { it.topMaterial },
+                BlockState.CODEC.fieldOf("underwaterMaterial").forGetter { it.topMaterial },
+                Codec.DOUBLE.fieldOf("secondaryCutoff").forGetter { it.secondaryCutoff },
+                Codec.DOUBLE.fieldOf("tertiaryCutoff").forGetter { it.tertiaryCutoff },
+                Codec.DOUBLE.fieldOf("scale").forGetter { it.scale }
+            ).apply(instance, ::PentaSurfaceConfig)
         }
     }
 }

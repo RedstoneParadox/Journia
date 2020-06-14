@@ -1,6 +1,6 @@
 package io.github.redstoneparadox.journia
 
-import com.mojang.datafixers.types.DynamicOps
+import com.mojang.serialization.DynamicOps
 import io.github.redstoneparadox.journia.block.JourniaBlocks
 import io.github.redstoneparadox.journia.entity.JourniaEntityTypes
 import io.github.redstoneparadox.journia.item.JourniaItems

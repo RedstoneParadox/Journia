@@ -10,7 +10,6 @@ import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.EntityType
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.BiomeEffects
-import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.CountDecoratorConfig
 import net.minecraft.world.gen.feature.*
@@ -32,10 +31,10 @@ class WastelandShoreBiome: Biome(
         .parent("null")
 ) {
     init {
-        addStructureFeature(Feature.MINESHAFT.configure(MineshaftFeatureConfig(0.004, MineshaftFeature.Type.NORMAL)))
-        addStructureFeature(Feature.SHIPWRECK.configure(ShipwreckFeatureConfig(true)))
+        addStructureFeature(MineshaftFeature.MINESHAFT.configure(MineshaftFeatureConfig(0.004, MineshaftFeature.Type.NORMAL)))
+        addStructureFeature(ShipwreckFeature.SHIPWRECK.configure(ShipwreckFeatureConfig(true)))
         DefaultBiomeFeatures.addLandCarvers(this)
-        DefaultBiomeFeatures.addDefaultStructures(this)
+        // DefaultBiomeFeatures.addDefaultStructures(this)
         DefaultBiomeFeatures.addDungeons(this)
         DefaultBiomeFeatures.addMineables(this)
         DefaultBiomeFeatures.addDefaultOres(this)

@@ -11,9 +11,10 @@ import net.minecraft.particle.ParticleTypes
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.BiomeEffects
 import net.minecraft.world.biome.BiomeParticleConfig
-import net.minecraft.world.biome.DefaultBiomeFeatures
+import net.minecraft.world.gen.feature.DefaultBiomeFeatures
 import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.FeatureConfig
+import net.minecraft.world.gen.feature.StrongholdFeature
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 import java.util.*
 
@@ -32,15 +33,14 @@ class WastelandBiome: Biome(
                 .fogColor(colorToInt(0.8, 0.8, 0.6))
                 .waterColor(6388580)
                 .waterFogColor(2302743)
-                .particleConfig(BiomeParticleConfig(ParticleTypes.ASH, 0.00625f, { 0.0 }, { 0.0 }, { 0.0 }))
+                .particleConfig(BiomeParticleConfig(ParticleTypes.ASH, 0.00625f))
                 .build())
         .parent("null")
 ) {
 
     init {
-        addStructureFeature(Feature.STRONGHOLD.configure(FeatureConfig.DEFAULT));
+        addStructureFeature(StrongholdFeature.STRONGHOLD.configure(FeatureConfig.DEFAULT));
         DefaultBiomeFeatures.addLandCarvers(this)
-        DefaultBiomeFeatures.addDefaultStructures(this)
         DefaultBiomeFeatures.addDungeons(this)
         DefaultBiomeFeatures.addMineables(this)
         DefaultBiomeFeatures.addDefaultOres(this)

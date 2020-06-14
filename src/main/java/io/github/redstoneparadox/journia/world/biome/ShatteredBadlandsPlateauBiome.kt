@@ -5,7 +5,6 @@ import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.EntityType
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.BiomeEffects
-import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig
@@ -31,17 +30,17 @@ class ShatteredBadlandsPlateauBiome: Biome(
 
     init {
         addStructureFeature(
-            Feature.MINESHAFT.configure(
+            MineshaftFeature.MINESHAFT.configure(
                 MineshaftFeatureConfig(0.004, MineshaftFeature.Type.MESA)
             )
         )
         addStructureFeature(
-            Feature.STRONGHOLD.configure(
+            StrongholdFeature.STRONGHOLD.configure(
                 FeatureConfig.DEFAULT
             )
         )
         DefaultBiomeFeatures.addLandCarvers(this)
-        DefaultBiomeFeatures.addDefaultStructures(this)
+        DefaultBiomeFeatures.addDungeons(this)
         DefaultBiomeFeatures.addDefaultLakes(this)
         DefaultBiomeFeatures.addDungeons(this)
         DefaultBiomeFeatures.addMineables(this)

@@ -10,7 +10,6 @@ import net.minecraft.block.Blocks
 import net.minecraft.state.property.Properties
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.biome.Biome
-import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.CountDecoratorConfig
 import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig
@@ -29,9 +28,9 @@ object JourniaFeatures {
     val DEAD_TREE_CONFIG = DeadTreeFeatureConfig(Blocks.OAK_LOG.defaultState, 4, 2)
     val DEAD_BIRCH_TREE_CONFIG = DeadTreeFeatureConfig(Blocks.BIRCH_LOG.defaultState, 4, 2)
 
-    val PINE_TREE: PineTreeFeature = PineTreeFeature(Function { TreeFeatureConfig.deserialize(it) })
-    val DEAD_TREE = DeadTreeFeature(Function { DeadTreeFeatureConfig.deserialize(it) })
-    val SURFACE_PATCH = SurfacePatchFeature(Function { SurfacePatchFeatureConfig.deserialize(it) })
+    val PINE_TREE: TreeFeature = TreeFeature(TreeFeatureConfig.CODEC)
+    val DEAD_TREE = DeadTreeFeature()
+    val SURFACE_PATCH = SurfacePatchFeature()
 
     fun registerAll() {
         register("pine_tree", PINE_TREE)
@@ -56,7 +55,7 @@ object JourniaFeatures {
         DungeonFeature.NEW_DUNGEON_STRUCTURE_FEATURE
         DungeonFeature.NEW_DUNGEON_PIECE
 
-        Feature.STRUCTURES.put("New Dungeon", DungeonFeature.NEW_DUNGEON_FEATURE)
+        StructureFeature.STRUCTURES["New Dungeon"] = DungeonFeature.NEW_DUNGEON_STRUCTURE_FEATURE
 
         /*
         Registry.BIOME.forEach {
@@ -166,7 +165,6 @@ object JourniaFeatures {
             StraightTrunkPlacer(baseHeight, randomHeight, 0),
             TwoLayersFeatureSize(2, 0, 2)
         )
-            .baseHeight(baseHeight)
             .build()
     }
 
@@ -178,23 +176,6 @@ object JourniaFeatures {
             GroenwoodTrunkPlacer(5, 10, 0),
             TwoLayersFeatureSize(3, 0, 3)
         )
-            .baseHeight(5)
             .build()
     }
-
-    /*
-        private fun treeConfig(trunk: BlockState, leaves: BlockState, minHeight: Int, maxHeight: Int, foliageHeight: Int): BranchedTreeFeatureConfig {
-        return BranchedTreeFeatureConfig.Builder(
-            SimpleStateProvider(trunk),
-            SimpleStateProvider(leaves),
-            BlobFoliagePlacer(0, 0)
-        )
-            .baseHeight(minHeight)
-            .trunkHeight(minHeight)
-            .heightRandA(maxHeight)
-            .trunkHeightRandom(maxHeight)
-            .foliageHeight(foliageHeight)
-            .build()
-    }
-    */
 }

@@ -5,7 +5,7 @@ import net.minecraft.world.gen.decorator.CountDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
 
 object JourniaDecorators {
-    val SURFACE_PATCH: Decorator<CountDecoratorConfig> = SurfacePatchDecorator(CountDecoratorConfig::deserialize)
+    val SURFACE_PATCH: Decorator<CountDecoratorConfig> = SurfacePatchDecorator()
 
     fun registerAll() {
         register("surface_patch", SURFACE_PATCH)

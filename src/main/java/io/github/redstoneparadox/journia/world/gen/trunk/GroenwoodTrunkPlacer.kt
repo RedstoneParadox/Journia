@@ -1,10 +1,12 @@
 package io.github.redstoneparadox.journia.world.gen.trunk
 
-import com.mojang.datafixers.Dynamic
+import com.mojang.serialization.Codec
+import com.mojang.serialization.Dynamic
+import com.mojang.serialization.codecs.RecordCodecBuilder
 import io.github.redstoneparadox.journia.util.concat
 import io.github.redstoneparadox.journia.util.then
-import io.github.redstoneparadox.journia.world.gen.foliage.GroenwoodFoliagePlacer
 import io.github.redstoneparadox.journia.util.wrap
+import io.github.redstoneparadox.journia.world.gen.foliage.GroenwoodFoliagePlacer
 import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockBox
 import net.minecraft.util.math.BlockPos
@@ -13,13 +15,14 @@ import net.minecraft.world.ModifiableTestableWorld
 import net.minecraft.world.gen.feature.TreeFeatureConfig
 import net.minecraft.world.gen.foliage.FoliagePlacer
 import net.minecraft.world.gen.trunk.TrunkPlacer
+import net.minecraft.world.gen.trunk.TrunkPlacerType
 import java.util.*
 import kotlin.collections.HashSet
 import kotlin.math.ceil
 import kotlin.math.pow
 import kotlin.math.roundToInt
 
-class GroenwoodTrunkPlacer(baseHeight: Int, firstRandomHeight: Int, secondRandomHeight: Int): TrunkPlacer(baseHeight, firstRandomHeight, secondRandomHeight, JourniaTrunkPlacers.GROENWOOD_TRUNK_PLACER) {
+class GroenwoodTrunkPlacer(baseHeight: Int, firstRandomHeight: Int, secondRandomHeight: Int): TrunkPlacer(baseHeight, firstRandomHeight, secondRandomHeight) {
 
     constructor(dynamic: Dynamic<*>): this(dynamic.get("base_height").asInt(0), dynamic.get("height_rand_a").asInt(0), dynamic.get("height_rand_b").asInt(0))
 
@@ -33,6 +36,10 @@ class GroenwoodTrunkPlacer(baseHeight: Int, firstRandomHeight: Int, secondRandom
         val nodes = createBranches(world, pos, random, config, trunkHeight, set)
         blockBox.encompass(BlockBox(pos, pos.up(trunkHeight - 1)))
         return nodes.concat(mutableListOf(GroenwoodFoliagePlacer.GroenwoodTreeNode(pos.up(trunkHeight - 1), 5, false, false)))
+    }
+
+    override fun method_28903(): TrunkPlacerType<*> {
+        return JourniaTrunkPlacers.GROENWOOD_TRUNK_PLACER
     }
 
     private fun createBranches(world: ModifiableTestableWorld, pos: BlockPos, rand: Random, config: TreeFeatureConfig, trunkHeight: Int, logs: MutableSet<BlockPos>): MutableList<FoliagePlacer.TreeNode> {
@@ -78,5 +85,15 @@ class GroenwoodTrunkPlacer(baseHeight: Int, firstRandomHeight: Int, secondRandom
         }
 
         return nodes
+    }
+
+    companion object {
+        val CODEC: Codec<GroenwoodTrunkPlacer> = RecordCodecBuilder.create { instance ->
+            return@create instance.group(
+                Codec.INT.fieldOf("base_height").forGetter { it.baseHeight },
+                Codec.INT.fieldOf("height_rand_a").forGetter { it.firstRandomHeight },
+                Codec.INT.fieldOf("height_rand_b").forGetter { it.secondRandomHeight }
+            ).apply(instance, ::GroenwoodTrunkPlacer)
+        }
     }
 }

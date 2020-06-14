@@ -2,14 +2,12 @@ package io.github.redstoneparadox.journia.world.biome
 
 import com.terraformersmc.terraform.biome.builder.TerraformBiome
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
-import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 import com.terraformersmc.terraform.biome.builder.DefaultFeature.*
 import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
 import net.minecraft.world.biome.Biome
-import net.minecraft.world.gen.feature.MineshaftFeature
-import net.minecraft.world.gen.feature.MineshaftFeatureConfig
+import net.minecraft.world.gen.feature.*
 
 
 object GroenwoodForestBiomes {
@@ -26,10 +24,10 @@ object GroenwoodForestBiomes {
                 .addTreeFeature(Feature.TREE.configure(JourniaFeatures.groenwoodTreeConfig()), 3)
                 .foliageColor(0x47CD33)
                 .addDefaultSpawnEntries()
-                .addStructureFeature(Feature.MINESHAFT, MineshaftFeatureConfig(0.004, MineshaftFeature.Type.NORMAL))
+                .addStructureFeature<MineshaftFeatureConfig>(MineshaftFeature.MINESHAFT.configure(MineshaftFeatureConfig(0.004, MineshaftFeature.Type.NORMAL)))
                 .addDefaultFeatures(LAND_CARVERS, STRUCTURES, LAKES, DUNGEONS, PLAINS_TALL_GRASS, MINEABLES, ORES, DISKS,
                     PLAINS_FEATURES, DEFAULT_MUSHROOMS, DEFAULT_VEGETATION, SPRINGS, FROZEN_TOP_LAYER)
-                .addStructureFeature(Feature.STRONGHOLD)
+                .addStructureFeature<DefaultFeatureConfig>(StrongholdFeature.STRONGHOLD.configure(FeatureConfig.DEFAULT))
                 .waterColor(4159204)
                 .waterFogColor(329011)
         )

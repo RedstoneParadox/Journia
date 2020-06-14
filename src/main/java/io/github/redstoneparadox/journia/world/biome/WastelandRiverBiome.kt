@@ -7,9 +7,9 @@ import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.EntityType
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.BiomeEffects
-import net.minecraft.world.biome.DefaultBiomeFeatures
-import net.minecraft.world.gen.feature.Feature
+import net.minecraft.world.gen.feature.DefaultBiomeFeatures
 import net.minecraft.world.gen.feature.FeatureConfig
+import net.minecraft.world.gen.feature.StrongholdFeature
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 class WastelandRiverBiome: Biome(
@@ -31,9 +31,9 @@ class WastelandRiverBiome: Biome(
 ) {
 
     init {
-        addStructureFeature(Feature.STRONGHOLD.configure(FeatureConfig.DEFAULT));
+        addStructureFeature(StrongholdFeature.STRONGHOLD.configure(FeatureConfig.DEFAULT));
         DefaultBiomeFeatures.addLandCarvers(this)
-        DefaultBiomeFeatures.addDefaultStructures(this)
+        // DefaultBiomeFeatures.addDefaultStructures(this)
         DefaultBiomeFeatures.addDungeons(this)
         DefaultBiomeFeatures.addMineables(this)
         DefaultBiomeFeatures.addDefaultOres(this)

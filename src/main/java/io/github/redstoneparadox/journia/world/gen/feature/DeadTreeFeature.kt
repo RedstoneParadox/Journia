@@ -1,6 +1,5 @@
 package io.github.redstoneparadox.journia.world.gen.feature
 
-import com.mojang.datafixers.Dynamic
 import io.github.redstoneparadox.journia.block.JourniaBlocks
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
@@ -14,9 +13,8 @@ import net.minecraft.world.gen.StructureAccessor
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.feature.Feature
 import java.util.*
-import java.util.function.Function
 
-class DeadTreeFeature(configDeserializer: Function<Dynamic<*>, out DeadTreeFeatureConfig>): Feature<DeadTreeFeatureConfig>(configDeserializer) {
+class DeadTreeFeature: Feature<DeadTreeFeatureConfig>(DeadTreeFeatureConfig.CODEC) {
     override fun generate(world: ServerWorldAccess, accessor: StructureAccessor, generator: ChunkGenerator, random: Random, pos: BlockPos, config: DeadTreeFeatureConfig): Boolean {
         val trunk = config.getTrunk()
         val height = random.nextInt(config.getAdditionalHeight() + 1) + config.getMinHeight()

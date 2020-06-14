@@ -1,6 +1,5 @@
 package io.github.redstoneparadox.journia.world.gen.feature
 
-import com.mojang.datafixers.Dynamic
 import com.mojang.datafixers.util.Pair
 import io.github.redstoneparadox.journia.util.concat
 import net.minecraft.nbt.CompoundTag
@@ -16,31 +15,21 @@ import net.minecraft.util.BlockRotation
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockBox
 import net.minecraft.util.math.BlockPos
-import net.minecraft.util.math.ChunkPos
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.biome.Biome
-import net.minecraft.world.biome.source.BiomeAccess
-import net.minecraft.world.gen.ChunkRandom
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.feature.DefaultFeatureConfig
+import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.StructureFeature
-import java.util.function.Function
 
-class DungeonFeature(function: Function<Dynamic<*>, out DefaultFeatureConfig>?): StructureFeature<DefaultFeatureConfig>(function) {
-    override fun shouldStartAt(biomeAccess: BiomeAccess, chunkGenerator: ChunkGenerator, l: Long, chunkRandom: ChunkRandom, i: Int, j: Int, biome: Biome, chunkPos: ChunkPos): Boolean {
-        return (i % 4 == 0) && (j % 4 == 0) /*&& (chunkRandom.nextInt(16) == 0)*/
-    }
+class DungeonFeature: StructureFeature<DefaultFeatureConfig>(DefaultFeatureConfig.CODEC) {
 
     override fun getName(): String {
         return "New Dungeon"
     }
 
-    override fun getRadius(): Int {
-        return 8
-    }
-
-    override fun getStructureStartFactory(): StructureStartFactory {
-        return StructureStartFactory { structureFeature: StructureFeature<*>, i: Int, i1: Int, blockBox: BlockBox, i2: Int, l: Long ->
+    override fun getStructureStartFactory(): StructureStartFactory<DefaultFeatureConfig> {
+        return StructureStartFactory { structureFeature: StructureFeature<DefaultFeatureConfig>, i: Int, i1: Int, blockBox: BlockBox, i2: Int, l: Long ->
             DungeonStructureStart(
                 structureFeature,
                 i,
@@ -52,8 +41,8 @@ class DungeonFeature(function: Function<Dynamic<*>, out DefaultFeatureConfig>?):
         }
     }
 
-    class DungeonStructureStart(feature: StructureFeature<*>, chunkX: Int, chunkZ: Int, box: BlockBox, references: Int, seed: Long): StructureStart(feature, chunkX, chunkZ, box, references, seed) {
-        override fun init(chunkGenerator: ChunkGenerator, structureManager: StructureManager, x: Int, z: Int, biome: Biome?) {
+    class DungeonStructureStart(feature: StructureFeature<DefaultFeatureConfig>, chunkX: Int, chunkZ: Int, box: BlockBox, references: Int, seed: Long): StructureStart<DefaultFeatureConfig>(feature, chunkX, chunkZ, box, references, seed) {
+        override fun init(chunkGenerator: ChunkGenerator?, structureManager: StructureManager?, x: Int, z: Int, biome: Biome?, featureConfig: DefaultFeatureConfig?) {
             StructurePoolBasedGenerator.addPieces(MAIN_POOL, 7, ::DungeonPiece, chunkGenerator, structureManager, BlockPos(x * 16, 0, z * 16), children, random, true, true)
             setBoundingBoxFromChildren()
         }
@@ -124,16 +113,10 @@ class DungeonFeature(function: Function<Dynamic<*>, out DefaultFeatureConfig>?):
     }
 
     companion object {
-        val NEW_DUNGEON_FEATURE: StructureFeature<DefaultFeatureConfig> = Registry.register(
-            Registry.FEATURE,
-            Identifier("journia:dungeon"),
-            DungeonFeature(Function { DefaultFeatureConfig.deserialize(it) })
-        )
-
         val NEW_DUNGEON_STRUCTURE_FEATURE: StructureFeature<DefaultFeatureConfig> = Registry.register(
             Registry.STRUCTURE_FEATURE,
             Identifier("journia:dungeon_structure"),
-            NEW_DUNGEON_FEATURE
+            DungeonFeature()
         )
 
         val NEW_DUNGEON_PIECE: StructurePieceType = Registry.register(

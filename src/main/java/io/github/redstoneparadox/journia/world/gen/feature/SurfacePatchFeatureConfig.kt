@@ -1,41 +1,21 @@
 package io.github.redstoneparadox.journia.world.gen.feature
 
-import com.mojang.datafixers.Dynamic
 import io.github.redstoneparadox.journia.block.JourniaBlocks
-import com.mojang.datafixers.types.DynamicOps
-import io.github.redstoneparadox.journia.into
+import com.mojang.serialization.Codec
+import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.world.gen.feature.FeatureConfig
 
 class SurfacePatchFeatureConfig(val state: BlockState, val startRadius: Int, val target: Target, val integrity: Double = 1.0): FeatureConfig {
-    override fun <T : Any> serialize(ops: DynamicOps<T>): Dynamic<T> {
-        return Dynamic(ops, ops.createMap(
-            mutableMapOf(
-                "state".into(ops) to BlockState.serialize(ops, state).value,
-                "start_radius".into(ops) to ops.createInt(startRadius),
-                "target".into(ops) to target.name.into(ops),
-                "integrity".into(ops) to ops.createDouble(integrity)
-            )
-        ))
-    }
-
     companion object {
-        fun <T> deserialize(dynamic: Dynamic<T>): SurfacePatchFeatureConfig {
-            val state = dynamic["state"].map { BlockState.deserialize(it) }.orElse(Blocks.STONE.defaultState)
-            val startRadius = dynamic["start_radius"].map {
-                val value = it.value
-                if (value is Int) value as Int else 0
-            }.orElse(0)
-            val target = dynamic["target"].map {
-                if (it.value is String) Target.valueOf(it.value as String) else Target.GRASS
-            }.orElse(Target.GRASS)
-            val integrity = dynamic["integrity"].map {
-                val value = it.value
-                if (value is Double) value as Double else 1.0
-            }.orElse(1.0)
-
-            return SurfacePatchFeatureConfig(state, startRadius, target, integrity)
+        val CODEC: Codec<SurfacePatchFeatureConfig> = RecordCodecBuilder.create { instance ->
+            instance.group(
+                BlockState.CODEC.fieldOf("state").forGetter { it.state },
+                Codec.INT.fieldOf("startRadius").forGetter { it.startRadius },
+                Target.CODEC.fieldOf("target").forGetter { it.target },
+                Codec.DOUBLE.fieldOf("integrity").forGetter { it.integrity }
+            ).apply(instance, ::SurfacePatchFeatureConfig)
         }
     }
 
@@ -46,5 +26,13 @@ class SurfacePatchFeatureConfig(val state: BlockState, val startRadius: Int, val
         WASTELAND({it.block == JourniaBlocks.CRACKED_GROUND});
 
         fun test(state: BlockState) = this.predicate(state)
+
+        companion object {
+            val CODEC: Codec<Target> = RecordCodecBuilder.create { instance ->
+                instance.group(
+                    Codec.STRING.fieldOf("name").forGetter { it.name }
+                ).apply(instance, ::valueOf)
+            }
+        }
     }
 }

@@ -10,7 +10,6 @@ import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.EntityType
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.BiomeEffects
-import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.CountDecoratorConfig
 import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig
@@ -35,11 +34,11 @@ class RockyTaigaMountainsBiome: Biome(
         .parent("null")
 ) {
     init {
-        addStructureFeature(Feature.PILLAGER_OUTPOST.configure(FeatureConfig.DEFAULT))
-        addStructureFeature(Feature.MINESHAFT.configure(MineshaftFeatureConfig(0.004, MineshaftFeature.Type.NORMAL)))
-        addStructureFeature(Feature.STRONGHOLD.configure(FeatureConfig.DEFAULT))
+        addStructureFeature(PillagerOutpostFeature.PILLAGER_OUTPOST.configure(FeatureConfig.DEFAULT))
+        addStructureFeature(MineshaftFeature.MINESHAFT.configure(MineshaftFeatureConfig(0.004, MineshaftFeature.Type.NORMAL)))
+        addStructureFeature(StrongholdFeature.STRONGHOLD.configure(FeatureConfig.DEFAULT))
         DefaultBiomeFeatures.addLandCarvers(this)
-        DefaultBiomeFeatures.addDefaultStructures(this)
+        //DefaultBiomeFeatures.addDefaultStructures(this)
         DefaultBiomeFeatures.addDefaultLakes(this)
         DefaultBiomeFeatures.addDungeons(this)
         DefaultBiomeFeatures.addLargeFerns(this)

@@ -9,7 +9,6 @@ import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.EntityType
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.BiomeEffects
-import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.ProbabilityConfig
 import net.minecraft.world.gen.decorator.CountDecoratorConfig
@@ -36,22 +35,22 @@ class JungleWetlandsBiome: Biome(
 
     init {
         addStructureFeature(
-            Feature.JUNGLE_TEMPLE.configure(
+            JungleTempleFeature.JUNGLE_PYRAMID.configure(
                 FeatureConfig.DEFAULT
             )
         )
         addStructureFeature(
-            Feature.MINESHAFT.configure(
+            MineshaftFeature.MINESHAFT.configure(
                 MineshaftFeatureConfig(0.004, MineshaftFeature.Type.NORMAL)
             )
         )
         addStructureFeature(
-            Feature.STRONGHOLD.configure(
+            StrongholdFeature.STRONGHOLD.configure(
                 FeatureConfig.DEFAULT
             )
         )
         DefaultBiomeFeatures.addLandCarvers(this)
-        DefaultBiomeFeatures.addDefaultStructures(this)
+        // DefaultBiomeFeatures.addDefaultStructures(this)
         DefaultBiomeFeatures.addDefaultLakes(this)
         DefaultBiomeFeatures.addDungeons(this)
         DefaultBiomeFeatures.addMineables(this)

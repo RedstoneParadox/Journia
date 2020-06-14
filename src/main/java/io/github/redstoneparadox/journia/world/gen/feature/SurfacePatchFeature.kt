@@ -1,6 +1,5 @@
 package io.github.redstoneparadox.journia.world.gen.feature
 
-import com.mojang.datafixers.Dynamic
 import io.github.redstoneparadox.journia.world.gen.OpenSimplexSampler
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.Heightmap
@@ -9,10 +8,9 @@ import net.minecraft.world.gen.StructureAccessor
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.feature.Feature
 import java.util.*
-import java.util.function.Function
 import kotlin.math.abs
 
-class SurfacePatchFeature(configDeserializer: Function<@ParameterName(name = "dynamic") Dynamic<*>, out SurfacePatchFeatureConfig>): Feature<SurfacePatchFeatureConfig>(configDeserializer) {
+class SurfacePatchFeature: Feature<SurfacePatchFeatureConfig>(SurfacePatchFeatureConfig.CODEC) {
 
     private val sampler = OpenSimplexSampler()
 

@@ -14,15 +14,11 @@ import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.EntityType
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.BiomeEffects
-import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.CountDecoratorConfig
 import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
-import net.minecraft.world.gen.feature.Feature
-import net.minecraft.world.gen.feature.FeatureConfig
-import net.minecraft.world.gen.feature.RandomFeatureConfig
-import net.minecraft.world.gen.feature.RandomFeatureEntry
+import net.minecraft.world.gen.feature.*
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 class WastelandEdgeBiome: Biome(
@@ -41,9 +37,10 @@ class WastelandEdgeBiome: Biome(
         .parent("null")
 ) {
     init {
-        addStructureFeature(Feature.STRONGHOLD.configure(FeatureConfig.DEFAULT));
+        addStructureFeature(StrongholdFeature.STRONGHOLD.configure(FeatureConfig.DEFAULT));
         DefaultBiomeFeatures.addLandCarvers(this)
-        DefaultBiomeFeatures.addDefaultStructures(this)
+        //TODO: Figure out what this did
+        // DefaultBiomeFeatures.addDefaultStructures(this)
         DefaultBiomeFeatures.addDungeons(this)
         DefaultBiomeFeatures.addMineables(this)
         DefaultBiomeFeatures.addDefaultOres(this)

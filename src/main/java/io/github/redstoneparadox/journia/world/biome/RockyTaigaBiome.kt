@@ -14,9 +14,9 @@ import net.minecraft.block.Blocks
 import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.EntityType
 import net.minecraft.state.property.Properties
+import net.minecraft.util.Identifier
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.BiomeEffects
-import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.CountDecoratorConfig
 import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig
@@ -46,12 +46,12 @@ class RockyTaigaBiome: Biome(
     private val PINE_LEAVES: BlockState = JourniaBlocks.PINE_LEAVES.defaultState.with(Properties.PERSISTENT, true)
 
     init {
-        addStructureFeature(Feature.VILLAGE.configure(StructurePoolFeatureConfig("village/taiga/town_centers", 6)))
-        addStructureFeature(Feature.PILLAGER_OUTPOST.configure(FeatureConfig.DEFAULT))
-        addStructureFeature(Feature.MINESHAFT.configure(MineshaftFeatureConfig(0.004, MineshaftFeature.Type.NORMAL)))
-        addStructureFeature(Feature.STRONGHOLD.configure(FeatureConfig.DEFAULT))
+        addStructureFeature(VillageFeature.VILLAGE.configure(StructurePoolFeatureConfig(Identifier("village/taiga/town_centers"), 6)))
+        addStructureFeature(PillagerOutpostFeature.PILLAGER_OUTPOST.configure(FeatureConfig.DEFAULT))
+        addStructureFeature(MineshaftFeature.MINESHAFT.configure(MineshaftFeatureConfig(0.004, MineshaftFeature.Type.NORMAL)))
+        addStructureFeature(StrongholdFeature.STRONGHOLD.configure(FeatureConfig.DEFAULT))
         DefaultBiomeFeatures.addLandCarvers(this)
-        DefaultBiomeFeatures.addDefaultStructures(this)
+        //DefaultBiomeFeatures.addDefaultStructures(this)
         DefaultBiomeFeatures.addDefaultLakes(this)
         DefaultBiomeFeatures.addDungeons(this)
         DefaultBiomeFeatures.addLargeFerns(this)

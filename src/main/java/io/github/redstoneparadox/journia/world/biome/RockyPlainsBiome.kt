@@ -8,9 +8,9 @@ import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurface
 import net.minecraft.block.Blocks
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.SpawnGroup
+import net.minecraft.util.Identifier
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.BiomeEffects
-import net.minecraft.world.biome.DefaultBiomeFeatures
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.*
 import net.minecraft.world.gen.feature.*
@@ -36,27 +36,27 @@ class RockyPlainsBiome: Biome(
 ) {
     init {
         addStructureFeature(
-            Feature.VILLAGE.configure(
-                StructurePoolFeatureConfig("village/taiga/town_centers", 6)
+            VillageFeature.VILLAGE.configure(
+                StructurePoolFeatureConfig(Identifier("village/taiga/town_centers"), 6)
             )
         )
         addStructureFeature(
-            Feature.PILLAGER_OUTPOST.configure(
+            PillagerOutpostFeature.PILLAGER_OUTPOST.configure(
                 FeatureConfig.DEFAULT
             )
         )
         addStructureFeature(
-            Feature.MINESHAFT.configure(
+            MineshaftFeature.MINESHAFT.configure(
                 MineshaftFeatureConfig(0.004, MineshaftFeature.Type.NORMAL)
             )
         )
         addStructureFeature(
-            Feature.STRONGHOLD.configure(
+            StrongholdFeature.STRONGHOLD.configure(
                 FeatureConfig.DEFAULT
             )
         )
         DefaultBiomeFeatures.addLandCarvers(this)
-        DefaultBiomeFeatures.addDefaultStructures(this)
+        // DefaultBiomeFeatures.addDefaultStructures(this)
         DefaultBiomeFeatures.addDefaultLakes(this)
         DefaultBiomeFeatures.addDungeons(this)
         DefaultBiomeFeatures.addPlainsTallGrass(this)

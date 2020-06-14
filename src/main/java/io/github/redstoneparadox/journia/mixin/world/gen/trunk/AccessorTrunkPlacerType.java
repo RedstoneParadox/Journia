@@ -1,6 +1,6 @@
 package io.github.redstoneparadox.journia.mixin.world.gen.trunk;
 
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.world.gen.trunk.TrunkPlacer;
 import net.minecraft.world.gen.trunk.TrunkPlacerType;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,7 +12,7 @@ import java.util.function.Function;
 public interface AccessorTrunkPlacerType {
 
     @Invoker
-    static <T extends TrunkPlacer> TrunkPlacerType<T> callRegister(String id, Function<Dynamic<?>, T> deserializer) {
+    static <T extends TrunkPlacer> TrunkPlacerType<T> callRegister(String id, Codec<T> codec) {
         throw new AssertionError("Mixin dummy");
     }
 }
