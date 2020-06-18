@@ -1,3 +1,3 @@
 # Journia
 
-Discord: https://discord.gg/3kAN8vC
+Discord: https://discord.gg/xSZHvCc
