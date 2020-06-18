@@ -62,6 +62,7 @@ object JourniaBiomes {
 
         GroenwoodForestBiomes.register()
         BiancoBiomes.register()
+        AzureBiomes.register()
     }
 
     fun register(id: String, biome: Biome) {

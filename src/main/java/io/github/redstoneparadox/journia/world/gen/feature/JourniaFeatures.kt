@@ -31,9 +31,11 @@ object JourniaFeatures {
     val PINE_TREE: TreeFeature = TreeFeature(TreeFeatureConfig.CODEC)
     val DEAD_TREE = DeadTreeFeature()
     val SURFACE_PATCH = SurfacePatchFeature()
+    val BLOCK_BANDS = BlockBandsFeature()
 
     fun registerAll() {
         register("pine_tree", PINE_TREE)
+        register("block_bands", BLOCK_BANDS)
 
         // Feature.STRUCTURES.put("Fort", FortFeature.FORT_FEATURE)
 
