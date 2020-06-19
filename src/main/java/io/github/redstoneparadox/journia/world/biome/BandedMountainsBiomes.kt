@@ -18,6 +18,8 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 object BandedMountainsBiomes {
     val BANDED_MOUNTAINS: Biome
     val SHATTERD_BANDED_MOUNTAINS: Biome
+    val BANDED_MOUNTAINS_RIVER: Biome
+    val BANDED_SHORE: Biome
 
     init {
         val template = TerraformBiome.Template(
@@ -83,13 +85,35 @@ object BandedMountainsBiomes {
             .depth(0.8f)
             .scale(1.2f)
             .build()
+
+        BANDED_MOUNTAINS_RIVER = template.builder()
+            .category(Biome.Category.RIVER)
+            .depth(-0.5F)
+            .scale(0.0F)
+            .temperature(0.5F)
+            .downfall(0.5F)
+            .build()
+
+        BANDED_SHORE = template.builder()
+            .category(Biome.Category.NONE)
+            .depth(0.1F)
+            .scale(0.8F)
+            .temperature(0.2F)
+            .downfall(0.3F)
+            .build()
     }
 
     fun register() {
         JourniaBiomes.register("banded_mountains", BANDED_MOUNTAINS)
         JourniaBiomes.register("shattered_banded_mountains", SHATTERD_BANDED_MOUNTAINS)
+        JourniaBiomes.register("banded_mountains_river", BANDED_MOUNTAINS_RIVER)
+        JourniaBiomes.register("banded_shore", BANDED_SHORE)
 
         OverworldBiomes.addContinentalBiome(BANDED_MOUNTAINS, OverworldClimate.TEMPERATE, 0.8)
         OverworldBiomes.addBiomeVariant(BANDED_MOUNTAINS, SHATTERD_BANDED_MOUNTAINS, 0.3)
+        OverworldBiomes.setRiverBiome(BANDED_MOUNTAINS, BANDED_MOUNTAINS_RIVER)
+        OverworldBiomes.setRiverBiome(SHATTERD_BANDED_MOUNTAINS, BANDED_MOUNTAINS_RIVER)
+        OverworldBiomes.addShoreBiome(BANDED_MOUNTAINS, BANDED_SHORE, 1.0)
+        OverworldBiomes.addShoreBiome(SHATTERD_BANDED_MOUNTAINS, BANDED_SHORE, 1.0)
     }
 }
