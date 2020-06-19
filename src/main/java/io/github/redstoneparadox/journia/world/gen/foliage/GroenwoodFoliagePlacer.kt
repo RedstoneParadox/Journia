@@ -20,7 +20,7 @@ class GroenwoodFoliagePlacer(radius: Int, randomRadius: Int, offset: Int, random
                 for (y in -1..1) {
                     for (z in -1..1) {
                         val pos = top.add(x, y, z)
-                        if (world.testBlockState(pos) {it.isAir}) {
+                        if (world.testBlockState(pos) { it.isAir } && !isCorner(x, y, z)) {
                             world.setBlockState(pos, config.leavesProvider.getBlockState(random, pos), 19)
                             leaves.add(pos)
                         }
@@ -33,7 +33,7 @@ class GroenwoodFoliagePlacer(radius: Int, randomRadius: Int, offset: Int, random
                 for (y in -1..3) {
                     for (z in -2..2) {
                         val pos = top.add(x, y, z)
-                        if (world.testBlockState(pos) {it.isAir}) {
+                        if (world.testBlockState(pos) { it.isAir } && !isEdge(x, y, z) ) {
                             world.setBlockState(pos, config.leavesProvider.getBlockState(random, pos), 19)
                             leaves.add(pos)
                         }
@@ -41,6 +41,20 @@ class GroenwoodFoliagePlacer(radius: Int, randomRadius: Int, offset: Int, random
                 }
             }
         }
+    }
+
+    private fun isEdge(xOffset: Int, yOffset: Int, zOffset: Int): Boolean {
+        return if (yOffset == -1 || yOffset == 3) {
+            xOffset == -2 || zOffset == -2 || xOffset == 2 || zOffset == 2
+        } else if (xOffset == -2 || xOffset == 2) {
+            zOffset == -2 || zOffset == 2
+        } else {
+            false
+        }
+    }
+
+    private fun isCorner(xOffset: Int, yOffset: Int, zOffset: Int): Boolean {
+        return (xOffset == -1 || xOffset == 1) && (yOffset == -1 || yOffset == 1) && (zOffset == -1 || zOffset == 1)
     }
 
     override fun getHeight(random: Random, trunkHeight: Int, config: TreeFeatureConfig): Int {
