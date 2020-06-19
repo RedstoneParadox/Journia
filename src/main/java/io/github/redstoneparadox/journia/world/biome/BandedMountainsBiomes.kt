@@ -1,8 +1,8 @@
 package io.github.redstoneparadox.journia.world.biome
 
-import com.terraformersmc.terraform.biome.builder.DefaultFeature
 import com.terraformersmc.terraform.biome.builder.DefaultFeature.*
 import com.terraformersmc.terraform.biome.builder.TerraformBiome
+import io.github.redstoneparadox.journia.config.BiomesConfig
 import io.github.redstoneparadox.journia.world.gen.feature.BlockBandsFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
@@ -24,7 +24,7 @@ object BandedMountainsBiomes {
     init {
         val template = TerraformBiome.Template(
             TerraformBiome.builder()
-                .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, JourniaSurfaceBuilders.AZURE_CONFIG)
+                .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, JourniaSurfaceBuilders.BANDED_MOUNTAINS_CONFIG)
                 .temperature(0.95f)
                 .downfall(0.9f)
                 .precipitation(Biome.Precipitation.RAIN)
@@ -104,16 +104,18 @@ object BandedMountainsBiomes {
     }
 
     fun register() {
-        JourniaBiomes.register("banded_mountains", BANDED_MOUNTAINS)
-        JourniaBiomes.register("shattered_banded_mountains", SHATTERD_BANDED_MOUNTAINS)
-        JourniaBiomes.register("banded_mountains_river", BANDED_MOUNTAINS_RIVER)
-        JourniaBiomes.register("banded_shore", BANDED_SHORE)
+        if (BiomesConfig.BandedMountains.enabled) {
+            JourniaBiomes.register("banded_mountains", BANDED_MOUNTAINS)
+            JourniaBiomes.register("shattered_banded_mountains", SHATTERD_BANDED_MOUNTAINS)
+            JourniaBiomes.register("banded_mountains_river", BANDED_MOUNTAINS_RIVER)
+            JourniaBiomes.register("banded_shore", BANDED_SHORE)
 
-        OverworldBiomes.addContinentalBiome(BANDED_MOUNTAINS, OverworldClimate.TEMPERATE, 0.8)
-        OverworldBiomes.addBiomeVariant(BANDED_MOUNTAINS, SHATTERD_BANDED_MOUNTAINS, 0.3)
-        OverworldBiomes.setRiverBiome(BANDED_MOUNTAINS, BANDED_MOUNTAINS_RIVER)
-        OverworldBiomes.setRiverBiome(SHATTERD_BANDED_MOUNTAINS, BANDED_MOUNTAINS_RIVER)
-        OverworldBiomes.addShoreBiome(BANDED_MOUNTAINS, BANDED_SHORE, 1.0)
-        OverworldBiomes.addShoreBiome(SHATTERD_BANDED_MOUNTAINS, BANDED_SHORE, 1.0)
+            OverworldBiomes.addContinentalBiome(BANDED_MOUNTAINS, OverworldClimate.TEMPERATE, BiomesConfig.BandedMountains.weight)
+            OverworldBiomes.addBiomeVariant(BANDED_MOUNTAINS, SHATTERD_BANDED_MOUNTAINS, BiomesConfig.BandedMountains.shattered_chance)
+            OverworldBiomes.setRiverBiome(BANDED_MOUNTAINS, BANDED_MOUNTAINS_RIVER)
+            OverworldBiomes.setRiverBiome(SHATTERD_BANDED_MOUNTAINS, BANDED_MOUNTAINS_RIVER)
+            OverworldBiomes.addShoreBiome(BANDED_MOUNTAINS, BANDED_SHORE, 1.0)
+            OverworldBiomes.addShoreBiome(SHATTERD_BANDED_MOUNTAINS, BANDED_SHORE, 1.0)
+        }
     }
 }
