@@ -5,6 +5,7 @@ import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 import com.terraformersmc.terraform.biome.builder.DefaultFeature.*
+import io.github.redstoneparadox.journia.config.BiomesConfig
 import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.feature.*
@@ -44,11 +45,11 @@ object GroenwoodForestBiomes {
     }
 
     fun register() {
-        if (true) {
+        if (BiomesConfig.GroenwoodForest.enabled) {
             JourniaBiomes.register("groenwood_forest", GROENWOOD_FOREST)
             JourniaBiomes.register("groenwood_forest_hills", GROENWOOD_FOREST_HILLS)
-            JourniaBiomes.continentalBiome(GROENWOOD_FOREST, OverworldClimate.TEMPERATE, 1.0)
-            JourniaBiomes.variantBiome(GROENWOOD_FOREST, GROENWOOD_FOREST_HILLS, 0.2, OverworldClimate.TEMPERATE)
+            JourniaBiomes.continentalBiome(GROENWOOD_FOREST, OverworldClimate.TEMPERATE, BiomesConfig.GroenwoodForest.weight)
+            JourniaBiomes.hillsBiome(GROENWOOD_FOREST, GROENWOOD_FOREST_HILLS, BiomesConfig.GroenwoodForest.hills_chance)
         }
     }
 }

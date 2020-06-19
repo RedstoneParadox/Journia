@@ -17,6 +17,12 @@ object BiomesConfig: RootConfigCategory("biomes.json5") {
         val shattered_chance: Double by option(0.3, 0.0..1.0, "shattered_chance", "Sets the chance for this biome to be replaced with the shattered variant.")
     }
 
+    object GroenwoodForest: ConfigCategory("groenwood_forest", "Groenwood Forest Biome option") {
+        val enabled: Boolean by option(true, "enabled", "Sets whether this biome and its variants are enabled.")
+        val weight: Double by option(1.0, "weight", "sets the weight for this biome.")
+        val hills_chance: Double by option(0.2, 0.0..1.0, "hills_chance", "Sets the chance for this biome to be replaced with its hills variant.")
+    }
+
     object JungleWetlands: ConfigCategory("jungle_wetlands") {
         val enabled: Boolean by option(true, "enabled", "Sets whether the Jungle Wetlands biome is enabled.")
         val chance: Double by option(0.2, "chance", "Sets the chance for Jungle Wetlands to replace a Jungle biome.")
