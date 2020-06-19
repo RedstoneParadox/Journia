@@ -5,7 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.block.BlockState
 import net.minecraft.world.gen.feature.FeatureConfig
 
-class BlockBandsFeatureConfig(val bands: List<BlockBand>, val minSeparation: Int, val maxSeparation: Int): FeatureConfig {
+class BlockBandsFeatureConfig(val bands: List<BlockBand>, val minSeparation: Int, val maxSeparation: Int, val waveSize: Int, val waveVariation: Int): FeatureConfig {
     init {
         if (maxSeparation <= minSeparation) {
             throw IllegalStateException("Attempted to make min separation of block bands higher than the max separation.")
@@ -29,7 +29,9 @@ class BlockBandsFeatureConfig(val bands: List<BlockBand>, val minSeparation: Int
             instance.group(
                 Codec.list(BlockBand.CODEC).fieldOf("bands").forGetter { it.bands },
                 Codec.INT.fieldOf("minSeparation").forGetter { it.minSeparation },
-                Codec.INT.fieldOf("maxSeparation").forGetter { it.maxSeparation }
+                Codec.INT.fieldOf("maxSeparation").forGetter { it.maxSeparation },
+                Codec.INT.fieldOf("waveSize").forGetter { it.waveSize },
+                Codec.INT.fieldOf("waveVariation").forGetter { it.waveVariation }
             ).apply(instance, ::BlockBandsFeatureConfig)
         }
     }

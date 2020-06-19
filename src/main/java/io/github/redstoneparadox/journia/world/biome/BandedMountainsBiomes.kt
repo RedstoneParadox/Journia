@@ -25,13 +25,11 @@ object BandedMountainsBiomes {
         val template = TerraformBiome.Template(
             TerraformBiome.builder()
                 .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, JourniaSurfaceBuilders.BANDED_MOUNTAINS_CONFIG)
-                .temperature(0.95f)
-                .downfall(0.9f)
+                .temperature(0.7f)
+                .downfall(0.8f)
                 .precipitation(Biome.Precipitation.RAIN)
                 .waterColor(4159204)
                 .waterFogColor(329011)
-                .grassColor(0x009900)
-                .foliageColor(0x009900)
                 .category(Biome.Category.EXTREME_HILLS)
                 .addCustomFeature(
                     GenerationStep.Feature.RAW_GENERATION,
@@ -47,6 +45,8 @@ object BandedMountainsBiomes {
                                 BlockBandsFeatureConfig.BlockBand(Blocks.BLACK_TERRACOTTA.defaultState, 2, 1)
                             ),
                             1,
+                            4,
+                            64,
                             4
                         )
                     )
