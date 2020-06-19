@@ -17,7 +17,7 @@ class BlockBandsFeature: Feature<BlockBandsFeatureConfig>(BlockBandsFeatureConfi
 
     override fun generate(world: ServerWorldAccess, accessor: StructureAccessor, generator: ChunkGenerator, random: Random, pos: BlockPos, config: BlockBandsFeatureConfig): Boolean {
         if (!initialized) {
-            init(JavaRandom(random), config.bands, config.minSeparation, config.maxSeparation)
+            init(JavaRandom(random), config.getWeightedBands(), config.minSeparation, config.maxSeparation)
         }
 
         for (y in 63..255) {

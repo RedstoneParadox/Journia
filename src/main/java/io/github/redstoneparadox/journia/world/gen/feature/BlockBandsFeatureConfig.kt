@@ -12,7 +12,7 @@ class BlockBandsFeatureConfig(val bands: List<BlockBand>, val minSeparation: Int
         }
     }
 
-    fun getBandsByWeight(): List<BlockBand> {
+    fun getWeightedBands(): MutableList<BlockBand> {
         val weightedBands = mutableListOf<BlockBand>()
 
         for (band in bands) {
@@ -21,7 +21,7 @@ class BlockBandsFeatureConfig(val bands: List<BlockBand>, val minSeparation: Int
             }
         }
 
-        return bands
+        return weightedBands
     }
 
     companion object {
