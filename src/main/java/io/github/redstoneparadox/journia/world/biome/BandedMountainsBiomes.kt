@@ -1,20 +1,23 @@
 package io.github.redstoneparadox.journia.world.biome
 
 import com.terraformersmc.terraform.biome.builder.DefaultFeature
+import com.terraformersmc.terraform.biome.builder.DefaultFeature.*
 import com.terraformersmc.terraform.biome.builder.TerraformBiome
 import io.github.redstoneparadox.journia.world.gen.feature.BlockBandsFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
+import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes
+import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
 import net.minecraft.block.Blocks
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures
 import net.minecraft.world.gen.feature.Feature
-import net.minecraft.world.gen.feature.TreeFeature
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
-object AzureBiomes {
-    val AZURE: Biome
+object BandedMountainsBiomes {
+    val BANDED_MOUNTAINS: Biome
+    val SHATTERD_BANDED_MOUNTAINS: Biome
 
     init {
         val template = TerraformBiome.Template(
@@ -50,19 +53,43 @@ object AzureBiomes {
                     Feature.TREE.configure(DefaultBiomeFeatures.OAK_TREE_WITH_RARE_BEEHIVES_CONFIG),
                     3
                 )
+                .addTreeFeature(
+                    Feature.TREE.configure(DefaultBiomeFeatures.BIRCH_TREE_WITH_BEEHIVES_CONFIG),
+                    2
+                )
+                .addDefaultSpawnEntries()
                 .addDefaultFeatures(
-                    DefaultFeature.FOREST_GRASS,
-                    DefaultFeature.FOREST_FLOWERS
+                    LAND_CARVERS,
+                    STRUCTURES,
+                    LAKES,
+                    DUNGEONS,
+                    MINEABLES,
+                    ORES,
+                    DISKS,
+                    DEFAULT_MUSHROOMS,
+                    DEFAULT_VEGETATION,
+                    SPRINGS,
+                    FOREST_GRASS,
+                    FOREST_FLOWERS
                 )
         )
 
-        AZURE = template.builder()
+        BANDED_MOUNTAINS = template.builder()
             .depth(0.5f)
             .scale(0.75f)
+            .build()
+
+        SHATTERD_BANDED_MOUNTAINS = template.builder()
+            .depth(0.8f)
+            .scale(1.2f)
             .build()
     }
 
     fun register() {
-        JourniaBiomes.register("azure", AZURE)
+        JourniaBiomes.register("banded_mountains", BANDED_MOUNTAINS)
+        JourniaBiomes.register("shattered_banded_mountains", SHATTERD_BANDED_MOUNTAINS)
+
+        OverworldBiomes.addContinentalBiome(BANDED_MOUNTAINS, OverworldClimate.TEMPERATE, 0.8)
+        OverworldBiomes.addBiomeVariant(BANDED_MOUNTAINS, SHATTERD_BANDED_MOUNTAINS, 0.3)
     }
 }
