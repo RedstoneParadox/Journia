@@ -5,14 +5,18 @@ import com.terraformersmc.terraform.biome.builder.TerraformBiome
 import io.github.redstoneparadox.journia.config.BiomesConfig
 import io.github.redstoneparadox.journia.world.gen.feature.BlockBandsFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
+import io.github.redstoneparadox.journia.world.gen.feature.NewSurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes
 import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
 import net.minecraft.block.Blocks
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.GenerationStep
+import net.minecraft.world.gen.decorator.Decorator
+import net.minecraft.world.gen.decorator.RangeDecoratorConfig
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures
 import net.minecraft.world.gen.feature.Feature
+import net.minecraft.world.gen.feature.OreFeatureConfig
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 object BandedMountainsBiomes {
@@ -33,6 +37,22 @@ object BandedMountainsBiomes {
                 .category(Biome.Category.EXTREME_HILLS)
                 .addCustomFeature(
                     GenerationStep.Feature.RAW_GENERATION,
+                    JourniaFeatures.NEW_SURFACE_PATCH.configure(
+                        NewSurfacePatchFeatureConfig(
+                            Blocks.GRASS_BLOCK.defaultState,
+                            0.3,
+                            listOf(
+                                Blocks.STONE.defaultState,
+                                Blocks.CYAN_TERRACOTTA.defaultState,
+                                Blocks.BLUE_TERRACOTTA.defaultState,
+                                Blocks.GRAY_TERRACOTTA.defaultState,
+                                Blocks.BLACK_TERRACOTTA.defaultState
+                            )
+                        )
+                    )
+                )
+                .addCustomFeature(
+                    GenerationStep.Feature.RAW_GENERATION,
                     JourniaFeatures.BLOCK_BANDS.configure(
                         BlockBandsFeatureConfig(
                             listOf(
@@ -51,6 +71,31 @@ object BandedMountainsBiomes {
                         )
                     )
                 )
+                .addCustomFeature(
+                    GenerationStep.Feature.UNDERGROUND_ORES, Feature.ORE.configure(
+                        OreFeatureConfig(OreFeatureConfig.Target.NATURAL_STONE, Blocks.DIRT.defaultState, 33)
+                    ).createDecoratedFeature(Decorator.COUNT_RANGE.configure(RangeDecoratorConfig(10, 0, 0, 63)))
+                )
+                .addCustomFeature(
+                    GenerationStep.Feature.UNDERGROUND_ORES, Feature.ORE.configure(
+                        OreFeatureConfig(OreFeatureConfig.Target.NATURAL_STONE, Blocks.GRAVEL.defaultState, 33)
+                    ).createDecoratedFeature(Decorator.COUNT_RANGE.configure(RangeDecoratorConfig(8, 0, 0, 256)))
+                )
+                .addCustomFeature(
+                    GenerationStep.Feature.UNDERGROUND_ORES, Feature.ORE.configure(
+                        OreFeatureConfig(OreFeatureConfig.Target.NATURAL_STONE, Blocks.GRANITE.defaultState, 33)
+                    ).createDecoratedFeature(Decorator.COUNT_RANGE.configure(RangeDecoratorConfig(10, 0, 0, 63)))
+                )
+                .addCustomFeature(
+                    GenerationStep.Feature.UNDERGROUND_ORES, Feature.ORE.configure(
+                        OreFeatureConfig(OreFeatureConfig.Target.NATURAL_STONE, Blocks.DIORITE.defaultState, 33)
+                    ).createDecoratedFeature(Decorator.COUNT_RANGE.configure(RangeDecoratorConfig(10, 0, 0, 63)))
+                )
+                .addCustomFeature(
+                    GenerationStep.Feature.UNDERGROUND_ORES, Feature.ORE.configure(
+                        OreFeatureConfig(OreFeatureConfig.Target.NATURAL_STONE, Blocks.ANDESITE.defaultState, 33)
+                    ).createDecoratedFeature(Decorator.COUNT_RANGE.configure(RangeDecoratorConfig(10, 0, 0, 80)))
+                )
                 .addTreeFeature(
                     Feature.TREE.configure(DefaultBiomeFeatures.OAK_TREE_WITH_RARE_BEEHIVES_CONFIG),
                     3
@@ -65,7 +110,7 @@ object BandedMountainsBiomes {
                     STRUCTURES,
                     LAKES,
                     DUNGEONS,
-                    MINEABLES,
+                    // MINEABLES,
                     ORES,
                     DISKS,
                     DEFAULT_MUSHROOMS,

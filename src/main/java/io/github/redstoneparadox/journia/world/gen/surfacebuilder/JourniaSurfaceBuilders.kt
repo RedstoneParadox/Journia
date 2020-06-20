@@ -22,7 +22,7 @@ object JourniaSurfaceBuilders {
     val MUD_CONFIG = TernarySurfaceConfig(JourniaBlocks.MUD.defaultState, JourniaBlocks.MUD.defaultState, JourniaBlocks.MUD.defaultState)
     val SALT_FLATS_CONFIG = TernarySurfaceConfig(Blocks.WHITE_CONCRETE_POWDER.defaultState, Blocks.WHITE_CONCRETE_POWDER.defaultState, Blocks.WHITE_CONCRETE_POWDER.defaultState)
     val BIANCO_CONFIG = TernarySurfaceConfig(Blocks.WHITE_TERRACOTTA.defaultState, Blocks.WHITE_TERRACOTTA.defaultState, Blocks.WHITE_TERRACOTTA.defaultState)
-    val BANDED_MOUNTAINS_CONFIG = TernarySurfaceConfig(Blocks.GRASS_BLOCK.defaultState, Blocks.STONE.defaultState, Blocks.SAND.defaultState)
+    val BANDED_MOUNTAINS_CONFIG = TernarySurfaceConfig(Blocks.STONE.defaultState, Blocks.STONE.defaultState, Blocks.SAND.defaultState)
 
     val PENTA: SurfaceBuilder<PentaSurfaceConfig> = PentaSurfaceBuilder()
     val WETLANDS: SurfaceBuilder<TernarySurfaceConfig> = WetlandsSurfaceBuilder()
