@@ -3,11 +3,11 @@
   "group": "planks",
   "ingredients": [
     {
-      "tag": "minecraft:pine_logs"
+      "tag": "journia:pine_logs"
     }
   ],
   "result": {
-    "item": "minecraft:pine_planks",
+    "item": "journia:pine_planks",
     "count": 4
   }
 }

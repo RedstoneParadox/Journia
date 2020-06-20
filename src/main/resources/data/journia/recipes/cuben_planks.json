@@ -3,11 +3,11 @@
   "group": "planks",
   "ingredients": [
     {
-      "tag": "minecraft:cuben_logs"
+      "tag": "journia:cuben_logs"
     }
   ],
   "result": {
-    "item": "minecraft:cuben_planks",
+    "item": "journia:cuben_planks",
     "count": 4
   }
 }
