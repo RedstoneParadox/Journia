@@ -58,10 +58,10 @@ object JourniaBiomes {
             continentalBiome(ROCKY_PLAINS, OverworldClimate.COOL, BiomesConfig.RockyPlains.weight)
         }
 
-        register("salt_flats", SaltFlatsBiomes.SALT_FLATS)
+        // register("salt_flats", SaltFlatsBiomes.SALT_FLATS)
 
         CubenForestBiomes.register()
-        BiancoBiomes.register()
+        // BiancoBiomes.register()
         BandedMountainsBiomes.register()
     }
 

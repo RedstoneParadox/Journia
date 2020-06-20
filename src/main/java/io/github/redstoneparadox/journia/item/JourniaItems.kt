@@ -47,7 +47,7 @@ object JourniaItems {
     fun registerAll() {
         register("cracked_ground", CRACKED_GROUND)
 
-        register("green_mushroom_block", GREEN_MUSHROOM_BLOCK)
+        // register("green_mushroom_block", GREEN_MUSHROOM_BLOCK)
 
         register("cuben_log", CUBEN_LOG)
         register("cuben_sapling", CUBEN_SAPLING)
