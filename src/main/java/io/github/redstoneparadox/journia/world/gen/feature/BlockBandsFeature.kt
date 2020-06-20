@@ -33,7 +33,7 @@ class BlockBandsFeature: Feature<BlockBandsFeatureConfig>(BlockBandsFeatureConfi
 
                         val state = states[index]
                         val position = pos.add(x, y, z)
-                        if (state != AIR_STATE && world.testBlockState(position) { it.block == STONE }) {
+                        if (state != AIR_STATE && world.testBlockState(position) { it.block == STONE || it.block == DIRT }) {
                             world.setBlockState(position, state, 19)
                         }
                     }
@@ -88,5 +88,6 @@ class BlockBandsFeature: Feature<BlockBandsFeatureConfig>(BlockBandsFeatureConfi
     companion object {
         val AIR_STATE: BlockState = Blocks.AIR.defaultState
         val STONE: Block = Blocks.STONE
+        val DIRT: Block = Blocks.DIRT
     }
 }

@@ -13,8 +13,8 @@ object BiomesConfig: RootConfigCategory("biomes.json5") {
 
     object BandedMountains: ConfigCategory("banded_mountains") {
         val enabled: Boolean by option(true, "enabled", "Sets the Banded Mountains biome and its variants are enabled.")
-        val weight: Double by option(0.8, "weight", "Sets the weight for the Banded Mountains biome.")
-        val shattered_chance: Double by option(0.15, 0.0..1.0, "shattered_chance", "Sets the chance for this biome to be replaced with the shattered variant.")
+        val weight: Double by option(1.0, "weight", "Sets the weight for the Banded Mountains biome.")
+        val modified_chance: Double by option(0.15, 0.0..1.0, "shattered_chance", "Sets the chance for this biome to be replaced with its modified variant.")
     }
 
     object GroenwoodForest: ConfigCategory("groenwood_forest", "Groenwood Forest Biome option") {
