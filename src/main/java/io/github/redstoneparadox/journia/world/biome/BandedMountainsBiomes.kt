@@ -131,7 +131,7 @@ object BandedMountainsBiomes {
 
         SHATTERD_BANDED_MOUNTAINS = template.builder()
             .depth(0.8f)
-            .scale(1.2f)
+            .scale(1.0f)
             .build()
 
         BANDED_MOUNTAINS_RIVER = template.builder()
