@@ -60,7 +60,7 @@ object JourniaBiomes {
 
         register("salt_flats", SaltFlatsBiomes.SALT_FLATS)
 
-        GroenwoodForestBiomes.register()
+        CubenForestBiomes.register()
         BiancoBiomes.register()
         BandedMountainsBiomes.register()
     }

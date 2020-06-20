@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "type=bottom": { "model": "journia:block/cuben_slab" },
+    "type=top": { "model": "journia:block/cuben_slab_top" },
+    "type=double": { "model": "journia:block/cuben_planks" }
+  }
+}

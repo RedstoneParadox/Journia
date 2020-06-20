@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "end": "journia:block/groenwood_log_top",
-    "side": "journia:block/groenwood_log"
-  }
-}

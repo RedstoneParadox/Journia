@@ -5,5 +5,5 @@ import net.minecraft.world.gen.foliage.FoliagePlacerType
 
 object JourniaFoliagePlacers {
     val PINE_FOLIAGE_PLACER: FoliagePlacerType<PineFoliagePlacer> = AccessorFoliageType.callRegister("journia:pine_foliage_placer", PineFoliagePlacer.CODEC)
-    val GROENWOOD_FOLIAGE_PLACER: FoliagePlacerType<GroenwoodFoliagePlacer> = AccessorFoliageType.callRegister("journia:groenwood_foliage", GroenwoodFoliagePlacer.CODEC)
+    val CUBEN_FOLIAGE_PLACER: FoliagePlacerType<CubenFoliagePlacer> = AccessorFoliageType.callRegister("journia:cuben_foliage_placer", CubenFoliagePlacer.CODEC)
 }

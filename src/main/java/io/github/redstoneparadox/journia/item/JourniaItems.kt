@@ -18,17 +18,17 @@ object JourniaItems {
 
     val GREEN_MUSHROOM_BLOCK = blockItem(JourniaBlocks.GREEN_MUSHROOM_BLOCK)
 
-    val GROENWOOD_LOG = blockItem(JourniaBlocks.GROENWOOD_LOG)
-    val GROENWOOD_LEAVES = blockItem(JourniaBlocks.GROENWOOD_LEAVES)
-    val GROENWOOD_SAPLING = blockItem(JourniaBlocks.GROENWOOD_SAPLING, ItemGroup.DECORATIONS)
-    val GROENWOOD_PLANKS = blockItem(JourniaBlocks.GROENWOOD_PLANKS)
-    val GROENWOOD_SLAB = blockItem(JourniaBlocks.GROENWOOD_SLAB)
-    val GROENWOOD_STAIRS = blockItem(JourniaBlocks.GROENWOOD_STAIRS)
-    val GROENWOOD_FENCE = blockItem(JourniaBlocks.GROENWOOD_FENCE, ItemGroup.DECORATIONS)
-    val GROENWOOD_FENCE_GATE = blockItem(JourniaBlocks.GROENWOOD_FENCE_GATE, ItemGroup.DECORATIONS)
-    val GROENWOOD_BUTTON = blockItem(JourniaBlocks.GROENWOOD_BUTTON, ItemGroup.REDSTONE)
-    val GROENWOOD_PRESSURE_PLATE = blockItem(JourniaBlocks.GROENWOOD_PRESSURE_PLATE, ItemGroup.REDSTONE)
-    val GROENWOOD_BOAT = boatItem("groenwood") { JourniaEntityTypes.GROENWOOD_BOAT }
+    val CUBEN_LOG = blockItem(JourniaBlocks.CUBEN_LOG)
+    val CUBEN_LEAVES = blockItem(JourniaBlocks.CUBEN_LEAVES)
+    val CUBEN_SAPLING = blockItem(JourniaBlocks.CUBEN_SAPLING, ItemGroup.DECORATIONS)
+    val CUBEN_PLANKS = blockItem(JourniaBlocks.CUBEN_PLANKS)
+    val CUBEN_SLAB = blockItem(JourniaBlocks.CUBEN_SLAB)
+    val CUBEN_STAIRS = blockItem(JourniaBlocks.CUBEN_STAIRS)
+    val CUBEN_FENCE = blockItem(JourniaBlocks.CUBEN_FENCE, ItemGroup.DECORATIONS)
+    val CUBEN_FENCE_GATE = blockItem(JourniaBlocks.CUBEN_FENCE_GATE, ItemGroup.DECORATIONS)
+    val CUBEN_BUTTON = blockItem(JourniaBlocks.CUBEN_BUTTON, ItemGroup.REDSTONE)
+    val CUBEN_PRESSURE_PLATE = blockItem(JourniaBlocks.CUBEN_PRESSURE_PLATE, ItemGroup.REDSTONE)
+    val CUBEN_BOAT = boatItem("cuben") { JourniaEntityTypes.CUBEN_BOAT }
 
     val PINE_LOG = blockItem(JourniaBlocks.PINE_LOG)
     val PINE_LEAVES = blockItem(JourniaBlocks.PINE_LEAVES)
@@ -49,17 +49,17 @@ object JourniaItems {
 
         register("green_mushroom_block", GREEN_MUSHROOM_BLOCK)
 
-        register("groenwood_log", GROENWOOD_LOG)
-        register("groenwood_sapling", GROENWOOD_SAPLING)
-        register("groenwood_leaves", GROENWOOD_LEAVES)
-        register("groenwood_planks", GROENWOOD_PLANKS)
-        register("groenwood_slab", GROENWOOD_SLAB)
-        register("groenwood_stairs", GROENWOOD_STAIRS)
-        register("groenwood_fence", GROENWOOD_FENCE)
-        register("groenwood_fence_gate", GROENWOOD_FENCE_GATE)
-        register("groenwood_button", GROENWOOD_BUTTON)
-        register("groenwood_pressure_plate", GROENWOOD_PRESSURE_PLATE)
-        register("groenwood_boat", GROENWOOD_BOAT)
+        register("cuben_log", CUBEN_LOG)
+        register("cuben_sapling", CUBEN_SAPLING)
+        register("cuben_leaves", CUBEN_LEAVES)
+        register("cuben_planks", CUBEN_PLANKS)
+        register("cuben_slab", CUBEN_SLAB)
+        register("cuben_stairs", CUBEN_STAIRS)
+        register("cuben_fence", CUBEN_FENCE)
+        register("cuben_fence_gate", CUBEN_FENCE_GATE)
+        register("cuben_button", CUBEN_BUTTON)
+        register("cuben_pressure_plate", CUBEN_PRESSURE_PLATE)
+        register("cuben_boat", CUBEN_BOAT)
 
         register("mud", MUD)
 

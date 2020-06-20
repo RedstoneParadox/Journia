@@ -1,8 +1,0 @@
-{
-  "parent": "block/slab",
-  "textures": {
-    "bottom": "journia:block/groenwood_planks",
-    "top": "journia:block/groenwood_planks",
-    "side": "journia:block/groenwood_planks"
-  }
-}

@@ -2,9 +2,9 @@ package io.github.redstoneparadox.journia.world.gen.feature
 
 import io.github.redstoneparadox.journia.block.JourniaBlocks
 import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
-import io.github.redstoneparadox.journia.world.gen.foliage.GroenwoodFoliagePlacer
+import io.github.redstoneparadox.journia.world.gen.foliage.CubenFoliagePlacer
 import io.github.redstoneparadox.journia.world.gen.foliage.PineFoliagePlacer
-import io.github.redstoneparadox.journia.world.gen.trunk.GroenwoodTrunkPlacer
+import io.github.redstoneparadox.journia.world.gen.trunk.CubenTrunkPlacer
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.state.property.Properties
@@ -18,7 +18,6 @@ import net.minecraft.world.gen.feature.*
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer
-import java.util.function.Function
 
 object JourniaFeatures {
     private val PINE_LOG: BlockState = JourniaBlocks.PINE_LOG.defaultState
@@ -172,12 +171,12 @@ object JourniaFeatures {
             .build()
     }
 
-    fun groenwoodTreeConfig(): TreeFeatureConfig {
+    fun cubenTreeConfig(): TreeFeatureConfig {
         return TreeFeatureConfig.Builder(
-            SimpleBlockStateProvider(JourniaBlocks.GROENWOOD_LOG.defaultState),
-            SimpleBlockStateProvider(JourniaBlocks.GROENWOOD_LEAVES.defaultState.with(Properties.PERSISTENT, true)),
-            GroenwoodFoliagePlacer(3, 0, 0, 0),
-            GroenwoodTrunkPlacer(5, 10, 0),
+            SimpleBlockStateProvider(JourniaBlocks.CUBEN_LOG.defaultState),
+            SimpleBlockStateProvider(JourniaBlocks.CUBEN_LEAVES.defaultState.with(Properties.PERSISTENT, true)),
+            CubenFoliagePlacer(3, 0, 0, 0),
+            CubenTrunkPlacer(5, 10, 0),
             TwoLayersFeatureSize(3, 0, 3)
         )
             .build()
