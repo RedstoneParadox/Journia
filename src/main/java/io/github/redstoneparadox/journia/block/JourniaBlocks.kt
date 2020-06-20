@@ -12,6 +12,9 @@ object JourniaBlocks {
     val GREEN_MUSHROOM_BLOCK = GreenMushroomBlock()
 
     val CUBEN_LOG = PillarBlock(FabricBlockSettings.copy(Blocks.OAK_LOG))
+    val STRIPPED_CUBEN_LOG = PillarBlock(FabricBlockSettings.copy(Blocks.STRIPPED_OAK_LOG))
+    val CUBEN_WOOD = PillarBlock(FabricBlockSettings.copy(Blocks.OAK_WOOD))
+    val STRIPPED_CUBEN_WOOD = PillarBlock(FabricBlockSettings.copy(Blocks.STRIPPED_OAK_WOOD))
     val CUBEN_LEAVES = LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES))
     val CUBEN_SAPLING = JourniaSaplingBlock(JourniaSaplingGenerator.PINE)
     val CUBEN_PLANKS = Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS))
@@ -41,6 +44,9 @@ object JourniaBlocks {
         // register("green_mushroom_block", GREEN_MUSHROOM_BLOCK)
 
         register("cuben_log", CUBEN_LOG)
+        register("stripped_cuben_log", STRIPPED_CUBEN_LOG)
+        register("cuben_wood", CUBEN_WOOD)
+        register("stripped_cuben_wood", STRIPPED_CUBEN_WOOD)
         register("cuben_leaves", CUBEN_LEAVES)
         register("cuben_sapling", CUBEN_SAPLING)
         register("cuben_planks", CUBEN_PLANKS)

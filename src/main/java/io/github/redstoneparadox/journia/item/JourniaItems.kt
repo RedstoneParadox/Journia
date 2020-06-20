@@ -19,6 +19,9 @@ object JourniaItems {
     val GREEN_MUSHROOM_BLOCK = blockItem(JourniaBlocks.GREEN_MUSHROOM_BLOCK)
 
     val CUBEN_LOG = blockItem(JourniaBlocks.CUBEN_LOG)
+    val STRIPPED_CUBEN_LOG = blockItem(JourniaBlocks.STRIPPED_CUBEN_LOG)
+    val CUBEN_WOOD = blockItem(JourniaBlocks.CUBEN_WOOD)
+    val STRIPPED_CUBEN_WOOD = blockItem(JourniaBlocks.STRIPPED_CUBEN_WOOD)
     val CUBEN_LEAVES = blockItem(JourniaBlocks.CUBEN_LEAVES)
     val CUBEN_SAPLING = blockItem(JourniaBlocks.CUBEN_SAPLING, ItemGroup.DECORATIONS)
     val CUBEN_PLANKS = blockItem(JourniaBlocks.CUBEN_PLANKS)
@@ -50,6 +53,9 @@ object JourniaItems {
         // register("green_mushroom_block", GREEN_MUSHROOM_BLOCK)
 
         register("cuben_log", CUBEN_LOG)
+        register("stripped_cuben_log", STRIPPED_CUBEN_LOG)
+        register("cuben_wood", CUBEN_WOOD)
+        register("stripped_cuben_wood", STRIPPED_CUBEN_WOOD)
         register("cuben_sapling", CUBEN_SAPLING)
         register("cuben_leaves", CUBEN_LEAVES)
         register("cuben_planks", CUBEN_PLANKS)

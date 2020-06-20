@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "journia:cuben_log"
+    }
+  },
+  "result": {
+    "item": "journia:cuben_wood",
+    "count": 3
+  }
+}

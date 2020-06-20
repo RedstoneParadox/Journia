@@ -1,0 +1,7 @@
+{
+  "parent": "journia:block/cube_column",
+  "textures": {
+    "end": "journia:block/cuben_log",
+    "side": "journia:block/cuben_log"
+  }
+}

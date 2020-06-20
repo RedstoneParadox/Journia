@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y":    { "model": "journia:block/stripped_cuben_log" },
+    "axis=z":     { "model": "journia:block/stripped_cuben_log", "x": 90 },
+    "axis=x":     { "model": "journia:block/stripped_cuben_log", "x": 90, "y": 90 }
+  }
+}
