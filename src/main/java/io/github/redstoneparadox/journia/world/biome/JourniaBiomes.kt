@@ -14,8 +14,6 @@ object JourniaBiomes {
     val WASTELAND_SHORE: Biome = WastelandShoreBiome()
     val WASTELAND_EDGE: Biome = WastelandEdgeBiome()
 
-    val ROCKY_TAIGA: Biome = RockyTaigaBiome()
-
     val SHATTERED_BADLANDS_PLATEAU: Biome = ShatteredBadlandsPlateauBiome()
 
     val JUNGLE_WETLANDS: Biome = JungleWetlandsBiome()
@@ -25,6 +23,12 @@ object JourniaBiomes {
     val ROCKY_PLAINS: Biome = RockyPlainsBiome()
 
     fun registerAll() {
+        RockyTaigaBiomes.register()
+        CubenForestBiomes.register()
+        // BiancoBiomes.register()
+        BandedMountainsBiomes.register()
+
+
         if (BiomesConfig.Wasteland.enabled) {
             register("wasteland", WASTELAND)
             register("wasteland_river", WASTELAND_RIVER)
@@ -34,11 +38,6 @@ object JourniaBiomes {
             riverBiome(WASTELAND, WASTELAND_RIVER)
             shoreBiome(WASTELAND, WASTELAND_SHORE, 1.0)
             edgeBiome(WASTELAND, WASTELAND_EDGE, 1.0)
-        }
-        if (BiomesConfig.RockyTaiga.enabled) {
-            register("rocky_taiga", ROCKY_TAIGA)
-            continentalBiome(ROCKY_TAIGA, OverworldClimate.COOL, BiomesConfig.RockyTaiga.weight)
-            spawnBiome(ROCKY_TAIGA)
         }
         if (BiomesConfig.ShatteredBadlandsPlateau.enabled) {
             register("shattered_badlands_plateau", SHATTERED_BADLANDS_PLATEAU)
@@ -59,10 +58,6 @@ object JourniaBiomes {
         }
 
         // register("salt_flats", SaltFlatsBiomes.SALT_FLATS)
-
-        CubenForestBiomes.register()
-        // BiancoBiomes.register()
-        BandedMountainsBiomes.register()
     }
 
     fun register(id: String, biome: Biome) {

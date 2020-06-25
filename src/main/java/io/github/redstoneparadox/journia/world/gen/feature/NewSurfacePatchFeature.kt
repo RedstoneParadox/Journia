@@ -20,7 +20,9 @@ class NewSurfacePatchFeature: Feature<NewSurfacePatchFeatureConfig>(NewSurfacePa
 
         for (x in 0..15) {
             for (z in 0..15) {
-                if (sampler!!.eval(x + pos.x, z + pos.z) <= config.coverage) {
+                val noise = sampler!!.eval(x + pos.x, z + pos.z)
+
+                if ((noise + 1)/2 <= config.coverage) {
                     val basePos = pos.add(x, 0, z)
                     val topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, basePos).down()
                     if (world.testBlockState(topPos) { config.targets.contains(it) }) {
