@@ -23,7 +23,7 @@ object JourniaFeatures {
     private val PINE_LOG: BlockState = JourniaBlocks.PINE_LOG.defaultState
     private val PINE_LEAVES: BlockState = JourniaBlocks.PINE_LEAVES.defaultState.with(Properties.PERSISTENT, true)
 
-    val PINE_TREE_CONFIG = pineTreeConfig(PINE_LOG, PINE_LEAVES, 8, 2, 1)
+    val PINE_TREE_CONFIG = pineTreeConfig(PINE_LOG, PINE_LEAVES, 9, 2, 3)
     val DEAD_TREE_CONFIG = DeadTreeFeatureConfig(Blocks.OAK_LOG.defaultState, 4, 2)
     val DEAD_BIRCH_TREE_CONFIG = DeadTreeFeatureConfig(Blocks.BIRCH_LOG.defaultState, 4, 2)
 

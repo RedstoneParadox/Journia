@@ -26,8 +26,8 @@ object RockyTaigaBiomes {
                 .downfall(0.8F)
                 .waterColor(4159204)
                 .waterFogColor(329011)
-                //.addTreeFeature(Feature.TREE.configure(JourniaFeatures.PINE_TREE_CONFIG), 5)
-                .addTreeFeature(Feature.TREE.configure(DefaultBiomeFeatures.PINE_TREE_CONFIG), 1)
+                .addTreeFeature(Feature.TREE.configure(JourniaFeatures.PINE_TREE_CONFIG), 4)
+                .addTreeFeature(Feature.TREE.configure(DefaultBiomeFeatures.PINE_TREE_CONFIG), 2)
                 .addTreeFeature(Feature.TREE.configure(DefaultBiomeFeatures.SPRUCE_TREE_CONFIG), 2)
                 .addCustomFeature(
                     GenerationStep.Feature.LOCAL_MODIFICATIONS,
