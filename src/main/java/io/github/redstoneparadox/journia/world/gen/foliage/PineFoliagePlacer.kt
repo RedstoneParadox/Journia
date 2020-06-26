@@ -30,7 +30,7 @@ class PineFoliagePlacer(radius: Int, randomRadius: Int, offset: Int, randomOffse
         return trunkHeight + 1
     }
 
-    override fun method_28843(): FoliagePlacerType<*> {
+    override fun getType(): FoliagePlacerType<*> {
         return JourniaFoliagePlacers.PINE_FOLIAGE_PLACER
     }
 
