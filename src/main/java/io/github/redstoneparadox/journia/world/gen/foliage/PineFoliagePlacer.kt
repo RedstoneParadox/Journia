@@ -19,8 +19,10 @@ class PineFoliagePlacer(radius: Int, randomRadius: Int, offset: Int, randomOffse
         val mutable = BlockPos.Mutable()
 
         LEAF_POSITIONS.forEach {
-            mutable.set(top)
-            mutable.add(it)
+            mutable.x = top.x + it.x
+            mutable.y = top.y + it.y
+            mutable.z = top.z + it.z
+
             if (TreeFeature.canReplace(world, mutable)) world.setBlockState(mutable, config.leavesProvider.getBlockState(random, mutable), 19)
             blockBox?.encompass(BlockBox(mutable, mutable))
         }
