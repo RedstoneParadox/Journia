@@ -187,7 +187,7 @@ class RockyPlainsBiome: Biome(
         addFeature(
             GenerationStep.Feature.LOCAL_MODIFICATIONS,
             Feature.FOREST_ROCK.configure(
-                BoulderFeatureConfig(
+                ForestRockFeatureConfig(
                     Blocks.COBBLESTONE.defaultState,
                     2
                 )
@@ -200,7 +200,7 @@ class RockyPlainsBiome: Biome(
         addFeature(
             GenerationStep.Feature.LOCAL_MODIFICATIONS,
             Feature.FOREST_ROCK.configure(
-                BoulderFeatureConfig(
+                ForestRockFeatureConfig(
                     Blocks.MOSSY_COBBLESTONE.defaultState,
                     2
                 )

@@ -38,7 +38,7 @@ class CubenTrunkPlacer(baseHeight: Int, firstRandomHeight: Int, secondRandomHeig
         return nodes.concat(mutableListOf(CubenFoliagePlacer.CubenTreeNode(pos.up(trunkHeight - 1), 5, false, false)))
     }
 
-    override fun method_28903(): TrunkPlacerType<*> {
+    override fun getType(): TrunkPlacerType<*> {
         return JourniaTrunkPlacers.CUBEN_TRUNK_PLACER
     }
 

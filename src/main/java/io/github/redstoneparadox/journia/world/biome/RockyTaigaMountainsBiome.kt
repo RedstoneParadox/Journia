@@ -211,7 +211,7 @@ class RockyTaigaMountainsBiome: Biome(
         addFeature(
             GenerationStep.Feature.LOCAL_MODIFICATIONS,
             Feature.FOREST_ROCK.configure(
-                BoulderFeatureConfig(
+                ForestRockFeatureConfig(
                     Blocks.ANDESITE.defaultState,
                     0
                 )
@@ -224,7 +224,7 @@ class RockyTaigaMountainsBiome: Biome(
         addFeature(
             GenerationStep.Feature.LOCAL_MODIFICATIONS,
             Feature.FOREST_ROCK.configure(
-                BoulderFeatureConfig(
+                ForestRockFeatureConfig(
                     Blocks.COBBLESTONE.defaultState,
                     0
                 )
@@ -237,7 +237,7 @@ class RockyTaigaMountainsBiome: Biome(
         addFeature(
             GenerationStep.Feature.LOCAL_MODIFICATIONS,
             Feature.FOREST_ROCK.configure(
-                BoulderFeatureConfig(
+                ForestRockFeatureConfig(
                     Blocks.MOSSY_COBBLESTONE.defaultState,
                     0
                 )

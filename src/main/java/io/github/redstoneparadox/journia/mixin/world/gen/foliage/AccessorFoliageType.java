@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(FoliagePlacerType.class)
 public interface AccessorFoliageType {
 
-    @Invoker(value = "method_28850")
+    @Invoker(value = "register")
     static <P extends FoliagePlacer> FoliagePlacerType<P> callRegister(String id, Codec<P> codec) {
         throw new AssertionError("Mixin dummy");
     }

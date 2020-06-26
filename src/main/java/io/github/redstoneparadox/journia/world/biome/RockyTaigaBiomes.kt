@@ -32,7 +32,7 @@ object RockyTaigaBiomes {
                 .addCustomFeature(
                     GenerationStep.Feature.LOCAL_MODIFICATIONS,
                     Feature.FOREST_ROCK.configure(
-                        BoulderFeatureConfig(
+                        ForestRockFeatureConfig(
                             Blocks.ANDESITE.defaultState,
                             0
                         )
@@ -44,7 +44,7 @@ object RockyTaigaBiomes {
                 ).addCustomFeature(
                     GenerationStep.Feature.LOCAL_MODIFICATIONS,
                     Feature.FOREST_ROCK.configure(
-                        BoulderFeatureConfig(
+                        ForestRockFeatureConfig(
                             Blocks.COBBLESTONE.defaultState,
                             0
                         )
@@ -57,7 +57,7 @@ object RockyTaigaBiomes {
                 .addCustomFeature(
                     GenerationStep.Feature.LOCAL_MODIFICATIONS,
                     Feature.FOREST_ROCK.configure(
-                        BoulderFeatureConfig(
+                        ForestRockFeatureConfig(
                             Blocks.MOSSY_COBBLESTONE.defaultState,
                             0
                         )

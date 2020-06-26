@@ -61,7 +61,7 @@ class CubenFoliagePlacer(radius: Int, randomRadius: Int, offset: Int, randomOffs
         return trunkHeight + 2
     }
 
-    override fun method_28843(): FoliagePlacerType<*> {
+    override fun getType(): FoliagePlacerType<*> {
         return JourniaFoliagePlacers.CUBEN_FOLIAGE_PLACER
     }
 

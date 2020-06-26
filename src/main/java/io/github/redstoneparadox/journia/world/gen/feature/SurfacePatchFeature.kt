@@ -25,7 +25,7 @@ class SurfacePatchFeature: Feature<SurfacePatchFeatureConfig>(SurfacePatchFeatur
                         break@outer
                     }
                     val block = world.getBlockState(blockPos.down()).block
-                    if (!isDirt(block) && !isStone(
+                    if (!isSoil(block) && !isStone(
                             block
                         )
                     ) {
