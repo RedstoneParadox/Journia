@@ -18,6 +18,7 @@ object JourniaBiomes {
     val ROCKY_PLAINS: Biome = RockyPlainsBiome()
 
     fun registerAll() {
+        ShoreBiomes.register()
         RockyTaigaBiomes.register()
         CubenForestBiomes.register()
         // BiancoBiomes.register()

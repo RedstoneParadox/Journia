@@ -17,7 +17,7 @@ object JourniaSurfaceBuilders {
 
     val WASTELAND_CONFIG = TernarySurfaceConfig(CRACKED_GROUND, CRACKED_GROUND, GRAVEL)
     val WASTELAND_EDGE_CONFIG = TernarySurfaceConfig(COARSE_DIRT, COARSE_DIRT, GRAVEL)
-    val ROCKY_TAIGA_CONFIG = PentaSurfaceConfig(GRASS, STONE, STONE, secondaryCutoff = 1.75, tertiaryCutoff = 1.95, scale = 0.4)
+    val ROCKY_TAIGA_CONFIG = PentaSurfaceConfig(GRASS, STONE, GRAVEL, secondaryCutoff = 1.75, tertiaryCutoff = 1.95, scale = 0.4)
     val WETLANDS_CONFIG = TernarySurfaceConfig(GRASS, Blocks.DIRT.defaultState, JourniaBlocks.MUD.defaultState)
     val MUD_CONFIG = TernarySurfaceConfig(JourniaBlocks.MUD.defaultState, JourniaBlocks.MUD.defaultState, JourniaBlocks.MUD.defaultState)
     val SALT_FLATS_CONFIG = TernarySurfaceConfig(Blocks.WHITE_CONCRETE_POWDER.defaultState, Blocks.WHITE_CONCRETE_POWDER.defaultState, Blocks.WHITE_CONCRETE_POWDER.defaultState)

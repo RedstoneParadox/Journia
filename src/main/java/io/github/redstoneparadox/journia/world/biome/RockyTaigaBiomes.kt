@@ -13,6 +13,7 @@ import net.minecraft.entity.EntityType
 import net.minecraft.util.Identifier
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.Biome.SpawnEntry
+import net.minecraft.world.biome.Biomes
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.CountDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
@@ -140,11 +141,13 @@ object RockyTaigaBiomes {
 
             OverworldBiomes.addContinentalBiome(ROCKY_TAIGA, OverworldClimate.COOL, BiomesConfig.RockyTaiga.weight)
             OverworldBiomes.addHillsBiome(ROCKY_TAIGA, ROCKY_TAIGA_HILLS, 1.0)
+            OverworldBiomes.addShoreBiome(ROCKY_TAIGA, ShoreBiomes.GRAVEL_BEACH, 1.0)
         }
         if (BiomesConfig.RockyTaigaMountains.enabled) {
             JourniaBiomes.register("rocky_taiga_mountains", ROCKY_TAIGA_MOUNTAINS)
 
             OverworldBiomes.addContinentalBiome(ROCKY_TAIGA_MOUNTAINS, OverworldClimate.COOL, BiomesConfig.RockyTaigaMountains.weight)
+            OverworldBiomes.addShoreBiome(ROCKY_TAIGA_MOUNTAINS, Biomes.STONE_SHORE, 1.0)
         }
     }
 }
