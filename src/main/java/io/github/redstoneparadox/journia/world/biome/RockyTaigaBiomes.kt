@@ -7,8 +7,10 @@ import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.journia.world.gen.feature.NewSurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.minecraft.block.Blocks
+import net.minecraft.entity.EntityType
 import net.minecraft.util.Identifier
 import net.minecraft.world.biome.Biome
+import net.minecraft.world.biome.Biome.SpawnEntry
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.CountDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
@@ -87,7 +89,6 @@ object RockyTaigaBiomes {
                     MineshaftFeature.MINESHAFT.configure(MineshaftFeatureConfig(0.004, MineshaftFeature.Type.NORMAL)),
                     StrongholdFeature.STRONGHOLD.configure(FeatureConfig.DEFAULT)
                 )
-                .addDefaultSpawnEntries()
                 .addDefaultFeatures(
                     DefaultFeature.LAKES,
                     DefaultFeature.DUNGEONS,
@@ -102,6 +103,10 @@ object RockyTaigaBiomes {
                     DefaultFeature.SWEET_BERRY_BUSHES,
                     DefaultFeature.FROZEN_TOP_LAYER
                 )
+                .addDefaultSpawnEntries()
+                .addSpawnEntry(SpawnEntry(EntityType.WOLF, 8, 4, 4))
+                .addSpawnEntry(SpawnEntry(EntityType.RABBIT, 4, 2, 3))
+                .addSpawnEntry(SpawnEntry(EntityType.FOX, 8, 2, 4))
         )
 
         ROCKY_TAIGA = template.builder()
