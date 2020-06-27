@@ -19,6 +19,7 @@ import net.minecraft.world.gen.feature.*
 object RockyTaigaBiomes {
     val ROCKY_TAIGA: Biome
     val ROCKY_TAIGA_HILLS: Biome
+    val ROCKY_TAIGA_MOUNTAINS: Biome
 
     init {
         val template = TerraformBiome.Template(
@@ -123,12 +124,20 @@ object RockyTaigaBiomes {
             .depth(0.45f).scale(0.3f)
             .category(Biome.Category.TAIGA)
             .build()
+
+        ROCKY_TAIGA_MOUNTAINS = template.builder()
+            .depth(0.8f).scale(0.8f)
+            .category(Biome.Category.EXTREME_HILLS)
+            .build()
     }
 
     fun register() {
         if (BiomesConfig.RockyTaiga.enabled) {
             JourniaBiomes.register("rocky_taiga", ROCKY_TAIGA)
             JourniaBiomes.register("rocky_taiga_hills", ROCKY_TAIGA_HILLS)
+        }
+        if (BiomesConfig.RockyTaigaMountains.enabled) {
+            JourniaBiomes.register("rocky_taiga_mountains", ROCKY_TAIGA_MOUNTAINS)
         }
     }
 }

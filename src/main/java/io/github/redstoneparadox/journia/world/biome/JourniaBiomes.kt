@@ -47,11 +47,6 @@ object JourniaBiomes {
             register("jungle_wetlands", JUNGLE_WETLANDS)
             variantBiome(Biomes.JUNGLE, JUNGLE_WETLANDS, BiomesConfig.JungleWetlands.chance)
         }
-        if (BiomesConfig.RockyTaigaMountains.enabled) {
-            register("rocky_taiga_mountains", ROCKY_TAIGA_MOUNTAINS)
-            continentalBiome(ROCKY_TAIGA_MOUNTAINS, OverworldClimate.COOL, BiomesConfig.RockyTaigaMountains.weight)
-            shoreBiome(ROCKY_TAIGA_MOUNTAINS, Biomes.STONE_SHORE, 1.0)
-        }
         if (BiomesConfig.RockyPlains.enabled) {
             register("rocky_plains", ROCKY_PLAINS)
             continentalBiome(ROCKY_PLAINS, OverworldClimate.COOL, BiomesConfig.RockyPlains.weight)
