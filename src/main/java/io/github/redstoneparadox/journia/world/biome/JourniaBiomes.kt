@@ -13,13 +13,8 @@ object JourniaBiomes {
     val WASTELAND_RIVER: Biome = WastelandRiverBiome()
     val WASTELAND_SHORE: Biome = WastelandShoreBiome()
     val WASTELAND_EDGE: Biome = WastelandEdgeBiome()
-
     val SHATTERED_BADLANDS_PLATEAU: Biome = ShatteredBadlandsPlateauBiome()
-
     val JUNGLE_WETLANDS: Biome = JungleWetlandsBiome()
-
-    val ROCKY_TAIGA_MOUNTAINS: Biome = RockyTaigaMountainsBiome()
-
     val ROCKY_PLAINS: Biome = RockyPlainsBiome()
 
     fun registerAll() {

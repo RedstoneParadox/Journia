@@ -6,6 +6,8 @@ import io.github.redstoneparadox.journia.config.BiomesConfig
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.journia.world.gen.feature.NewSurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
+import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes
+import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
 import net.minecraft.block.Blocks
 import net.minecraft.entity.EntityType
 import net.minecraft.util.Identifier
@@ -135,9 +137,14 @@ object RockyTaigaBiomes {
         if (BiomesConfig.RockyTaiga.enabled) {
             JourniaBiomes.register("rocky_taiga", ROCKY_TAIGA)
             JourniaBiomes.register("rocky_taiga_hills", ROCKY_TAIGA_HILLS)
+
+            OverworldBiomes.addContinentalBiome(ROCKY_TAIGA, OverworldClimate.COOL, BiomesConfig.RockyTaiga.weight)
+            OverworldBiomes.addHillsBiome(ROCKY_TAIGA, ROCKY_TAIGA_HILLS, 1.0)
         }
         if (BiomesConfig.RockyTaigaMountains.enabled) {
             JourniaBiomes.register("rocky_taiga_mountains", ROCKY_TAIGA_MOUNTAINS)
+
+            OverworldBiomes.addContinentalBiome(ROCKY_TAIGA_MOUNTAINS, OverworldClimate.COOL, BiomesConfig.RockyTaigaMountains.weight)
         }
     }
 }
