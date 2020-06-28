@@ -10,13 +10,10 @@ import net.minecraft.world.gen.feature.Feature
 import java.util.*
 
 class NewSurfacePatchFeature: Feature<NewSurfacePatchFeatureConfig>(NewSurfacePatchFeatureConfig.CODEC) {
-    var sampler: OpenSimplexSampler? = null
+    private val samplers: MutableMap<NewSurfacePatchFeatureConfig, OpenSimplexSampler> = mutableMapOf()
 
     override fun generate(world: ServerWorldAccess, accessor: StructureAccessor, generator: ChunkGenerator, random: Random, pos: BlockPos, config: NewSurfacePatchFeatureConfig): Boolean {
-        if (sampler == null) {
-            sampler = OpenSimplexSampler(16.0, 1.0, 16.0, 1.0)
-            sampler!!.setSeed(world.seed)
-        }
+        val sampler = samplers.computeIfAbsent(config) { OpenSimplexSampler(16.0, 1.0, 16.0, 1.0) }
 
         for (x in 0..15) {
             for (z in 0..15) {
