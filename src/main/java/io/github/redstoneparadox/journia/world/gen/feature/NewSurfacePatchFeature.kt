@@ -26,7 +26,14 @@ class NewSurfacePatchFeature: Feature<NewSurfacePatchFeatureConfig>(NewSurfacePa
                     val basePos = pos.add(x, 0, z)
                     val topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, basePos).down()
                     if (world.testBlockState(topPos) { config.targets.contains(it) }) {
-                        world.setBlockState(topPos, config.state, 19)
+                        if (config.below) {
+                            for (y in 0..4) {
+                                world.setBlockState(topPos.down(0), config.state, 19)
+                            }
+                        }
+                        else {
+                            world.setBlockState(topPos, config.state, 19)
+                        }
                     }
                 }
             }

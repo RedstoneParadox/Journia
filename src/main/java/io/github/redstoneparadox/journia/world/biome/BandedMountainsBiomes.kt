@@ -5,6 +5,7 @@ import com.terraformersmc.terraform.biome.builder.TerraformBiome
 import io.github.redstoneparadox.journia.config.BiomesConfig
 import io.github.redstoneparadox.journia.world.gen.feature.BlockBandsFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
+import io.github.redstoneparadox.journia.world.gen.feature.NewSurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes
 import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
@@ -31,6 +32,18 @@ object BandedMountainsBiomes {
                 .waterColor(4159204)
                 .waterFogColor(329011)
                 .category(Biome.Category.EXTREME_HILLS)
+                .addCustomFeature(
+                    GenerationStep.Feature.RAW_GENERATION,
+                    JourniaFeatures.NEW_SURFACE_PATCH.configure(
+                        NewSurfacePatchFeatureConfig(
+                            Blocks.STONE.defaultState,
+                            0.25,
+                            listOf(
+                                Blocks.GRASS_BLOCK.defaultState
+                            ),
+                            true)
+                    )
+                )
                 .addCustomFeature(
                     GenerationStep.Feature.RAW_GENERATION,
                     JourniaFeatures.BLOCK_BANDS.configure(
@@ -80,8 +93,8 @@ object BandedMountainsBiomes {
         )
 
         BANDED_MOUNTAINS = template.builder()
-            .depth(1.0f)
-            .scale(0.6f)
+            .depth(0.9f)
+            .scale(0.7f)
             .build()
 
         MODIFIED_BANDED_MOUNTAINS = template.builder()
