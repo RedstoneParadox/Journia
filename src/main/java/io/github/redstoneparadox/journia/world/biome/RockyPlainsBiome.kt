@@ -3,6 +3,7 @@ package io.github.redstoneparadox.journia.world.biome
 import com.google.common.collect.ImmutableList
 import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
+import io.github.redstoneparadox.journia.world.gen.feature.RockFormationFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.minecraft.block.Blocks
@@ -35,6 +36,18 @@ class RockyPlainsBiome: Biome(
         )
 ) {
     init {
+        addFeature(
+            GenerationStep.Feature.RAW_GENERATION,
+            JourniaFeatures.ROCK_FORMATION.configure(
+                RockFormationFeatureConfig(6)
+            ).createDecoratedFeature(
+                Decorator.CHANCE_HEIGHTMAP.configure(
+                    ChanceDecoratorConfig(1)
+                )
+            )
+        )
+
+
         addStructureFeature(
             VillageFeature.VILLAGE.configure(
                 StructurePoolFeatureConfig(Identifier("village/taiga/town_centers"), 6)

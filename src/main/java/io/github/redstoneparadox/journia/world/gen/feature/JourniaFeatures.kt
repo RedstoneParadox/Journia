@@ -32,11 +32,13 @@ object JourniaFeatures {
     val SURFACE_PATCH = SurfacePatchFeature()
     val NEW_SURFACE_PATCH = NewSurfacePatchFeature()
     val BLOCK_BANDS = BlockBandsFeature()
+    val ROCK_FORMATION = RockFormationFeature()
 
     fun registerAll() {
         register("pine_tree", PINE_TREE)
         register("new_surface_patch", NEW_SURFACE_PATCH)
         register("block_bands", BLOCK_BANDS)
+        register("rock_formation", ROCK_FORMATION)
 
         // Feature.STRUCTURES.put("Fort", FortFeature.FORT_FEATURE)
 
