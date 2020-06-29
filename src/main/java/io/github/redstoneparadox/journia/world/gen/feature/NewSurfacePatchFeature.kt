@@ -25,7 +25,7 @@ class NewSurfacePatchFeature: Feature<NewSurfacePatchFeatureConfig>(NewSurfacePa
                     if (world.testBlockState(topPos) { config.targets.contains(it) }) {
                         if (config.below) {
                             for (y in 0..4) {
-                                world.setBlockState(topPos.down(0), config.state, 19)
+                                world.setBlockState(topPos.down(y), config.state, 19)
                             }
                         }
                         else {

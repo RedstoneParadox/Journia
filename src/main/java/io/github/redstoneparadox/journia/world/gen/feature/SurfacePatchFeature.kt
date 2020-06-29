@@ -10,6 +10,7 @@ import net.minecraft.world.gen.feature.Feature
 import java.util.*
 import kotlin.math.abs
 
+//TODO: Replace this with NewSurfacePatchFeature so I'm not using bad code.
 class SurfacePatchFeature: Feature<SurfacePatchFeatureConfig>(SurfacePatchFeatureConfig.CODEC) {
 
     private val sampler = OpenSimplexSampler()

@@ -18,6 +18,7 @@ import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.CountDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.feature.*
+import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 object RockyTaigaBiomes {
     val ROCKY_TAIGA: Biome
@@ -27,7 +28,7 @@ object RockyTaigaBiomes {
     init {
         val template = TerraformBiome.Template(
             TerraformBiome.builder()
-                .configureSurfaceBuilder(JourniaSurfaceBuilders.PENTA, JourniaSurfaceBuilders.ROCKY_TAIGA_CONFIG)
+                .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_CONFIG)
                 .precipitation(Biome.Precipitation.RAIN)
                 .temperature(0.25F)
                 .downfall(0.8F)
@@ -40,24 +41,12 @@ object RockyTaigaBiomes {
                     GenerationStep.Feature.LOCAL_MODIFICATIONS,
                     Feature.FOREST_ROCK.configure(
                         ForestRockFeatureConfig(
-                            Blocks.ANDESITE.defaultState,
-                            0
-                        )
-                    ).createDecoratedFeature(
-                        Decorator.FOREST_ROCK.configure(
-                            CountDecoratorConfig(3)
-                        )
-                    )
-                ).addCustomFeature(
-                    GenerationStep.Feature.LOCAL_MODIFICATIONS,
-                    Feature.FOREST_ROCK.configure(
-                        ForestRockFeatureConfig(
                             Blocks.COBBLESTONE.defaultState,
-                            0
+                            1
                         )
                     ).createDecoratedFeature(
                         Decorator.FOREST_ROCK.configure(
-                            CountDecoratorConfig(3)
+                            CountDecoratorConfig(2)
                         )
                     )
                 )
@@ -66,28 +55,36 @@ object RockyTaigaBiomes {
                     Feature.FOREST_ROCK.configure(
                         ForestRockFeatureConfig(
                             Blocks.MOSSY_COBBLESTONE.defaultState,
-                            0
+                            1
                         )
                     ).createDecoratedFeature(
                         Decorator.FOREST_ROCK.configure(
-                            CountDecoratorConfig(3)
+                            CountDecoratorConfig(2)
                         )
                     )
                 ).addCustomFeature(
                     GenerationStep.Feature.RAW_GENERATION,
                     JourniaFeatures.NEW_SURFACE_PATCH.configure(
-                        NewSurfacePatchFeatureConfig(Blocks.COARSE_DIRT.defaultState, 0.3, listOf(
-                            Blocks.GRASS_BLOCK.defaultState,
-                            Blocks.STONE.defaultState,
-                            Blocks.ANDESITE.defaultState
-                        ))
+                        NewSurfacePatchFeatureConfig(Blocks.COARSE_DIRT.defaultState,
+                            0.3,
+                            listOf(
+                                Blocks.GRASS_BLOCK.defaultState
+                            )
+                        )
                     )
                 ).addCustomFeature(
                     GenerationStep.Feature.RAW_GENERATION,
                     JourniaFeatures.NEW_SURFACE_PATCH.configure(
-                        NewSurfacePatchFeatureConfig(Blocks.STONE.defaultState, 0.3, listOf(
-                            Blocks.GRASS_BLOCK.defaultState
-                        ))
+                        NewSurfacePatchFeatureConfig(
+                            Blocks.STONE.defaultState,
+                            0.3,
+                            listOf(
+                                Blocks.GRASS_BLOCK.defaultState,
+                                Blocks.DIRT.defaultState,
+                                Blocks.COARSE_DIRT.defaultState
+                            ),
+                            true
+                        )
                     )
                 )
                 .addStructureFeatures(
