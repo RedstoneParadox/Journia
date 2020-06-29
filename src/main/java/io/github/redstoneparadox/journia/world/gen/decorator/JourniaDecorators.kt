@@ -1,14 +1,17 @@
 package io.github.redstoneparadox.journia.world.gen.decorator
 
 import net.minecraft.util.registry.Registry
+import net.minecraft.world.gen.decorator.ChanceDecoratorConfig
 import net.minecraft.world.gen.decorator.CountDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
 
 object JourniaDecorators {
     val SURFACE_PATCH: Decorator<CountDecoratorConfig> = SurfacePatchDecorator()
+    val RANDOM_HEIGHTMAP: Decorator<ChanceDecoratorConfig> = RandomHeightmapDecorator()
 
     fun registerAll() {
         register("surface_patch", SURFACE_PATCH)
+        register("random_heightmap", RANDOM_HEIGHTMAP)
     }
 
     private fun register(id: String, decorator: Decorator<*>) {

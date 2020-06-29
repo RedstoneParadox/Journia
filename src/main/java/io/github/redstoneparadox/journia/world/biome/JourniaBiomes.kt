@@ -2,6 +2,7 @@ package io.github.redstoneparadox.journia.world.biome
 
 import com.terraformersmc.terraform.biome.builder.TerraformBiome
 import io.github.redstoneparadox.journia.config.BiomesConfig
+import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.journia.world.gen.feature.RockFormationFeatureConfig
 import net.fabricmc.fabric.api.biomes.v1.FabricBiomes
@@ -39,8 +40,8 @@ object JourniaBiomes {
                 JourniaFeatures.ROCK_FORMATION.configure(
                     RockFormationFeatureConfig(6)
                 ).createDecoratedFeature(
-                    Decorator.CHANCE_HEIGHTMAP.configure(
-                        ChanceDecoratorConfig(1)
+                    JourniaDecorators.RANDOM_HEIGHTMAP.configure(
+                        ChanceDecoratorConfig(8)
                     )
                 )
             )
