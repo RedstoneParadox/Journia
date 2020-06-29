@@ -43,6 +43,11 @@ dependencies {
     }
     include "com.terraformersmc:terraform:${project.terraform}"
 
+    modImplementation ("com.terraformersmc:shapes:${project.shapes}") {
+        exclude group: 'net.fabricmc.fabric-api'
+    }
+    include "com.terraformersmc:shapes:${project.shapes}"
+
     modApi ("io.github.cottonmc:Jankson-Fabric:${project.jankson}") {
         exclude group: 'net.fabricmc.fabric-api'
     }
