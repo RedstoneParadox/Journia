@@ -1,14 +1,23 @@
 package io.github.redstoneparadox.journia.world.biome
 
+import com.terraformersmc.terraform.biome.builder.TerraformBiome
 import io.github.redstoneparadox.journia.config.BiomesConfig
+import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
+import io.github.redstoneparadox.journia.world.gen.feature.RockFormationFeatureConfig
 import net.fabricmc.fabric.api.biomes.v1.FabricBiomes
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes
 import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.Biomes
+import net.minecraft.world.gen.GenerationStep
+import net.minecraft.world.gen.decorator.ChanceDecoratorConfig
+import net.minecraft.world.gen.decorator.Decorator
+import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 object JourniaBiomes {
+    private val PLAYGROUND: Biome
     val WASTELAND: Biome = WastelandBiome()
     val WASTELAND_RIVER: Biome = WastelandRiverBiome()
     val WASTELAND_SHORE: Biome = WastelandShoreBiome()
@@ -17,7 +26,32 @@ object JourniaBiomes {
     val JUNGLE_WETLANDS: Biome = JungleWetlandsBiome()
     val ROCKY_PLAINS: Biome = RockyPlainsBiome()
 
+    init {
+        PLAYGROUND = TerraformBiome.builder()
+            .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_CONFIG)
+            .precipitation(Biome.Precipitation.RAIN)
+            .category(Biome.Category.PLAINS)
+            .depth(0.0F).scale(0.0F)
+            .temperature(0.8F).downfall(0.4F)
+            .waterColor(4159204).waterFogColor(329011)
+            .addCustomFeature(
+                GenerationStep.Feature.RAW_GENERATION,
+                JourniaFeatures.ROCK_FORMATION.configure(
+                    RockFormationFeatureConfig(6)
+                ).createDecoratedFeature(
+                    Decorator.CHANCE_HEIGHTMAP.configure(
+                        ChanceDecoratorConfig(1)
+                    )
+                )
+            )
+            .build()
+    }
+
     fun registerAll() {
+        if (FabricLoader.getInstance().isDevelopmentEnvironment) {
+            register("playground", PLAYGROUND)
+        }
+
         ShoreBiomes.register()
         RockyTaigaBiomes.register()
         CubenForestBiomes.register()

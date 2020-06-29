@@ -36,18 +36,6 @@ class RockyPlainsBiome: Biome(
         )
 ) {
     init {
-        addFeature(
-            GenerationStep.Feature.RAW_GENERATION,
-            JourniaFeatures.ROCK_FORMATION.configure(
-                RockFormationFeatureConfig(6)
-            ).createDecoratedFeature(
-                Decorator.CHANCE_HEIGHTMAP.configure(
-                    ChanceDecoratorConfig(1)
-                )
-            )
-        )
-
-
         addStructureFeature(
             VillageFeature.VILLAGE.configure(
                 StructurePoolFeatureConfig(Identifier("village/taiga/town_centers"), 6)
