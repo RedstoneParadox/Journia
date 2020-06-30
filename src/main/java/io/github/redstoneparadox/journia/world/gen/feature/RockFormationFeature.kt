@@ -2,10 +2,10 @@ package io.github.redstoneparadox.journia.world.gen.feature
 
 import com.terraformersmc.shapes.api.Position
 import com.terraformersmc.shapes.impl.Shapes
-import com.terraformersmc.shapes.impl.filler.SimpleFiller
 import com.terraformersmc.shapes.impl.layer.pathfinder.AddLayer
 import com.terraformersmc.shapes.impl.layer.transform.TranslateLayer
 import io.github.redstoneparadox.journia.util.JavaRandom
+import io.github.redstoneparadox.journia.world.gen.util.BlockStateView
 import net.minecraft.block.Blocks
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Vec3d
@@ -37,8 +37,16 @@ class RockFormationFeature: Feature<RockFormationFeatureConfig>(RockFormationFea
             shape = shape.applyLayer(AddLayer(rock))
         }
 
+        val view = BlockStateView()
+        shape.applyLayer(TranslateLayer.of(Position.of(pos.down(3)))).stream().forEach(view.filler(Blocks.STONE.defaultState))
 
-        shape.applyLayer(TranslateLayer.of(Position.of(pos.down(2)))).stream().forEach(SimpleFiller.of(world, Blocks.STONE.defaultState))
+        view.forTop {
+            if (rand.nextFloat() <= 0.3) {
+                setBlockState(it, Blocks.AIR.defaultState)
+            }
+        }
+
+        view.addToWorld(world)
         return true
     }
 }
