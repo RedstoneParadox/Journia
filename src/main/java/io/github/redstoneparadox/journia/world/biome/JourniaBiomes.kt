@@ -39,10 +39,10 @@ object JourniaBiomes {
                 GenerationStep.Feature.RAW_GENERATION,
                 JourniaFeatures.ROCK_FORMATION.configure(
                     RockFormationFeatureConfig(
-                        5..8,
-                        8..14,
-                        2..5,
-                        3..6
+                        3..8,
+                        8..18,
+                        3..6,
+                        5..9
                     )
                 ).createDecoratedFeature(
                     JourniaDecorators.RANDOM_HEIGHTMAP.configure(

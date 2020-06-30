@@ -56,7 +56,8 @@ class BlockStateView {
             forZ { z ->
                 forY { y ->
                     pos.set(x, y, z)
-                    if (states[pos] == Blocks.AIR.defaultState) {
+                    val state = states[pos]
+                    if (state == null || state == Blocks.AIR.defaultState) {
                         pos.y -= 1
                         func(pos)
                         return@forZ

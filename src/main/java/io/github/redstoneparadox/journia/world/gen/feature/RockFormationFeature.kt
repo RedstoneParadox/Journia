@@ -2,13 +2,19 @@ package io.github.redstoneparadox.journia.world.gen.feature
 
 import com.terraformersmc.shapes.api.Position
 import com.terraformersmc.shapes.impl.Shapes
+import com.terraformersmc.shapes.impl.filler.SimpleFiller
 import com.terraformersmc.shapes.impl.layer.pathfinder.AddLayer
 import com.terraformersmc.shapes.impl.layer.transform.TranslateLayer
 import io.github.redstoneparadox.journia.util.JavaRandom
+import io.github.redstoneparadox.journia.world.gen.filler.CachingFiller
 import io.github.redstoneparadox.journia.world.gen.util.BlockStateView
+import net.minecraft.block.Block
+import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Direction
 import net.minecraft.util.math.Vec3d
+import net.minecraft.world.Heightmap
 import net.minecraft.world.ServerWorldAccess
 import net.minecraft.world.gen.StructureAccessor
 import net.minecraft.world.gen.chunk.ChunkGenerator
@@ -37,16 +43,20 @@ class RockFormationFeature: Feature<RockFormationFeatureConfig>(RockFormationFea
             shape = shape.applyLayer(AddLayer(rock))
         }
 
-        val view = BlockStateView()
-        shape.applyLayer(TranslateLayer.of(Position.of(pos.down(3)))).stream().forEach(view.filler(Blocks.STONE.defaultState))
+        val filler = CachingFiller(world, Blocks.STONE.defaultState)
+        shape.applyLayer(TranslateLayer.of(Position.of(pos.down(3)))).stream().forEach(filler)
 
-        view.forTop {
-            if (rand.nextFloat() <= 0.3) {
-                setBlockState(it, Blocks.AIR.defaultState)
+        val mutable = BlockPos.Mutable()
+        for (x in (filler.min.x..filler.max.x)) {
+            for (z in filler.min.z..filler.max.z) {
+                mutable.set(x, 0, z)
+                val top = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, mutable)
+                if (rand.nextFloat() <= 0.6 && world.getBlockState(top).isAir) {
+                    world.setBlockState(mutable, Blocks.TERRACOTTA.defaultState, 19)
+                }
             }
         }
 
-        view.addToWorld(world)
         return true
     }
 }
