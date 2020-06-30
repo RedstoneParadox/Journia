@@ -3,9 +3,9 @@ package io.github.redstoneparadox.journia.world.gen.trunk
 import com.mojang.serialization.Codec
 import com.mojang.serialization.Dynamic
 import com.mojang.serialization.codecs.RecordCodecBuilder
+import io.github.redstoneparadox.journia.util.JavaRandom
 import io.github.redstoneparadox.journia.util.concat
 import io.github.redstoneparadox.journia.util.then
-import io.github.redstoneparadox.journia.util.wrap
 import io.github.redstoneparadox.journia.world.gen.foliage.CubenFoliagePlacer
 import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockBox
@@ -60,7 +60,7 @@ class CubenTrunkPlacer(baseHeight: Int, firstRandomHeight: Int, secondRandomHeig
 
         for (direction in listOf(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST).shuffled(rand)) {
             if (bound <= 0 || rand.nextInt(bound) == 0) {
-                val height: Int = heightSet.random(rand.wrap())
+                val height: Int = heightSet.random(JavaRandom(rand))
                 heightSet.remove(height)
                 heightSet.remove(height + 1)
                 heightSet.remove(height - 1)

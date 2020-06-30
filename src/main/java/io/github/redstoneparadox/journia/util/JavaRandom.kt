@@ -4,7 +4,8 @@ import kotlin.random.Random
 
 class JavaRandom(val wrapped: java.util.Random): Random() {
     override fun nextBits(bitCount: Int): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val next = nextInt()
+        return next.ushr(32 - bitCount) and (-bitCount).shr(31)
     }
 
     override fun nextBoolean(): Boolean {
@@ -16,10 +17,6 @@ class JavaRandom(val wrapped: java.util.Random): Random() {
     }
 
     override fun nextInt(until: Int): Int {
-        return wrapped.nextInt(until)
-    }
-
-    override fun nextInt(from: Int, until: Int): Int {
         return wrapped.nextInt(until)
     }
 }
