@@ -49,10 +49,15 @@ class RockFormationFeature: Feature<RockFormationFeatureConfig>(RockFormationFea
         val mutable = BlockPos.Mutable()
         for (x in (filler.min.x..filler.max.x)) {
             for (z in filler.min.z..filler.max.z) {
-                mutable.set(x, 0, z)
-                val top = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, mutable)
-                if (rand.nextFloat() <= 0.6 && world.getBlockState(top).isAir) {
-                    world.setBlockState(mutable, Blocks.TERRACOTTA.defaultState, 19)
+                for (y in filler.min.y..filler.max.y) {
+                    mutable.set(x, y, z)
+                    if (world.getBlockState(mutable).isAir) {
+                        mutable.move(Direction.DOWN)
+                        if (rand.nextFloat() <= 0.6 && world.getBlockState(mutable) == Blocks.STONE.defaultState) {
+                            world.setBlockState(mutable, Blocks.AIR.defaultState, 19)
+                            break
+                        }
+                    }
                 }
             }
         }
