@@ -34,6 +34,9 @@ object JourniaItems {
     val CUBEN_BOAT = boatItem("cuben") { JourniaEntityTypes.CUBEN_BOAT }
 
     val PINE_LOG = blockItem(JourniaBlocks.PINE_LOG)
+    val STRIPPED_PINE_LOG = blockItem(JourniaBlocks.STRIPPED_PINE_LOG)
+    val PINE_WOOD = blockItem(JourniaBlocks.PINE_WOOD)
+    val STRIPPED_PINE_WOOD = blockItem(JourniaBlocks.STRIPPED_PINE_WOOD)
     val PINE_LEAVES = blockItem(JourniaBlocks.PINE_LEAVES)
     val PINE_SAPLING = blockItem(JourniaBlocks.PINE_SAPLING, ItemGroup.DECORATIONS)
     val PINE_PLANKS = blockItem(JourniaBlocks.PINE_PLANKS)
@@ -70,6 +73,9 @@ object JourniaItems {
         register("mud", MUD)
 
         register("pine_log", PINE_LOG)
+        register("stripped_pine_log", STRIPPED_PINE_LOG)
+        register("pine_wood", PINE_WOOD)
+        register("stripped_pine_wood", STRIPPED_PINE_WOOD)
         register("pine_sapling", PINE_SAPLING)
         register("pine_leaves", PINE_LEAVES)
         register("pine_planks", PINE_PLANKS)

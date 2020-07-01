@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "journia:pine_log"
+    "journia:pine_log",
+    "journia:pine_wood",
+    "journia:stripped_pine_log",
+    "journia:stripped_pine_wood"
   ]
 }

@@ -26,6 +26,9 @@ object JourniaBlocks {
     val CUBEN_PRESSURE_PLATE = JourniaPressurePlateBlock.wood(FabricBlockSettings.copy(Blocks.OAK_PRESSURE_PLATE))
 
     val PINE_LOG = PillarBlock(FabricBlockSettings.copy(Blocks.OAK_LOG))
+    val STRIPPED_PINE_LOG = PillarBlock(FabricBlockSettings.copy(Blocks.STRIPPED_OAK_LOG))
+    val PINE_WOOD = PillarBlock(FabricBlockSettings.copy(Blocks.OAK_WOOD))
+    val STRIPPED_PINE_WOOD = PillarBlock(FabricBlockSettings.copy(Blocks.STRIPPED_OAK_WOOD))
     val PINE_LEAVES = LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES))
     val PINE_SAPLING = JourniaSaplingBlock(JourniaSaplingGenerator.PINE)
     val PINE_PLANKS = Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS))
@@ -58,6 +61,9 @@ object JourniaBlocks {
         register("cuben_pressure_plate", CUBEN_PRESSURE_PLATE)
 
         register("pine_log", PINE_LOG)
+        register("stripped_pine_log", STRIPPED_PINE_LOG)
+        register("pine_wood", PINE_WOOD)
+        register("stripped_pine_wood", STRIPPED_PINE_WOOD)
         register("pine_leaves", PINE_LEAVES)
         register("pine_sapling", PINE_SAPLING)
         register("pine_planks", PINE_PLANKS)

@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "journia:block/stripped_pine_log_top",
+    "side": "journia:block/stripped_pine_log"
+  }
+}
