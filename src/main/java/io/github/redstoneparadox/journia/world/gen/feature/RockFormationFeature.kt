@@ -62,6 +62,23 @@ class RockFormationFeature: Feature<RockFormationFeatureConfig>(RockFormationFea
             }
         }
 
+        for (x in (filler.min.x..filler.max.x)) {
+            for (z in filler.min.z..filler.max.z) {
+                mutable.set(x, filler.min.y, z)
+                if (world.getBlockState(mutable) == Blocks.STONE.defaultState) {
+                    for (y in (filler.min.y - 1) downTo 0) {
+                        mutable.set(x, y, z)
+                        if (world.testBlockState(mutable) { it.isAir || it == Blocks.GRASS_BLOCK.defaultState || it == Blocks.DIRT.defaultState }) {
+                            world.setBlockState(mutable, Blocks.STONE.defaultState, 19)
+                        }
+                        else {
+                            break
+                        }
+                    }
+                }
+            }
+        }
+
         return true
     }
 }

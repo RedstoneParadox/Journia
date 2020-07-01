@@ -3,8 +3,10 @@ package io.github.redstoneparadox.journia.world.biome
 import com.terraformersmc.terraform.biome.builder.DefaultFeature
 import com.terraformersmc.terraform.biome.builder.TerraformBiome
 import io.github.redstoneparadox.journia.config.BiomesConfig
+import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.journia.world.gen.feature.NewSurfacePatchFeatureConfig
+import io.github.redstoneparadox.journia.world.gen.feature.RockFormationFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes
 import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
@@ -15,6 +17,7 @@ import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.Biome.SpawnEntry
 import net.minecraft.world.biome.Biomes
 import net.minecraft.world.gen.GenerationStep
+import net.minecraft.world.gen.decorator.ChanceDecoratorConfig
 import net.minecraft.world.gen.decorator.CountDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.feature.*
@@ -38,15 +41,17 @@ object RockyTaigaBiomes {
                 .addTreeFeature(Feature.TREE.configure(DefaultBiomeFeatures.PINE_TREE_CONFIG), 2)
                 .addTreeFeature(Feature.TREE.configure(DefaultBiomeFeatures.SPRUCE_TREE_CONFIG), 2)
                 .addCustomFeature(
-                    GenerationStep.Feature.LOCAL_MODIFICATIONS,
-                    Feature.FOREST_ROCK.configure(
-                        ForestRockFeatureConfig(
-                            Blocks.COBBLESTONE.defaultState,
-                            1
+                    GenerationStep.Feature.RAW_GENERATION,
+                    JourniaFeatures.ROCK_FORMATION.configure(
+                        RockFormationFeatureConfig(
+                            3..8,
+                            8..18,
+                            3..6,
+                            5..9
                         )
                     ).createDecoratedFeature(
-                        Decorator.FOREST_ROCK.configure(
-                            CountDecoratorConfig(2)
+                        JourniaDecorators.RANDOM_HEIGHTMAP.configure(
+                            ChanceDecoratorConfig(80)
                         )
                     )
                 )
