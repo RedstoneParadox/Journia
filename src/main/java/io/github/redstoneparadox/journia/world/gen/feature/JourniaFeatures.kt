@@ -36,38 +36,10 @@ object JourniaFeatures {
 
     fun registerAll() {
         register("pine_tree", PINE_TREE)
+        register("dead_tree", DEAD_TREE)
         register("new_surface_patch", NEW_SURFACE_PATCH)
         register("block_bands", BLOCK_BANDS)
         register("rock_formation", ROCK_FORMATION)
-
-        // Feature.STRUCTURES.put("Fort", FortFeature.FORT_FEATURE)
-
-        /*
-        FortFeature
-        FortFeature.FortStructureStart
-        FortFeature.FORT_STRUCTURE_FEATURE
-        FortFeature.FORT_PIECE
-        */
-        /*
-        Registry.BIOME.forEach {
-            it.addFeature(GenerationStep.Feature.RAW_GENERATION, FortFeature.FORT_FEATURE.configure(DefaultFeatureConfig()).createDecoratedFeature(Decorator.NOPE.configure(DecoratorConfig.DEFAULT)))
-            it.addStructureFeature(FortFeature.FORT_FEATURE.configure(DefaultFeatureConfig()))
-        }
-        */
-
-        DungeonFeature
-        DungeonFeature.DungeonStructureStart
-        DungeonFeature.NEW_DUNGEON_STRUCTURE_FEATURE
-        DungeonFeature.NEW_DUNGEON_PIECE
-
-        StructureFeature.STRUCTURES["New Dungeon"] = DungeonFeature.NEW_DUNGEON_STRUCTURE_FEATURE
-
-        /*
-        Registry.BIOME.forEach {
-            it.addFeature(GenerationStep.Feature.RAW_GENERATION, DungeonFeature.NEW_DUNGEON_FEATURE.configure(DefaultFeatureConfig()).createDecoratedFeature(Decorator.NOPE.configure(DecoratorConfig.DEFAULT)))
-            it.addStructureFeature(DungeonFeature.NEW_DUNGEON_FEATURE.configure(DefaultFeatureConfig()))
-        }
-        */
     }
 
     private fun register(id: String, feature: Feature<*>) {
