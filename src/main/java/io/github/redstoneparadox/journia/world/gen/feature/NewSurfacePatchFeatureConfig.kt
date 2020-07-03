@@ -2,17 +2,27 @@ package io.github.redstoneparadox.journia.world.gen.feature
 
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
+import io.github.redstoneparadox.journia.util.field
 import net.minecraft.block.BlockState
 import net.minecraft.world.gen.feature.FeatureConfig
 
-class NewSurfacePatchFeatureConfig(val state: BlockState, val coverage: Double, val targets: List<BlockState>, val below: Boolean = false): FeatureConfig {
+class NewSurfacePatchFeatureConfig(
+    val state: BlockState,
+    val coverage: Double = 0.5,
+    val targets: List<BlockState> = listOf(),
+    val below: Boolean = false,
+    val size: Double = 16.0,
+    val integrity: Double = 1.0
+    ): FeatureConfig {
     companion object {
         val CODEC: Codec<NewSurfacePatchFeatureConfig> = RecordCodecBuilder.create { instance ->
             instance.group(
-                BlockState.CODEC.fieldOf("state").forGetter { it.state },
-                Codec.DOUBLE.fieldOf("coverage").forGetter { it.coverage },
-                Codec.list(BlockState.CODEC).fieldOf("targets").forGetter { it.targets },
-                Codec.BOOL.fieldOf("below").forGetter { it.below }
+                BlockState.CODEC.field("state") { state },
+                Codec.DOUBLE.field("coverage") { coverage },
+                Codec.list(BlockState.CODEC).field("targets") { targets },
+                Codec.BOOL.field("below") { below },
+                Codec.DOUBLE.field("size") { size },
+                Codec.DOUBLE.field("integrity") { integrity }
             ).apply(instance, ::NewSurfacePatchFeatureConfig)
         }
     }

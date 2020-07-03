@@ -10,16 +10,17 @@ import net.minecraft.world.gen.feature.Feature
 import java.util.*
 
 class NewSurfacePatchFeature: Feature<NewSurfacePatchFeatureConfig>(NewSurfacePatchFeatureConfig.CODEC) {
-    private val samplers: MutableMap<NewSurfacePatchFeatureConfig, OpenSimplexSampler> = mutableMapOf()
+    private val samplerMap: MutableMap<NewSurfacePatchFeatureConfig, Pair<OpenSimplexSampler, OpenSimplexSampler>> = mutableMapOf()
 
     override fun generate(world: ServerWorldAccess, accessor: StructureAccessor, generator: ChunkGenerator, random: Random, pos: BlockPos, config: NewSurfacePatchFeatureConfig): Boolean {
-        val sampler = samplers.computeIfAbsent(config) { OpenSimplexSampler(16.0, 1.0, 16.0, 1.0) }
+        val samplers = samplerMap.computeIfAbsent(config) { OpenSimplexSampler(config.size, 1.0, config.size, 1.0) to OpenSimplexSampler(1.0, 1.0, 1.0, 1.0) }
 
         for (x in 0..15) {
             for (z in 0..15) {
-                val noise = sampler!!.eval(x + pos.x, z + pos.z)
+                val noise = samplers.first.eval(x + pos.x, z + pos.z)
+                val chance = samplers.second.eval(x + pos.x, z + pos.z)
 
-                if ((noise + 1)/2 <= config.coverage) {
+                if ((noise + 1)/2 <= config.coverage && (chance + 1)/2 <= config.integrity) {
                     val basePos = pos.add(x, 0, z)
                     val topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, basePos).down()
                     if (world.testBlockState(topPos) { config.targets.contains(it) }) {
