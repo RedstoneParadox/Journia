@@ -21,7 +21,6 @@ object JourniaBiomes {
     private val PLAYGROUND: Biome
     val SHATTERED_BADLANDS_PLATEAU: Biome = ShatteredBadlandsPlateauBiome()
     val JUNGLE_WETLANDS: Biome = JungleWetlandsBiome()
-    val ROCKY_PLAINS: Biome = RockyPlainsBiome()
 
     init {
         PLAYGROUND = TerraformBiome.builder()
@@ -69,10 +68,6 @@ object JourniaBiomes {
         if (BiomesConfig.JungleWetlands.enabled) {
             register("jungle_wetlands", JUNGLE_WETLANDS)
             variantBiome(Biomes.JUNGLE, JUNGLE_WETLANDS, BiomesConfig.JungleWetlands.chance)
-        }
-        if (BiomesConfig.RockyPlains.enabled) {
-            register("rocky_plains", ROCKY_PLAINS)
-            continentalBiome(ROCKY_PLAINS, OverworldClimate.COOL, BiomesConfig.RockyPlains.weight)
         }
 
         // register("salt_flats", SaltFlatsBiomes.SALT_FLATS)

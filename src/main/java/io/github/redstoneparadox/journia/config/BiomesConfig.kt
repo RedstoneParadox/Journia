@@ -28,11 +28,6 @@ object BiomesConfig: RootConfigCategory("biomes.json5") {
         val chance: Double by option(0.2, "chance", "Sets the chance for Jungle Wetlands to replace a Jungle biome.")
     }
 
-    object RockyPlains: ConfigCategory("rocky_plains") {
-        val enabled: Boolean by option(true, "enabled", "Sets whether this biome is enabled.")
-        val weight: Double by option(1.0, "weight", "Sets the weight for this biome.")
-    }
-
     object RockyTaiga: ConfigCategory("rocky_taiga") {
         val enabled: Boolean by option(true, "enabled", "Sets whether this biome is enabled.")
         val weight: Double by option(1.0, "weight", "Sets the weight for this biome.")
