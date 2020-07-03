@@ -19,10 +19,6 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 object JourniaBiomes {
     private val PLAYGROUND: Biome
-    val WASTELAND: Biome = WastelandBiome()
-    val WASTELAND_RIVER: Biome = WastelandRiverBiome()
-    val WASTELAND_SHORE: Biome = WastelandShoreBiome()
-    val WASTELAND_EDGE: Biome = WastelandEdgeBiome()
     val SHATTERED_BADLANDS_PLATEAU: Biome = ShatteredBadlandsPlateauBiome()
     val JUNGLE_WETLANDS: Biome = JungleWetlandsBiome()
     val ROCKY_PLAINS: Biome = RockyPlainsBiome()
@@ -63,18 +59,9 @@ object JourniaBiomes {
         CubenForestBiomes.register()
         // BiancoBiomes.register()
         BandedMountainsBiomes.register()
+        WastelandBiomes.register()
 
 
-        if (BiomesConfig.Wasteland.enabled) {
-            register("wasteland", WASTELAND)
-            register("wasteland_river", WASTELAND_RIVER)
-            register("wasteland_shore", WASTELAND_SHORE)
-            register("wasteland_edge", WASTELAND_EDGE)
-            continentalBiome(WASTELAND, OverworldClimate.DRY, BiomesConfig.Wasteland.weight)
-            riverBiome(WASTELAND, WASTELAND_RIVER)
-            shoreBiome(WASTELAND, WASTELAND_SHORE, 1.0)
-            edgeBiome(WASTELAND, WASTELAND_EDGE, 1.0)
-        }
         if (BiomesConfig.ShatteredBadlandsPlateau.enabled) {
             register("shattered_badlands_plateau", SHATTERED_BADLANDS_PLATEAU)
             variantBiome(Biomes.BADLANDS_PLATEAU, SHATTERED_BADLANDS_PLATEAU, BiomesConfig.ShatteredBadlandsPlateau.chance, OverworldClimate.DRY)
