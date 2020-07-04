@@ -7,9 +7,9 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.ModifiableTestableWorld
 import net.minecraft.world.TestableWorld
 
-class PredicateFiller(val world: ModifiableTestableWorld, state: BlockState, val predicate: (TestableWorld, BlockPos) -> Boolean): SimpleFiller(world, state) {
+class PredicateFiller(val world: ModifiableTestableWorld, state: BlockState, val predicate: (BlockState) -> Boolean): SimpleFiller(world, state) {
     override fun accept(position: Position) {
-        if (predicate(world, position.toBlockPos())) {
+        if (world.testBlockState(position.toBlockPos(), predicate)) {
             super.accept(position)
         }
     }
