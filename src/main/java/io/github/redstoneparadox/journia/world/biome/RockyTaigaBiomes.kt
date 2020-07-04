@@ -135,8 +135,8 @@ object RockyTaigaBiomes {
                 GenerationStep.Feature.RAW_GENERATION,
                 JourniaFeatures.SURFACE_PATCH.configure(
                     SurfacePatchFeatureConfig(
-                        Blocks.GRASS_BLOCK.defaultState,
-                        0.35,
+                        Blocks.DIRT.defaultState,
+                        0.4,
                         listOf(
                             Blocks.STONE.defaultState,
                             Blocks.ANDESITE.defaultState,
