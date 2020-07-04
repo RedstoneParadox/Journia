@@ -5,6 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder
 import com.terraformersmc.shapes.api.Position
 import com.terraformersmc.shapes.api.layer.TransformationLayer
 import com.terraformersmc.shapes.impl.Shapes
+import com.terraformersmc.shapes.impl.layer.pathfinder.AddLayer
 import com.terraformersmc.shapes.impl.layer.transform.TranslateLayer
 import io.github.redstoneparadox.journia.asElse
 import io.github.redstoneparadox.journia.block.JourniaBlocks
@@ -21,12 +22,21 @@ import java.util.*
 class MegaPineFoliagePlacer(val minHeight: Int, val additionalHeight: Int, radius: Int, randomRadius: Int, offset: Int, randomOffset: Int): FoliagePlacer(radius, randomRadius, offset, randomOffset) {
     override fun generate(world: ModifiableTestableWorld, random: Random, config: TreeFeatureConfig, trunkHeight: Int, treeNode: TreeNode, foliageHeight: Int, radius: Int, leaves: MutableSet<BlockPos>, i: Int, blockBox: BlockBox) {
         if (treeNode.isGiantTrunk) {
-            val chosenRadius = random.nextInt(randomRadius) + radius
-            val trueRadius = chosenRadius.takeIf { it % 2 == 0 }.asElse(chosenRadius + 1)
+            val chosenRadius = if (randomRadius > 0) random.nextInt(randomRadius) + radius else radius
+            val trueRadius = chosenRadius.takeIf { it % 2 == 1 }.asElse(chosenRadius - 1)
+
+            val leavesState = config.leavesProvider.getBlockState(random, treeNode.center)
+
+
 
             val cone = Shapes.ellipticalPyramid(trueRadius.toDouble(), trueRadius.toDouble(), foliageHeight.toDouble())
-            cone.applyLayer(TranslateLayer.of(Position.of(treeNode.center)))
-            cone.fill(PredicateFiller(world, JourniaBlocks.PINE_LEAVES.defaultState) { it.isAir })
+                .applyLayer(TranslateLayer.of(Position.of(treeNode.center.down(foliageHeight - 3))))
+
+            cone
+                .applyLayer(AddLayer(cone.applyLayer(TranslateLayer(Position.of(1.0, 0.0, 0.0)))))
+                .applyLayer(AddLayer(cone.applyLayer(TranslateLayer(Position.of(0.0, 0.0, 1.0)))))
+                .applyLayer(AddLayer(cone.applyLayer(TranslateLayer(Position.of(1.0, 0.0, 1.0)))))
+                .fill(PredicateFiller(world, leavesState) { it.isAir })
         }
     }
 

@@ -26,6 +26,7 @@ object RockyTaigaBiomes {
     val ROCKY_TAIGA: Biome
     val ROCKY_TAIGA_HILLS: Biome
     val MODIFIED_ROCKY_TAIGA: Biome
+    val ROCKY_GIANT_TREE_TAIGA: Biome
     val ROCKY_TAIGA_MOUNTAINS: Biome
 
     init {
@@ -176,6 +177,32 @@ object RockyTaigaBiomes {
             )
             .build()
 
+        ROCKY_GIANT_TREE_TAIGA = template.builder()
+            .addTreeFeature(
+                Feature.TREE.configure(JourniaFeatures.GIANT_PINE_TREE_CONFIG),
+                2
+            )
+            .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.STONE_CONFIG)
+            .addStructureFeatures(
+                PillagerOutpostFeature.PILLAGER_OUTPOST.configure(FeatureConfig.DEFAULT)
+            )
+            .addCustomFeature(
+                GenerationStep.Feature.RAW_GENERATION,
+                JourniaFeatures.SURFACE_PATCH.configure(
+                    SurfacePatchFeatureConfig(
+                        Blocks.DIRT.defaultState,
+                        0.4,
+                        listOf(
+                            Blocks.STONE.defaultState,
+                            Blocks.ANDESITE.defaultState,
+                            Blocks.GRANITE.defaultState,
+                            Blocks.DIORITE.defaultState
+                        )
+                    )
+                )
+            )
+            .build()
+
         ROCKY_TAIGA_HILLS = template.builder()
             .depth(0.45f).scale(0.3f)
             .build()
@@ -190,6 +217,7 @@ object RockyTaigaBiomes {
         if (BiomesConfig.RockyTaiga.enabled) {
             JourniaBiomes.register("rocky_taiga", ROCKY_TAIGA)
             JourniaBiomes.register("modified_rocky_taiga", MODIFIED_ROCKY_TAIGA)
+            JourniaBiomes.register("rocky_giant_tree_taiga", ROCKY_GIANT_TREE_TAIGA)
             JourniaBiomes.register("rocky_taiga_hills", ROCKY_TAIGA_HILLS)
 
             OverworldBiomes.addContinentalBiome(ROCKY_TAIGA, OverworldClimate.COOL, BiomesConfig.RockyTaiga.weight)
