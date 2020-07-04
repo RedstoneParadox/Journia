@@ -2,15 +2,16 @@ package io.github.redstoneparadox.journia.world.gen.foliage
 
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
+import com.terraformersmc.shapes.api.Filler
 import com.terraformersmc.shapes.api.Position
-import com.terraformersmc.shapes.api.layer.TransformationLayer
 import com.terraformersmc.shapes.impl.Shapes
 import com.terraformersmc.shapes.impl.layer.pathfinder.AddLayer
 import com.terraformersmc.shapes.impl.layer.transform.TranslateLayer
 import io.github.redstoneparadox.journia.asElse
-import io.github.redstoneparadox.journia.block.JourniaBlocks
 import io.github.redstoneparadox.journia.util.field
-import io.github.redstoneparadox.journia.world.gen.filler.PredicateFiller
+import io.github.redstoneparadox.journia.world.gen.filler.SetFiller
+import net.minecraft.block.BlockState
+import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockBox
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.ModifiableTestableWorld
@@ -18,25 +19,42 @@ import net.minecraft.world.gen.feature.TreeFeatureConfig
 import net.minecraft.world.gen.foliage.FoliagePlacer
 import net.minecraft.world.gen.foliage.FoliagePlacerType
 import java.util.*
+import kotlin.collections.HashMap
+import kotlin.math.abs
+import kotlin.math.floor
+import kotlin.math.pow
+import kotlin.math.sqrt
+
 
 class MegaPineFoliagePlacer(val minHeight: Int, val additionalHeight: Int, radius: Int, randomRadius: Int, offset: Int, randomOffset: Int): FoliagePlacer(radius, randomRadius, offset, randomOffset) {
+    private val cached: MutableMap<Configuration, Set<BlockPos>> = HashMap()
+
     override fun generate(world: ModifiableTestableWorld, random: Random, config: TreeFeatureConfig, trunkHeight: Int, treeNode: TreeNode, foliageHeight: Int, radius: Int, leaves: MutableSet<BlockPos>, i: Int, blockBox: BlockBox) {
         if (treeNode.isGiantTrunk) {
             val chosenRadius = if (randomRadius > 0) random.nextInt(randomRadius) + radius else radius
             val trueRadius = chosenRadius.takeIf { it % 2 == 1 }.asElse(chosenRadius - 1)
 
+            val positions = cached.computeIfAbsent(Configuration(foliageHeight, trueRadius)) {
+                val cone = Shapes.ellipticalPyramid(trueRadius.toDouble(), trueRadius.toDouble(), foliageHeight.toDouble())
+                val set = mutableSetOf<BlockPos>()
+
+                cone
+                    .applyLayer(AddLayer(cone.applyLayer(TranslateLayer(Position.of(1.0, 0.0, 0.0)))))
+                    .applyLayer(AddLayer(cone.applyLayer(TranslateLayer(Position.of(0.0, 0.0, 1.0)))))
+                    .applyLayer(AddLayer(cone.applyLayer(TranslateLayer(Position.of(1.0, 0.0, 1.0)))))
+                    .fill(SetFiller(set))
+
+                return@computeIfAbsent set
+            }
+
             val leavesState = config.leavesProvider.getBlockState(random, treeNode.center)
 
+            positions.forEach {
+                val truePos = it.add(treeNode.center.down(foliageHeight - 3))
+                val distance = calculateActualDistance(it.x, it.y, it.z)
 
-
-            val cone = Shapes.ellipticalPyramid(trueRadius.toDouble(), trueRadius.toDouble(), foliageHeight.toDouble())
-                .applyLayer(TranslateLayer.of(Position.of(treeNode.center.down(foliageHeight - 3))))
-
-            cone
-                .applyLayer(AddLayer(cone.applyLayer(TranslateLayer(Position.of(1.0, 0.0, 0.0)))))
-                .applyLayer(AddLayer(cone.applyLayer(TranslateLayer(Position.of(0.0, 0.0, 1.0)))))
-                .applyLayer(AddLayer(cone.applyLayer(TranslateLayer(Position.of(1.0, 0.0, 1.0)))))
-                .fill(PredicateFiller(world, leavesState) { it.isAir })
+                world.setBlockState(truePos, withDistance(leavesState, distance), 19, 32)
+            }
         }
     }
 
@@ -55,6 +73,23 @@ class MegaPineFoliagePlacer(val minHeight: Int, val additionalHeight: Int, radiu
             baseHeight * baseHeight + dy * dy > dz * dz
         }
     }
+
+    private fun withDistance(state: BlockState, distance: Int): BlockState {
+        return state.with(Properties.DISTANCE_1_7, distance.coerceAtMost(7))
+    }
+
+    private fun calculateActualDistance(offsetX: Int, offsetY: Int, offsetZ: Int): Int {
+        val distance = if (offsetY <= 0) {
+            sqrt(offsetX.toDouble().pow(2.0) + offsetZ.toDouble().pow(2.0))
+        } else {
+            sqrt(offsetX.toDouble().pow(2.0) + offsetY.toDouble().pow(2.0) + offsetZ.toDouble().pow(2.0))
+        }
+
+        // If the distance is 0, the leaves wouldn't be there to begin with?
+        return if (distance == 0.0) 1 else floor(distance).toInt()
+    }
+
+    data class Configuration(val height: Int, val radius: Int)
 
     companion object {
         val CODEC: Codec<MegaPineFoliagePlacer> = RecordCodecBuilder.create { instance ->

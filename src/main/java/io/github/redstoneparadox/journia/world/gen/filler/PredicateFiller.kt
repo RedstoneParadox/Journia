@@ -12,7 +12,7 @@ class PredicateFiller(val world: ModifiableTestableWorld, val state: BlockState,
     override fun accept(position: Position) {
         val pos = position.toBlockPos()
         if (world.testBlockState(pos, predicate)) {
-            world.setBlockState(pos, state, 3, 64)
+            world.setBlockState(pos, state, 19)
         }
     }
 }
