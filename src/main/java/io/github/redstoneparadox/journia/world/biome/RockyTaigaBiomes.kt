@@ -25,6 +25,7 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 object RockyTaigaBiomes {
     val ROCKY_TAIGA: Biome
     val ROCKY_TAIGA_HILLS: Biome
+    val MODIFIED_ROCKY_TAIGA: Biome
     val ROCKY_TAIGA_MOUNTAINS: Biome
 
     init {
@@ -32,8 +33,10 @@ object RockyTaigaBiomes {
             TerraformBiome.builder()
                 .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_CONFIG)
                 .precipitation(Biome.Precipitation.RAIN)
+                .category(Biome.Category.TAIGA)
                 .temperature(0.25F)
                 .downfall(0.8F)
+                .depth(0.2F).scale(0.2F)
                 .waterColor(4159204)
                 .waterFogColor(329011)
                 .addTreeFeature(Feature.TREE.configure(JourniaFeatures.PINE_TREE_CONFIG), 4)
@@ -66,7 +69,8 @@ object RockyTaigaBiomes {
                             CountDecoratorConfig(2)
                         )
                     )
-                ).addCustomFeature(
+                )
+                .addCustomFeature(
                     GenerationStep.Feature.RAW_GENERATION,
                     JourniaFeatures.SURFACE_PATCH.configure(
                         SurfacePatchFeatureConfig(Blocks.COARSE_DIRT.defaultState,
@@ -116,17 +120,64 @@ object RockyTaigaBiomes {
         )
 
         ROCKY_TAIGA = template.builder()
-            .depth(0.2F).scale(0.2F)
-            .category(Biome.Category.TAIGA)
             .addStructureFeatures(
                 VillageFeature.VILLAGE.configure(StructurePoolFeatureConfig(Identifier("village/taiga/town_centers"), 6)),
                 PillagerOutpostFeature.PILLAGER_OUTPOST.configure(FeatureConfig.DEFAULT)
             )
             .build()
 
+        MODIFIED_ROCKY_TAIGA = template.builder()
+            .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.STONE_CONFIG)
+            .addStructureFeatures(
+                PillagerOutpostFeature.PILLAGER_OUTPOST.configure(FeatureConfig.DEFAULT)
+            )
+            .addCustomFeature(
+                GenerationStep.Feature.RAW_GENERATION,
+                JourniaFeatures.SURFACE_PATCH.configure(
+                    SurfacePatchFeatureConfig(
+                        Blocks.GRASS_BLOCK.defaultState,
+                        0.35,
+                        listOf(
+                            Blocks.STONE.defaultState,
+                            Blocks.ANDESITE.defaultState,
+                            Blocks.GRANITE.defaultState,
+                            Blocks.DIORITE.defaultState
+                        )
+                    )
+                )
+            )
+            .addCustomFeature(
+                GenerationStep.Feature.RAW_GENERATION,
+                JourniaFeatures.ROCK_FORMATION.configure(
+                    RockFormationFeatureConfig(
+                        3..8,
+                        8..18,
+                        3..6,
+                        5..9
+                    )
+                ).createDecoratedFeature(
+                    JourniaDecorators.RANDOM_HEIGHTMAP.configure(
+                        ChanceDecoratorConfig(60)
+                    )
+                )
+            )
+            .addCustomFeature(
+                GenerationStep.Feature.LOCAL_MODIFICATIONS,
+                Feature.FOREST_ROCK.configure(
+                    ForestRockFeatureConfig(
+                        Blocks.MOSSY_COBBLESTONE.defaultState,
+                        1
+                    )
+                ).createDecoratedFeature(
+                    Decorator.FOREST_ROCK.configure(
+                        CountDecoratorConfig(2)
+                    )
+                )
+            )
+            .build()
+
         ROCKY_TAIGA_HILLS = template.builder()
             .depth(0.45f).scale(0.3f)
-            .category(Biome.Category.TAIGA)
             .build()
 
         ROCKY_TAIGA_MOUNTAINS = template.builder()
@@ -138,6 +189,7 @@ object RockyTaigaBiomes {
     fun register() {
         if (BiomesConfig.RockyTaiga.enabled) {
             JourniaBiomes.register("rocky_taiga", ROCKY_TAIGA)
+            JourniaBiomes.register("modified_rocky_taiga", MODIFIED_ROCKY_TAIGA)
             JourniaBiomes.register("rocky_taiga_hills", ROCKY_TAIGA_HILLS)
 
             OverworldBiomes.addContinentalBiome(ROCKY_TAIGA, OverworldClimate.COOL, BiomesConfig.RockyTaiga.weight)
