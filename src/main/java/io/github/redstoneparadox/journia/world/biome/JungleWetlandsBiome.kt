@@ -5,8 +5,8 @@ import com.google.common.collect.Lists
 import io.github.redstoneparadox.journia.block.JourniaBlocks
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.minecraft.block.Blocks
-import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.EntityType
+import net.minecraft.entity.SpawnGroup
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.BiomeEffects
 import net.minecraft.world.gen.GenerationStep

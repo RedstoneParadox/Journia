@@ -5,9 +5,9 @@ import com.terraformersmc.terraform.entity.TerraformBoatEntity
 import com.terraformersmc.terraform.item.TerraformBoatItem
 import io.github.redstoneparadox.journia.item.JourniaItems
 import net.fabricmc.fabric.api.entity.FabricEntityTypeBuilder
-import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.EntityDimensions
 import net.minecraft.entity.EntityType
+import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.vehicle.BoatEntity
 import net.minecraft.item.Item
 import net.minecraft.item.Items

@@ -2,19 +2,14 @@ package io.github.redstoneparadox.journia.world.gen.feature
 
 import com.terraformersmc.shapes.api.Position
 import com.terraformersmc.shapes.impl.Shapes
-import com.terraformersmc.shapes.impl.filler.SimpleFiller
 import com.terraformersmc.shapes.impl.layer.pathfinder.AddLayer
 import com.terraformersmc.shapes.impl.layer.transform.TranslateLayer
 import io.github.redstoneparadox.journia.util.JavaRandom
 import io.github.redstoneparadox.journia.world.gen.filler.CachingFiller
-import io.github.redstoneparadox.journia.world.gen.util.BlockStateView
-import net.minecraft.block.Block
-import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.Vec3d
-import net.minecraft.world.Heightmap
 import net.minecraft.world.ServerWorldAccess
 import net.minecraft.world.gen.StructureAccessor
 import net.minecraft.world.gen.chunk.ChunkGenerator

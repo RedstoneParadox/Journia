@@ -6,8 +6,6 @@ import net.minecraft.world.gen.trunk.TrunkPlacerType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
-import java.util.function.Function;
-
 @Mixin(TrunkPlacerType.class)
 public interface AccessorTrunkPlacerType {
 

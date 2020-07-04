@@ -9,7 +9,6 @@ import net.minecraft.world.gen.decorator.Decorator
 import java.util.*
 import java.util.stream.IntStream
 import java.util.stream.Stream
-import kotlin.reflect.KFunction1
 
 class SurfacePatchDecorator: Decorator<CountDecoratorConfig>(CountDecoratorConfig.field_24985) {
     override fun getPositions(world: WorldAccess, generator: ChunkGenerator, random: Random, config: CountDecoratorConfig, pos: BlockPos): Stream<BlockPos> {

@@ -7,11 +7,9 @@ import io.github.redstoneparadox.journia.entity.JourniaEntityTypes
 import net.minecraft.block.Block
 import net.minecraft.entity.EntityType
 import net.minecraft.item.BlockItem
-import net.minecraft.item.BoatItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
 import net.minecraft.util.registry.Registry
-import java.util.function.Supplier
 
 object JourniaItems {
     val CRACKED_GROUND = blockItem(JourniaBlocks.CRACKED_GROUND)

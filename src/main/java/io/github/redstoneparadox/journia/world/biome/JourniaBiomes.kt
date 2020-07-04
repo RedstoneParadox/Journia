@@ -14,39 +14,34 @@ import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.Biomes
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.ChanceDecoratorConfig
-import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 object JourniaBiomes {
-    private val PLAYGROUND: Biome
-    val SHATTERED_BADLANDS_PLATEAU: Biome = ShatteredBadlandsPlateauBiome()
-    val JUNGLE_WETLANDS: Biome = JungleWetlandsBiome()
-
-    init {
-        PLAYGROUND = TerraformBiome.builder()
-            .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_CONFIG)
-            .precipitation(Biome.Precipitation.RAIN)
-            .category(Biome.Category.PLAINS)
-            .depth(0.0F).scale(0.0F)
-            .temperature(0.8F).downfall(0.4F)
-            .waterColor(4159204).waterFogColor(329011)
-            .addCustomFeature(
-                GenerationStep.Feature.RAW_GENERATION,
-                JourniaFeatures.ROCK_FORMATION.configure(
-                    RockFormationFeatureConfig(
-                        3..8,
-                        8..18,
-                        3..6,
-                        5..9
-                    )
-                ).createDecoratedFeature(
-                    JourniaDecorators.RANDOM_HEIGHTMAP.configure(
-                        ChanceDecoratorConfig(20)
-                    )
+    private val PLAYGROUND: Biome = TerraformBiome.builder()
+        .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_CONFIG)
+        .precipitation(Biome.Precipitation.RAIN)
+        .category(Biome.Category.PLAINS)
+        .depth(0.0F).scale(0.0F)
+        .temperature(0.8F).downfall(0.4F)
+        .waterColor(4159204).waterFogColor(329011)
+        .addCustomFeature(
+            GenerationStep.Feature.RAW_GENERATION,
+            JourniaFeatures.ROCK_FORMATION.configure(
+                RockFormationFeatureConfig(
+                    3..8,
+                    8..18,
+                    3..6,
+                    5..9
+                )
+            ).createDecoratedFeature(
+                JourniaDecorators.RANDOM_HEIGHTMAP.configure(
+                    ChanceDecoratorConfig(20)
                 )
             )
-            .build()
-    }
+        )
+        .build()
+    val SHATTERED_BADLANDS_PLATEAU: Biome = ShatteredBadlandsPlateauBiome()
+    val JUNGLE_WETLANDS: Biome = JungleWetlandsBiome()
 
     fun registerAll() {
         if (FabricLoader.getInstance().isDevelopmentEnvironment) {
@@ -56,7 +51,6 @@ object JourniaBiomes {
         ShoreBiomes.register()
         RockyTaigaBiomes.register()
         CubenForestBiomes.register()
-        // BiancoBiomes.register()
         BandedMountainsBiomes.register()
         WastelandBiomes.register()
 
@@ -69,8 +63,6 @@ object JourniaBiomes {
             register("jungle_wetlands", JUNGLE_WETLANDS)
             variantBiome(Biomes.JUNGLE, JUNGLE_WETLANDS, BiomesConfig.JungleWetlands.chance)
         }
-
-        // register("salt_flats", SaltFlatsBiomes.SALT_FLATS)
     }
 
     fun register(id: String, biome: Biome) {

@@ -1,14 +1,13 @@
 package io.github.redstoneparadox.journia.world.biome
 
-import com.terraformersmc.terraform.biome.builder.TerraformBiome
-import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
-import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
-
 import com.terraformersmc.terraform.biome.builder.DefaultFeature.*
+import com.terraformersmc.terraform.biome.builder.TerraformBiome
 import io.github.redstoneparadox.journia.config.BiomesConfig
+import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.feature.*
+import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 
 object CubenForestBiomes {

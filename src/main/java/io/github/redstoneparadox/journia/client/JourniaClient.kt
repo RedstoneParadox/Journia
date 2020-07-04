@@ -4,8 +4,8 @@ import io.github.redstoneparadox.journia.block.JourniaBlocks
 import io.github.redstoneparadox.journia.entity.JourniaEntityTypes
 import io.github.redstoneparadox.journia.item.JourniaItems
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap
-import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry
 import net.minecraft.client.color.block.BlockColorProvider
 import net.minecraft.client.color.item.ItemColorProvider
 import net.minecraft.client.color.world.BiomeColors

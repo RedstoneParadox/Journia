@@ -1,8 +1,8 @@
 package io.github.redstoneparadox.journia.world.biome
 
 import net.minecraft.block.Blocks
-import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.EntityType
+import net.minecraft.entity.SpawnGroup
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.BiomeEffects
 import net.minecraft.world.gen.GenerationStep

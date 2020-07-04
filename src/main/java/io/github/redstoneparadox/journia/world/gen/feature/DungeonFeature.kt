@@ -19,8 +19,8 @@ import net.minecraft.util.registry.Registry
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.feature.DefaultFeatureConfig
-import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.StructureFeature
+import net.minecraft.world.gen.feature.StructureFeature.StructureStartFactory
 
 class DungeonFeature: StructureFeature<DefaultFeatureConfig>(DefaultFeatureConfig.CODEC) {
 

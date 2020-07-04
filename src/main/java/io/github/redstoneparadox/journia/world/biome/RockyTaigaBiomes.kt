@@ -5,8 +5,8 @@ import com.terraformersmc.terraform.biome.builder.TerraformBiome
 import io.github.redstoneparadox.journia.config.BiomesConfig
 import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
-import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.feature.RockFormationFeatureConfig
+import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes
 import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
 import net.minecraft.block.Blocks
