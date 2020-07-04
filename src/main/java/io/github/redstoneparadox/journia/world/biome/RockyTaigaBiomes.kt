@@ -5,9 +5,8 @@ import com.terraformersmc.terraform.biome.builder.TerraformBiome
 import io.github.redstoneparadox.journia.config.BiomesConfig
 import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
-import io.github.redstoneparadox.journia.world.gen.feature.NewSurfacePatchFeatureConfig
+import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.feature.RockFormationFeatureConfig
-import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes
 import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
 import net.minecraft.block.Blocks
@@ -69,8 +68,8 @@ object RockyTaigaBiomes {
                     )
                 ).addCustomFeature(
                     GenerationStep.Feature.RAW_GENERATION,
-                    JourniaFeatures.NEW_SURFACE_PATCH.configure(
-                        NewSurfacePatchFeatureConfig(Blocks.COARSE_DIRT.defaultState,
+                    JourniaFeatures.SURFACE_PATCH.configure(
+                        SurfacePatchFeatureConfig(Blocks.COARSE_DIRT.defaultState,
                             0.3,
                             listOf(
                                 Blocks.GRASS_BLOCK.defaultState
@@ -79,8 +78,8 @@ object RockyTaigaBiomes {
                     )
                 ).addCustomFeature(
                     GenerationStep.Feature.RAW_GENERATION,
-                    JourniaFeatures.NEW_SURFACE_PATCH.configure(
-                        NewSurfacePatchFeatureConfig(
+                    JourniaFeatures.SURFACE_PATCH.configure(
+                        SurfacePatchFeatureConfig(
                             Blocks.STONE.defaultState,
                             0.3,
                             listOf(

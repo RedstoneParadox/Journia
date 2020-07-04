@@ -5,7 +5,7 @@ import com.terraformersmc.terraform.biome.builder.TerraformBiome
 import io.github.redstoneparadox.journia.config.BiomesConfig
 import io.github.redstoneparadox.journia.world.gen.feature.BlockBandsFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
-import io.github.redstoneparadox.journia.world.gen.feature.NewSurfacePatchFeatureConfig
+import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes
 import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
@@ -34,8 +34,8 @@ object BandedMountainsBiomes {
                 .category(Biome.Category.EXTREME_HILLS)
                 .addCustomFeature(
                     GenerationStep.Feature.RAW_GENERATION,
-                    JourniaFeatures.NEW_SURFACE_PATCH.configure(
-                        NewSurfacePatchFeatureConfig(
+                    JourniaFeatures.SURFACE_PATCH.configure(
+                        SurfacePatchFeatureConfig(
                             Blocks.STONE.defaultState,
                             0.25,
                             listOf(

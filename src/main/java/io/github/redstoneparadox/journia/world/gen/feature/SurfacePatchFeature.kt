@@ -8,65 +8,35 @@ import net.minecraft.world.gen.StructureAccessor
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.feature.Feature
 import java.util.*
-import kotlin.math.abs
 
-//TODO: Replace this with NewSurfacePatchFeature so I'm not using bad code.
 class SurfacePatchFeature: Feature<SurfacePatchFeatureConfig>(SurfacePatchFeatureConfig.CODEC) {
-
-    private val sampler = OpenSimplexSampler()
+    private val samplerMap: MutableMap<SurfacePatchFeatureConfig, Pair<OpenSimplexSampler, OpenSimplexSampler>> = mutableMapOf()
 
     override fun generate(world: ServerWorldAccess, accessor: StructureAccessor, generator: ChunkGenerator, random: Random, pos: BlockPos, config: SurfacePatchFeatureConfig): Boolean {
-        sampler.setSeed(world.seed)
+        val samplers = samplerMap.computeIfAbsent(config) { OpenSimplexSampler(config.size, 1.0, config.size, 1.0) to OpenSimplexSampler(1.0, 1.0, 1.0, 1.0) }
 
-        var blockPos = pos
-        while (true) {
-            outer@do {
-                if (blockPos.y > 3) {
-                    if (world.isAir(blockPos.down())) {
-                        break@outer
-                    }
-                    val block = world.getBlockState(blockPos.down()).block
-                    if (!isSoil(block) && !isStone(
-                            block
-                        )
-                    ) {
-                        break@outer
-                    }
-                }
-                if (blockPos.y <= 3) {
-                    return false
-                }
-                val i = config.startRadius
-                var j = 0
-                while (i >= 0 && j < 3) {
-                    val k = i + random.nextInt(2)
-                    val l = i + random.nextInt(2)
-                    val m = i + random.nextInt(2)
-                    val f = (k + l + m).toFloat() * 0.333f + 0.5f
-                    val var12: Iterator<*> = BlockPos.iterate(blockPos.add(-k, -l, -m), blockPos.add(k, l, m)).iterator()
-                    while (var12.hasNext()) {
-                        val blockPos2 = var12.next() as BlockPos
-                        val x = blockPos2.x
-                        val z = blockPos2.z
-                        if (config.integrity < abs(sampler.eval(x, z))) continue
-                        if (blockPos2.getSquaredDistance(blockPos) <= (f * f).toDouble()) {
-                            val y = world.getTopY(Heightmap.Type.WORLD_SURFACE_WG, blockPos2.x, blockPos2.z) - 1
-                            val pos = BlockPos(x, y, z)
-                            if (config.target.test(world.getBlockState(pos))) {
-                                world.setBlockState(pos, config.state, 4)
+        for (x in 0..15) {
+            for (z in 0..15) {
+                val noise = samplers.first.eval(x + pos.x, z + pos.z)
+                val chance = samplers.second.eval(x + pos.x, z + pos.z)
+
+                if ((noise + 1)/2 <= config.coverage && (chance + 1)/2 <= config.integrity) {
+                    val basePos = pos.add(x, 0, z)
+                    val topPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, basePos).down()
+                    if (world.testBlockState(topPos) { config.targets.contains(it) }) {
+                        if (config.below) {
+                            for (y in 0..4) {
+                                world.setBlockState(topPos.down(y), config.state, 19)
                             }
                         }
+                        else {
+                            world.setBlockState(topPos, config.state, 19)
+                        }
                     }
-                    blockPos = blockPos.add(
-                        -(i + 1) + random.nextInt(2 + i * 2),
-                        0 - random.nextInt(2),
-                        -(i + 1) + random.nextInt(2 + i * 2)
-                    )
-                    ++j
                 }
-                return true
-            } while (true);
-            blockPos = blockPos.down()
+            }
         }
+
+        return true
     }
 }

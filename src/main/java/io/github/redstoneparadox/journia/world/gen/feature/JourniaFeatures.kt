@@ -1,7 +1,6 @@
 package io.github.redstoneparadox.journia.world.gen.feature
 
 import io.github.redstoneparadox.journia.block.JourniaBlocks
-import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
 import io.github.redstoneparadox.journia.world.gen.foliage.CubenFoliagePlacer
 import io.github.redstoneparadox.journia.world.gen.foliage.PineFoliagePlacer
 import io.github.redstoneparadox.journia.world.gen.trunk.CubenTrunkPlacer
@@ -9,11 +8,6 @@ import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.state.property.Properties
 import net.minecraft.util.registry.Registry
-import net.minecraft.world.biome.Biome
-import net.minecraft.world.gen.GenerationStep
-import net.minecraft.world.gen.decorator.CountDecoratorConfig
-import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig
-import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.feature.*
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider
@@ -30,14 +24,13 @@ object JourniaFeatures {
     val PINE_TREE: TreeFeature = TreeFeature(TreeFeatureConfig.CODEC)
     val DEAD_TREE = DeadTreeFeature()
     val SURFACE_PATCH = SurfacePatchFeature()
-    val NEW_SURFACE_PATCH = NewSurfacePatchFeature()
     val BLOCK_BANDS = BlockBandsFeature()
     val ROCK_FORMATION = RockFormationFeature()
 
     fun registerAll() {
         register("pine_tree", PINE_TREE)
         register("dead_tree", DEAD_TREE)
-        register("new_surface_patch", NEW_SURFACE_PATCH)
+        register("surface_patch", SURFACE_PATCH)
         register("block_bands", BLOCK_BANDS)
         register("rock_formation", ROCK_FORMATION)
     }

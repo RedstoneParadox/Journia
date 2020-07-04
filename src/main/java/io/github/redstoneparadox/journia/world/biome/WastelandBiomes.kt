@@ -7,7 +7,6 @@ import io.github.redstoneparadox.journia.colorToInt
 import io.github.redstoneparadox.journia.config.BiomesConfig
 import io.github.redstoneparadox.journia.util.skyFogColor
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
-import io.github.redstoneparadox.journia.world.gen.feature.NewSurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes
@@ -87,8 +86,8 @@ object WastelandBiomes {
             .temperature(1.0F).downfall(0.0f)
             .addCustomFeature(
                 GenerationStep.Feature.RAW_GENERATION,
-                JourniaFeatures.NEW_SURFACE_PATCH.configure(
-                    NewSurfacePatchFeatureConfig(
+                JourniaFeatures.SURFACE_PATCH.configure(
+                    SurfacePatchFeatureConfig(
                         state = Blocks.COARSE_DIRT.defaultState,
                         coverage = 0.5,
                         targets = listOf(
@@ -114,8 +113,8 @@ object WastelandBiomes {
             )
             .addCustomFeature(
                 GenerationStep.Feature.RAW_GENERATION,
-                JourniaFeatures.NEW_SURFACE_PATCH.configure(
-                    NewSurfacePatchFeatureConfig(
+                JourniaFeatures.SURFACE_PATCH.configure(
+                    SurfacePatchFeatureConfig(
                         state = Blocks.RED_SAND.defaultState,
                         coverage = 0.2,
                         targets = listOf(
@@ -128,8 +127,8 @@ object WastelandBiomes {
             )
             .addCustomFeature(
                 GenerationStep.Feature.RAW_GENERATION,
-                JourniaFeatures.NEW_SURFACE_PATCH.configure(
-                    NewSurfacePatchFeatureConfig(
+                JourniaFeatures.SURFACE_PATCH.configure(
+                    SurfacePatchFeatureConfig(
                         state = JourniaBlocks.CRACKED_GROUND.defaultState,
                         coverage = 0.4,
                         targets = listOf(
@@ -160,8 +159,8 @@ object WastelandBiomes {
     private fun TerraformBiome.Builder.addWastelandSurfacePatches(): TerraformBiome.Builder {
         return this.addCustomFeature(
             GenerationStep.Feature.RAW_GENERATION,
-            JourniaFeatures.NEW_SURFACE_PATCH.configure(
-                NewSurfacePatchFeatureConfig(
+            JourniaFeatures.SURFACE_PATCH.configure(
+                SurfacePatchFeatureConfig(
                     state = Blocks.COARSE_DIRT.defaultState,
                     coverage = 0.3,
                     targets = listOf(
@@ -174,8 +173,8 @@ object WastelandBiomes {
             )
         ).addCustomFeature(
             GenerationStep.Feature.RAW_GENERATION,
-            JourniaFeatures.NEW_SURFACE_PATCH.configure(
-                NewSurfacePatchFeatureConfig(
+            JourniaFeatures.SURFACE_PATCH.configure(
+                SurfacePatchFeatureConfig(
                     state = Blocks.RED_SAND.defaultState,
                     coverage = 0.6,
                     targets = listOf(
