@@ -12,7 +12,7 @@ import java.util.*
 
 class WetlandsSurfaceBuilder : SurfaceBuilder<TernarySurfaceConfig>(TernarySurfaceConfig.CODEC) {
     override fun generate(random: Random, chunk: Chunk, biome: Biome, x: Int, z: Int, height: Int, noise: Double, defaultBlock: BlockState, defaultFluid: BlockState, seaLevel: Int, seed: Long, surfaceBlocks: TernarySurfaceConfig) {
-        if (chunk.getBlockState(BlockPos(x, height + 1, z)).block == Blocks.WATER) {
+        if (height < seaLevel) {
             SWAMP.generate(random, chunk, biome, x, z, height, noise, JourniaBlocks.MUD.defaultState, defaultFluid, seaLevel, seed, JourniaSurfaceBuilders.MUD_CONFIG)
         }
         else {
