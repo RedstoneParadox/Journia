@@ -1,6 +1,5 @@
 package io.github.redstoneparadox.journia.world.biome
 
-import com.terraformersmc.terraform.biome.builder.TerraformBiome
 import com.terraformersmc.terraform.biomebuilder.TerraformBiomeBuilder
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.minecraft.world.biome.Biome
