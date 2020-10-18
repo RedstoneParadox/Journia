@@ -23,6 +23,11 @@ object JourniaBiomes {
     lateinit var ROCKY_GIANT_TREE_TAIGA: RegistryKey<Biome>
     lateinit var ROCKY_TAIGA_MOUNTAINS: RegistryKey<Biome>
 
+    lateinit var WASTELAND: RegistryKey<Biome>
+    lateinit var WASTELAND_EDGE: RegistryKey<Biome>
+    lateinit var WASTELAND_RIVER: RegistryKey<Biome>
+    lateinit var WASTELAND_SHORE: RegistryKey<Biome>
+
     fun registerAll() {
         ShoreBiomes.register()
         RockyTaigaBiomes.register()
