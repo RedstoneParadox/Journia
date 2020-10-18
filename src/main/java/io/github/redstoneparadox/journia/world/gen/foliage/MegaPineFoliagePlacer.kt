@@ -2,7 +2,6 @@ package io.github.redstoneparadox.journia.world.gen.foliage
 
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
-import com.terraformersmc.shapes.api.Filler
 import com.terraformersmc.shapes.api.Position
 import com.terraformersmc.shapes.impl.Shapes
 import com.terraformersmc.shapes.impl.layer.pathfinder.AddLayer
@@ -15,24 +14,24 @@ import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockBox
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.ModifiableTestableWorld
+import net.minecraft.world.gen.UniformIntDistribution
 import net.minecraft.world.gen.feature.TreeFeatureConfig
 import net.minecraft.world.gen.foliage.FoliagePlacer
 import net.minecraft.world.gen.foliage.FoliagePlacerType
 import java.util.*
 import kotlin.collections.HashMap
 import kotlin.math.abs
-import kotlin.math.floor
-import kotlin.math.pow
-import kotlin.math.sqrt
 
 
-class MegaPineFoliagePlacer(val minHeight: Int, val additionalHeight: Int, radius: Int, randomRadius: Int, offset: Int, randomOffset: Int): FoliagePlacer(radius, randomRadius, offset, randomOffset) {
+class MegaPineFoliagePlacer(val minHeight: Int, val additionalHeight: Int, radius: UniformIntDistribution, offset: UniformIntDistribution): FoliagePlacer(radius, offset) {
     private val cached: MutableMap<Configuration, Set<Pair<BlockPos, BlockState>>> = HashMap()
+
+    constructor(minHeight: Int, additionalHeight: Int, radius: Int, randomRadius: Int, offset: Int, randomOffset: Int):
+            this(minHeight, additionalHeight, UniformIntDistribution.of(radius, randomRadius), UniformIntDistribution.of(offset, randomOffset))
 
     override fun generate(world: ModifiableTestableWorld, random: Random, config: TreeFeatureConfig, trunkHeight: Int, treeNode: TreeNode, foliageHeight: Int, radius: Int, leaves: MutableSet<BlockPos>, i: Int, blockBox: BlockBox) {
         if (treeNode.isGiantTrunk) {
-            val chosenRadius = if (randomRadius > 0) random.nextInt(randomRadius) + radius else radius
-            val trueRadius = chosenRadius.takeIf { it % 2 == 1 }.asElse(chosenRadius - 1)
+            val trueRadius = radius.takeIf { it % 2 == 1 }.asElse(radius - 1)
 
             val leavesState = config.leavesProvider.getBlockState(random, treeNode.center)
 
@@ -60,7 +59,7 @@ class MegaPineFoliagePlacer(val minHeight: Int, val additionalHeight: Int, radiu
         }
     }
 
-    override fun getHeight(random: Random?, trunkHeight: Int, config: TreeFeatureConfig?): Int {
+    override fun getRandomHeight(random: Random?, trunkHeight: Int, config: TreeFeatureConfig?): Int {
         return random!!.nextInt(this.additionalHeight) + minHeight
     }
 
@@ -98,10 +97,8 @@ class MegaPineFoliagePlacer(val minHeight: Int, val additionalHeight: Int, radiu
             return@create instance.group(
                 Codec.INT.field("min_height") { minHeight },
                 Codec.INT.field("additional_height") { additionalHeight },
-                Codec.INT.fieldOf("radius").forGetter { it.radius },
-                Codec.INT.fieldOf("radius_random").forGetter { it.randomRadius },
-                Codec.INT.fieldOf("offset").forGetter { it.offset },
-                Codec.INT.fieldOf("offset_random").forGetter { it.randomOffset }
+                UniformIntDistribution.CODEC.field("radius") { radius },
+                UniformIntDistribution.CODEC.field("offset") { offset }
             ).apply(instance, ::MegaPineFoliagePlacer)
         }
     }

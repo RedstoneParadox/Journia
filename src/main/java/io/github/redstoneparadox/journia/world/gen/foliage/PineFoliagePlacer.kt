@@ -3,17 +3,22 @@ package io.github.redstoneparadox.journia.world.gen.foliage
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import io.github.redstoneparadox.journia.util.ListBuilder
+import io.github.redstoneparadox.journia.util.field
 import net.minecraft.util.math.BlockBox
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.world.ModifiableTestableWorld
+import net.minecraft.world.gen.UniformIntDistribution
 import net.minecraft.world.gen.feature.TreeFeature
 import net.minecraft.world.gen.feature.TreeFeatureConfig
 import net.minecraft.world.gen.foliage.FoliagePlacer
 import net.minecraft.world.gen.foliage.FoliagePlacerType
 import java.util.*
 
-class PineFoliagePlacer(radius: Int, randomRadius: Int, offset: Int, randomOffset: Int): FoliagePlacer(radius, randomRadius, offset, randomOffset) {
+class PineFoliagePlacer(radius: UniformIntDistribution, offset: UniformIntDistribution): FoliagePlacer(radius, offset) {
+
+    constructor(radius: Int, randomRadius: Int, offset: Int, randomOffset: Int): this(UniformIntDistribution.of(radius, randomRadius), UniformIntDistribution.of(offset, randomOffset))
+
     override fun generate(world: ModifiableTestableWorld, random: Random?, config: TreeFeatureConfig, trunkHeight: Int, treeNode: TreeNode, foliageHeight: Int, radius: Int, leaves: MutableSet<BlockPos>, i: Int, blockBox: BlockBox?) {
         val top = treeNode.center.up()
         val mutable = BlockPos.Mutable()
@@ -28,7 +33,7 @@ class PineFoliagePlacer(radius: Int, randomRadius: Int, offset: Int, randomOffse
         }
     }
 
-    override fun getHeight(random: Random, trunkHeight: Int, config: TreeFeatureConfig?): Int {
+    override fun getRandomHeight(random: Random?, trunkHeight: Int, config: TreeFeatureConfig?): Int {
         return trunkHeight + 1
     }
 
@@ -43,10 +48,8 @@ class PineFoliagePlacer(radius: Int, randomRadius: Int, offset: Int, randomOffse
     companion object {
         val CODEC: Codec<PineFoliagePlacer> = RecordCodecBuilder.create { instance ->
             return@create instance.group(
-                Codec.INT.fieldOf("radius").forGetter { it.radius },
-                Codec.INT.fieldOf("radius_random").forGetter { it.randomRadius },
-                Codec.INT.fieldOf("offset").forGetter { it.offset },
-                Codec.INT.fieldOf("offset_random").forGetter { it.randomOffset }
+                UniformIntDistribution.CODEC.field("radius") { radius },
+                UniformIntDistribution.CODEC.field("offset") { offset }
             ).apply(instance, ::PineFoliagePlacer)
         }
 
