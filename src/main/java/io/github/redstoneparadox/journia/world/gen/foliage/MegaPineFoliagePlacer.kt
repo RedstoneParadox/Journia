@@ -27,33 +27,35 @@ import kotlin.math.sqrt
 
 
 class MegaPineFoliagePlacer(val minHeight: Int, val additionalHeight: Int, radius: Int, randomRadius: Int, offset: Int, randomOffset: Int): FoliagePlacer(radius, randomRadius, offset, randomOffset) {
-    private val cached: MutableMap<Configuration, Set<BlockPos>> = HashMap()
+    private val cached: MutableMap<Configuration, Set<Pair<BlockPos, BlockState>>> = HashMap()
 
     override fun generate(world: ModifiableTestableWorld, random: Random, config: TreeFeatureConfig, trunkHeight: Int, treeNode: TreeNode, foliageHeight: Int, radius: Int, leaves: MutableSet<BlockPos>, i: Int, blockBox: BlockBox) {
         if (treeNode.isGiantTrunk) {
             val chosenRadius = if (randomRadius > 0) random.nextInt(randomRadius) + radius else radius
             val trueRadius = chosenRadius.takeIf { it % 2 == 1 }.asElse(chosenRadius - 1)
 
+            val leavesState = config.leavesProvider.getBlockState(random, treeNode.center)
+
             val positions = cached.computeIfAbsent(Configuration(foliageHeight, trueRadius)) {
                 val cone = Shapes.ellipticalPyramid(trueRadius.toDouble(), trueRadius.toDouble(), foliageHeight.toDouble())
-                val set = mutableSetOf<BlockPos>()
+                val set = mutableSetOf<Pair<BlockPos, BlockState>>()
 
                 cone
                     .applyLayer(AddLayer(cone.applyLayer(TranslateLayer(Position.of(1.0, 0.0, 0.0)))))
                     .applyLayer(AddLayer(cone.applyLayer(TranslateLayer(Position.of(0.0, 0.0, 1.0)))))
                     .applyLayer(AddLayer(cone.applyLayer(TranslateLayer(Position.of(1.0, 0.0, 1.0)))))
-                    .fill(SetFiller(set))
+                    .fill(SetFiller(set) {
+                        val distance = calculateActualDistance(it.x, it.y - (foliageHeight - 3), it.z)
+
+                        withDistance(leavesState, distance)
+                    })
 
                 return@computeIfAbsent set
             }
 
-            val leavesState = config.leavesProvider.getBlockState(random, treeNode.center)
-
             positions.forEach {
-                val truePos = it.add(treeNode.center.down(foliageHeight - 3))
-                val distance = calculateActualDistance(it.x, it.y, it.z)
-
-                world.setBlockState(truePos, withDistance(leavesState, distance), 19, 32)
+                val truePos = it.first.add(treeNode.center.down(foliageHeight - 3))
+                world.setBlockState(truePos, it.second, 19, 32)
             }
         }
     }
@@ -79,14 +81,14 @@ class MegaPineFoliagePlacer(val minHeight: Int, val additionalHeight: Int, radiu
     }
 
     private fun calculateActualDistance(offsetX: Int, offsetY: Int, offsetZ: Int): Int {
-        val distance = if (offsetY <= 0) {
-            sqrt(offsetX.toDouble().pow(2.0) + offsetZ.toDouble().pow(2.0))
-        } else {
-            sqrt(offsetX.toDouble().pow(2.0) + offsetY.toDouble().pow(2.0) + offsetZ.toDouble().pow(2.0))
-        }
+        var distance = abs(offsetX) + abs(offsetZ)
+
+        if (offsetY > 0) distance += offsetY
+        if (offsetX < 0) distance -= 1
+        if (offsetZ < 0) distance -= 1
 
         // If the distance is 0, the leaves wouldn't be there to begin with?
-        return if (distance == 0.0) 1 else floor(distance).toInt()
+        return if (distance <= 0) 1 else distance
     }
 
     data class Configuration(val height: Int, val radius: Int)

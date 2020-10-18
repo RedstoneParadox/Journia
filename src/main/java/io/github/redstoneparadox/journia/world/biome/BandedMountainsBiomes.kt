@@ -1,17 +1,19 @@
 package io.github.redstoneparadox.journia.world.biome
 
-import com.terraformersmc.terraform.biome.builder.DefaultFeature.*
-import com.terraformersmc.terraform.biome.builder.TerraformBiome
+import com.terraformersmc.terraform.biomebuilder.DefaultFeature
+import com.terraformersmc.terraform.biomebuilder.DefaultFeature.*
+import com.terraformersmc.terraform.biomebuilder.TerraformBiomeBuilder
 import io.github.redstoneparadox.journia.config.BiomesConfig
 import io.github.redstoneparadox.journia.world.gen.feature.BlockBandsFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
-import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes
-import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
+import net.fabricmc.fabric.api.biome.v1.OverworldBiomes
+import net.fabricmc.fabric.api.biome.v1.OverworldClimate
 import net.minecraft.block.Blocks
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.GenerationStep
+import net.minecraft.world.gen.feature.ConfiguredFeatures
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures
 import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
@@ -23,16 +25,15 @@ object BandedMountainsBiomes {
     val BANDED_SHORE: Biome
 
     init {
-        val template = TerraformBiome.Template(
-            TerraformBiome.builder()
+        val template = TerraformBiomeBuilder.create()
                 .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, JourniaSurfaceBuilders.BANDED_MOUNTAINS_CONFIG)
                 .temperature(0.7f)
                 .downfall(0.8f)
                 .precipitation(Biome.Precipitation.RAIN)
-                .waterColor(4159204)
-                .waterFogColor(329011)
+                //.waterColor(4159204)
+                //.waterFogColor(329011)
                 .category(Biome.Category.EXTREME_HILLS)
-                .addCustomFeature(
+                .addFeature(
                     GenerationStep.Feature.RAW_GENERATION,
                     JourniaFeatures.SURFACE_PATCH.configure(
                         SurfacePatchFeatureConfig(
@@ -44,7 +45,7 @@ object BandedMountainsBiomes {
                             true)
                     )
                 )
-                .addCustomFeature(
+                .addFeature(
                     GenerationStep.Feature.RAW_GENERATION,
                     JourniaFeatures.BLOCK_BANDS.configure(
                         BlockBandsFeatureConfig(
@@ -68,17 +69,17 @@ object BandedMountainsBiomes {
                     )
                 )
                 .addTreeFeature(
-                    Feature.TREE.configure(DefaultBiomeFeatures.OAK_TREE_WITH_RARE_BEEHIVES_CONFIG),
+                    ConfiguredFeatures.OAK_BEES_005,
                     4
                 )
                 .addTreeFeature(
-                    Feature.TREE.configure(DefaultBiomeFeatures.BIRCH_TREE_WITH_BEEHIVES_CONFIG),
+                    ConfiguredFeatures.BIRCH_BEES_005,
                     3
                 )
                 .addDefaultSpawnEntries()
                 .addDefaultFeatures(
                     LAND_CARVERS,
-                    STRUCTURES,
+                    //STRUCTURES,
                     LAKES,
                     DUNGEONS,
                     MINEABLES,
@@ -90,19 +91,18 @@ object BandedMountainsBiomes {
                     FOREST_GRASS,
                     FOREST_FLOWERS
                 )
-        )
 
-        BANDED_MOUNTAINS = template.builder()
+        BANDED_MOUNTAINS = TerraformBiomeBuilder.create(template)
             .depth(0.9f)
             .scale(0.7f)
             .build()
 
-        MODIFIED_BANDED_MOUNTAINS = template.builder()
+        MODIFIED_BANDED_MOUNTAINS = TerraformBiomeBuilder.create(template)
             .depth(0.8f)
             .scale(0.8f)
             .build()
 
-        BANDED_MOUNTAINS_RIVER = template.builder()
+        BANDED_MOUNTAINS_RIVER = TerraformBiomeBuilder.create(template)
             .category(Biome.Category.RIVER)
             .depth(-0.95F)
             .scale(-0.15F)
@@ -110,7 +110,7 @@ object BandedMountainsBiomes {
             .downfall(0.5F)
             .build()
 
-        BANDED_SHORE = template.builder()
+        BANDED_SHORE = TerraformBiomeBuilder.create(template)
             .category(Biome.Category.NONE)
             .depth(0.1F)
             .scale(0.5F)

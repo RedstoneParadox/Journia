@@ -1,6 +1,6 @@
 package io.github.redstoneparadox.journia.block
 
-import net.minecraft.block.WoodButtonBlock
+import net.minecraft.block.WoodenButtonBlock
 
-class JourniaWoodButtonBlock(settings: Settings) : WoodButtonBlock(settings) {
+class JourniaWoodButtonBlock(settings: Settings) : WoodenButtonBlock(settings) {
 }

@@ -9,6 +9,8 @@ import io.github.redstoneparadox.journia.util.skyFogColor
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
+import net.fabricmc.fabric.api.biome.v1.OverworldBiomes
+import net.fabricmc.fabric.api.biome.v1.OverworldClimate
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes
 import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
 import net.minecraft.block.Blocks
@@ -16,6 +18,7 @@ import net.minecraft.entity.EntityType
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig
+import net.minecraft.world.gen.decorator.CountExtraDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.feature.*
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
@@ -58,11 +61,11 @@ object WastelandBiomes {
                         RandomFeatureConfig(
                             mutableListOf(
                                 JourniaFeatures.DEAD_TREE.configure(JourniaFeatures.DEAD_BIRCH_TREE_CONFIG).withChance(0.2f)
-                            ) as List<RandomFeatureEntry<*>>, JourniaFeatures.DEAD_TREE.configure(JourniaFeatures.DEAD_TREE_CONFIG))
+                            ) as List<RandomFeatureEntry>, JourniaFeatures.DEAD_TREE.configure(JourniaFeatures.DEAD_TREE_CONFIG))
                     )
-                    .createDecoratedFeature(
-                        Decorator.COUNT_EXTRA_HEIGHTMAP
-                            .configure(CountExtraChanceDecoratorConfig(0, 0.2F, 1))
+                    .decorate(
+                        Decorator.COUNT_EXTRA
+                            .configure(CountExtraDecoratorConfig(0, 0.2F, 1))
                     )
             )
             .addDefaultMonsterSpawnEntries()

@@ -13,11 +13,9 @@ import net.minecraft.block.Blocks
 import net.minecraft.entity.EntityType
 import net.minecraft.util.Identifier
 import net.minecraft.world.biome.Biome
-import net.minecraft.world.biome.Biome.SpawnEntry
-import net.minecraft.world.biome.Biomes
+import net.minecraft.world.biome.SpawnSettings
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.ChanceDecoratorConfig
-import net.minecraft.world.gen.decorator.CountDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.feature.*
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
@@ -115,7 +113,7 @@ object RockyTaigaBiomes {
                     DefaultFeature.FROZEN_TOP_LAYER
                 )
                 .addDefaultSpawnEntries()
-                .addSpawnEntry(SpawnEntry(EntityType.WOLF, 8, 4, 4))
+                .addSpawnEntry(SpawnSettings.SpawnEntry(EntityType.WOLF, 8, 4, 4))
                 .addSpawnEntry(SpawnEntry(EntityType.RABBIT, 4, 2, 3))
                 .addSpawnEntry(SpawnEntry(EntityType.FOX, 8, 2, 4))
         )
