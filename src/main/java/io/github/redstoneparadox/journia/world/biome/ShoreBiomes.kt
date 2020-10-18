@@ -21,6 +21,14 @@ object ShoreBiomes {
             .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRAVEL_CONFIG)
             .temperature(0.25F)
             .downfall(0.8F)
-            .build())
+            .effects(
+                BiomeEffects.Builder()
+                    .waterColor(4159204)
+                    .waterFogColor(329011)
+                    .fogColor(12638463)
+                    .skyColor(JourniaBiomes.getSkyColor(0.25f))
+            )
+            .build()
+        )
     }
 }

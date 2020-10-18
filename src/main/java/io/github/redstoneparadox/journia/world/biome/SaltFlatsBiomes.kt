@@ -30,5 +30,6 @@ object SaltFlatsBiomes {
             .waterColor(0x32a598)
             .waterFogColor(329011)
             .fogColor(12638463)
+            .skyColor(JourniaBiomes.getSkyColor(0.8f))
     }
 }

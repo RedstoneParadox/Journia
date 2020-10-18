@@ -35,6 +35,7 @@ object WastelandBiomes {
                         .waterColor(4159204)
                         .waterFogColor(329011)
                         .fogColor(colorToInt(0.8, 0.8, 0.6))
+                        .skyColor(JourniaBiomes.getSkyColor(1.2f))
                         .foliageColor(10387789)
                         .grassColor(9470285)
                 )

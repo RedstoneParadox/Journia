@@ -1,6 +1,7 @@
 package io.github.redstoneparadox.journia.world.biome
 
 import net.minecraft.util.Identifier
+import net.minecraft.util.math.MathHelper
 import net.minecraft.util.registry.BuiltinRegistries
 import net.minecraft.util.registry.Registry
 import net.minecraft.util.registry.RegistryKey
@@ -42,6 +43,12 @@ object JourniaBiomes {
         BuiltinRegistries.add(BuiltinRegistries.BIOME, id, biome)
 
         return RegistryKey.of(Registry.BIOME_KEY, id)
+    }
+
+    fun getSkyColor(temperature: Float): Int {
+        var f = temperature / 3.0f
+        f = MathHelper.clamp(f, -1.0f, 1.0f)
+        return MathHelper.hsvToRgb(0.62222224f - f * 0.05f, 0.5f + f * 0.1f, 1.0f)
     }
 }
 

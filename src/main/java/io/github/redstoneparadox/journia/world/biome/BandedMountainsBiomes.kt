@@ -29,6 +29,8 @@ object BandedMountainsBiomes {
                     BiomeEffects.Builder()
                         .waterColor(4159204)
                         .waterFogColor(329011)
+                        .fogColor(12638463)
+                        .skyColor(JourniaBiomes.getSkyColor(0.7f))
                 )
                 .category(Biome.Category.EXTREME_HILLS)
                 .addFeature(

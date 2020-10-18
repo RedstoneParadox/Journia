@@ -30,6 +30,8 @@ object CubenForestBiomes {
                     BiomeEffects.Builder()
                         .waterColor(4159204)
                         .waterFogColor(329011)
+                        .fogColor(12638463)
+                        .skyColor(JourniaBiomes.getSkyColor(0.7f))
                 )
 
             JourniaBiomes.CUBEN_FOREST = JourniaBiomes.register("cuben_forest",
