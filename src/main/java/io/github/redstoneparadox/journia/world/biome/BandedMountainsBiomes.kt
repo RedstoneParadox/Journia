@@ -14,18 +14,12 @@ import net.minecraft.block.Blocks
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.feature.ConfiguredFeatures
-import net.minecraft.world.gen.feature.DefaultBiomeFeatures
-import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 object BandedMountainsBiomes {
-    val BANDED_MOUNTAINS: Biome
-    val MODIFIED_BANDED_MOUNTAINS: Biome
-    val BANDED_MOUNTAINS_RIVER: Biome
-    val BANDED_SHORE: Biome
-
-    init {
-        val template = TerraformBiomeBuilder.create()
+    fun register() {
+        if (BiomesConfig.BandedMountains.enabled) {
+            val template = TerraformBiomeBuilder.create()
                 .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, JourniaSurfaceBuilders.BANDED_MOUNTAINS_CONFIG)
                 .temperature(0.7f)
                 .downfall(0.8f)
@@ -92,46 +86,46 @@ object BandedMountainsBiomes {
                     FOREST_FLOWERS
                 )
 
-        BANDED_MOUNTAINS = TerraformBiomeBuilder.create(template)
-            .depth(0.9f)
-            .scale(0.7f)
-            .build()
+            JourniaBiomes.BANDED_MOUNTAINS = JourniaBiomes.register("banded_mountains",
+                TerraformBiomeBuilder.create(template)
+                    .depth(0.9f)
+                    .scale(0.7f)
+                    .build()
+            )
 
-        MODIFIED_BANDED_MOUNTAINS = TerraformBiomeBuilder.create(template)
-            .depth(0.8f)
-            .scale(0.8f)
-            .build()
+            JourniaBiomes.MODIFIED_BANDED_MOUNTAINS = JourniaBiomes.register("modified_banded_mountains",
+                TerraformBiomeBuilder.create(template)
+                    .depth(0.8f)
+                    .scale(0.8f)
+                    .build()
+            )
 
-        BANDED_MOUNTAINS_RIVER = TerraformBiomeBuilder.create(template)
-            .category(Biome.Category.RIVER)
-            .depth(-0.95F)
-            .scale(-0.15F)
-            .temperature(0.5F)
-            .downfall(0.5F)
-            .build()
+            JourniaBiomes.BANDED_MOUNTAINS_RIVER = JourniaBiomes.register("banded_mountains_river",
+                TerraformBiomeBuilder.create(template)
+                    .category(Biome.Category.RIVER)
+                    .depth(-0.95F)
+                    .scale(-0.15F)
+                    .temperature(0.5F)
+                    .downfall(0.5F)
+                    .build()
+            )
 
-        BANDED_SHORE = TerraformBiomeBuilder.create(template)
-            .category(Biome.Category.NONE)
-            .depth(0.1F)
-            .scale(0.5F)
-            .temperature(0.2F)
-            .downfall(0.3F)
-            .build()
-    }
+            JourniaBiomes.BANDED_SHORE = JourniaBiomes.register("banded_shore",
+                TerraformBiomeBuilder.create(template)
+                    .category(Biome.Category.NONE)
+                    .depth(0.1F)
+                    .scale(0.5F)
+                    .temperature(0.2F)
+                    .downfall(0.3F)
+                    .build()
+            )
 
-    fun register() {
-        if (BiomesConfig.BandedMountains.enabled) {
-            JourniaBiomes.register("banded_mountains", BANDED_MOUNTAINS)
-            JourniaBiomes.register("modified_banded_mountains", MODIFIED_BANDED_MOUNTAINS)
-            JourniaBiomes.register("banded_mountains_river", BANDED_MOUNTAINS_RIVER)
-            JourniaBiomes.register("banded_shore", BANDED_SHORE)
-
-            OverworldBiomes.addContinentalBiome(BANDED_MOUNTAINS, OverworldClimate.TEMPERATE, BiomesConfig.BandedMountains.weight)
-            OverworldBiomes.addBiomeVariant(BANDED_MOUNTAINS, MODIFIED_BANDED_MOUNTAINS, BiomesConfig.BandedMountains.modified_chance)
-            OverworldBiomes.setRiverBiome(BANDED_MOUNTAINS, BANDED_MOUNTAINS_RIVER)
-            OverworldBiomes.setRiverBiome(MODIFIED_BANDED_MOUNTAINS, BANDED_MOUNTAINS_RIVER)
-            OverworldBiomes.addShoreBiome(BANDED_MOUNTAINS, BANDED_SHORE, 1.0)
-            OverworldBiomes.addShoreBiome(MODIFIED_BANDED_MOUNTAINS, BANDED_SHORE, 1.0)
+            OverworldBiomes.addContinentalBiome(JourniaBiomes.BANDED_MOUNTAINS, OverworldClimate.TEMPERATE, BiomesConfig.BandedMountains.weight)
+            OverworldBiomes.addBiomeVariant(JourniaBiomes.BANDED_MOUNTAINS, JourniaBiomes.MODIFIED_BANDED_MOUNTAINS, BiomesConfig.BandedMountains.modified_chance)
+            OverworldBiomes.setRiverBiome(JourniaBiomes.BANDED_MOUNTAINS, JourniaBiomes.BANDED_MOUNTAINS_RIVER)
+            OverworldBiomes.setRiverBiome(JourniaBiomes.MODIFIED_BANDED_MOUNTAINS, JourniaBiomes.BANDED_MOUNTAINS_RIVER)
+            OverworldBiomes.addShoreBiome(JourniaBiomes.BANDED_MOUNTAINS, JourniaBiomes.BANDED_SHORE, 1.0)
+            OverworldBiomes.addShoreBiome(JourniaBiomes.MODIFIED_BANDED_MOUNTAINS, JourniaBiomes.BANDED_SHORE, 1.0)
         }
     }
 }
