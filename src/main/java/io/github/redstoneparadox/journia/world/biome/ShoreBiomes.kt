@@ -1,30 +1,26 @@
 package io.github.redstoneparadox.journia.world.biome
 
-import com.terraformersmc.terraform.biome.builder.TerraformBiome
+import com.terraformersmc.terraform.biomebuilder.TerraformBiomeBuilder
 import net.minecraft.world.biome.Biome
+import net.minecraft.world.biome.BiomeEffects
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 object ShoreBiomes {
-    val GRAVEL_BEACH: Biome
+    fun register() {
+        val template = TerraformBiomeBuilder.create()
+            .category(Biome.Category.BEACH)
+            .depth(0.0f).scale(0.125f)
+            .effects(
+                BiomeEffects.Builder()
+                    .waterColor(4159204)
+                    .waterFogColor(329011)
+            )
+            .precipitation(Biome.Precipitation.RAIN)
 
-    init {
-        val template = TerraformBiome.Template(
-            TerraformBiome.builder()
-                .category(Biome.Category.BEACH)
-                .depth(0.0f).scale(0.125f)
-                .waterFogColor(329011)
-                .waterColor(4159204)
-                .precipitation(Biome.Precipitation.RAIN)
-        )
-
-        GRAVEL_BEACH = template.builder()
+        JourniaBiomes.GRAVEL_BEACH = JourniaBiomes.register("gravel_beach", TerraformBiomeBuilder.create(template)
             .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRAVEL_CONFIG)
             .temperature(0.25F)
             .downfall(0.8F)
-            .build()
-    }
-
-    fun register() {
-        JourniaBiomes.register("gravel_beach", GRAVEL_BEACH)
+            .build())
     }
 }

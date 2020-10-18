@@ -1,19 +1,20 @@
 package io.github.redstoneparadox.journia.world.biome
 
-import com.terraformersmc.terraform.biome.builder.DefaultFeature
-import com.terraformersmc.terraform.biome.builder.TerraformBiome
+import com.terraformersmc.terraform.biomebuilder.DefaultFeature.*
+import com.terraformersmc.terraform.biomebuilder.TerraformBiomeBuilder
 import io.github.redstoneparadox.journia.config.BiomesConfig
 import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.journia.world.gen.feature.RockFormationFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
-import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes
-import net.fabricmc.fabric.api.biomes.v1.OverworldClimate
+import net.fabricmc.fabric.api.biome.v1.OverworldBiomes
+import net.fabricmc.fabric.api.biome.v1.OverworldClimate
 import net.minecraft.block.Blocks
 import net.minecraft.entity.EntityType
 import net.minecraft.util.Identifier
-import net.minecraft.world.biome.Biome
-import net.minecraft.world.biome.SpawnSettings
+import net.minecraft.world.biome.*
+import net.minecraft.world.biome.BiomeKeys.STONE_SHORE
+import net.minecraft.world.gen.CountConfig
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.ChanceDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
@@ -28,124 +29,22 @@ object RockyTaigaBiomes {
     val ROCKY_TAIGA_MOUNTAINS: Biome
 
     init {
-        val template = TerraformBiome.Template(
-            TerraformBiome.builder()
-                .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_CONFIG)
-                .precipitation(Biome.Precipitation.RAIN)
-                .category(Biome.Category.TAIGA)
-                .temperature(0.25F)
-                .downfall(0.8F)
-                .depth(0.2F).scale(0.2F)
-                .waterColor(4159204)
-                .waterFogColor(329011)
-                .addTreeFeature(Feature.TREE.configure(JourniaFeatures.PINE_TREE_CONFIG), 4)
-                .addTreeFeature(Feature.TREE.configure(DefaultBiomeFeatures.PINE_TREE_CONFIG), 2)
-                .addTreeFeature(Feature.TREE.configure(DefaultBiomeFeatures.SPRUCE_TREE_CONFIG), 2)
-                .addCustomFeature(
-                    GenerationStep.Feature.RAW_GENERATION,
-                    JourniaFeatures.ROCK_FORMATION.configure(
-                        RockFormationFeatureConfig(
-                            3..8,
-                            8..18,
-                            3..6,
-                            5..9
-                        )
-                    ).createDecoratedFeature(
-                        JourniaDecorators.RANDOM_HEIGHTMAP.configure(
-                            ChanceDecoratorConfig(80)
-                        )
-                    )
-                )
-                .addCustomFeature(
-                    GenerationStep.Feature.LOCAL_MODIFICATIONS,
-                    Feature.FOREST_ROCK.configure(
-                        ForestRockFeatureConfig(
-                            Blocks.MOSSY_COBBLESTONE.defaultState,
-                            1
-                        )
-                    ).createDecoratedFeature(
-                        Decorator.FOREST_ROCK.configure(
-                            CountDecoratorConfig(2)
-                        )
-                    )
-                )
-                .addCustomFeature(
-                    GenerationStep.Feature.RAW_GENERATION,
-                    JourniaFeatures.SURFACE_PATCH.configure(
-                        SurfacePatchFeatureConfig(Blocks.COARSE_DIRT.defaultState,
-                            0.3,
-                            listOf(
-                                Blocks.GRASS_BLOCK.defaultState
-                            )
-                        )
-                    )
-                ).addCustomFeature(
-                    GenerationStep.Feature.RAW_GENERATION,
-                    JourniaFeatures.SURFACE_PATCH.configure(
-                        SurfacePatchFeatureConfig(
-                            Blocks.STONE.defaultState,
-                            0.3,
-                            listOf(
-                                Blocks.GRASS_BLOCK.defaultState,
-                                Blocks.DIRT.defaultState,
-                                Blocks.COARSE_DIRT.defaultState
-                            ),
-                            true
-                        )
-                    )
-                )
-                .addStructureFeatures(
-                    MineshaftFeature.MINESHAFT.configure(MineshaftFeatureConfig(0.004, MineshaftFeature.Type.NORMAL)),
-                    StrongholdFeature.STRONGHOLD.configure(FeatureConfig.DEFAULT)
-                )
-                .addDefaultFeatures(
-                    DefaultFeature.LAKES,
-                    DefaultFeature.DUNGEONS,
-                    DefaultFeature.LARGE_FERNS,
-                    DefaultFeature.ORES,
-                    DefaultFeature.DISKS,
-                    DefaultFeature.DEFAULT_FLOWERS,
-                    DefaultFeature.TAIGA_GRASS,
-                    DefaultFeature.DEFAULT_MUSHROOMS,
-                    DefaultFeature.DEFAULT_VEGETATION,
-                    DefaultFeature.SPRINGS,
-                    DefaultFeature.SWEET_BERRY_BUSHES,
-                    DefaultFeature.FROZEN_TOP_LAYER
-                )
-                .addDefaultSpawnEntries()
-                .addSpawnEntry(SpawnSettings.SpawnEntry(EntityType.WOLF, 8, 4, 4))
-                .addSpawnEntry(SpawnEntry(EntityType.RABBIT, 4, 2, 3))
-                .addSpawnEntry(SpawnEntry(EntityType.FOX, 8, 2, 4))
-        )
-
-        ROCKY_TAIGA = template.builder()
-            .addStructureFeatures(
-                VillageFeature.VILLAGE.configure(StructurePoolFeatureConfig(Identifier("village/taiga/town_centers"), 6)),
-                PillagerOutpostFeature.PILLAGER_OUTPOST.configure(FeatureConfig.DEFAULT)
+        val template = TerraformBiomeBuilder.create()
+            .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_CONFIG)
+            .precipitation(Biome.Precipitation.RAIN)
+            .category(Biome.Category.TAIGA)
+            .temperature(0.25F)
+            .downfall(0.8F)
+            .depth(0.2F).scale(0.2F)
+            .effects(
+                BiomeEffects.Builder()
+                    .waterColor(4159204)
+                    .waterFogColor(329011)
             )
-            .build()
-
-        MODIFIED_ROCKY_TAIGA = template.builder()
-            .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.STONE_CONFIG)
-            .addStructureFeatures(
-                PillagerOutpostFeature.PILLAGER_OUTPOST.configure(FeatureConfig.DEFAULT)
-            )
-            .addCustomFeature(
-                GenerationStep.Feature.RAW_GENERATION,
-                JourniaFeatures.SURFACE_PATCH.configure(
-                    SurfacePatchFeatureConfig(
-                        Blocks.DIRT.defaultState,
-                        0.4,
-                        listOf(
-                            Blocks.STONE.defaultState,
-                            Blocks.ANDESITE.defaultState,
-                            Blocks.GRANITE.defaultState,
-                            Blocks.DIORITE.defaultState
-                        )
-                    )
-                )
-            )
-            .addCustomFeature(
+            .addTreeFeature(Feature.TREE.configure(JourniaFeatures.PINE_TREE_CONFIG), 4)
+            .addTreeFeature(ConfiguredFeatures.PINE, 2)
+            .addTreeFeature(ConfiguredFeatures.SPRUCE, 2)
+            .addFeature(
                 GenerationStep.Feature.RAW_GENERATION,
                 JourniaFeatures.ROCK_FORMATION.configure(
                     RockFormationFeatureConfig(
@@ -154,37 +53,134 @@ object RockyTaigaBiomes {
                         3..6,
                         5..9
                     )
-                ).createDecoratedFeature(
+                ).decorate(
+                    JourniaDecorators.RANDOM_HEIGHTMAP.configure(
+                        ChanceDecoratorConfig(80)
+                    )
+                )
+            )
+            .addFeature(
+                GenerationStep.Feature.LOCAL_MODIFICATIONS,
+                Feature.FOREST_ROCK.configure(
+                    SingleStateFeatureConfig(
+                        Blocks.MOSSY_COBBLESTONE.defaultState
+                    )
+                ).decorate(
+                    ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP.repeatRandomly(2)
+                )
+            )
+            .addFeature(
+                GenerationStep.Feature.RAW_GENERATION,
+                JourniaFeatures.SURFACE_PATCH.configure(
+                    SurfacePatchFeatureConfig(Blocks.COARSE_DIRT.defaultState,
+                        0.3,
+                        listOf(
+                            Blocks.GRASS_BLOCK.defaultState
+                        )
+                    )
+                )
+            ).addFeature(
+                GenerationStep.Feature.RAW_GENERATION,
+                JourniaFeatures.SURFACE_PATCH.configure(
+                    SurfacePatchFeatureConfig(
+                        Blocks.STONE.defaultState,
+                        0.3,
+                        listOf(
+                            Blocks.GRASS_BLOCK.defaultState,
+                            Blocks.DIRT.defaultState,
+                            Blocks.COARSE_DIRT.defaultState
+                        ),
+                        true
+                    )
+                )
+            )
+            .addStructureFeatures(
+                MineshaftFeature.MINESHAFT.configure(MineshaftFeatureConfig(0.004f, MineshaftFeature.Type.NORMAL)),
+                StrongholdFeature.STRONGHOLD.configure(FeatureConfig.DEFAULT)
+            )
+            .addDefaultFeatures(
+                LAKES,
+                DUNGEONS,
+                LARGE_FERNS,
+                ORES,
+                DISKS,
+                DEFAULT_FLOWERS,
+                TAIGA_GRASS,
+                DEFAULT_MUSHROOMS,
+                DEFAULT_VEGETATION,
+                SPRINGS,
+                SWEET_BERRY_BUSHES,
+                FROZEN_TOP_LAYER
+            )
+            .addDefaultSpawnEntries()
+            .addSpawnEntry(SpawnSettings.SpawnEntry(EntityType.WOLF, 8, 4, 4))
+            .addSpawnEntry(SpawnSettings.SpawnEntry(EntityType.RABBIT, 4, 2, 3))
+            .addSpawnEntry(SpawnSettings.SpawnEntry(EntityType.FOX, 8, 2, 4))
+
+        ROCKY_TAIGA = TerraformBiomeBuilder.create(template)
+            .addStructureFeatures(
+                ConfiguredStructureFeatures.VILLAGE_TAIGA,
+                ConfiguredStructureFeatures.PILLAGER_OUTPOST
+            )
+            .build()
+
+        MODIFIED_ROCKY_TAIGA = TerraformBiomeBuilder.create(template)
+            .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.STONE_CONFIG)
+            .addStructureFeatures(
+                ConfiguredStructureFeatures.PILLAGER_OUTPOST
+            )
+            .addFeature(
+                GenerationStep.Feature.RAW_GENERATION,
+                JourniaFeatures.SURFACE_PATCH.configure(
+                    SurfacePatchFeatureConfig(
+                        Blocks.DIRT.defaultState,
+                        0.4,
+                        listOf(
+                            Blocks.STONE.defaultState,
+                            Blocks.ANDESITE.defaultState,
+                            Blocks.GRANITE.defaultState,
+                            Blocks.DIORITE.defaultState
+                        )
+                    )
+                )
+            )
+            .addFeature(
+                GenerationStep.Feature.RAW_GENERATION,
+                JourniaFeatures.ROCK_FORMATION.configure(
+                    RockFormationFeatureConfig(
+                        3..8,
+                        8..18,
+                        3..6,
+                        5..9
+                    )
+                ).decorate(
                     JourniaDecorators.RANDOM_HEIGHTMAP.configure(
                         ChanceDecoratorConfig(60)
                     )
                 )
             )
-            .addCustomFeature(
+            .addFeature(
                 GenerationStep.Feature.LOCAL_MODIFICATIONS,
                 Feature.FOREST_ROCK.configure(
-                    ForestRockFeatureConfig(
-                        Blocks.MOSSY_COBBLESTONE.defaultState,
-                        1
+                    SingleStateFeatureConfig(
+                        Blocks.MOSSY_COBBLESTONE.defaultState
                     )
-                ).createDecoratedFeature(
-                    Decorator.FOREST_ROCK.configure(
-                        CountDecoratorConfig(2)
-                    )
+                ).decorate(
+                    ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP.repeatRandomly(2)
                 )
             )
             .build()
 
-        ROCKY_GIANT_TREE_TAIGA = template.builder()
+        ROCKY_GIANT_TREE_TAIGA = TerraformBiomeBuilder.create(template)
             .addTreeFeature(
                 Feature.TREE.configure(JourniaFeatures.GIANT_PINE_TREE_CONFIG),
                 2
             )
             .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.STONE_CONFIG)
             .addStructureFeatures(
-                PillagerOutpostFeature.PILLAGER_OUTPOST.configure(FeatureConfig.DEFAULT)
+                ConfiguredStructureFeatures.PILLAGER_OUTPOST
             )
-            .addCustomFeature(
+            .addFeature(
                 GenerationStep.Feature.RAW_GENERATION,
                 JourniaFeatures.SURFACE_PATCH.configure(
                     SurfacePatchFeatureConfig(
@@ -201,11 +197,11 @@ object RockyTaigaBiomes {
             )
             .build()
 
-        ROCKY_TAIGA_HILLS = template.builder()
+        ROCKY_TAIGA_HILLS = TerraformBiomeBuilder.create(template)
             .depth(0.45f).scale(0.3f)
             .build()
 
-        ROCKY_TAIGA_MOUNTAINS = template.builder()
+        ROCKY_TAIGA_MOUNTAINS = TerraformBiomeBuilder.create(template)
             .depth(0.8f).scale(0.8f)
             .category(Biome.Category.EXTREME_HILLS)
             .build()
@@ -218,15 +214,15 @@ object RockyTaigaBiomes {
             JourniaBiomes.register("rocky_giant_tree_taiga", ROCKY_GIANT_TREE_TAIGA)
             JourniaBiomes.register("rocky_taiga_hills", ROCKY_TAIGA_HILLS)
 
-            OverworldBiomes.addContinentalBiome(ROCKY_TAIGA, OverworldClimate.COOL, BiomesConfig.RockyTaiga.weight)
-            OverworldBiomes.addHillsBiome(ROCKY_TAIGA, ROCKY_TAIGA_HILLS, 1.0)
-            OverworldBiomes.addShoreBiome(ROCKY_TAIGA, ShoreBiomes.GRAVEL_BEACH, 1.0)
+            OverworldBiomes.addContinentalBiome(JourniaBiomes.ROCKY_TAIGA, OverworldClimate.COOL, BiomesConfig.RockyTaiga.weight)
+            OverworldBiomes.addHillsBiome(JourniaBiomes.ROCKY_TAIGA, JourniaBiomes.ROCKY_TAIGA_HILLS, 1.0)
+            OverworldBiomes.addShoreBiome(JourniaBiomes.ROCKY_TAIGA, JourniaBiomes.GRAVEL_BEACH, 1.0)
         }
         if (BiomesConfig.RockyTaigaMountains.enabled) {
             JourniaBiomes.register("rocky_taiga_mountains", ROCKY_TAIGA_MOUNTAINS)
 
-            OverworldBiomes.addContinentalBiome(ROCKY_TAIGA_MOUNTAINS, OverworldClimate.COOL, BiomesConfig.RockyTaigaMountains.weight)
-            OverworldBiomes.addShoreBiome(ROCKY_TAIGA_MOUNTAINS, Biomes.STONE_SHORE, 1.0)
+            OverworldBiomes.addContinentalBiome(JourniaBiomes.ROCKY_TAIGA_MOUNTAINS, OverworldClimate.COOL, BiomesConfig.RockyTaigaMountains.weight)
+            OverworldBiomes.addShoreBiome(JourniaBiomes.ROCKY_TAIGA_MOUNTAINS, STONE_SHORE, 1.0)
         }
     }
 }

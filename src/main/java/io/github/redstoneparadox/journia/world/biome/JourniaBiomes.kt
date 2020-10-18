@@ -7,6 +7,8 @@ import net.minecraft.util.registry.RegistryKey
 import net.minecraft.world.biome.Biome
 
 object JourniaBiomes {
+    lateinit var GRAVEL_BEACH: RegistryKey<Biome>
+
     lateinit var BANDED_MOUNTAINS: RegistryKey<Biome>
     lateinit var MODIFIED_BANDED_MOUNTAINS: RegistryKey<Biome>
     lateinit var BANDED_MOUNTAINS_RIVER: RegistryKey<Biome>
@@ -14,6 +16,12 @@ object JourniaBiomes {
 
     lateinit var CUBEN_FOREST: RegistryKey<Biome>
     lateinit var CUBEN_FOREST_HILLS: RegistryKey<Biome>
+
+    lateinit var ROCKY_TAIGA: RegistryKey<Biome>
+    lateinit var ROCKY_TAIGA_HILLS: RegistryKey<Biome>
+    lateinit var MODIFIED_ROCKY_TAIGA: RegistryKey<Biome>
+    lateinit var ROCKY_GIANT_TREE_TAIGA: RegistryKey<Biome>
+    lateinit var ROCKY_TAIGA_MOUNTAINS: RegistryKey<Biome>
 
     fun registerAll() {
         ShoreBiomes.register()
