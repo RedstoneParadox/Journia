@@ -17,6 +17,7 @@ import net.minecraft.world.biome.BiomeKeys.STONE_SHORE
 import net.minecraft.world.gen.CountConfig
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.ChanceDecoratorConfig
+import net.minecraft.world.gen.decorator.CountExtraDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.feature.*
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
@@ -37,9 +38,17 @@ object RockyTaigaBiomes {
                     .fogColor(12638463)
                     .skyColor(JourniaBiomes.getSkyColor(0.25f))
             )
-            .addTreeFeature(Feature.TREE.configure(JourniaFeatures.PINE_TREE_CONFIG), 4)
-            .addTreeFeature(ConfiguredFeatures.PINE, 2)
-            .addTreeFeature(ConfiguredFeatures.SPRUCE, 2)
+            .addFeature(
+                GenerationStep.Feature.VEGETAL_DECORATION,
+                Feature.TREE
+                    .configure(JourniaFeatures.PINE_TREE_CONFIG)
+                    .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP)
+                    .decorate(
+                        Decorator.COUNT_EXTRA.configure(CountExtraDecoratorConfig(4, 0.1f, 1))
+                    )
+            )
+            .addFeature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.PINE)
+            .addFeature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SPRUCE)
             .addFeature(
                 GenerationStep.Feature.RAW_GENERATION,
                 JourniaFeatures.ROCK_FORMATION.configure(

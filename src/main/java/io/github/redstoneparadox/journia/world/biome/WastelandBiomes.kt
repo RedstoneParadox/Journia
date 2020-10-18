@@ -107,13 +107,13 @@ object WastelandBiomes {
             JourniaBiomes.WASTELAND_EDGE = JourniaBiomes.register("wasteland_edge",
                 TerraformBiomeBuilder.create(template)
                     .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, JourniaSurfaceBuilders.WASTELAND_EDGE_CONFIG)
-                    .addTreeFeature(
-                        ConfiguredFeatures.OAK_BADLANDS,
-                        3
+                    .addFeature(
+                        GenerationStep.Feature.VEGETAL_DECORATION,
+                        ConfiguredFeatures.OAK_BADLANDS
                     )
-                    .addTreeFeature(
-                        ConfiguredFeatures.BIRCH,
-                        3
+                    .addFeature(
+                        GenerationStep.Feature.VEGETAL_DECORATION,
+                        ConfiguredFeatures.BIRCH
                     )
                     .addFeature(
                         GenerationStep.Feature.RAW_GENERATION,

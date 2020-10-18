@@ -9,6 +9,9 @@ import com.terraformersmc.terraform.biomebuilder.DefaultFeature.*
 import net.fabricmc.fabric.api.biome.v1.OverworldBiomes
 import net.fabricmc.fabric.api.biome.v1.OverworldClimate
 import net.minecraft.world.biome.BiomeEffects
+import net.minecraft.world.gen.GenerationStep
+import net.minecraft.world.gen.decorator.CountExtraDecoratorConfig
+import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 
@@ -20,7 +23,15 @@ object CubenForestBiomes {
                 .temperature(0.7F).downfall(0.8F)
                 .precipitation(Biome.Precipitation.RAIN)
                 .category(Biome.Category.FOREST)
-                .addTreeFeature(Feature.TREE.configure(JourniaFeatures.cubenTreeConfig()), 5)
+                .addFeature(
+                    GenerationStep.Feature.VEGETAL_DECORATION,
+                    Feature.TREE
+                        .configure(JourniaFeatures.cubenTreeConfig())
+                        .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP)
+                        .decorate(
+                            Decorator.COUNT_EXTRA.configure(CountExtraDecoratorConfig(4, 0.1f, 1))
+                        )
+                )
                 .addDefaultSpawnEntries()
                 .addStructureFeature<MineshaftFeatureConfig>(MineshaftFeature.MINESHAFT.configure(MineshaftFeatureConfig(0.004f, MineshaftFeature.Type.NORMAL)))
                 .addDefaultFeatures(LAND_CARVERS, /*STRUCTURES,*/ LAKES, DUNGEONS, PLAINS_TALL_GRASS, MINEABLES, ORES, DISKS,

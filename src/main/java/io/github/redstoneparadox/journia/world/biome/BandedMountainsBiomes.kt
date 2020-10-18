@@ -68,13 +68,13 @@ object BandedMountainsBiomes {
                         )
                     )
                 )
-                .addTreeFeature(
-                    ConfiguredFeatures.OAK_BEES_005,
-                    4
+                .addFeature(
+                    GenerationStep.Feature.VEGETAL_DECORATION,
+                    ConfiguredFeatures.OAK_BEES_005
                 )
-                .addTreeFeature(
-                    ConfiguredFeatures.BIRCH_BEES_005,
-                    3
+                .addFeature(
+                    GenerationStep.Feature.VEGETAL_DECORATION,
+                    ConfiguredFeatures.BIRCH_BEES_005
                 )
                 .addDefaultSpawnEntries()
                 .addDefaultFeatures(
