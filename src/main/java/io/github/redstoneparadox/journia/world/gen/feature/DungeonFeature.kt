@@ -1,29 +1,26 @@
 package io.github.redstoneparadox.journia.world.gen.feature
 
-import com.mojang.datafixers.util.Pair
-import io.github.redstoneparadox.journia.util.concat
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.structure.PoolStructurePiece
 import net.minecraft.structure.StructureManager
 import net.minecraft.structure.StructurePieceType
 import net.minecraft.structure.StructureStart
-import net.minecraft.structure.pool.SinglePoolElement
-import net.minecraft.structure.pool.StructurePool
 import net.minecraft.structure.pool.StructurePoolBasedGenerator
 import net.minecraft.structure.pool.StructurePoolElement
 import net.minecraft.util.BlockRotation
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockBox
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.registry.DynamicRegistryManager
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.feature.DefaultFeatureConfig
 import net.minecraft.world.gen.feature.StructureFeature
 import net.minecraft.world.gen.feature.StructureFeature.StructureStartFactory
+import net.minecraft.world.gen.feature.StructurePoolFeatureConfig
 
 class DungeonFeature: StructureFeature<DefaultFeatureConfig>(DefaultFeatureConfig.CODEC) {
-
     override fun getName(): String {
         return "New Dungeon"
     }
@@ -41,75 +38,58 @@ class DungeonFeature: StructureFeature<DefaultFeatureConfig>(DefaultFeatureConfi
         }
     }
 
-    class DungeonStructureStart(feature: StructureFeature<DefaultFeatureConfig>, chunkX: Int, chunkZ: Int, box: BlockBox, references: Int, seed: Long): StructureStart<DefaultFeatureConfig>(feature, chunkX, chunkZ, box, references, seed) {
-        override fun init(chunkGenerator: ChunkGenerator?, structureManager: StructureManager?, x: Int, z: Int, biome: Biome?, featureConfig: DefaultFeatureConfig?) {
-            StructurePoolBasedGenerator.addPieces(MAIN_POOL, 7, ::DungeonPiece, chunkGenerator, structureManager, BlockPos(x * 16, 0, z * 16), children, random, true, true)
-            setBoundingBoxFromChildren()
+    class DungeonStructureStart(
+        feature: StructureFeature<DefaultFeatureConfig>,
+        chunkX: Int,
+        chunkZ: Int,
+        box: BlockBox,
+        references: Int,
+        seed: Long
+    ): StructureStart<DefaultFeatureConfig>(feature, chunkX, chunkZ, box, references, seed) {
+        override fun init(
+            registryManager: DynamicRegistryManager,
+            chunkGenerator: ChunkGenerator,
+            structureManager: StructureManager,
+            chunkX: Int,
+            chunkZ: Int,
+            biome: Biome,
+            config: DefaultFeatureConfig
+        ) {
+            val blockpos = BlockPos(chunkX * 16, 62, chunkZ * 16)
+            StructurePoolBasedGenerator.method_30419(
+                registryManager,
+                StructurePoolFeatureConfig({ registryManager[Registry.TEMPLATE_POOL_WORLDGEN][START_POOL] }, 1),
+                ::PoolStructurePiece,
+                chunkGenerator,
+                structureManager,
+                blockpos,
+                this.children,
+                random,
+                true,
+                true
+                )
         }
 
         companion object {
-            val MAIN_POOL: Identifier = Identifier("journia:dungeon_main_room")
-            val HALLWAYS_ROOMS_POOL: Identifier = Identifier("journia:dungeon_rooms_or_halls")
-            val ROOMS_POOL: Identifier = Identifier("journia:dungeon_rooms")
-
-            init {
-                pool(
-                    MAIN_POOL,
-                    mainRooms()
-                )
-
-                pool(
-                    HALLWAYS_ROOMS_POOL,
-                    halls().concat(rooms())
-                )
-
-                pool(
-                    ROOMS_POOL,
-                    rooms()
-                )
-            }
-
-            private fun pool(identifier: Identifier, elementCounts: List<Pair<StructurePoolElement, Int>>) {
-                StructurePoolBasedGenerator.REGISTRY.add(
-                    StructurePool(
-                        identifier,
-                        Identifier("empty"),
-                        elementCounts,
-                        StructurePool.Projection.RIGID
-                    )
-                )
-            }
-
-            private fun mainRooms(): MutableList<Pair<StructurePoolElement, Int>> {
-                return mutableListOf(
-                    Pair(SinglePoolElement("journia:dungeon/standard/main_rooms/dungeon_3_stories"), 1),
-                    Pair(SinglePoolElement("journia:dungeon/standard/main_rooms/dungeon_t_stairs"), 1)
-                ) as MutableList<Pair<StructurePoolElement, Int>>
-            }
-
-            private fun halls(): MutableList<Pair<StructurePoolElement, Int>> {
-                return mutableListOf(
-                    Pair(SinglePoolElement("journia:dungeon/standard/halls/dungeon_hall_long"), 1),
-                    Pair(SinglePoolElement("journia:dungeon/standard/halls/dungeon_hall_short"), 2)
-                ) as MutableList<Pair<StructurePoolElement, Int>>
-            }
-
-            private fun rooms(): MutableList<Pair<StructurePoolElement, Int>> {
-                return mutableListOf(
-                    Pair(SinglePoolElement("journia:dungeon/standard/rooms/dungeon_room_small"), 1)
-                ) as MutableList<Pair<StructurePoolElement, Int>>
-            }
+            val START_POOL: Identifier = Identifier("journia:dungeon/main_room")
+            val HALLWAYS_ROOMS_POOL: Identifier = Identifier("journia:dungeon/rooms_or_halls")
+            val ROOMS_POOL: Identifier = Identifier("journia:dungeon/rooms")
         }
     }
 
     class DungeonPiece: PoolStructurePiece {
-        constructor(manager: StructureManager, poolElement: StructurePoolElement, pos: BlockPos, groundLevelDelta: Int, rotation: BlockRotation, boundingBox: BlockBox):
-                super(NEW_DUNGEON_PIECE, manager, poolElement, pos, groundLevelDelta, rotation, boundingBox)
+        constructor(
+            manager: StructureManager,
+            poolElement: StructurePoolElement,
+            pos: BlockPos,
+            groundLevelDelta: Int,
+            rotation: BlockRotation,
+            boundingBox: BlockBox
+        ):
+                super(manager, poolElement, pos, groundLevelDelta, rotation, boundingBox)
 
         constructor(manager: StructureManager, tag: CompoundTag):
-                super(manager, tag, NEW_DUNGEON_PIECE)
-
-
+                super(manager, tag)
     }
 
     companion object {

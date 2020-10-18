@@ -14,6 +14,10 @@ class ListBuilder<E> {
     }
 
     fun build(): List<E> {
-        return list
+        return list.toList()
+    }
+
+    fun buildMutable(): MutableList<E> {
+        return list.toMutableList()
     }
 }
