@@ -12,6 +12,7 @@ import net.fabricmc.fabric.api.biome.v1.OverworldBiomes
 import net.fabricmc.fabric.api.biome.v1.OverworldClimate
 import net.minecraft.block.Blocks
 import net.minecraft.world.biome.Biome
+import net.minecraft.world.biome.BiomeEffects
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.feature.ConfiguredFeatures
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
@@ -24,8 +25,11 @@ object BandedMountainsBiomes {
                 .temperature(0.7f)
                 .downfall(0.8f)
                 .precipitation(Biome.Precipitation.RAIN)
-                //.waterColor(4159204)
-                //.waterFogColor(329011)
+                .effects(
+                    BiomeEffects.Builder()
+                        .waterColor(4159204)
+                        .waterFogColor(329011)
+                )
                 .category(Biome.Category.EXTREME_HILLS)
                 .addFeature(
                     GenerationStep.Feature.RAW_GENERATION,
