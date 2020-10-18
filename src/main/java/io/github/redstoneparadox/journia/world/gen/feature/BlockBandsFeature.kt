@@ -7,6 +7,7 @@ import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.ServerWorldAccess
+import net.minecraft.world.StructureWorldAccess
 import net.minecraft.world.gen.StructureAccessor
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.feature.Feature
@@ -17,7 +18,7 @@ class BlockBandsFeature: Feature<BlockBandsFeatureConfig>(BlockBandsFeatureConfi
     private val states: MutableList<BlockState> = mutableListOf()
     private var sampler: OpenSimplexSampler? = null
 
-    override fun generate(world: ServerWorldAccess, accessor: StructureAccessor, generator: ChunkGenerator, random: Random, pos: BlockPos, config: BlockBandsFeatureConfig): Boolean {
+    override fun generate(world: StructureWorldAccess, chunkGenerator: ChunkGenerator, random: Random, pos: BlockPos, config: BlockBandsFeatureConfig): Boolean {
         if (!initialized) {
             init(JavaRandom(random), config.getWeightedBands(), config.minSeparation, config.maxSeparation)
             sampler = OpenSimplexSampler(config.waveSize.toDouble(), 0.0, config.waveSize.toDouble(), config.waveVariation.toDouble())

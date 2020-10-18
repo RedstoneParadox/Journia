@@ -11,13 +11,20 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.Vec3d
 import net.minecraft.world.ServerWorldAccess
+import net.minecraft.world.StructureWorldAccess
 import net.minecraft.world.gen.StructureAccessor
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.feature.Feature
 import java.util.*
 
 class RockFormationFeature: Feature<RockFormationFeatureConfig>(RockFormationFeatureConfig.CODEC) {
-    override fun generate(world: ServerWorldAccess, structureAccessor: StructureAccessor, generator: ChunkGenerator, random: Random, pos: BlockPos, config: RockFormationFeatureConfig): Boolean {
+    override fun generate(
+        world: StructureWorldAccess,
+        chunkGenerator: ChunkGenerator,
+        random: Random,
+        pos: BlockPos,
+        config: RockFormationFeatureConfig
+    ): Boolean {
         val rand = JavaRandom(random)
         val additionalRockCount = rand.nextInt(config.countRange.first, config.countRange.last + 1) - 1
 

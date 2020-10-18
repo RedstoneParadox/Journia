@@ -4,6 +4,7 @@ import io.github.redstoneparadox.journia.world.gen.OpenSimplexSampler
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.Heightmap
 import net.minecraft.world.ServerWorldAccess
+import net.minecraft.world.StructureWorldAccess
 import net.minecraft.world.gen.StructureAccessor
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.feature.Feature
@@ -12,7 +13,13 @@ import java.util.*
 class SurfacePatchFeature: Feature<SurfacePatchFeatureConfig>(SurfacePatchFeatureConfig.CODEC) {
     private val samplerMap: MutableMap<SurfacePatchFeatureConfig, Pair<OpenSimplexSampler, OpenSimplexSampler>> = mutableMapOf()
 
-    override fun generate(world: ServerWorldAccess, accessor: StructureAccessor, generator: ChunkGenerator, random: Random, pos: BlockPos, config: SurfacePatchFeatureConfig): Boolean {
+    override fun generate(
+        world: StructureWorldAccess,
+        chunkGenerator: ChunkGenerator,
+        random: Random,
+        pos: BlockPos,
+        config: SurfacePatchFeatureConfig
+    ): Boolean {
         val samplers = samplerMap.computeIfAbsent(config) { OpenSimplexSampler(config.size, 1.0, config.size, 1.0) to OpenSimplexSampler(1.0, 1.0, 1.0, 1.0) }
 
         for (x in 0..15) {
