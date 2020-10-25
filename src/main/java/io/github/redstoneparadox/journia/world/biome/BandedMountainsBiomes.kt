@@ -19,113 +19,113 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 object BandedMountainsBiomes {
     fun register() {
+        val template = TerraformBiomeBuilder.create()
+            .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, JourniaSurfaceBuilders.BANDED_MOUNTAINS_CONFIG)
+            .temperature(0.7f)
+            .downfall(0.8f)
+            .precipitation(Biome.Precipitation.RAIN)
+            .effects(
+                BiomeEffects.Builder()
+                    .waterColor(4159204)
+                    .waterFogColor(329011)
+                    .fogColor(12638463)
+                    .skyColor(JourniaBiomes.getSkyColor(0.7f))
+            )
+            .category(Biome.Category.EXTREME_HILLS)
+            .addFeature(
+                GenerationStep.Feature.RAW_GENERATION,
+                JourniaFeatures.SURFACE_PATCH.configure(
+                    SurfacePatchFeatureConfig(
+                        Blocks.STONE.defaultState,
+                        0.25,
+                        listOf(
+                            Blocks.GRASS_BLOCK.defaultState
+                        ),
+                        true)
+                )
+            )
+            .addFeature(
+                GenerationStep.Feature.RAW_GENERATION,
+                JourniaFeatures.BLOCK_BANDS.configure(
+                    BlockBandsFeatureConfig(
+                        listOf(
+                            BlockBandsFeatureConfig.BlockBand(Blocks.CYAN_TERRACOTTA.defaultState, 3, 2),
+                            BlockBandsFeatureConfig.BlockBand(Blocks.CYAN_TERRACOTTA.defaultState, 2, 4),
+                            BlockBandsFeatureConfig.BlockBand(Blocks.CYAN_TERRACOTTA.defaultState, 1, 3),
+                            BlockBandsFeatureConfig.BlockBand(Blocks.BLUE_TERRACOTTA.defaultState, 3, 2),
+                            BlockBandsFeatureConfig.BlockBand(Blocks.BLUE_TERRACOTTA.defaultState, 2, 4),
+                            BlockBandsFeatureConfig.BlockBand(Blocks.BLUE_TERRACOTTA.defaultState, 1, 3),
+                            BlockBandsFeatureConfig.BlockBand(Blocks.GRAY_TERRACOTTA.defaultState, 2, 1),
+                            BlockBandsFeatureConfig.BlockBand(Blocks.GRAY_TERRACOTTA.defaultState, 1, 2),
+                            BlockBandsFeatureConfig.BlockBand(Blocks.BLACK_TERRACOTTA.defaultState, 2, 1),
+                            BlockBandsFeatureConfig.BlockBand(Blocks.BLACK_TERRACOTTA.defaultState, 1, 2)
+                        ),
+                        1,
+                        4,
+                        16,
+                        4
+                    )
+                )
+            )
+            .addFeature(
+                GenerationStep.Feature.VEGETAL_DECORATION,
+                ConfiguredFeatures.OAK_BEES_005
+            )
+            .addFeature(
+                GenerationStep.Feature.VEGETAL_DECORATION,
+                ConfiguredFeatures.BIRCH_BEES_005
+            )
+            .addDefaultSpawnEntries()
+            .addDefaultFeatures(
+                LAND_CARVERS,
+                //STRUCTURES,
+                LAKES,
+                DUNGEONS,
+                MINEABLES,
+                ORES,
+                DISKS,
+                DEFAULT_MUSHROOMS,
+                DEFAULT_VEGETATION,
+                SPRINGS,
+                FOREST_GRASS,
+                FOREST_FLOWERS
+            )
+
+        JourniaBiomes.BANDED_MOUNTAINS = JourniaBiomes.register("banded_mountains",
+            TerraformBiomeBuilder.create(template)
+                .depth(0.9f)
+                .scale(0.7f)
+                .build()
+        )
+
+        JourniaBiomes.MODIFIED_BANDED_MOUNTAINS = JourniaBiomes.register("modified_banded_mountains",
+            TerraformBiomeBuilder.create(template)
+                .depth(0.8f)
+                .scale(0.8f)
+                .build()
+        )
+
+        JourniaBiomes.BANDED_MOUNTAINS_RIVER = JourniaBiomes.register("banded_mountains_river",
+            TerraformBiomeBuilder.create(template)
+                .category(Biome.Category.RIVER)
+                .depth(-0.95F)
+                .scale(-0.15F)
+                .temperature(0.5F)
+                .downfall(0.5F)
+                .build()
+        )
+
+        JourniaBiomes.BANDED_SHORE = JourniaBiomes.register("banded_shore",
+            TerraformBiomeBuilder.create(template)
+                .category(Biome.Category.NONE)
+                .depth(0.1F)
+                .scale(0.5F)
+                .temperature(0.2F)
+                .downfall(0.3F)
+                .build()
+        )
+
         if (BiomesConfig.BandedMountains.enabled) {
-            val template = TerraformBiomeBuilder.create()
-                .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, JourniaSurfaceBuilders.BANDED_MOUNTAINS_CONFIG)
-                .temperature(0.7f)
-                .downfall(0.8f)
-                .precipitation(Biome.Precipitation.RAIN)
-                .effects(
-                    BiomeEffects.Builder()
-                        .waterColor(4159204)
-                        .waterFogColor(329011)
-                        .fogColor(12638463)
-                        .skyColor(JourniaBiomes.getSkyColor(0.7f))
-                )
-                .category(Biome.Category.EXTREME_HILLS)
-                .addFeature(
-                    GenerationStep.Feature.RAW_GENERATION,
-                    JourniaFeatures.SURFACE_PATCH.configure(
-                        SurfacePatchFeatureConfig(
-                            Blocks.STONE.defaultState,
-                            0.25,
-                            listOf(
-                                Blocks.GRASS_BLOCK.defaultState
-                            ),
-                            true)
-                    )
-                )
-                .addFeature(
-                    GenerationStep.Feature.RAW_GENERATION,
-                    JourniaFeatures.BLOCK_BANDS.configure(
-                        BlockBandsFeatureConfig(
-                            listOf(
-                                BlockBandsFeatureConfig.BlockBand(Blocks.CYAN_TERRACOTTA.defaultState, 3, 2),
-                                BlockBandsFeatureConfig.BlockBand(Blocks.CYAN_TERRACOTTA.defaultState, 2, 4),
-                                BlockBandsFeatureConfig.BlockBand(Blocks.CYAN_TERRACOTTA.defaultState, 1, 3),
-                                BlockBandsFeatureConfig.BlockBand(Blocks.BLUE_TERRACOTTA.defaultState, 3, 2),
-                                BlockBandsFeatureConfig.BlockBand(Blocks.BLUE_TERRACOTTA.defaultState, 2, 4),
-                                BlockBandsFeatureConfig.BlockBand(Blocks.BLUE_TERRACOTTA.defaultState, 1, 3),
-                                BlockBandsFeatureConfig.BlockBand(Blocks.GRAY_TERRACOTTA.defaultState, 2, 1),
-                                BlockBandsFeatureConfig.BlockBand(Blocks.GRAY_TERRACOTTA.defaultState, 1, 2),
-                                BlockBandsFeatureConfig.BlockBand(Blocks.BLACK_TERRACOTTA.defaultState, 2, 1),
-                                BlockBandsFeatureConfig.BlockBand(Blocks.BLACK_TERRACOTTA.defaultState, 1, 2)
-                            ),
-                            1,
-                            4,
-                            16,
-                            4
-                        )
-                    )
-                )
-                .addFeature(
-                    GenerationStep.Feature.VEGETAL_DECORATION,
-                    ConfiguredFeatures.OAK_BEES_005
-                )
-                .addFeature(
-                    GenerationStep.Feature.VEGETAL_DECORATION,
-                    ConfiguredFeatures.BIRCH_BEES_005
-                )
-                .addDefaultSpawnEntries()
-                .addDefaultFeatures(
-                    LAND_CARVERS,
-                    //STRUCTURES,
-                    LAKES,
-                    DUNGEONS,
-                    MINEABLES,
-                    ORES,
-                    DISKS,
-                    DEFAULT_MUSHROOMS,
-                    DEFAULT_VEGETATION,
-                    SPRINGS,
-                    FOREST_GRASS,
-                    FOREST_FLOWERS
-                )
-
-            JourniaBiomes.BANDED_MOUNTAINS = JourniaBiomes.register("banded_mountains",
-                TerraformBiomeBuilder.create(template)
-                    .depth(0.9f)
-                    .scale(0.7f)
-                    .build()
-            )
-
-            JourniaBiomes.MODIFIED_BANDED_MOUNTAINS = JourniaBiomes.register("modified_banded_mountains",
-                TerraformBiomeBuilder.create(template)
-                    .depth(0.8f)
-                    .scale(0.8f)
-                    .build()
-            )
-
-            JourniaBiomes.BANDED_MOUNTAINS_RIVER = JourniaBiomes.register("banded_mountains_river",
-                TerraformBiomeBuilder.create(template)
-                    .category(Biome.Category.RIVER)
-                    .depth(-0.95F)
-                    .scale(-0.15F)
-                    .temperature(0.5F)
-                    .downfall(0.5F)
-                    .build()
-            )
-
-            JourniaBiomes.BANDED_SHORE = JourniaBiomes.register("banded_shore",
-                TerraformBiomeBuilder.create(template)
-                    .category(Biome.Category.NONE)
-                    .depth(0.1F)
-                    .scale(0.5F)
-                    .temperature(0.2F)
-                    .downfall(0.3F)
-                    .build()
-            )
-
             OverworldBiomes.addContinentalBiome(JourniaBiomes.BANDED_MOUNTAINS, OverworldClimate.TEMPERATE, BiomesConfig.BandedMountains.weight)
             OverworldBiomes.addBiomeVariant(JourniaBiomes.BANDED_MOUNTAINS, JourniaBiomes.MODIFIED_BANDED_MOUNTAINS, BiomesConfig.BandedMountains.modified_chance)
             OverworldBiomes.setRiverBiome(JourniaBiomes.BANDED_MOUNTAINS, JourniaBiomes.BANDED_MOUNTAINS_RIVER)
