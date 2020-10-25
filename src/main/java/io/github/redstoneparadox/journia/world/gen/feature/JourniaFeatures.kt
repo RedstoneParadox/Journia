@@ -30,14 +30,12 @@ object JourniaFeatures {
     val DEAD_TREE_CONFIG = DeadTreeFeatureConfig(Blocks.OAK_LOG.defaultState, 4, 2)
     val DEAD_BIRCH_TREE_CONFIG = DeadTreeFeatureConfig(Blocks.BIRCH_LOG.defaultState, 4, 2)
 
-    val PINE_TREE: TreeFeature = TreeFeature(TreeFeatureConfig.CODEC)
     val DEAD_TREE = DeadTreeFeature()
     val SURFACE_PATCH = SurfacePatchFeature()
     val BLOCK_BANDS = BlockBandsFeature()
     val ROCK_FORMATION = RockFormationFeature()
 
     fun registerAll() {
-        register("pine_tree", PINE_TREE)
         register("dead_tree", DEAD_TREE)
         register("surface_patch", SURFACE_PATCH)
         register("block_bands", BLOCK_BANDS)

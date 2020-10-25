@@ -8,11 +8,11 @@ import net.minecraft.world.gen.feature.TreeFeature
 import net.minecraft.world.gen.feature.TreeFeatureConfig
 import java.util.*
 
-class JourniaSaplingGenerator(private val featureSuplier: () -> TreeFeature, private val configSupplier: () -> TreeFeatureConfig): SaplingGenerator() {
-    constructor(configSupplier: () -> TreeFeatureConfig): this({ Feature.TREE as TreeFeature }, configSupplier)
+class JourniaSaplingGenerator(private val featureSuplier: () -> Feature<TreeFeatureConfig>, private val configSupplier: () -> TreeFeatureConfig): SaplingGenerator() {
+    constructor(configSupplier: () -> TreeFeatureConfig): this({ Feature.TREE }, configSupplier)
 
     companion object {
-        val PINE = JourniaSaplingGenerator({JourniaFeatures.PINE_TREE}, {JourniaFeatures.PINE_TREE_CONFIG})
+        val PINE = JourniaSaplingGenerator { JourniaFeatures.PINE_TREE_CONFIG }
         val CUBEN = JourniaSaplingGenerator { JourniaFeatures.cubenTreeConfig() }
     }
 
