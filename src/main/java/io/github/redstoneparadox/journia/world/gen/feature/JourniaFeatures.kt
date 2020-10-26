@@ -12,7 +12,6 @@ import net.minecraft.block.Blocks.PODZOL
 import net.minecraft.state.property.Properties
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.gen.feature.Feature
-import net.minecraft.world.gen.feature.TreeFeature
 import net.minecraft.world.gen.feature.TreeFeatureConfig
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider
