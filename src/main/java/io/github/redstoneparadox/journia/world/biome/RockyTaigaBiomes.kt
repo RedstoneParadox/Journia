@@ -4,10 +4,7 @@ import com.terraformersmc.terraform.biomebuilder.DefaultFeature.*
 import com.terraformersmc.terraform.biomebuilder.TerraformBiomeBuilder
 import io.github.redstoneparadox.journia.config.BiomesConfig
 import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
-import io.github.redstoneparadox.journia.world.gen.feature.JourniaConfiguredFeatures
-import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
-import io.github.redstoneparadox.journia.world.gen.feature.RockFormationFeatureConfig
-import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
+import io.github.redstoneparadox.journia.world.gen.feature.*
 import net.fabricmc.fabric.api.biome.v1.OverworldBiomes
 import net.fabricmc.fabric.api.biome.v1.OverworldClimate
 import net.minecraft.block.Blocks
@@ -39,35 +36,19 @@ object RockyTaigaBiomes {
             )
             .addFeature(
                 GenerationStep.Feature.VEGETAL_DECORATION,
-                JourniaConfiguredFeatures.PINE_TREE
-                    .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP)
-                    .decorate(
-                        Decorator.COUNT_EXTRA.configure(CountExtraDecoratorConfig(4, 0.1f, 1))
-                    )
+                JourniaDecoratedFeatures.DENSE_PINE_TREE
             )
             .addFeature(
                 GenerationStep.Feature.VEGETAL_DECORATION,
-                ConfiguredFeatures.PINE
-                    .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP)
-                    .decorate(
-                        Decorator.COUNT_EXTRA.configure(CountExtraDecoratorConfig(2, 0.1f, 1))
-                    )
+                JourniaDecoratedFeatures.SPARSE_VANILLA_PINE_TREE
             )
             .addFeature(
                 GenerationStep.Feature.VEGETAL_DECORATION,
-                ConfiguredFeatures.SPRUCE
-                    .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP)
-                    .decorate(
-                        Decorator.COUNT_EXTRA.configure(CountExtraDecoratorConfig(2, 0.1f, 1))
-                    )
+                JourniaDecoratedFeatures.SPARSE_SPRUCE_TREE
             )
             .addFeature(
                 GenerationStep.Feature.RAW_GENERATION,
-                JourniaConfiguredFeatures.LARGE_ROCK_FORMATION.decorate(
-                    JourniaDecorators.RANDOM_HEIGHTMAP.configure(
-                        ChanceDecoratorConfig(80)
-                    )
-                )
+                JourniaDecoratedFeatures.LARGE_ROCK_80
             )
             .addFeature(
                 GenerationStep.Feature.LOCAL_MODIFICATIONS,
@@ -77,10 +58,10 @@ object RockyTaigaBiomes {
             )
             .addFeature(
                 GenerationStep.Feature.RAW_GENERATION,
-                JourniaConfiguredFeatures.COARSE_DIRT_PATCH
+                JourniaDecoratedFeatures.COARSE_DIRT_PATCH_4
             ).addFeature(
                 GenerationStep.Feature.RAW_GENERATION,
-                JourniaConfiguredFeatures.STONE_PATCH
+                JourniaDecoratedFeatures.STONE_PATCH_4
             )
             .addStructureFeatures(
                 ConfiguredStructureFeatures.MINESHAFT,
@@ -116,18 +97,11 @@ object RockyTaigaBiomes {
                 )
                 .addFeature(
                     GenerationStep.Feature.RAW_GENERATION,
-                    JourniaConfiguredFeatures.LARGE_ROCK_FORMATION
-                        .decorate(
-                            JourniaDecorators.RANDOM_HEIGHTMAP.configure(
-                                ChanceDecoratorConfig(60)
-                            )
-                        )
+                    JourniaDecoratedFeatures.LARGE_ROCK_60
                 )
                 .addFeature(
                     GenerationStep.Feature.LOCAL_MODIFICATIONS,
-                    ConfiguredFeatures.FOREST_ROCK.decorate(
-                        ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP.repeatRandomly(2)
-                    )
+                    ConfiguredFeatures.FOREST_ROCK
                 )
                 .build()
         )
@@ -136,11 +110,7 @@ object RockyTaigaBiomes {
             TerraformBiomeBuilder.create(template)
                 .addFeature(
                     GenerationStep.Feature.VEGETAL_DECORATION,
-                    JourniaConfiguredFeatures.GIANT_PINE_TREE
-                        .decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP)
-                        .decorate(
-                            Decorator.COUNT_EXTRA.configure(CountExtraDecoratorConfig(2, 0.1f, 1))
-                        )
+                    JourniaDecoratedFeatures.SPARSE_GIANT_PINE_TREE
                 )
                 .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.STONE_CONFIG)
                 .addStructureFeatures(
@@ -148,7 +118,7 @@ object RockyTaigaBiomes {
                 )
                 .addFeature(
                     GenerationStep.Feature.RAW_GENERATION,
-                    JourniaConfiguredFeatures.COARSE_DIRT_PATCH
+                    JourniaDecoratedFeatures.COARSE_DIRT_PATCH_4
                 )
                 .build()
         )

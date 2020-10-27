@@ -23,6 +23,7 @@ repositories {
         url = 'http://server.bbkr.space:8081/artifactory/libs-release'
     }
     maven { url = "https://dl.bintray.com/redstoneparadox/mods" }
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
