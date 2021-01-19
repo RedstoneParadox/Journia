@@ -5,8 +5,10 @@ import com.mojang.serialization.codecs.RecordCodecBuilder
 import io.github.redstoneparadox.journia.util.Codecs
 import io.github.redstoneparadox.journia.util.field
 import net.minecraft.world.gen.feature.FeatureConfig
+import net.minecraft.world.gen.stateprovider.BlockStateProvider
 
 class RockFormationFeatureConfig(
+    val stateProvider: BlockStateProvider,
     val radiusRange: IntRange,
     val heightRange: IntRange,
     val offsetRange: IntRange,
@@ -15,6 +17,7 @@ class RockFormationFeatureConfig(
     companion object {
         val CODEC: Codec<RockFormationFeatureConfig> = RecordCodecBuilder.create { instance ->
             instance.group(
+                BlockStateProvider.TYPE_CODEC.field("state_provider") { stateProvider },
                 Codecs.INT_RANGE.field("radius_range") { radiusRange },
                 Codecs.INT_RANGE.field("height_range") { heightRange },
                 Codecs.INT_RANGE.field("offset_range") { offsetRange },

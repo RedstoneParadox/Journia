@@ -65,6 +65,7 @@ object JourniaConfiguredFeatures {
 
         LARGE_ROCK_FORMATION = register("large_rock_formation", JourniaFeatures.ROCK_FORMATION.configure(
                 RockFormationFeatureConfig(
+                    SimpleBlockStateProvider(Blocks.STONE.defaultState),
                     3..8,
                     8..18,
                     3..6,

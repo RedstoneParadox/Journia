@@ -9,6 +9,7 @@ import net.minecraft.world.biome.Biome
 
 object JourniaBiomes {
     lateinit var GRAVEL_BEACH: RegistryKey<Biome>
+    lateinit var GRASSY_BEACH: RegistryKey<Biome>
 
     lateinit var BANDED_MOUNTAINS: RegistryKey<Biome>
     lateinit var MODIFIED_BANDED_MOUNTAINS: RegistryKey<Biome>
