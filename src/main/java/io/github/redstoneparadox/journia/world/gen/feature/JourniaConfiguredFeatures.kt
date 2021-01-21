@@ -28,6 +28,7 @@ object JourniaConfiguredFeatures {
     // Surface Patches
     val COARSE_DIRT_PATCH: ConfiguredFeature<*, *>
     val STONE_PATCH: ConfiguredFeature<*, *>
+    val GRASS_PATCH: ConfiguredFeature<*, *>
     // Trees
     val PINE_TREE: ConfiguredFeature<TreeFeatureConfig, *>
     val GIANT_PINE_TREE: ConfiguredFeature<TreeFeatureConfig, *>
@@ -56,6 +57,20 @@ object JourniaConfiguredFeatures {
                         Blocks.COARSE_DIRT.defaultState
                     ),
                     true
+                )
+            )
+        )
+        GRASS_PATCH = register("grass_patch",
+            JourniaFeatures.SURFACE_PATCH.configure(
+                SurfacePatchFeatureConfig(
+                    state = Blocks.GRASS_BLOCK.defaultState,
+                    coverage = 1.0,
+                    targets = listOf(
+                        Blocks.SAND.defaultState
+                    ),
+                    size = 12.0,
+                    below = true,
+                    integrity = 0.35
                 )
             )
         )

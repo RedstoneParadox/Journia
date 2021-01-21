@@ -24,6 +24,7 @@ object JourniaDecoratedFeatures {
     // Surface Patches
     val COARSE_DIRT_PATCH_4: ConfiguredFeature<*, *>
     val STONE_PATCH_4: ConfiguredFeature<*, *>
+    val GRASS_PATCH_8: ConfiguredFeature<*, *>
 
     init {
         LARGE_ROCK_80 = register("large_rock_80",
@@ -78,6 +79,11 @@ object JourniaDecoratedFeatures {
         STONE_PATCH_4 = register("stone_patch_4",
             JourniaConfiguredFeatures.COARSE_DIRT_PATCH.decorate(
                 JourniaDecorators.SURFACE_PATCH.configure(CountConfig(4))
+            )
+        )
+        GRASS_PATCH_8 = register("grass_patch_4",
+            JourniaConfiguredFeatures.GRASS_PATCH.decorate(
+                JourniaDecorators.SURFACE_PATCH.configure(CountConfig(8))
             )
         )
     }

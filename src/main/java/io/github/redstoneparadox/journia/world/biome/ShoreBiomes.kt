@@ -2,15 +2,11 @@ package io.github.redstoneparadox.journia.world.biome
 
 import com.terraformersmc.terraform.biomebuilder.DefaultFeature
 import com.terraformersmc.terraform.biomebuilder.TerraformBiomeBuilder
-import io.github.redstoneparadox.journia.block.JourniaBlocks
-import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
-import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
+import io.github.redstoneparadox.journia.world.gen.feature.JourniaDecoratedFeatures
 import net.fabricmc.fabric.api.biome.v1.OverworldBiomes
-import net.minecraft.block.Blocks
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.BiomeEffects
 import net.minecraft.world.biome.BiomeKeys
-import net.minecraft.world.biome.BuiltinBiomes
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilders
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
@@ -54,18 +50,7 @@ object ShoreBiomes {
             )
             .addFeature(
                 GenerationStep.Feature.RAW_GENERATION,
-                JourniaFeatures.SURFACE_PATCH.configure(
-                    SurfacePatchFeatureConfig(
-                        state = Blocks.GRASS_BLOCK.defaultState,
-                        coverage = 0.2,
-                        targets = listOf(
-                            Blocks.SAND.defaultState
-                        ),
-                        size = 12.0,
-                        below = true,
-                        integrity = 0.9
-                    )
-                )
+                JourniaDecoratedFeatures.GRASS_PATCH_8
             )
             .addDefaultFeatures(
                 DefaultFeature.DEFAULT_GRASS,
