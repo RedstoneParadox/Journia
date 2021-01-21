@@ -58,9 +58,11 @@ object CubenForestBiomes {
                .build()
        )
 
-        if (BiomesConfig.CubenForest.enabled) {
-            OverworldBiomes.addContinentalBiome(JourniaBiomes.CUBEN_FOREST, OverworldClimate.TEMPERATE, BiomesConfig.CubenForest.weight)
-            OverworldBiomes.addHillsBiome(JourniaBiomes.CUBEN_FOREST, JourniaBiomes.CUBEN_FOREST_HILLS, BiomesConfig.CubenForest.hills_chance)
-        }
+       /*
+       if (BiomesConfig.CubenForest.enabled) {
+           OverworldBiomes.addContinentalBiome(JourniaBiomes.CUBEN_FOREST, OverworldClimate.TEMPERATE, BiomesConfig.CubenForest.weight)
+           OverworldBiomes.addHillsBiome(JourniaBiomes.CUBEN_FOREST, JourniaBiomes.CUBEN_FOREST_HILLS, BiomesConfig.CubenForest.hills_chance)
+       }
+       */
     }
 }

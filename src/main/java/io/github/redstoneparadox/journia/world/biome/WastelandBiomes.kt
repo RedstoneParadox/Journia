@@ -145,12 +145,14 @@ object WastelandBiomes {
                 .build()
         )
 
+        /*
         if (BiomesConfig.Wasteland.enabled) {
             OverworldBiomes.addContinentalBiome(JourniaBiomes.WASTELAND, OverworldClimate.DRY, BiomesConfig.Wasteland.weight)
             OverworldBiomes.setRiverBiome(JourniaBiomes.WASTELAND, JourniaBiomes.WASTELAND_RIVER)
             OverworldBiomes.addShoreBiome(JourniaBiomes.WASTELAND, JourniaBiomes.WASTELAND_SHORE, 1.0)
             OverworldBiomes.addEdgeBiome(JourniaBiomes.WASTELAND, JourniaBiomes.WASTELAND_EDGE, 1.0)
         }
+        */
     }
 
     private fun TerraformBiomeBuilder.addWastelandSurfacePatches(): TerraformBiomeBuilder {
