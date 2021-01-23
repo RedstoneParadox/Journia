@@ -23,7 +23,7 @@ object WetlandsBiomes {
         val template = TerraformBiomeBuilder.create()
             .configureSurfaceBuilder(JourniaSurfaceBuilders.WETLANDS, JourniaSurfaceBuilders.WETLANDS_CONFIG)
             .precipitation(Biome.Precipitation.RAIN).category(Biome.Category.JUNGLE)
-            .depth(-0.2f).scale(0.0f)
+            .depth(-0.2f).scale(0.1f)
             .temperature(0.8f).downfall(0.95f)
             .effects(
                 BiomeEffects.Builder()
@@ -73,11 +73,7 @@ object WetlandsBiomes {
             TerraformBiomeBuilder.create(template)
                 .addFeature(
                     GenerationStep.Feature.VEGETAL_DECORATION,
-                    JourniaDecoratedFeatures.WETLANDS_TREES_JUNGLE
-                )
-                .addFeature(
-                    GenerationStep.Feature.VEGETAL_DECORATION,
-                    JourniaDecoratedFeatures.WETLANDS_JUNGLE_BUSH
+                    JourniaDecoratedFeatures.WETLANDS_JUNGLE_TREE
                 )
                 .addFeature(
                     GenerationStep.Feature.VEGETAL_DECORATION,
