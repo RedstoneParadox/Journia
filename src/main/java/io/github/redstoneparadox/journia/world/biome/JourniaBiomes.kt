@@ -30,12 +30,15 @@ object JourniaBiomes {
     lateinit var WASTELAND_RIVER: RegistryKey<Biome>
     lateinit var WASTELAND_SHORE: RegistryKey<Biome>
 
+    lateinit var WETLANDS: RegistryKey<Biome>
+
     fun registerAll() {
         ShoreBiomes.register()
         RockyTaigaBiomes.register()
         CubenForestBiomes.register()
         BandedMountainsBiomes.register()
         WastelandBiomes.register()
+        WetlandsBiomes.register()
     }
 
     fun register(name: String, biome: Biome): RegistryKey<Biome> {

@@ -9,6 +9,7 @@ import net.minecraft.block.Blocks
 import net.minecraft.state.property.Properties
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.BuiltinRegistries
+import net.minecraft.world.gen.ProbabilityConfig
 import net.minecraft.world.gen.feature.ConfiguredFeature
 import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.FeatureConfig
@@ -34,6 +35,8 @@ object JourniaConfiguredFeatures {
     val GIANT_PINE_TREE: ConfiguredFeature<TreeFeatureConfig, *>
     // Other
     val LARGE_ROCK_FORMATION: ConfiguredFeature<*, *>
+    // Vegetation
+    val WETLANDS_SEAGRASS: ConfiguredFeature<*, *>
 
     init {
         COARSE_DIRT_PATCH = register("coarse_dirt_patch",
@@ -85,6 +88,14 @@ object JourniaConfiguredFeatures {
                     8..18,
                     3..6,
                     5..9
+                )
+            )
+        )
+
+        WETLANDS_SEAGRASS = register("wetlands_seagrass",
+            Feature.SEAGRASS.configure(
+                ProbabilityConfig(
+                    1.0f
                 )
             )
         )

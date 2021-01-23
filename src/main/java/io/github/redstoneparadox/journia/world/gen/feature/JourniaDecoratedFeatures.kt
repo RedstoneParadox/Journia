@@ -21,10 +21,17 @@ object JourniaDecoratedFeatures {
     val SPARSE_VANILLA_PINE_TREE: ConfiguredFeature<*, *>
     val SPARSE_SPRUCE_TREE: ConfiguredFeature<*, *>
     val SPARSE_GIANT_PINE_TREE: ConfiguredFeature<*, *>
+    val WETLANDS_JUNGLE_TREE: ConfiguredFeature<*, *>
+    val WETLANDS_TREES_JUNGLE: ConfiguredFeature<*, *>
     // Surface Patches
     val COARSE_DIRT_PATCH_4: ConfiguredFeature<*, *>
     val STONE_PATCH_4: ConfiguredFeature<*, *>
     val GRASS_PATCH_8: ConfiguredFeature<*, *>
+    // Vegetation
+    val WETLANDS_JUNGLE_BUSH: ConfiguredFeature<*, *>
+    val WETLANDS_GRASS: ConfiguredFeature<*, *>
+    val WETLANDS_BAMBOO: ConfiguredFeature<*, *>
+    val WETLANDS_BAMBOO_VEGITATION: ConfiguredFeature<*, *>
 
     init {
         LARGE_ROCK_80 = register("large_rock_80",
@@ -70,6 +77,28 @@ object JourniaDecoratedFeatures {
                     Decorator.COUNT_EXTRA.configure(CountExtraDecoratorConfig(2, 0.1f, 1))
                 )
         )
+        WETLANDS_JUNGLE_TREE = register("wetlands_jungle_trees",
+            ConfiguredFeatures.JUNGLE_TREE.decorate(
+                Decorator.COUNT_EXTRA.configure(
+                    CountExtraDecoratorConfig(
+                        10,
+                        0.1f,
+                        1
+                    )
+                )
+            )
+        )
+        WETLANDS_TREES_JUNGLE = register("wetlands_trees_jungle",
+            ConfiguredFeatures.TREES_JUNGLE.decorate(
+                Decorator.COUNT_EXTRA.configure(
+                    CountExtraDecoratorConfig(
+                        10,
+                        0.1f,
+                        1
+                    )
+                )
+            )
+        )
 
         COARSE_DIRT_PATCH_4 = register("coarse_dirt_patch_4",
             JourniaConfiguredFeatures.COARSE_DIRT_PATCH.decorate(
@@ -84,6 +113,51 @@ object JourniaDecoratedFeatures {
         GRASS_PATCH_8 = register("grass_patch_4",
             JourniaConfiguredFeatures.GRASS_PATCH.decorate(
                 JourniaDecorators.SURFACE_PATCH.configure(CountConfig(8))
+            )
+        )
+
+        WETLANDS_JUNGLE_BUSH = register("wetlands_jungle_bush",
+            ConfiguredFeatures.JUNGLE_BUSH.decorate(
+                Decorator.COUNT_EXTRA.configure(
+                    CountExtraDecoratorConfig(
+                        10,
+                        0.1f,
+                        1
+                    )
+                )
+            )
+        )
+        WETLANDS_GRASS = register("wetlands_grass",
+            ConfiguredFeatures.PATCH_GRASS_JUNGLE.decorate(
+                Decorator.COUNT_EXTRA.configure(
+                    CountExtraDecoratorConfig(
+                        20,
+                        0.1f,
+                        1
+                    )
+                )
+            )
+        )
+        WETLANDS_BAMBOO = register("wetlands_bamboo",
+            ConfiguredFeatures.BAMBOO.decorate(
+                Decorator.COUNT_EXTRA.configure(
+                    CountExtraDecoratorConfig(
+                        20,
+                        0.1f,
+                        1
+                    )
+                )
+            )
+        )
+        WETLANDS_BAMBOO_VEGITATION = register("wetlands_bamboo_vegetation",
+            ConfiguredFeatures.BAMBOO_VEGETATION.decorate(
+                Decorator.COUNT_EXTRA.configure(
+                    CountExtraDecoratorConfig(
+                        20,
+                        0.1f,
+                        1
+                    )
+                )
             )
         )
     }

@@ -1,0 +1,99 @@
+package io.github.redstoneparadox.journia.world.biome
+
+import com.terraformersmc.terraform.biomebuilder.TerraformBiomeBuilder
+import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
+import net.minecraft.world.biome.Biome
+import net.minecraft.world.biome.BiomeEffects
+import net.minecraft.world.gen.feature.*
+
+import com.terraformersmc.terraform.biomebuilder.DefaultFeature.*
+import io.github.redstoneparadox.journia.world.gen.feature.JourniaConfiguredFeatures
+import io.github.redstoneparadox.journia.world.gen.feature.JourniaDecoratedFeatures
+import net.fabricmc.fabric.api.biome.v1.OverworldBiomes
+import net.fabricmc.fabric.api.biome.v1.OverworldClimate
+import net.minecraft.world.gen.GenerationStep
+import net.minecraft.world.gen.ProbabilityConfig
+import net.minecraft.world.gen.decorator.CountExtraDecoratorConfig
+import net.minecraft.world.gen.decorator.Decorator
+import net.minecraft.world.gen.decorator.DecoratorConfig
+
+
+object WetlandsBiomes {
+    fun register() {
+        val template = TerraformBiomeBuilder.create()
+            .configureSurfaceBuilder(JourniaSurfaceBuilders.WETLANDS, JourniaSurfaceBuilders.WETLANDS_CONFIG)
+            .precipitation(Biome.Precipitation.RAIN).category(Biome.Category.JUNGLE)
+            .depth(-0.2f).scale(0.0f)
+            .temperature(0.8f).downfall(0.95f)
+            .effects(
+                BiomeEffects.Builder()
+                    .fogColor(12638463)
+                    .waterColor(4159204)
+                    .waterFogColor(329011)
+                    .skyColor(JourniaBiomes.getSkyColor(0.2f))
+            )
+            .addStructureFeature<FeatureConfig>(
+                StructureFeature.JUNGLE_PYRAMID.configure(
+                    FeatureConfig.DEFAULT
+                )
+            )
+            .addStructureFeature<MineshaftFeatureConfig>(
+                StructureFeature.MINESHAFT.configure(
+                    MineshaftFeatureConfig(0.004f, MineshaftFeature.Type.NORMAL)
+                )
+            )
+            .addStructureFeature<FeatureConfig>(
+                JungleTempleFeature.STRONGHOLD.configure(
+                    FeatureConfig.DEFAULT
+                )
+            )
+            .addDefaultFeatures(
+                LAND_CARVERS,
+                DEFAULT_UNDERGROUND_STRUCTURES,
+                LAKES,
+                DUNGEONS,
+                FOREST_FLOWERS,
+                MINEABLES,
+                ORES,
+                DISKS,
+                DEFAULT_FLOWERS,
+                DEFAULT_MUSHROOMS,
+                FOREST_GRASS,
+                DEFAULT_VEGETATION,
+                SPRINGS,
+                FROZEN_TOP_LAYER,
+                TALL_BIRCH_TREES
+            )
+            .addFeature(
+                GenerationStep.Feature.VEGETAL_DECORATION,
+                JourniaConfiguredFeatures.WETLANDS_SEAGRASS
+            )
+
+        JourniaBiomes.WETLANDS = JourniaBiomes.register("wetlands",
+            TerraformBiomeBuilder.create(template)
+                .addFeature(
+                    GenerationStep.Feature.VEGETAL_DECORATION,
+                    JourniaDecoratedFeatures.WETLANDS_TREES_JUNGLE
+                )
+                .addFeature(
+                    GenerationStep.Feature.VEGETAL_DECORATION,
+                    JourniaDecoratedFeatures.WETLANDS_JUNGLE_BUSH
+                )
+                .addFeature(
+                    GenerationStep.Feature.VEGETAL_DECORATION,
+                    JourniaDecoratedFeatures.WETLANDS_GRASS
+                )
+                .addFeature(
+                    GenerationStep.Feature.VEGETAL_DECORATION,
+                    JourniaDecoratedFeatures.WETLANDS_BAMBOO
+                )
+                .addFeature(
+                    GenerationStep.Feature.VEGETAL_DECORATION,
+                    JourniaDecoratedFeatures.WETLANDS_BAMBOO_VEGITATION
+                )
+                .build()
+        )
+
+        OverworldBiomes.addContinentalBiome(JourniaBiomes.WETLANDS, OverworldClimate.TEMPERATE, 1.0)
+    }
+}
