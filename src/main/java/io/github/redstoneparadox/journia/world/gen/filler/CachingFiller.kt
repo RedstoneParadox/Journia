@@ -1,14 +1,14 @@
 package io.github.redstoneparadox.journia.world.gen.filler
 
-import com.terraformersmc.shapes.api.Position
-import com.terraformersmc.shapes.impl.filler.SimpleFiller
+import com.terraformersmc.terraform.shapes.api.Position
+import com.terraformersmc.terraform.shapes.impl.filler.SimpleFiller
 import net.minecraft.block.BlockState
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.ModifiableWorld
 import kotlin.math.max
 import kotlin.math.min
 
-class CachingFiller(world: ModifiableWorld, state: BlockState) : SimpleFiller(world, state) {
+class CachingFiller(world: ModifiableWorld, state: BlockState): SimpleFiller(world, state) {
     val min: BlockPos.Mutable = BlockPos.Mutable()
     val max: BlockPos.Mutable = BlockPos.Mutable()
     private var initialized: Boolean = false

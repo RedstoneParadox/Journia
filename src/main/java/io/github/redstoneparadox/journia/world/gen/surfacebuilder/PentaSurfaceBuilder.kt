@@ -8,7 +8,6 @@ import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig
 import java.util.*
 
 class PentaSurfaceBuilder : SurfaceBuilder<PentaSurfaceConfig>(PentaSurfaceConfig.CODEC) {
-
     @Override
     override fun generate(random: Random, chunk: Chunk, biome: Biome, i: Int, j: Int, k: Int, d: Double, blockState: BlockState, blockState2: BlockState, l: Int, m: Long, pentaSurfaceConfig: PentaSurfaceConfig) {
         val scale = pentaSurfaceConfig.getScale()

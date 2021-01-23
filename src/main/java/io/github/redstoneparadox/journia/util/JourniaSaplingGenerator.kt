@@ -4,7 +4,6 @@ import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import net.minecraft.block.sapling.SaplingGenerator
 import net.minecraft.world.gen.feature.ConfiguredFeature
 import net.minecraft.world.gen.feature.Feature
-import net.minecraft.world.gen.feature.TreeFeature
 import net.minecraft.world.gen.feature.TreeFeatureConfig
 import java.util.*
 

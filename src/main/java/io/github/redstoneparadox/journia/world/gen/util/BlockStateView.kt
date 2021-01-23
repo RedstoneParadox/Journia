@@ -1,7 +1,7 @@
 package io.github.redstoneparadox.journia.world.gen.util
 
-import com.terraformersmc.shapes.api.Filler
-import com.terraformersmc.shapes.api.Position
+import com.terraformersmc.terraform.shapes.api.Filler
+import com.terraformersmc.terraform.shapes.api.Position
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.util.math.BlockPos

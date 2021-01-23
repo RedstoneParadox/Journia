@@ -4,12 +4,9 @@ import com.terraformersmc.terraform.biomebuilder.DefaultFeature.*
 import com.terraformersmc.terraform.biomebuilder.TerraformBiomeBuilder
 import io.github.redstoneparadox.journia.block.JourniaBlocks
 import io.github.redstoneparadox.journia.colorToInt
-import io.github.redstoneparadox.journia.config.BiomesConfig
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import io.github.redstoneparadox.journia.world.gen.feature.SurfacePatchFeatureConfig
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
-import net.fabricmc.fabric.api.biome.v1.OverworldBiomes
-import net.fabricmc.fabric.api.biome.v1.OverworldClimate
 import net.minecraft.block.Blocks
 import net.minecraft.entity.EntityType
 import net.minecraft.world.biome.Biome

@@ -16,7 +16,6 @@ class PentaSurfaceConfig(
     private val tertiaryCutoff: Double = 1.75,
     private val scale: Double = 1.0
 ): SurfaceConfig {
-
     override fun getTopMaterial(): BlockState = topMaterial
 
     fun getSecondaryMaterial(): BlockState = secondaryMaterial

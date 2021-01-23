@@ -1,6 +1,5 @@
 package io.github.redstoneparadox.journia.world.biome
 
-import com.terraformersmc.terraform.biomebuilder.DefaultFeature
 import com.terraformersmc.terraform.biomebuilder.DefaultFeature.*
 import com.terraformersmc.terraform.biomebuilder.TerraformBiomeBuilder
 import io.github.redstoneparadox.journia.config.BiomesConfig

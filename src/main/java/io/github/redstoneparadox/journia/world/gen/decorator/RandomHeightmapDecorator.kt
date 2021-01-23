@@ -2,8 +2,6 @@ package io.github.redstoneparadox.journia.world.gen.decorator
 
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.Heightmap
-import net.minecraft.world.WorldAccess
-import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.decorator.ChanceDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
 import net.minecraft.world.gen.decorator.DecoratorContext

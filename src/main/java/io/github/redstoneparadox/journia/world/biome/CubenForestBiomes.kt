@@ -1,17 +1,14 @@
 package io.github.redstoneparadox.journia.world.biome
 
+import com.terraformersmc.terraform.biomebuilder.DefaultFeature.*
 import com.terraformersmc.terraform.biomebuilder.TerraformBiomeBuilder
-import io.github.redstoneparadox.journia.config.BiomesConfig
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaFeatures
 import net.minecraft.world.biome.Biome
-import net.minecraft.world.gen.feature.*
-import com.terraformersmc.terraform.biomebuilder.DefaultFeature.*
-import net.fabricmc.fabric.api.biome.v1.OverworldBiomes
-import net.fabricmc.fabric.api.biome.v1.OverworldClimate
 import net.minecraft.world.biome.BiomeEffects
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.CountExtraDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
+import net.minecraft.world.gen.feature.*
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 

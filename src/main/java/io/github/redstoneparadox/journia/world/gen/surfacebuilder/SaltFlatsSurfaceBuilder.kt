@@ -11,7 +11,5 @@ class SaltFlatsSurfaceBuilder: SurfaceBuilder<TernarySurfaceConfig>(TernarySurfa
     override fun generate(random: Random, chunk: Chunk, biome: Biome, x: Int, z: Int, height: Int, noise: Double, defaultBlock: BlockState, defaultFluid: BlockState, seaLevel: Int, seed: Long, config: TernarySurfaceConfig) {
         val top = config.topMaterial
         val under = config.underMaterial
-
-
     }
 }

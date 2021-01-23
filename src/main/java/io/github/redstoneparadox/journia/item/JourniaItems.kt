@@ -1,7 +1,7 @@
 package io.github.redstoneparadox.journia.item
 
-import com.terraformersmc.terraform.entity.TerraformBoatEntity
-import com.terraformersmc.terraform.item.TerraformBoatItem
+import com.terraformersmc.terraform.boat.TerraformBoatEntity
+import com.terraformersmc.terraform.boat.TerraformBoatItem
 import io.github.redstoneparadox.journia.block.JourniaBlocks
 import io.github.redstoneparadox.journia.entity.JourniaEntityTypes
 import net.minecraft.block.Block

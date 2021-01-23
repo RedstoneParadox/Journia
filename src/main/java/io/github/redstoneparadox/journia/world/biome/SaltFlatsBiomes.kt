@@ -7,7 +7,6 @@ import net.minecraft.world.biome.BiomeEffects
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 object SaltFlatsBiomes {
-
     val SALT_FLATS: Biome
 
     init {
