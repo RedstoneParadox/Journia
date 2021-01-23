@@ -37,6 +37,9 @@
   },
 
   "custom": {
-    "pconfig": ["io.github.redstoneparadox.journia.config.BiomesConfig"]
+    "paradoxconfig": {
+      "package": "io.github.redstoneparadox.journia.config",
+      "configs": ["BiomesConfig"]
+    }
   }
 }

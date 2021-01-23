@@ -3,19 +3,18 @@ package io.github.redstoneparadox.journia.world.biome
 import com.terraformersmc.terraform.biomebuilder.DefaultFeature.*
 import com.terraformersmc.terraform.biomebuilder.TerraformBiomeBuilder
 import io.github.redstoneparadox.journia.config.BiomesConfig
-import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
-import io.github.redstoneparadox.journia.world.gen.feature.*
+import io.github.redstoneparadox.journia.world.gen.feature.JourniaConfiguredFeatures
+import io.github.redstoneparadox.journia.world.gen.feature.JourniaDecoratedFeatures
 import net.fabricmc.fabric.api.biome.v1.OverworldBiomes
 import net.fabricmc.fabric.api.biome.v1.OverworldClimate
-import net.minecraft.block.Blocks
 import net.minecraft.entity.EntityType
-import net.minecraft.world.biome.*
+import net.minecraft.world.biome.Biome
+import net.minecraft.world.biome.BiomeEffects
 import net.minecraft.world.biome.BiomeKeys.STONE_SHORE
+import net.minecraft.world.biome.SpawnSettings
 import net.minecraft.world.gen.GenerationStep
-import net.minecraft.world.gen.decorator.ChanceDecoratorConfig
-import net.minecraft.world.gen.decorator.CountExtraDecoratorConfig
-import net.minecraft.world.gen.decorator.Decorator
-import net.minecraft.world.gen.feature.*
+import net.minecraft.world.gen.feature.ConfiguredFeatures
+import net.minecraft.world.gen.feature.ConfiguredStructureFeatures
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 object RockyTaigaBiomes {

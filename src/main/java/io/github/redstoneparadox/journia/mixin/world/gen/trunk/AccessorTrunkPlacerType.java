@@ -8,7 +8,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(TrunkPlacerType.class)
 public interface AccessorTrunkPlacerType {
-
     @Invoker
     static <T extends TrunkPlacer> TrunkPlacerType<T> callRegister(String id, Codec<T> codec) {
         throw new AssertionError("Mixin dummy");

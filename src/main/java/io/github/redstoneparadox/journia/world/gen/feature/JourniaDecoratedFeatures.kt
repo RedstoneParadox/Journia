@@ -12,7 +12,6 @@ import net.minecraft.world.gen.feature.ConfiguredFeatures
 import net.minecraft.world.gen.feature.FeatureConfig
 
 object JourniaDecoratedFeatures {
-
     // Rocks
     val LARGE_ROCK_80: ConfiguredFeature<*, *>
     val LARGE_ROCK_60: ConfiguredFeature<*, *>

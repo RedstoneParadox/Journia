@@ -1,10 +1,10 @@
 package io.github.redstoneparadox.journia.entity
 
-import com.terraformersmc.terraform.entity.TerraformBoat
-import com.terraformersmc.terraform.entity.TerraformBoatEntity
-import com.terraformersmc.terraform.item.TerraformBoatItem
+import com.terraformersmc.terraform.boat.TerraformBoat
+import com.terraformersmc.terraform.boat.TerraformBoatEntity
+import com.terraformersmc.terraform.boat.TerraformBoatItem
 import io.github.redstoneparadox.journia.item.JourniaItems
-import net.fabricmc.fabric.api.entity.FabricEntityTypeBuilder
+import net.fabricmc.fabric.api.`object`.builder.v1.entity.FabricEntityTypeBuilder
 import net.minecraft.entity.EntityDimensions
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.SpawnGroup
@@ -70,7 +70,7 @@ object JourniaEntityTypes {
 
             return FabricEntityTypeBuilder
                 .create<TerraformBoatEntity>(SpawnGroup.MISC) { type, world -> TerraformBoatEntity(type, world, boat) }
-                .size(EntityDimensions.fixed(1.375f, 0.5625f))
+                .dimensions(EntityDimensions.fixed(1.375f, 0.5625f))
                 .build()
         }
     }

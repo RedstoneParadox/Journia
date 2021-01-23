@@ -3,9 +3,7 @@ package io.github.redstoneparadox.journia.world.gen.feature
 import io.github.redstoneparadox.journia.world.gen.OpenSimplexSampler
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.Heightmap
-import net.minecraft.world.ServerWorldAccess
 import net.minecraft.world.StructureWorldAccess
-import net.minecraft.world.gen.StructureAccessor
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.feature.Feature
 import java.util.*

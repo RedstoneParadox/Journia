@@ -1,16 +1,8 @@
 package io.github.redstoneparadox.journia.config
 
 import io.github.redstoneparadox.paradoxconfig.config.ConfigCategory
-import io.github.redstoneparadox.paradoxconfig.config.RootConfigCategory
-import io.github.redstoneparadox.paradoxconfig.serialization.ConfigDeserializer
-import io.github.redstoneparadox.paradoxconfig.serialization.ConfigSerializer
-import io.github.redstoneparadox.paradoxconfig.serialization.jankson.JanksonConfigDeserializer
-import io.github.redstoneparadox.paradoxconfig.serialization.jankson.JanksonConfigSerializer
 
-object BiomesConfig: RootConfigCategory("biomes.json5") {
-    override val deserializer: ConfigDeserializer<*> = JanksonConfigDeserializer()
-    override val serializer: ConfigSerializer<*> = JanksonConfigSerializer()
-
+object BiomesConfig: ConfigCategory("biomes.json5") {
     object BandedMountains: ConfigCategory("banded_mountains") {
         val enabled: Boolean by option(true, "enabled", "Sets the Banded Mountains biome and its variants are enabled.")
         val weight: Double by option(1.0, "weight", "Sets the weight for the Banded Mountains biome.")

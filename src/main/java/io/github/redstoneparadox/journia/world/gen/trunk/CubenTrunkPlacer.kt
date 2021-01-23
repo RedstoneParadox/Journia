@@ -23,7 +23,6 @@ import kotlin.math.pow
 import kotlin.math.roundToInt
 
 class CubenTrunkPlacer(baseHeight: Int, firstRandomHeight: Int, secondRandomHeight: Int): TrunkPlacer(baseHeight, firstRandomHeight, secondRandomHeight) {
-
     constructor(dynamic: Dynamic<*>): this(dynamic.get("base_height").asInt(0), dynamic.get("height_rand_a").asInt(0), dynamic.get("height_rand_b").asInt(0))
 
     override fun generate(world: ModifiableTestableWorld, random: Random, trunkHeight: Int, pos: BlockPos, set: MutableSet<BlockPos>, blockBox: BlockBox, config: TreeFeatureConfig): MutableList<FoliagePlacer.TreeNode> {

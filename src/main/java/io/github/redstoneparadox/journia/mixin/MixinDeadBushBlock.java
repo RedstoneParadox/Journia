@@ -13,7 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(DeadBushBlock.class)
 public class MixinDeadBushBlock {
-
     @Inject(method = "canPlantOnTop", at = @At("RETURN"), cancellable = true)
     private void canPlaceOn(BlockState floor, BlockView view, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         Block block = floor.getBlock();

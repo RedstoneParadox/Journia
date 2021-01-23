@@ -7,10 +7,8 @@ import net.minecraft.block.PillarBlock
 import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
-import net.minecraft.world.ServerWorldAccess
 import net.minecraft.world.StructureWorldAccess
 import net.minecraft.world.WorldAccess
-import net.minecraft.world.gen.StructureAccessor
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.feature.Feature
 import java.util.*

@@ -2,10 +2,10 @@ package io.github.redstoneparadox.journia.world.gen.foliage
 
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
-import com.terraformersmc.shapes.api.Position
-import com.terraformersmc.shapes.impl.Shapes
-import com.terraformersmc.shapes.impl.layer.pathfinder.AddLayer
-import com.terraformersmc.shapes.impl.layer.transform.TranslateLayer
+import com.terraformersmc.terraform.shapes.api.Position
+import com.terraformersmc.terraform.shapes.impl.Shapes
+import com.terraformersmc.terraform.shapes.impl.layer.pathfinder.AddLayer
+import com.terraformersmc.terraform.shapes.impl.layer.transform.TranslateLayer
 import io.github.redstoneparadox.journia.asElse
 import io.github.redstoneparadox.journia.util.field
 import io.github.redstoneparadox.journia.world.gen.filler.SetFiller
