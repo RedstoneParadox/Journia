@@ -6,7 +6,7 @@ import com.terraformersmc.terraform.shapes.api.Shape
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
-import java.util.*
+import kotlin.random.Random
 
 class ConfiguredShapeProvider<C: ShapeProviderConfig, P: ShapeProvider<C>>(private val config: C, private val provider: P) {
     fun get(random: Random): Shape {
