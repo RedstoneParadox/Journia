@@ -2,6 +2,7 @@ package io.github.redstoneparadox.journia.world.gen.feature
 
 import com.google.common.collect.ImmutableList
 import io.github.redstoneparadox.journia.block.JourniaBlocks
+import io.github.redstoneparadox.journia.shape.ConfiguredShapeProviders
 import io.github.redstoneparadox.journia.world.gen.foliage.MegaPineFoliagePlacer
 import io.github.redstoneparadox.journia.world.gen.foliage.PineFoliagePlacer
 import net.minecraft.block.BlockState
@@ -84,8 +85,7 @@ object JourniaConfiguredFeatures {
         LARGE_ROCK_FORMATION = register("large_rock_formation", JourniaFeatures.ROCK_FORMATION.configure(
                 RockFormationFeatureConfig(
                     SimpleBlockStateProvider(Blocks.STONE.defaultState),
-                    3..8,
-                    8..18,
+                    ConfiguredShapeProviders.ROCK_SHAPE_PROVIDER,
                     3..6,
                     5..9
                 )

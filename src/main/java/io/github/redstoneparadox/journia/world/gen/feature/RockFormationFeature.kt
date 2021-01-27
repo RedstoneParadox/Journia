@@ -1,7 +1,6 @@
 package io.github.redstoneparadox.journia.world.gen.feature
 
 import com.terraformersmc.terraform.shapes.api.Position
-import com.terraformersmc.terraform.shapes.impl.Shapes
 import com.terraformersmc.terraform.shapes.impl.layer.pathfinder.AddLayer
 import com.terraformersmc.terraform.shapes.impl.layer.transform.TranslateLayer
 import io.github.redstoneparadox.journia.util.JavaRandom
@@ -26,18 +25,14 @@ class RockFormationFeature: Feature<RockFormationFeatureConfig>(RockFormationFea
         val rand = JavaRandom(random)
         val additionalRockCount = rand.nextInt(config.countRange.first, config.countRange.last + 1) - 1
 
-        val firstRadius = rand.nextInt(config.radiusRange.first, config.radiusRange.last + 1).toDouble()
-        val firstHeight = rand.nextInt(config.heightRange.first, config.heightRange.last + 1).toDouble()
-        var shape = Shapes.hemiEllipsoid(firstRadius, firstRadius, firstHeight)
+        var shape = config.shapeProvider.get(rand)
 
         for (i in 0 until additionalRockCount) {
-            val radius = rand.nextInt(config.radiusRange.first, config.radiusRange.last + 1).toDouble()
-            val height = rand.nextInt(config.heightRange.first, config.heightRange.last + 1).toDouble()
             val offsetDistance = rand.nextInt(config.offsetRange.first, config.offsetRange.last + 1).toDouble()
             val offsetAngle = Math.toRadians(rand.nextInt(0, 360).toDouble()).toFloat()
             val offset = Vec3d(offsetDistance, 0.0, 0.0).rotateY(offsetAngle)
 
-            val rock = Shapes.hemiEllipsoid(radius, radius, height)
+            val rock = config.shapeProvider.get(rand)
                 .applyLayer(TranslateLayer.of(Position.of(offset.x, 0.0, offset.z)))
 
             shape = shape.applyLayer(AddLayer(rock))
