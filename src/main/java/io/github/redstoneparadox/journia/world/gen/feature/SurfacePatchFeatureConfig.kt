@@ -19,7 +19,7 @@ class SurfacePatchFeatureConfig(
             instance.group(
                 BlockState.CODEC.field("state") { state },
                 Codec.DOUBLE.field("coverage") { coverage },
-                Codec.list(BlockState.CODEC).field("targets") { targets },
+                BlockState.CODEC.listOf().field("targets") { targets },
                 Codec.BOOL.field("below") { below },
                 Codec.DOUBLE.field("size") { size },
                 Codec.DOUBLE.field("integrity") { integrity }
