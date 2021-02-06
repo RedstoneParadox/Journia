@@ -1,43 +1,49 @@
 package io.github.redstoneparadox.journia.block
 
+import com.terraformersmc.terraform.tree.block.TerraformSaplingBlock
+import com.terraformersmc.terraform.wood.block.StrippableLogBlock
+import com.terraformersmc.terraform.wood.block.TerraformButtonBlock
+import com.terraformersmc.terraform.wood.block.TerraformPressurePlateBlock
+import com.terraformersmc.terraform.wood.block.TerraformStairsBlock
 import io.github.redstoneparadox.journia.util.JourniaSaplingGenerator
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.*
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.registry.Registry
+import java.util.function.Supplier
 
 object JourniaBlocks {
     val CRACKED_GROUND = Block(FabricBlockSettings.copy(Blocks.SANDSTONE))
 
     val GREEN_MUSHROOM_BLOCK = GreenMushroomBlock()
 
-    val CUBEN_LOG = PillarBlock(FabricBlockSettings.copy(Blocks.OAK_LOG))
+    val CUBEN_LOG = StrippableLogBlock({ STRIPPED_CUBEN_LOG }, MaterialColor.GREEN ,FabricBlockSettings.copy(Blocks.OAK_LOG))
     val STRIPPED_CUBEN_LOG = PillarBlock(FabricBlockSettings.copy(Blocks.STRIPPED_OAK_LOG))
-    val CUBEN_WOOD = PillarBlock(FabricBlockSettings.copy(Blocks.OAK_WOOD))
+    val CUBEN_WOOD = StrippableLogBlock({ STRIPPED_CUBEN_WOOD }, MaterialColor.GREEN ,FabricBlockSettings.copy(Blocks.OAK_WOOD))
     val STRIPPED_CUBEN_WOOD = PillarBlock(FabricBlockSettings.copy(Blocks.STRIPPED_OAK_WOOD))
     val CUBEN_LEAVES = LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES))
-    val CUBEN_SAPLING = JourniaSaplingBlock(JourniaSaplingGenerator.PINE)
+    val CUBEN_SAPLING = TerraformSaplingBlock(JourniaSaplingGenerator.PINE)
     val CUBEN_PLANKS = Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS))
     val CUBEN_SLAB = SlabBlock(FabricBlockSettings.copy(Blocks.OAK_SLAB))
-    val CUBEN_STAIRS = JourniaStairsBlock(CUBEN_PLANKS.defaultState, FabricBlockSettings.copy(Blocks.OAK_STAIRS))
+    val CUBEN_STAIRS = TerraformStairsBlock(CUBEN_PLANKS, FabricBlockSettings.copy(Blocks.OAK_STAIRS))
     val CUBEN_FENCE = FenceBlock(FabricBlockSettings.copy(Blocks.OAK_FENCE))
     val CUBEN_FENCE_GATE = FenceGateBlock(FabricBlockSettings.copy(Blocks.OAK_FENCE_GATE))
-    val CUBEN_BUTTON = JourniaWoodButtonBlock(FabricBlockSettings.copy(Blocks.OAK_BUTTON))
-    val CUBEN_PRESSURE_PLATE = JourniaPressurePlateBlock.wood(FabricBlockSettings.copy(Blocks.OAK_PRESSURE_PLATE))
+    val CUBEN_BUTTON = TerraformButtonBlock(FabricBlockSettings.copy(Blocks.OAK_BUTTON))
+    val CUBEN_PRESSURE_PLATE = TerraformPressurePlateBlock(FabricBlockSettings.copy(Blocks.OAK_PRESSURE_PLATE))
 
-    val PINE_LOG = PillarBlock(FabricBlockSettings.copy(Blocks.OAK_LOG))
+    val PINE_LOG = StrippableLogBlock({ STRIPPED_PINE_LOG }, MaterialColor.RED, FabricBlockSettings.copy(Blocks.OAK_LOG))
     val STRIPPED_PINE_LOG = PillarBlock(FabricBlockSettings.copy(Blocks.STRIPPED_OAK_LOG))
-    val PINE_WOOD = PillarBlock(FabricBlockSettings.copy(Blocks.OAK_WOOD))
+    val PINE_WOOD = StrippableLogBlock({ STRIPPED_PINE_WOOD }, MaterialColor.RED, FabricBlockSettings.copy(Blocks.OAK_WOOD))
     val STRIPPED_PINE_WOOD = PillarBlock(FabricBlockSettings.copy(Blocks.STRIPPED_OAK_WOOD))
     val PINE_LEAVES = LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES))
-    val PINE_SAPLING = JourniaSaplingBlock(JourniaSaplingGenerator.PINE)
+    val PINE_SAPLING = TerraformSaplingBlock(JourniaSaplingGenerator.PINE)
     val PINE_PLANKS = Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS))
     val PINE_SLAB = SlabBlock(FabricBlockSettings.copy(Blocks.OAK_SLAB))
-    val PINE_STAIRS = JourniaStairsBlock(PINE_PLANKS.defaultState, FabricBlockSettings.copy(Blocks.OAK_STAIRS))
+    val PINE_STAIRS = TerraformStairsBlock(PINE_PLANKS, FabricBlockSettings.copy(Blocks.OAK_STAIRS))
     val PINE_FENCE = FenceBlock(FabricBlockSettings.copy(Blocks.OAK_FENCE))
     val PINE_FENCE_GATE = FenceGateBlock(FabricBlockSettings.copy(Blocks.OAK_FENCE_GATE))
-    val PINE_BUTTON = JourniaWoodButtonBlock(FabricBlockSettings.copy(Blocks.OAK_BUTTON))
-    val PINE_PRESSURE_PLATE = JourniaPressurePlateBlock.wood(FabricBlockSettings.copy(Blocks.OAK_PRESSURE_PLATE))
+    val PINE_BUTTON = TerraformButtonBlock(FabricBlockSettings.copy(Blocks.OAK_BUTTON))
+    val PINE_PRESSURE_PLATE = TerraformPressurePlateBlock(FabricBlockSettings.copy(Blocks.OAK_PRESSURE_PLATE))
 
     val MUD = Block(FabricBlockSettings.of(Material.ORGANIC_PRODUCT).materialColor(MaterialColor.DIRT).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME))
 
