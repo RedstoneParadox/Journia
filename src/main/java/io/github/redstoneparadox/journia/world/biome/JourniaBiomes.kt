@@ -35,7 +35,6 @@ object JourniaBiomes {
     fun init() {
         ShoreBiomes.init()
         RockyTaigaBiomes.init()
-        CubenForestBiomes.init()
         BandedMountainsBiomes.init()
         // WastelandBiomes.init()
         WetlandsBiomes.init()

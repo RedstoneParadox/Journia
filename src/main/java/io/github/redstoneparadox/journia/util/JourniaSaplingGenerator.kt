@@ -12,7 +12,6 @@ class JourniaSaplingGenerator(private val featureSuplier: () -> Feature<TreeFeat
 
     companion object {
         val PINE = JourniaSaplingGenerator { JourniaFeatures.PINE_TREE_CONFIG }
-        val CUBEN = JourniaSaplingGenerator { JourniaFeatures.cubenTreeConfig() }
     }
 
     override fun createTreeFeature(random: Random?, bl: Boolean): ConfiguredFeature<TreeFeatureConfig, *>? {

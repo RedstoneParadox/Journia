@@ -4,5 +4,4 @@ import io.github.redstoneparadox.journia.mixin.world.gen.trunk.AccessorTrunkPlac
 import net.minecraft.world.gen.trunk.TrunkPlacerType
 
 object JourniaTrunkPlacers {
-    val CUBEN_TRUNK_PLACER: TrunkPlacerType<CubenTrunkPlacer> = AccessorTrunkPlacerType.callRegister("journia:cuben_trunk", CubenTrunkPlacer.CODEC)
 }

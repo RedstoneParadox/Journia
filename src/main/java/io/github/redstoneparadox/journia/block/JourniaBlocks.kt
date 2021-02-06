@@ -17,20 +17,6 @@ object JourniaBlocks {
 
     val GREEN_MUSHROOM_BLOCK = GreenMushroomBlock()
 
-    val CUBEN_LOG = StrippableLogBlock({ STRIPPED_CUBEN_LOG }, MaterialColor.GREEN ,FabricBlockSettings.copy(Blocks.OAK_LOG))
-    val STRIPPED_CUBEN_LOG = PillarBlock(FabricBlockSettings.copy(Blocks.STRIPPED_OAK_LOG))
-    val CUBEN_WOOD = StrippableLogBlock({ STRIPPED_CUBEN_WOOD }, MaterialColor.GREEN ,FabricBlockSettings.copy(Blocks.OAK_WOOD))
-    val STRIPPED_CUBEN_WOOD = PillarBlock(FabricBlockSettings.copy(Blocks.STRIPPED_OAK_WOOD))
-    val CUBEN_LEAVES = LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES))
-    val CUBEN_SAPLING = TerraformSaplingBlock(JourniaSaplingGenerator.PINE)
-    val CUBEN_PLANKS = Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS))
-    val CUBEN_SLAB = SlabBlock(FabricBlockSettings.copy(Blocks.OAK_SLAB))
-    val CUBEN_STAIRS = TerraformStairsBlock(CUBEN_PLANKS, FabricBlockSettings.copy(Blocks.OAK_STAIRS))
-    val CUBEN_FENCE = FenceBlock(FabricBlockSettings.copy(Blocks.OAK_FENCE))
-    val CUBEN_FENCE_GATE = FenceGateBlock(FabricBlockSettings.copy(Blocks.OAK_FENCE_GATE))
-    val CUBEN_BUTTON = TerraformButtonBlock(FabricBlockSettings.copy(Blocks.OAK_BUTTON))
-    val CUBEN_PRESSURE_PLATE = TerraformPressurePlateBlock(FabricBlockSettings.copy(Blocks.OAK_PRESSURE_PLATE))
-
     val PINE_LOG = StrippableLogBlock({ STRIPPED_PINE_LOG }, MaterialColor.RED, FabricBlockSettings.copy(Blocks.OAK_LOG))
     val STRIPPED_PINE_LOG = PillarBlock(FabricBlockSettings.copy(Blocks.STRIPPED_OAK_LOG))
     val PINE_WOOD = StrippableLogBlock({ STRIPPED_PINE_WOOD }, MaterialColor.RED, FabricBlockSettings.copy(Blocks.OAK_WOOD))
@@ -51,20 +37,6 @@ object JourniaBlocks {
         register("cracked_ground", CRACKED_GROUND)
 
         // register("green_mushroom_block", GREEN_MUSHROOM_BLOCK)
-
-        register("cuben_log", CUBEN_LOG)
-        register("stripped_cuben_log", STRIPPED_CUBEN_LOG)
-        register("cuben_wood", CUBEN_WOOD)
-        register("stripped_cuben_wood", STRIPPED_CUBEN_WOOD)
-        register("cuben_leaves", CUBEN_LEAVES)
-        register("cuben_sapling", CUBEN_SAPLING)
-        register("cuben_planks", CUBEN_PLANKS)
-        register("cuben_slab", CUBEN_SLAB)
-        register("cuben_stairs", CUBEN_STAIRS)
-        register("cuben_fence", CUBEN_FENCE)
-        register("cuben_fence_gate", CUBEN_FENCE_GATE)
-        register("cuben_button", CUBEN_BUTTON)
-        register("cuben_pressure_plate", CUBEN_PRESSURE_PLATE)
 
         register("pine_log", PINE_LOG)
         register("stripped_pine_log", STRIPPED_PINE_LOG)

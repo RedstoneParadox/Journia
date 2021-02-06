@@ -18,20 +18,13 @@ fun init() {
     ColorProviderRegistry.BLOCK.register(BlockColorProvider { state, view, pos, tintIndex ->
         if (view != null && pos != null) BiomeColors.getFoliageColor(view, pos) else FoliageColors.getSpruceColor()
     }, JourniaBlocks.PINE_LEAVES)
+
     ColorProviderRegistry.ITEM.register(ItemColorProvider { _, _ -> FoliageColors.getSpruceColor() }, JourniaItems.PINE_LEAVES)
-
-    ColorProviderRegistry.BLOCK.register(BlockColorProvider { state, view, pos, tintIndex ->
-        if (view != null && pos != null) BiomeColors.getFoliageColor(view, pos) else FoliageColors.getDefaultColor()
-    }, JourniaBlocks.CUBEN_LEAVES)
     ColorProviderRegistry.ITEM.register(ItemColorProvider { _, _ -> FoliageColors.getDefaultColor() }, JourniaItems.PINE_LEAVES)
-
 
     BlockRenderLayerMap.INSTANCE.putBlock(JourniaBlocks.PINE_SAPLING, RenderLayer.getCutout())
 
     EntityRendererRegistry.INSTANCE.register(
         JourniaEntityTypes.PINE_BOAT
-    ) { dispatcher, context -> BoatEntityRenderer(dispatcher) }
-    EntityRendererRegistry.INSTANCE.register(
-        JourniaEntityTypes.CUBEN_BOAT
     ) { dispatcher, context -> BoatEntityRenderer(dispatcher) }
 }

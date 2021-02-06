@@ -2,10 +2,8 @@ package io.github.redstoneparadox.journia.world.gen.feature
 
 import com.google.common.collect.ImmutableList
 import io.github.redstoneparadox.journia.block.JourniaBlocks
-import io.github.redstoneparadox.journia.world.gen.foliage.CubenFoliagePlacer
 import io.github.redstoneparadox.journia.world.gen.foliage.MegaPineFoliagePlacer
 import io.github.redstoneparadox.journia.world.gen.foliage.PineFoliagePlacer
-import io.github.redstoneparadox.journia.world.gen.trunk.CubenTrunkPlacer
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.Blocks.PODZOL
@@ -67,14 +65,4 @@ object JourniaFeatures {
             .build()
     }
 
-    fun cubenTreeConfig(): TreeFeatureConfig {
-        return TreeFeatureConfig.Builder(
-            SimpleBlockStateProvider(JourniaBlocks.CUBEN_LOG.defaultState),
-            SimpleBlockStateProvider(JourniaBlocks.CUBEN_LEAVES.defaultState.with(Properties.PERSISTENT, true)),
-            CubenFoliagePlacer(3, 0, 0, 0),
-            CubenTrunkPlacer(5, 10, 0),
-            TwoLayersFeatureSize(3, 0, 3)
-        )
-            .build()
-    }
 }

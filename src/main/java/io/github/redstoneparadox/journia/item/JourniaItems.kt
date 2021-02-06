@@ -16,21 +16,6 @@ object JourniaItems {
 
     val GREEN_MUSHROOM_BLOCK = blockItem(JourniaBlocks.GREEN_MUSHROOM_BLOCK)
 
-    val CUBEN_LOG = blockItem(JourniaBlocks.CUBEN_LOG)
-    val STRIPPED_CUBEN_LOG = blockItem(JourniaBlocks.STRIPPED_CUBEN_LOG)
-    val CUBEN_WOOD = blockItem(JourniaBlocks.CUBEN_WOOD)
-    val STRIPPED_CUBEN_WOOD = blockItem(JourniaBlocks.STRIPPED_CUBEN_WOOD)
-    val CUBEN_LEAVES = blockItem(JourniaBlocks.CUBEN_LEAVES)
-    val CUBEN_SAPLING = blockItem(JourniaBlocks.CUBEN_SAPLING, ItemGroup.DECORATIONS)
-    val CUBEN_PLANKS = blockItem(JourniaBlocks.CUBEN_PLANKS)
-    val CUBEN_SLAB = blockItem(JourniaBlocks.CUBEN_SLAB)
-    val CUBEN_STAIRS = blockItem(JourniaBlocks.CUBEN_STAIRS)
-    val CUBEN_FENCE = blockItem(JourniaBlocks.CUBEN_FENCE, ItemGroup.DECORATIONS)
-    val CUBEN_FENCE_GATE = blockItem(JourniaBlocks.CUBEN_FENCE_GATE, ItemGroup.DECORATIONS)
-    val CUBEN_BUTTON = blockItem(JourniaBlocks.CUBEN_BUTTON, ItemGroup.REDSTONE)
-    val CUBEN_PRESSURE_PLATE = blockItem(JourniaBlocks.CUBEN_PRESSURE_PLATE, ItemGroup.REDSTONE)
-    val CUBEN_BOAT = boatItem("cuben") { JourniaEntityTypes.CUBEN_BOAT }
-
     val PINE_LOG = blockItem(JourniaBlocks.PINE_LOG)
     val STRIPPED_PINE_LOG = blockItem(JourniaBlocks.STRIPPED_PINE_LOG)
     val PINE_WOOD = blockItem(JourniaBlocks.PINE_WOOD)
@@ -52,21 +37,6 @@ object JourniaItems {
         register("cracked_ground", CRACKED_GROUND)
 
         // register("green_mushroom_block", GREEN_MUSHROOM_BLOCK)
-
-        register("cuben_log", CUBEN_LOG)
-        register("stripped_cuben_log", STRIPPED_CUBEN_LOG)
-        register("cuben_wood", CUBEN_WOOD)
-        register("stripped_cuben_wood", STRIPPED_CUBEN_WOOD)
-        register("cuben_sapling", CUBEN_SAPLING)
-        register("cuben_leaves", CUBEN_LEAVES)
-        register("cuben_planks", CUBEN_PLANKS)
-        register("cuben_slab", CUBEN_SLAB)
-        register("cuben_stairs", CUBEN_STAIRS)
-        register("cuben_fence", CUBEN_FENCE)
-        register("cuben_fence_gate", CUBEN_FENCE_GATE)
-        register("cuben_button", CUBEN_BUTTON)
-        register("cuben_pressure_plate", CUBEN_PRESSURE_PLATE)
-        register("cuben_boat", CUBEN_BOAT)
 
         register("mud", MUD)
 
