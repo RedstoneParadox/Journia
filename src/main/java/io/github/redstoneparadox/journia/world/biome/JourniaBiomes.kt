@@ -37,7 +37,7 @@ object JourniaBiomes {
         RockyTaigaBiomes.init()
         CubenForestBiomes.init()
         BandedMountainsBiomes.init()
-        WastelandBiomes.init()
+        // WastelandBiomes.init()
         WetlandsBiomes.init()
     }
 
