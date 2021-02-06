@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "journia:pine_fence_gate",
-    "journia:cuben_fence_gate"
+    "journia:pine_fence_gate"
   ]
 }
