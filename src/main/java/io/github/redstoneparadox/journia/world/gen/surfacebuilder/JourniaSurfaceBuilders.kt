@@ -28,7 +28,7 @@ object JourniaSurfaceBuilders {
     val WETLANDS: SurfaceBuilder<TernarySurfaceConfig> = WetlandsSurfaceBuilder()
 
 
-    fun registerAll() {
+    fun init() {
         register("penta", PENTA)
         register("wetlands", WETLANDS)
     }

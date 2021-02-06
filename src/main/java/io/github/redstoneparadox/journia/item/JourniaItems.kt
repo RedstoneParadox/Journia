@@ -48,7 +48,7 @@ object JourniaItems {
 
     val MUD = blockItem(JourniaBlocks.MUD)
 
-    fun registerAll() {
+    fun init() {
         register("cracked_ground", CRACKED_GROUND)
 
         // register("green_mushroom_block", GREEN_MUSHROOM_BLOCK)

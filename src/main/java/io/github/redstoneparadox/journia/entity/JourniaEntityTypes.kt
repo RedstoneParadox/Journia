@@ -29,7 +29,7 @@ object JourniaEntityTypes {
         .type(BoatEntity.Type.OAK)
         .build()
 
-    fun registerAll() {
+    fun init() {
         register("pine_boat", PINE_BOAT)
         register("cuben_boat", CUBEN_BOAT)
     }

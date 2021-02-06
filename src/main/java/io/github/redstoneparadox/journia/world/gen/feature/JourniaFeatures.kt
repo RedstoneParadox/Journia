@@ -34,7 +34,7 @@ object JourniaFeatures {
     val BLOCK_BANDS = BlockBandsFeature()
     val ROCK_FORMATION = RockFormationFeature()
 
-    fun registerAll() {
+    fun init() {
         register("dead_tree", DEAD_TREE)
         register("surface_patch", SURFACE_PATCH)
         register("block_bands", BLOCK_BANDS)

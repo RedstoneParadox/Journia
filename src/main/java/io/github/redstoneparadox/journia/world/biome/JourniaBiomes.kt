@@ -32,7 +32,7 @@ object JourniaBiomes {
 
     lateinit var WETLANDS: RegistryKey<Biome>
 
-    fun registerAll() {
+    fun init() {
         ShoreBiomes.register()
         RockyTaigaBiomes.register()
         CubenForestBiomes.register()

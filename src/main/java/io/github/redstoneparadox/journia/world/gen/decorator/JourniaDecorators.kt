@@ -9,7 +9,7 @@ object JourniaDecorators {
     val SURFACE_PATCH: Decorator<CountConfig> = SurfacePatchDecorator()
     val RANDOM_HEIGHTMAP: Decorator<ChanceDecoratorConfig> = RandomHeightmapDecorator()
 
-    fun registerAll() {
+    fun init() {
         register("surface_patch", SURFACE_PATCH)
         register("random_heightmap", RANDOM_HEIGHTMAP)
     }

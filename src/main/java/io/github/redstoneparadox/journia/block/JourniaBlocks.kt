@@ -41,7 +41,7 @@ object JourniaBlocks {
 
     val MUD = Block(FabricBlockSettings.of(Material.ORGANIC_PRODUCT).materialColor(MaterialColor.DIRT).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME))
 
-    fun registerAll() {
+    fun init() {
         register("cracked_ground", CRACKED_GROUND)
 
         // register("green_mushroom_block", GREEN_MUSHROOM_BLOCK)
