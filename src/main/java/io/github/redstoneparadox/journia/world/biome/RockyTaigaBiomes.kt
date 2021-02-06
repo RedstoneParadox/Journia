@@ -18,7 +18,7 @@ import net.minecraft.world.gen.feature.ConfiguredStructureFeatures
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 object RockyTaigaBiomes {
-    fun register() {
+    fun init() {
         val template = TerraformBiomeBuilder.create()
             .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_CONFIG)
             .precipitation(Biome.Precipitation.RAIN)

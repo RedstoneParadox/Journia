@@ -19,7 +19,7 @@ import net.minecraft.world.gen.feature.*
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 object WastelandBiomes {
-    fun register() {
+    fun init() {
         val template = TerraformBiomeBuilder.create()
             .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, JourniaSurfaceBuilders.WASTELAND_CONFIG)
             .precipitation(Biome.Precipitation.NONE)

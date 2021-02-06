@@ -14,7 +14,7 @@ import net.minecraft.world.gen.feature.*
 
 
 object WetlandsBiomes {
-    fun register() {
+    fun init() {
         val template = TerraformBiomeBuilder.create()
             .configureSurfaceBuilder(JourniaSurfaceBuilders.WETLANDS, JourniaSurfaceBuilders.WETLANDS_CONFIG)
             .precipitation(Biome.Precipitation.RAIN).category(Biome.Category.JUNGLE)

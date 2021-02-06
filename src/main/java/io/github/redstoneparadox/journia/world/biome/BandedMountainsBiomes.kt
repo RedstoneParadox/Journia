@@ -17,7 +17,7 @@ import net.minecraft.world.gen.feature.ConfiguredFeatures
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 object BandedMountainsBiomes {
-    fun register() {
+    fun init() {
         val template = TerraformBiomeBuilder.create()
             .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, JourniaSurfaceBuilders.BANDED_MOUNTAINS_CONFIG)
             .temperature(0.7f)

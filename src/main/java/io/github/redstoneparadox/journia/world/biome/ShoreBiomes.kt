@@ -12,7 +12,7 @@ import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilders
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 object ShoreBiomes {
-    fun register() {
+    fun init() {
         val template = TerraformBiomeBuilder.create()
             .category(Biome.Category.BEACH)
             .depth(0.0f).scale(0.125f)

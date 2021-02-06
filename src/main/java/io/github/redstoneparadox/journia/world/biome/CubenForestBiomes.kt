@@ -13,7 +13,7 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 
 
 object CubenForestBiomes {
-   fun register() {
+   fun init() {
        val template = TerraformBiomeBuilder.create()
            .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_SAND_UNDERWATER_CONFIG)
            .temperature(0.7F).downfall(0.8F)
