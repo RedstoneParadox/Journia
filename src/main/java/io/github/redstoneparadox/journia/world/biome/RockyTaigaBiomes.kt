@@ -107,11 +107,11 @@ object RockyTaigaBiomes {
 
         JourniaBiomes.ROCKY_GIANT_TREE_TAIGA = JourniaBiomes.register("rocky_giant_tree_taiga",
             TerraformBiomeBuilder.create(template)
+                .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.STONE_CONFIG)
                 .addFeature(
                     GenerationStep.Feature.VEGETAL_DECORATION,
                     JourniaDecoratedFeatures.SPARSE_GIANT_PINE_TREE
                 )
-                .configureSurfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.STONE_CONFIG)
                 .addStructureFeatures(
                     ConfiguredStructureFeatures.PILLAGER_OUTPOST
                 )
