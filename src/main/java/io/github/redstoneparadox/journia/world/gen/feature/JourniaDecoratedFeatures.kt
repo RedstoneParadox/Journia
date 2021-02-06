@@ -31,6 +31,7 @@ object JourniaDecoratedFeatures {
     val WETLANDS_GRASS: ConfiguredFeature<*, *>
     val WETLANDS_BAMBOO: ConfiguredFeature<*, *>
     val WETLANDS_BAMBOO_VEGITATION: ConfiguredFeature<*, *>
+    val WETLANDS_SEAGRASS: ConfiguredFeature<*, *>
 
     init {
         LARGE_ROCK_80 = register("large_rock_80",
@@ -156,6 +157,13 @@ object JourniaDecoratedFeatures {
                         0.1f,
                         1
                     )
+                )
+            )
+        )
+        WETLANDS_SEAGRASS = register("wetlands_seagrass",
+            JourniaConfiguredFeatures.SEAGRASS_1.decorate(
+                JourniaDecorators.SURFACE_PATCH.configure(
+                    CountConfig(128)
                 )
             )
         )

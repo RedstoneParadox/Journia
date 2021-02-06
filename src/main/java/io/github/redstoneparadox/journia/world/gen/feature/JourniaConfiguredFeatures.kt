@@ -37,7 +37,7 @@ object JourniaConfiguredFeatures {
     // Other
     val LARGE_ROCK_FORMATION: ConfiguredFeature<*, *>
     // Vegetation
-    val WETLANDS_SEAGRASS: ConfiguredFeature<*, *>
+    val SEAGRASS_1: ConfiguredFeature<*, *>
 
     init {
         COARSE_DIRT_PATCH = register("coarse_dirt_patch",
@@ -92,7 +92,7 @@ object JourniaConfiguredFeatures {
             )
         )
 
-        WETLANDS_SEAGRASS = register("wetlands_seagrass",
+        SEAGRASS_1 = register("seagrass_1",
             Feature.SEAGRASS.configure(
                 ProbabilityConfig(
                     1.0f

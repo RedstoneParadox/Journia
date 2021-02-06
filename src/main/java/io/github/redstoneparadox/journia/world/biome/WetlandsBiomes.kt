@@ -61,7 +61,7 @@ object WetlandsBiomes {
             )
             .addFeature(
                 GenerationStep.Feature.VEGETAL_DECORATION,
-                JourniaConfiguredFeatures.WETLANDS_SEAGRASS
+                JourniaDecoratedFeatures.WETLANDS_SEAGRASS
             )
 
         JourniaBiomes.WETLANDS = JourniaBiomes.register("wetlands",
