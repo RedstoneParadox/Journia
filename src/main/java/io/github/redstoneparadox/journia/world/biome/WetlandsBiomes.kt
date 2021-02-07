@@ -49,7 +49,7 @@ object WetlandsBiomes {
                 FOREST_FLOWERS,
                 MINEABLES,
                 ORES,
-                DISKS,
+                // DISKS,
                 DEFAULT_FLOWERS,
                 DEFAULT_MUSHROOMS,
                 FOREST_GRASS,
@@ -69,6 +69,10 @@ object WetlandsBiomes {
             .addFeature(
                 GenerationStep.Feature.RAW_GENERATION,
                 JourniaDecoratedFeatures.MUD_PATCH_8
+            )
+            .addFeature(
+                GenerationStep.Feature.UNDERGROUND_ORES,
+                ConfiguredFeatures.DISK_CLAY
             )
 
         JourniaBiomes.WETLANDS = JourniaBiomes.register("wetlands",

@@ -11,10 +11,8 @@ import net.minecraft.state.property.Properties
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.BuiltinRegistries
 import net.minecraft.world.gen.ProbabilityConfig
-import net.minecraft.world.gen.feature.ConfiguredFeature
-import net.minecraft.world.gen.feature.Feature
-import net.minecraft.world.gen.feature.FeatureConfig
-import net.minecraft.world.gen.feature.TreeFeatureConfig
+import net.minecraft.world.gen.UniformIntDistribution
+import net.minecraft.world.gen.feature.*
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize
 import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider
 import net.minecraft.world.gen.tree.AlterGroundTreeDecorator
@@ -27,6 +25,8 @@ object JourniaConfiguredFeatures {
     private val PINE_LOG: BlockState = JourniaBlocks.PINE_LOG.defaultState
     private val PINE_LEAVES: BlockState = JourniaBlocks.PINE_LEAVES.defaultState.with(Properties.PERSISTENT, true)
 
+    // Disks
+    val DISK_MUD: ConfiguredFeature<*, *>
     // Surface Patches
     val COARSE_DIRT_PATCH: ConfiguredFeature<*, *>
     val LARGE_COARSE_DIRT_PATCH: ConfiguredFeature<*, *>
@@ -44,6 +44,20 @@ object JourniaConfiguredFeatures {
     val SEAGRASS_SHORT: ConfiguredFeature<*, *>
 
     init {
+        DISK_MUD = register("disk_mud",
+            Feature.DISK.configure(
+                DiskFeatureConfig(
+                    JourniaBlocks.MUD.defaultState,
+                    UniformIntDistribution.of(4, 2),
+                    1,
+                    ImmutableList.of(
+                        Blocks.DIRT.defaultState,
+                        Blocks.CLAY.defaultState
+                    )
+                )
+            )
+        )
+
         COARSE_DIRT_PATCH = register("coarse_dirt_patch",
             JourniaFeatures.SURFACE_PATCH.configure(
                 SurfacePatchFeatureConfig(Blocks.COARSE_DIRT.defaultState,

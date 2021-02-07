@@ -22,6 +22,8 @@ object JourniaDecoratedFeatures {
     val SPARSE_GIANT_PINE_TREE: ConfiguredFeature<*, *>
     val WETLANDS_JUNGLE_TREE: ConfiguredFeature<*, *>
     val WETLANDS_TREES_JUNGLE: ConfiguredFeature<*, *>
+    //Disks
+    val WETLANDS_DISK_MUD: ConfiguredFeature<*, *>
     // Surface Patches
     val COARSE_DIRT_PATCH_4: ConfiguredFeature<*, *>
     val COARSE_DIRT_PATCH_12: ConfiguredFeature<*, *>
@@ -102,6 +104,13 @@ object JourniaDecoratedFeatures {
                     )
                 )
             )
+        )
+
+        WETLANDS_DISK_MUD = register("wetlands_disk_mud",
+            JourniaConfiguredFeatures.DISK_MUD.decorate(
+                ConfiguredFeatures.Decorators.SQUARE_TOP_SOLID_HEIGHTMAP
+            )
+                .repeat(6)
         )
 
         COARSE_DIRT_PATCH_4 = register("coarse_dirt_patch_4",
