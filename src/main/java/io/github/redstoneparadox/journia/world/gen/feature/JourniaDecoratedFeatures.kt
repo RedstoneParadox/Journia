@@ -24,8 +24,10 @@ object JourniaDecoratedFeatures {
     val WETLANDS_TREES_JUNGLE: ConfiguredFeature<*, *>
     // Surface Patches
     val COARSE_DIRT_PATCH_4: ConfiguredFeature<*, *>
+    val COARSE_DIRT_PATCH_12: ConfiguredFeature<*, *>
     val STONE_PATCH_4: ConfiguredFeature<*, *>
     val GRASS_PATCH_8: ConfiguredFeature<*, *>
+    val LARGE_COARSE_DIRT_PATCH_2: ConfiguredFeature<*, *>
     // Vegetation
     val WETLANDS_JUNGLE_BUSH: ConfiguredFeature<*, *>
     val WETLANDS_GRASS: ConfiguredFeature<*, *>
@@ -105,6 +107,11 @@ object JourniaDecoratedFeatures {
                 JourniaDecorators.SURFACE_PATCH.configure(CountConfig(4))
             )
         )
+        COARSE_DIRT_PATCH_12 = register("coarse_dirt_patch_12",
+            JourniaConfiguredFeatures.COARSE_DIRT_PATCH.decorate(
+                JourniaDecorators.SURFACE_PATCH.configure(CountConfig(8))
+            )
+        )
         STONE_PATCH_4 = register("stone_patch_4",
             JourniaConfiguredFeatures.COARSE_DIRT_PATCH.decorate(
                 JourniaDecorators.SURFACE_PATCH.configure(CountConfig(4))
@@ -113,6 +120,11 @@ object JourniaDecoratedFeatures {
         GRASS_PATCH_8 = register("grass_patch_4",
             JourniaConfiguredFeatures.GRASS_PATCH.decorate(
                 JourniaDecorators.SURFACE_PATCH.configure(CountConfig(8))
+            )
+        )
+        LARGE_COARSE_DIRT_PATCH_2 = register("large_coarse_dirt_patch_2",
+            JourniaConfiguredFeatures.LARGE_COARSE_DIRT_PATCH.decorate(
+                JourniaDecorators.SURFACE_PATCH.configure(CountConfig(2))
             )
         )
 

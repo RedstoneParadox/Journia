@@ -29,6 +29,7 @@ object JourniaConfiguredFeatures {
 
     // Surface Patches
     val COARSE_DIRT_PATCH: ConfiguredFeature<*, *>
+    val LARGE_COARSE_DIRT_PATCH: ConfiguredFeature<*, *>
     val STONE_PATCH: ConfiguredFeature<*, *>
     val GRASS_PATCH: ConfiguredFeature<*, *>
     // Trees
@@ -46,7 +47,20 @@ object JourniaConfiguredFeatures {
                     0.3,
                     listOf(
                         Blocks.GRASS_BLOCK.defaultState
-                    )
+                    ),
+                    below = true
+                ),
+            )
+        )
+        LARGE_COARSE_DIRT_PATCH = register("large_coarse_dirt_patch",
+            JourniaFeatures.SURFACE_PATCH.configure(
+                SurfacePatchFeatureConfig(Blocks.COARSE_DIRT.defaultState,
+                    0.75,
+                    listOf(
+                        Blocks.GRASS_BLOCK.defaultState,
+                        Blocks.STONE.defaultState
+                    ),
+                    below = true
                 )
             )
         )

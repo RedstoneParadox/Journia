@@ -117,7 +117,7 @@ object RockyTaigaBiomes {
                 )
                 .addFeature(
                     GenerationStep.Feature.RAW_GENERATION,
-                    JourniaDecoratedFeatures.COARSE_DIRT_PATCH_4
+                    JourniaDecoratedFeatures.LARGE_COARSE_DIRT_PATCH_2
                 )
                 .build()
         )
