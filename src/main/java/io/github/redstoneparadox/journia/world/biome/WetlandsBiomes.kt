@@ -2,7 +2,6 @@ package io.github.redstoneparadox.journia.world.biome
 
 import com.terraformersmc.terraform.biomebuilder.DefaultFeature.*
 import com.terraformersmc.terraform.biomebuilder.TerraformBiomeBuilder
-import io.github.redstoneparadox.journia.world.gen.feature.JourniaConfiguredFeatures
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaDecoratedFeatures
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.fabricmc.fabric.api.biome.v1.OverworldBiomes
@@ -61,7 +60,11 @@ object WetlandsBiomes {
             )
             .addFeature(
                 GenerationStep.Feature.VEGETAL_DECORATION,
-                JourniaDecoratedFeatures.WETLANDS_SEAGRASS
+                JourniaDecoratedFeatures.WETLANDS_SEAGRASS_TALL
+            )
+            .addFeature(
+                GenerationStep.Feature.VEGETAL_DECORATION,
+                JourniaDecoratedFeatures.WETLANDS_SEAGRASS_SHORT
             )
 
         JourniaBiomes.WETLANDS = JourniaBiomes.register("wetlands",

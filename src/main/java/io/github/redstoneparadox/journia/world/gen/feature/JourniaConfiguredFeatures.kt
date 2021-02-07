@@ -38,7 +38,9 @@ object JourniaConfiguredFeatures {
     // Other
     val LARGE_ROCK_FORMATION: ConfiguredFeature<*, *>
     // Vegetation
-    val SEAGRASS_1: ConfiguredFeature<*, *>
+    val SEAGRASS_HALF: ConfiguredFeature<*, *>
+    val SEAGRASS_TALL: ConfiguredFeature<*, *>
+    val SEAGRASS_SHORT: ConfiguredFeature<*, *>
 
     init {
         COARSE_DIRT_PATCH = register("coarse_dirt_patch",
@@ -106,10 +108,24 @@ object JourniaConfiguredFeatures {
             )
         )
 
-        SEAGRASS_1 = register("seagrass_1",
+        SEAGRASS_HALF = register("seagrass_half",
+            Feature.SEAGRASS.configure(
+                ProbabilityConfig(
+                    0.5f
+                )
+            )
+        )
+        SEAGRASS_TALL = register("seagrass_tall",
             Feature.SEAGRASS.configure(
                 ProbabilityConfig(
                     1.0f
+                )
+            )
+        )
+        SEAGRASS_SHORT = register("seagrass_short",
+            Feature.SEAGRASS.configure(
+                ProbabilityConfig(
+                    0.0f
                 )
             )
         )

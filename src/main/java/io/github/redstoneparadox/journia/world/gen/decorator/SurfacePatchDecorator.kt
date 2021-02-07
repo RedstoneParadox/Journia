@@ -9,13 +9,13 @@ import java.util.*
 import java.util.stream.IntStream
 import java.util.stream.Stream
 
-class SurfacePatchDecorator: Decorator<CountConfig>(CountConfig.CODEC) {
-    override fun getPositions(context: DecoratorContext, random: Random, config: CountConfig, pos: BlockPos): Stream<BlockPos> {
-        val i = config.count.getValue(random)
+class SurfacePatchDecorator: Decorator<LargeCountConfig>(LargeCountConfig.CODEC) {
+    override fun getPositions(context: DecoratorContext, random: Random, config: LargeCountConfig, pos: BlockPos): Stream<BlockPos> {
+        val i = config.getCount().getValue(random)
         return IntStream.range(0, i).mapToObj {
             val j: Int = random.nextInt(16) + pos.getX()
             val k: Int = random.nextInt(16) + pos.getZ()
-            val l: Int = context.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, j, k)
+            val l: Int = context.getTopY(Heightmap.Type.OCEAN_FLOOR_WG, j, k)
             BlockPos(j, l, k)
         }
     }

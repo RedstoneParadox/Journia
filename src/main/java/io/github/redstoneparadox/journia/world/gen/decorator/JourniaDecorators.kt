@@ -6,7 +6,7 @@ import net.minecraft.world.gen.decorator.ChanceDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
 
 object JourniaDecorators {
-    val SURFACE_PATCH: Decorator<CountConfig> = SurfacePatchDecorator()
+    val SURFACE_PATCH: Decorator<LargeCountConfig> = SurfacePatchDecorator()
     val RANDOM_HEIGHTMAP: Decorator<ChanceDecoratorConfig> = RandomHeightmapDecorator()
 
     fun init() {

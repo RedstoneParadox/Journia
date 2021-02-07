@@ -1,9 +1,9 @@
 package io.github.redstoneparadox.journia.world.gen.feature
 
 import io.github.redstoneparadox.journia.world.gen.decorator.JourniaDecorators
+import io.github.redstoneparadox.journia.world.gen.decorator.LargeCountConfig
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.BuiltinRegistries
-import net.minecraft.world.gen.CountConfig
 import net.minecraft.world.gen.decorator.ChanceDecoratorConfig
 import net.minecraft.world.gen.decorator.CountExtraDecoratorConfig
 import net.minecraft.world.gen.decorator.Decorator
@@ -33,7 +33,8 @@ object JourniaDecoratedFeatures {
     val WETLANDS_GRASS: ConfiguredFeature<*, *>
     val WETLANDS_BAMBOO: ConfiguredFeature<*, *>
     val WETLANDS_BAMBOO_VEGITATION: ConfiguredFeature<*, *>
-    val WETLANDS_SEAGRASS: ConfiguredFeature<*, *>
+    val WETLANDS_SEAGRASS_TALL: ConfiguredFeature<*, *>
+    val WETLANDS_SEAGRASS_SHORT: ConfiguredFeature<*, *>
 
     init {
         LARGE_ROCK_80 = register("large_rock_80",
@@ -104,27 +105,27 @@ object JourniaDecoratedFeatures {
 
         COARSE_DIRT_PATCH_4 = register("coarse_dirt_patch_4",
             JourniaConfiguredFeatures.COARSE_DIRT_PATCH.decorate(
-                JourniaDecorators.SURFACE_PATCH.configure(CountConfig(4))
+                JourniaDecorators.SURFACE_PATCH.configure(LargeCountConfig(4))
             )
         )
         COARSE_DIRT_PATCH_12 = register("coarse_dirt_patch_12",
             JourniaConfiguredFeatures.COARSE_DIRT_PATCH.decorate(
-                JourniaDecorators.SURFACE_PATCH.configure(CountConfig(8))
+                JourniaDecorators.SURFACE_PATCH.configure(LargeCountConfig(8))
             )
         )
         STONE_PATCH_4 = register("stone_patch_4",
             JourniaConfiguredFeatures.COARSE_DIRT_PATCH.decorate(
-                JourniaDecorators.SURFACE_PATCH.configure(CountConfig(4))
+                JourniaDecorators.SURFACE_PATCH.configure(LargeCountConfig(4))
             )
         )
         GRASS_PATCH_8 = register("grass_patch_4",
             JourniaConfiguredFeatures.GRASS_PATCH.decorate(
-                JourniaDecorators.SURFACE_PATCH.configure(CountConfig(8))
+                JourniaDecorators.SURFACE_PATCH.configure(LargeCountConfig(8))
             )
         )
         LARGE_COARSE_DIRT_PATCH_2 = register("large_coarse_dirt_patch_2",
             JourniaConfiguredFeatures.LARGE_COARSE_DIRT_PATCH.decorate(
-                JourniaDecorators.SURFACE_PATCH.configure(CountConfig(2))
+                JourniaDecorators.SURFACE_PATCH.configure(LargeCountConfig(2))
             )
         )
 
@@ -172,10 +173,17 @@ object JourniaDecoratedFeatures {
                 )
             )
         )
-        WETLANDS_SEAGRASS = register("wetlands_seagrass",
-            JourniaConfiguredFeatures.SEAGRASS_1.decorate(
+        WETLANDS_SEAGRASS_TALL = register("wetlands_seagrass_tall",
+            JourniaConfiguredFeatures.SEAGRASS_TALL.decorate(
                 JourniaDecorators.SURFACE_PATCH.configure(
-                    CountConfig(128)
+                    LargeCountConfig(256)
+                )
+            )
+        )
+        WETLANDS_SEAGRASS_SHORT = register("wetlands_seagrass_short",
+            JourniaConfiguredFeatures.SEAGRASS_SHORT.decorate(
+                JourniaDecorators.SURFACE_PATCH.configure(
+                    LargeCountConfig(256)
                 )
             )
         )
