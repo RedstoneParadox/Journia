@@ -27,6 +27,7 @@ object JourniaDecoratedFeatures {
     val COARSE_DIRT_PATCH_12: ConfiguredFeature<*, *>
     val STONE_PATCH_4: ConfiguredFeature<*, *>
     val GRASS_PATCH_8: ConfiguredFeature<*, *>
+    val MUD_PATCH_8: ConfiguredFeature<*, *>
     val LARGE_COARSE_DIRT_PATCH_2: ConfiguredFeature<*, *>
     // Vegetation
     val WETLANDS_JUNGLE_BUSH: ConfiguredFeature<*, *>
@@ -120,6 +121,11 @@ object JourniaDecoratedFeatures {
         )
         GRASS_PATCH_8 = register("grass_patch_4",
             JourniaConfiguredFeatures.GRASS_PATCH.decorate(
+                JourniaDecorators.SURFACE_PATCH.configure(LargeCountConfig(8))
+            )
+        )
+        MUD_PATCH_8 = register("mud_patch_8",
+            JourniaConfiguredFeatures.MUD_PATCH.decorate(
                 JourniaDecorators.SURFACE_PATCH.configure(LargeCountConfig(8))
             )
         )

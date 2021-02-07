@@ -32,6 +32,7 @@ object JourniaConfiguredFeatures {
     val LARGE_COARSE_DIRT_PATCH: ConfiguredFeature<*, *>
     val STONE_PATCH: ConfiguredFeature<*, *>
     val GRASS_PATCH: ConfiguredFeature<*, *>
+    val MUD_PATCH: ConfiguredFeature<*, *>
     // Trees
     val PINE_TREE: ConfiguredFeature<TreeFeatureConfig, *>
     val GIANT_PINE_TREE: ConfiguredFeature<TreeFeatureConfig, *>
@@ -91,6 +92,20 @@ object JourniaConfiguredFeatures {
                     size = 12.0,
                     below = true,
                     integrity = 0.35
+                )
+            )
+        )
+        MUD_PATCH = register("mud_patch",
+            JourniaFeatures.SURFACE_PATCH.configure(
+                SurfacePatchFeatureConfig(
+                    state = JourniaBlocks.MUD.defaultState,
+                    coverage = 0.5,
+                    targets = listOf(
+                        Blocks.GRASS_BLOCK.defaultState,
+                        Blocks.DIRT.defaultState
+                    ),
+                    below = true,
+                    integrity = 0.65
                 )
             )
         )

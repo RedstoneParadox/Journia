@@ -66,6 +66,10 @@ object WetlandsBiomes {
                 GenerationStep.Feature.VEGETAL_DECORATION,
                 JourniaDecoratedFeatures.WETLANDS_SEAGRASS_SHORT
             )
+            .addFeature(
+                GenerationStep.Feature.RAW_GENERATION,
+                JourniaDecoratedFeatures.MUD_PATCH_8
+            )
 
         JourniaBiomes.WETLANDS = JourniaBiomes.register("wetlands",
             TerraformBiomeBuilder.create(template)
