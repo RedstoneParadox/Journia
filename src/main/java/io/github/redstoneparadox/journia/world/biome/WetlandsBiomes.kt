@@ -83,19 +83,29 @@ object WetlandsBiomes {
             TerraformBiomeBuilder.create(template)
                 .addFeature(
                     GenerationStep.Feature.VEGETAL_DECORATION,
-                    JourniaDecoratedFeatures.WETLANDS_JUNGLE_TREE
+                    ConfiguredFeatures.TREES_JUNGLE_EDGE
+                )
+                .addFeature(
+                    GenerationStep.Feature.VEGETAL_DECORATION,
+                    ConfiguredFeatures.JUNGLE_TREE
+                )
+                .addFeature(
+                    GenerationStep.Feature.VEGETAL_DECORATION,
+                    ConfiguredFeatures.JUNGLE_BUSH
+                )
+                .addFeature(
+                    GenerationStep.Feature.VEGETAL_DECORATION,
+                    ConfiguredFeatures.SWAMP_TREE
                 )
                 .addFeature(
                     GenerationStep.Feature.VEGETAL_DECORATION,
                     JourniaDecoratedFeatures.WETLANDS_GRASS
                 )
                 .addFeature(
-                    GenerationStep.Feature.VEGETAL_DECORATION,
-                    JourniaDecoratedFeatures.WETLANDS_BAMBOO
+                    GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.PATCH_MELON
                 )
                 .addFeature(
-                    GenerationStep.Feature.VEGETAL_DECORATION,
-                    JourniaDecoratedFeatures.WETLANDS_BAMBOO_VEGITATION
+                    GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.VINES
                 )
                 .build()
         )
