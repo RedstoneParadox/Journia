@@ -26,20 +26,11 @@ object WetlandsBiomes {
                     .waterFogColor(329011)
                     .skyColor(JourniaBiomes.getSkyColor(0.2f))
             )
-            .addStructureFeature<FeatureConfig>(
-                StructureFeature.JUNGLE_PYRAMID.configure(
-                    FeatureConfig.DEFAULT
-                )
-            )
             .addStructureFeature<MineshaftFeatureConfig>(
-                StructureFeature.MINESHAFT.configure(
-                    MineshaftFeatureConfig(0.004f, MineshaftFeature.Type.NORMAL)
-                )
+                ConfiguredStructureFeatures.MINESHAFT
             )
             .addStructureFeature<FeatureConfig>(
-                JungleTempleFeature.STRONGHOLD.configure(
-                    FeatureConfig.DEFAULT
-                )
+                ConfiguredStructureFeatures.STRONGHOLD
             )
             .addDefaultFeatures(
                 LAND_CARVERS,
