@@ -51,9 +51,7 @@ object RockyTaigaBiomes {
             )
             .addFeature(
                 GenerationStep.Feature.LOCAL_MODIFICATIONS,
-                ConfiguredFeatures.FOREST_ROCK.decorate(
-                    ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP.repeatRandomly(2)
-                )
+                ConfiguredFeatures.FOREST_ROCK
             )
             .addFeature(
                 GenerationStep.Feature.RAW_GENERATION,
