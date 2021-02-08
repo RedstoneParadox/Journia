@@ -74,6 +74,10 @@ object WetlandsBiomes {
                 GenerationStep.Feature.UNDERGROUND_ORES,
                 ConfiguredFeatures.DISK_CLAY
             )
+            .addFeature(
+                GenerationStep.Feature.VEGETAL_DECORATION,
+                ConfiguredFeatures.PATCH_WATERLILLY
+            )
 
         JourniaBiomes.WETLANDS = JourniaBiomes.register("wetlands",
             TerraformBiomeBuilder.create(template)
