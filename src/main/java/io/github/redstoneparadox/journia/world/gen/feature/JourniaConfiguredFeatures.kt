@@ -166,7 +166,7 @@ object JourniaConfiguredFeatures {
                 MudIslandFeatureConfig(
                     ConfiguredShapeProviders.MUD_ISLAND_SHAPE_PROVIDER,
                     4..7,
-                    12..16
+                    22..24
                 )
             )
         )

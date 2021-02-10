@@ -21,6 +21,10 @@ class MudIslandFeature: Feature<MudIslandFeatureConfig>(MudIslandFeatureConfig.C
             return false
         }
 
+        if (!world.testBlockState(BlockPos(pos.x, chunkGenerator.seaLevel, pos.z)) { it.block.`is`(Blocks.WATER) }) {
+            return false
+        }
+
         val filler = IslandFiller(world, chunkGenerator.seaLevel)
         val shapeProvider = config.shapeProvider
         val countRange = config.countRange
