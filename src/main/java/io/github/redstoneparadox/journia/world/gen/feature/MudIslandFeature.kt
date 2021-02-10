@@ -3,7 +3,9 @@ package io.github.redstoneparadox.journia.world.gen.feature
 import com.terraformersmc.terraform.shapes.api.Filler
 import com.terraformersmc.terraform.shapes.api.Position
 import com.terraformersmc.terraform.shapes.api.layer.TransformationLayer
+import com.terraformersmc.terraform.shapes.api.validator.Validator
 import com.terraformersmc.terraform.shapes.impl.layer.transform.TranslateLayer
+import com.terraformersmc.terraform.shapes.impl.validator.AirValidator
 import io.github.redstoneparadox.journia.block.JourniaBlocks
 import io.github.redstoneparadox.journia.util.JavaRandom
 import net.minecraft.block.Blocks
@@ -41,8 +43,7 @@ class MudIslandFeature: Feature<MudIslandFeatureConfig>(MudIslandFeatureConfig.C
             val x = offset.x.toInt()
             val z = offset.z.toInt()
 
-            shape.applyLayer(TranslateLayer.of(Position.of(pos.add(x, 0, z))))
-            shape.fill(filler)
+            shape.applyLayer(TranslateLayer.of(Position.of(pos.add(x, 0, z)))).fill(filler)
         }
 
         return true
