@@ -38,11 +38,10 @@ class MudIslandFeature: Feature<MudIslandFeatureConfig>(MudIslandFeatureConfig.C
             val offsetDistance = rand.nextInt(offsetRange.first, offsetRange.last + 1).toDouble()
             val offsetAngle = Math.toRadians(rand.nextInt(0, 360).toDouble()).toFloat()
             val offset = Vec3d(offsetDistance, 0.0, 0.0).rotateY(offsetAngle)
-            val x = offset.x.toInt() + pos.x
-            val z = offset.z.toInt() + pos.z
-            val y = world.getTopY(Heightmap.Type.OCEAN_FLOOR_WG, x, z)
+            val x = offset.x.toInt()
+            val z = offset.z.toInt()
 
-            shape.applyLayer(TranslateLayer.of(Position.of(x.toDouble(), y.toDouble(), z.toDouble())))
+            shape.applyLayer(TranslateLayer.of(Position.of(pos.add(x, 0, z))))
             shape.fill(filler)
         }
 
