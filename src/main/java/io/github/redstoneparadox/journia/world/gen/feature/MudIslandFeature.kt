@@ -19,7 +19,7 @@ import java.util.*
 
 class MudIslandFeature: Feature<MudIslandFeatureConfig>(MudIslandFeatureConfig.CODEC) {
     override fun generate(world: StructureWorldAccess, chunkGenerator: ChunkGenerator, random: Random, pos: BlockPos, config: MudIslandFeatureConfig): Boolean {
-        if (pos.y > chunkGenerator.seaLevel - 2) {
+        if (pos.y > chunkGenerator.seaLevel - 3) {
             return false
         }
 
@@ -54,7 +54,7 @@ class MudIslandFeature: Feature<MudIslandFeatureConfig>(MudIslandFeatureConfig.C
             val blockPos = pos.toBlockPos()
 
             val chunk = world.getChunk(blockPos)
-            val y = chunk.sampleHeightmap(Heightmap.Type.OCEAN_FLOOR_WG, blockPos.x, blockPos.z)
+            val y = chunk.sampleHeightmap(Heightmap.Type.OCEAN_FLOOR_WG, blockPos.x, blockPos.z) + 1
 
             if (y <= seaLevel) {
                 val newBlockPos = BlockPos(blockPos.x, y, blockPos.z)

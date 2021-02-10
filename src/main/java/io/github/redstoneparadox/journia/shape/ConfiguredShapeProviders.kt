@@ -10,11 +10,11 @@ object ConfiguredShapeProviders {
     fun init() {
         MUD_ISLAND_SHAPE_PROVIDER = register("mud_island",
             ConfiguredShapeProvider(
-                EllipsisShapeProviderConfig(
-                    7..12,
-                    7..12
+                RockShapeProviderConfig(
+                    3..8,
+                    5..9
                 ),
-                EllipsisShapeProvider()
+                RockShapeProvider()
             )
         )
         ROCK_SHAPE_PROVIDER = register("rock_shape",
