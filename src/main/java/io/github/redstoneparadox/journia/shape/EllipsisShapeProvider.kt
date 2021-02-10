@@ -9,6 +9,6 @@ class EllipsisShapeProvider: ShapeProvider<EllipsisShapeProviderConfig> {
         val width = random.nextInt(config.widthRange.first, config.widthRange.last)
         val height = random.nextInt(config.heightRange.first, config.heightRange.last)
 
-        return Shapes.ellipse(width.toDouble(), height.toDouble())
+        return Shapes.ellipticalPrism(width.toDouble(), height.toDouble(), 2.0)
     }
 }
