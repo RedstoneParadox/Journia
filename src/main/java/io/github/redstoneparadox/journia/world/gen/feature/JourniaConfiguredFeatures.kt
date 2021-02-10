@@ -42,6 +42,8 @@ object JourniaConfiguredFeatures {
     val SEAGRASS_HALF: ConfiguredFeature<*, *>
     val SEAGRASS_TALL: ConfiguredFeature<*, *>
     val SEAGRASS_SHORT: ConfiguredFeature<*, *>
+    // Mini-Islands
+    val MUD_ISLAND: ConfiguredFeature<*, *>
 
     init {
         DISK_MUD = register("disk_mud",
@@ -155,6 +157,16 @@ object JourniaConfiguredFeatures {
             Feature.SEAGRASS.configure(
                 ProbabilityConfig(
                     0.0f
+                )
+            )
+        )
+
+        MUD_ISLAND = register("mud_island",
+            JourniaFeatures.MUD_ISLAND.configure(
+                MudIslandFeatureConfig(
+                    ConfiguredShapeProviders.MUD_ISLAND_SHAPE_PROVIDER,
+                    4..7,
+                    12..16
                 )
             )
         )

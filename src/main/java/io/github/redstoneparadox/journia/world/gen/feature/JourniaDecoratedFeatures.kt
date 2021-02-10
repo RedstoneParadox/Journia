@@ -38,6 +38,8 @@ object JourniaDecoratedFeatures {
     val WETLANDS_BAMBOO_VEGITATION: ConfiguredFeature<*, *>
     val WETLANDS_SEAGRASS_TALL: ConfiguredFeature<*, *>
     val WETLANDS_SEAGRASS_SHORT: ConfiguredFeature<*, *>
+    // Mini Islands
+    val WETLANDS_MUD_ISLAND: ConfiguredFeature<*, *>
 
     init {
         LARGE_ROCK_80 = register("large_rock_80",
@@ -200,6 +202,12 @@ object JourniaDecoratedFeatures {
                 JourniaDecorators.SURFACE_PATCH.configure(
                     LargeCountConfig(256)
                 )
+            )
+        )
+
+        WETLANDS_MUD_ISLAND = register("wetlands_mud_island",
+            JourniaConfiguredFeatures.MUD_ISLAND.decorate(
+                ConfiguredFeatures.Decorators.SQUARE_TOP_SOLID_HEIGHTMAP.repeat(2)
             )
         )
     }
