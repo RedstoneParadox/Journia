@@ -2,15 +2,21 @@ package io.github.redstoneparadox.journia.world.biome
 
 import com.terraformersmc.terraform.biomebuilder.DefaultFeature.*
 import com.terraformersmc.terraform.biomebuilder.TerraformBiomeBuilder
-import io.github.redstoneparadox.journia.world.gen.feature.JourniaConfiguredFeatures
 import io.github.redstoneparadox.journia.world.gen.feature.JourniaDecoratedFeatures
 import io.github.redstoneparadox.journia.world.gen.surfacebuilder.JourniaSurfaceBuilders
 import net.fabricmc.fabric.api.biome.v1.OverworldBiomes
 import net.fabricmc.fabric.api.biome.v1.OverworldClimate
+import net.minecraft.entity.EntityType
+import net.minecraft.entity.SpawnGroup
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.biome.BiomeEffects
+import net.minecraft.world.biome.SpawnSettings
+import net.minecraft.world.biome.SpawnSettings.SpawnEntry
 import net.minecraft.world.gen.GenerationStep
-import net.minecraft.world.gen.feature.*
+import net.minecraft.world.gen.feature.ConfiguredFeatures
+import net.minecraft.world.gen.feature.ConfiguredStructureFeatures
+import net.minecraft.world.gen.feature.FeatureConfig
+import net.minecraft.world.gen.feature.MineshaftFeatureConfig
 
 
 object WetlandsBiomes {
@@ -73,6 +79,16 @@ object WetlandsBiomes {
             .addFeature(
                 GenerationStep.Feature.RAW_GENERATION,
                 JourniaDecoratedFeatures.WETLANDS_MUD_ISLAND
+            )
+            .addDefaultSpawnEntries()
+            .addSpawnEntry(
+                SpawnEntry(EntityType.CHICKEN, 10, 4, 4)
+            )
+            .addSpawnEntry(
+                SpawnEntry(EntityType.TROPICAL_FISH, 25, 8, 8)
+            )
+            .addSpawnEntry(
+                SpawnEntry(EntityType.DROWNED, 5, 1, 1)
             )
 
         JourniaBiomes.WETLANDS = JourniaBiomes.register("wetlands",
