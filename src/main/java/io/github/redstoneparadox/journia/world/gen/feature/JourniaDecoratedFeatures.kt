@@ -207,7 +207,7 @@ object JourniaDecoratedFeatures {
 
         WETLANDS_MUD_ISLAND = register("wetlands_mud_island",
             JourniaConfiguredFeatures.MUD_ISLAND.decorate(
-                ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP.repeat(8)
+                ConfiguredFeatures.Decorators.TOP_SOLID_HEIGHTMAP.repeat(8)
             )
         )
     }

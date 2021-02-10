@@ -21,7 +21,7 @@ class MudIslandFeature: Feature<MudIslandFeatureConfig>(MudIslandFeatureConfig.C
             return false
         }
 
-        if (!world.testBlockState(BlockPos(pos.x, chunkGenerator.seaLevel, pos.z)) { it.block.`is`(Blocks.WATER) }) {
+        if (!world.testBlockState(BlockPos(pos.x, chunkGenerator.seaLevel - 1, pos.z)) { it.block.`is`(Blocks.WATER) }) {
             return false
         }
 
@@ -38,8 +38,11 @@ class MudIslandFeature: Feature<MudIslandFeatureConfig>(MudIslandFeatureConfig.C
             val offsetDistance = rand.nextInt(offsetRange.first, offsetRange.last + 1).toDouble()
             val offsetAngle = Math.toRadians(rand.nextInt(0, 360).toDouble()).toFloat()
             val offset = Vec3d(offsetDistance, 0.0, 0.0).rotateY(offsetAngle)
+            val x = offset.x.toInt()
+            val z = offset.z.toInt()
+            val y = world.getTopY(Heightmap.Type.OCEAN_FLOOR_WG, x, z)
 
-            shape.applyLayer(TranslateLayer.of(Position.of(pos.add(offset.x.toInt(), 0, offset.z.toInt()))))
+            shape.applyLayer(TranslateLayer.of(Position.of(pos.add(x, y, z))))
             shape.fill(filler)
         }
 
@@ -55,7 +58,7 @@ class MudIslandFeature: Feature<MudIslandFeatureConfig>(MudIslandFeatureConfig.C
 
             if (y <= seaLevel) {
                 val newBlockPos = BlockPos(blockPos.x, y, blockPos.z)
-                world.setBlockState(newBlockPos, JourniaBlocks.MUD.defaultState, 3)
+                world.setBlockState(newBlockPos, Blocks.RED_CONCRETE.defaultState, 3)
             }
         }
     }
